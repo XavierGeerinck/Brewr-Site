@@ -37,16 +37,16 @@
 
     select {
         margin: 0;
-        width: 80%;
+        width: 90%;
 
-        background: url('../images/option-dropdown.png') no-repeat right $colorBackground;
+        background: url('../images/option-dropdown.png') no-repeat right $colorBgDropdown;
         color: $colorBlack;
         border: 0;
         border-radius: 0;
         -webkit-appearance: none;
         height: 34px;
         line-height: 1;
-        font-size: 10px;
+        font-size: 12px;
         font-weight: normal;
         padding: 5px 25px 5px 10px;
     }

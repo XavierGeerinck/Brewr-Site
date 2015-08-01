@@ -64,45 +64,29 @@
 
 
 		<section class="page-title">
-			<h1>Image Builder
-				<span id="step">5/7</span>
-			</h1>
+			<h1>Your Profile</h1>
 		</section>
 
 		<section class="padding center content flex-container">
 			<div class="container">
-				<!-- Add Volumes -->
+				<!-- Search docker -->
 				<section class="sub-content flex-container">
 					<div class="flex-container">
 						<div id="pick-settings" class="flex-item">
-							<label for="input_cmd">Add Environment Variables</label>
-							<input type="text" name="input_cmd" placeholder="Type a environment variable, format: ENV_VARIABLE=value" />
-						</div>
-					</div>
-				</section>
+							<label for="input_maintainer">Email</label>
+							<input type="text" name="input_maintainer" readonly />
 
-				<!-- Current Volumes -->
-				<section class="sub-content flex-container">
-					<div class="flex-container">
-						<div id="pick-settings-filled" class="flex-item">
-							<h2>Environment Variables</h2>
+							<label for="input_password">New Password</label>
+							<input type="text" name="input_password_new" />
 
-							<ul>
-								<li>
-									ENVIRONMENT=staging
-									<a href="#" class="btn-square orange"><i class="fa fa-remove"></i></a>
-								</li>
-								<li>
-									TEST=test123
-									<a href="#" class="btn-square orange"><i class="fa fa-remove"></i></a>
-								</li>
-							</ul>
+							<label for="input_password_new_repeat">Confirm New Password</label>
+							<input type="text" name="input_password_new_repeat" />
 						</div>
 					</div>
 				</section>
 
 				<!-- Next Button -->
-				<a href="builder-step-7.html" class="btn orange">Next ></a>
+				<button type="submit" class="btn btn-default orange">Save</button>
 			</div>
 
 			<div class="clear"></div>
