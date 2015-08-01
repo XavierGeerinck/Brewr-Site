@@ -1,0 +1,19 @@
+.spacer {
+	height: $spacing;
+}
+
+.spacer-half {
+	height: $spacing / 2;
+}
+
+.spacer-double {
+	height: $spacing * 2;
+}
+
+.padding {
+	padding: $spacing;
+}
+
+.padding-half {
+	padding: $spacing / 2;
+}

@@ -1,0 +1,60 @@
+.flex-container {
+    width: 100%;
+    padding: 0;
+    // margin: 0 30px 30px 30px;
+    list-style: none;
+
+    -ms-box-orient: horizontal;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+
+    // Space between gives margin within boxes
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+
+    align-items: center;
+    flex-flow: wrap;
+}
+
+.flex-container > .container {
+    padding-right: 0;
+    width: 100%;
+}
+
+.flex-item {
+    margin: 10px;
+
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+
+    flex-grow: 3;
+
+    padding: 10px;
+
+    input {
+        width: 100%;
+        padding: 10px 10px;
+        font-weight: normal;
+        color: $colorBlack;
+        display: inline-block;
+        box-sizing: border-box;
+        border: 1px solid $colorBoxBorder;
+        margin-bottom: 20px;
+    }
+
+    label {
+        color: $colorBlack;
+        text-align: left;
+        font-weight: normal;
+        margin-bottom: 10px;
+        display: block;
+        text-transform: uppercase;
+        font-size: 16px;
+    }
+}

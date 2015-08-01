@@ -1,0 +1,80 @@
+.pick-image-search {
+    margin: 0 auto;
+    width: 90%;
+    font-size: 14px;
+
+    input {
+        width: 100%;
+        padding: 10px 10px;
+        font-weight: normal;
+        color: $colorBlack;
+        display: inline-block;
+        box-sizing: border-box;
+        border: 1px solid $colorBoxBorder;
+    }
+
+    margin-bottom: 20px;
+}
+
+.pick-image-block {
+    background-color: $colorWhite;
+    width: 180px;
+    height: 180px;
+    border: 1px solid $colorBoxBorder;
+
+    h1 {
+        margin: 0 !important;
+        width: auto !important;
+    }
+
+    img {
+        height: 64px;
+        max-width: 150px;
+        margin: 0 auto;
+        padding: 10px 0 20px 0;
+        display: block;
+    }
+
+    select {
+        margin: 0;
+        width: 80%;
+
+        background: url('../images/option-dropdown.png') no-repeat right $colorBackground;
+        color: $colorBlack;
+        border: 0;
+        border-radius: 0;
+        -webkit-appearance: none;
+        height: 34px;
+        line-height: 1;
+        font-size: 10px;
+        font-weight: normal;
+        padding: 5px 25px 5px 10px;
+    }
+}
+
+h2 {
+    position: relative;
+
+    .help_popup {
+        position: absolute;
+        bottom: 15px;
+        margin-left: 5px;
+        font-size: 10px;
+        color: $colorHelpIcon;
+    }
+
+    .help_popup:hover {
+        cursor: pointer;
+        color: $colorHelpIconHover;
+    }
+}
+
+.help_block {
+    text-align: left;
+    color: $colorHelpBox;
+    font-size: 12px;
+    font-weight: normal;
+    background-color: $colorWhite;
+    padding: 20px;
+    margin: 0 -29px 0 -35px;
+}

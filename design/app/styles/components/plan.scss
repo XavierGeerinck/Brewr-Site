@@ -1,0 +1,57 @@
+.plan {
+	background-color: #fff;
+	width: 280px;
+	text-align: center;
+	display: inline-block;
+	color: $colorText;
+	border-radius: 3px;
+	margin-left: 10px;
+	margin-right: 10px;
+
+	li {
+		list-style: none;
+		text-align: left;
+		font-weight: bold;
+		line-height: 2;
+
+		&.disabled {
+			color: #999;
+		}
+
+		i {
+			margin-right: 10px;
+		}
+	}
+
+	.title {
+		font-size: 24px;
+		font-weight: bold;
+		margin-top: $spacing/2;
+	}
+
+	.subtitle {
+		font-size: 18px;
+		margin-top: 3px;
+		margin-bottom: $spacing/2;
+	}
+
+	.price {
+		background-color: $colorPrimaryHighlight;
+		color: #fff;
+		padding: $spacing/2;
+		font-size: 22px;
+		font-weight: bold;
+
+		&.success {
+			background-color: $colorSuccess;
+		}
+
+		small {
+			font-size: 14px;		
+		}
+	}
+
+	.button {
+		margin-bottom: $spacing / 2;
+	}
+}

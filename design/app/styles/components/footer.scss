@@ -1,0 +1,67 @@
+footer {
+	padding: $spacing;
+	background-color: $colorText;
+	color: #fff;
+
+	.logo {
+		background-image: url(../images/logo.png);
+		background-size: 166px 40px;
+		display: block;
+		width: 166px;
+		height: 40px;
+		float: left;
+	}
+
+	.links {
+		a {
+			color: #fff;
+			opacity: 0.5;
+			padding: 12px;
+			display: inline-block;
+			text-decoration: none;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+
+		.divider {
+			height: 10px;
+			width: 1px;
+			background-color: #fff;
+			opacity: 0.2;
+			display: inline-block;
+		}
+	}
+
+	.circle {
+		color: #fff;
+		width: 36px;
+		height: 36px;
+		border: 2px solid #fff;
+		display: inline-block;
+		text-align: center;
+		border-radius: 50%;
+		line-height: 34px;
+		margin-left: 10px;
+		margin-top: 3px;
+
+		&:hover {
+			background-color: #fff;
+			color: $colorText;
+		}
+	}
+}
+
+#license {
+	background-color: darken($colorText, 3%);
+	padding: $spacing/2;
+	text-align: center;
+	color: #555;
+	font-size: 12px;
+
+	a {
+		color: #555;
+		text-decoration: none;
+	}
+}

@@ -1,0 +1,7 @@
+{
+  "name": "brewr-builder",
+  "private": true,
+  "dependencies": {
+    "modernizr": "~2.8.3"
+  }
+}
