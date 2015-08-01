@@ -49,6 +49,7 @@ header {
 		max-width: 800px;
 		margin-left: auto;
 		margin-right: auto;
+		width: auto;
 
 		@media ($sm) {
 			max-width: 500px;
@@ -62,6 +63,7 @@ header {
 			font-size: 18px;
 			display: inline-block;
 			margin-right: $spacing/2;
+			width: auto;
 
 			@media ($sm) {
 				display: block;
@@ -73,6 +75,7 @@ header {
 
 		.button {
 			padding: 12px 20px;
+			width: auto;
 
 			@media ($sm) {
 				display: block;
