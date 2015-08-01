@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Takeoff</title>
-		<link rel="stylesheet" href="styles/main.css">
-		<link rel="shortcut icon" href="favicon.ico">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	</head>
 
-	<body>
+<head>
+	<meta charset="UTF-8">
+	<title>Takeoff</title>
+	<link rel="stylesheet" href="styles/main.css">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+
+<body>
 	<header class="small">
 		<nav>
 			<div class="container">
@@ -25,22 +26,40 @@
 		</nav>
 	</header>
 
-	<section class="padding center">
-		<div class="container">
-			<form action="">
-				<label for="">Username</label>
-				<input type="text">
+	<div class="wrapper">
+		<section class="page-title">
+			<h1>Login</h1>
+		</section>
 
-				<label for="">Password</label>
-				<input type="password">
-			</form>
-		</div>
-	</section>
+		<section class="padding center">
+			<div class="container">
+				<div class="col-xs-3"></div>
+
+				<div class="col-xs-6">
+					<form>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Email address</label>
+							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Password</label>
+							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+						</div>
+						<button type="submit" class="btn btn-default orange">Login</button>
+					</form>
+				</div>
+
+				<div class="col-xs-3"></div>
+			</div>
+
+			<div class="clear"></div>
+		</section>
+	</div>
 
 	<footer>
 		<div class="container">
 			<div class="col-md-3">
-				<a href="{{ URL::to('/') }}" class="logo"></a>
+				<a href="/" class="logo"></a>
 			</div>
 
 			<div class="col-md-6 align-center links">
@@ -64,5 +83,6 @@
 			</div>
 		</div>
 	</footer>
-	</body>
+</body>
+
 </html>
