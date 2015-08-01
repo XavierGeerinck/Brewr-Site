@@ -1,0 +1,35 @@
+/**
+* UserSession.js
+*
+* @description :: Represents a session of a user
+* @docs        :: http://sailsjs.org/#!documentation/models
+*/
+
+module.exports = {
+  tableName: 'user_session',
+  attributes: {
+    id: {
+      type: 'integer',
+      unique: true,
+      primarKey: true,
+      columnName: 'id',
+      autoIncrement: true
+    },
+    createdOn: {
+      type: 'datetime',
+      columnName: 'created_on'
+    },
+    token: 'string',
+    userAgent: {
+      type: 'string',
+      columnName: 'user_agent'
+    },
+    ip: 'string',
+
+    //associations
+    user: {
+      model: 'user'
+    }
+  }
+};
+
