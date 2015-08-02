@@ -3,9 +3,11 @@ footer {
 	background-color: $colorText;
 	color: #fff;
 	height: 120px;
-	position: absolute;
 	width: 100%;
 	height: auto;
+
+	z-index: 1;
+	position: absolute;
 
 	.logo {
 		background-image: url(../images/logo.png);
