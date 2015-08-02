@@ -2,7 +2,7 @@ body {
 	font-family: sans-serif;
 	font-size: 16px;
 	color: $colorText;
-	background-color: darken($colorText, 3%);
+  background-color: $colorBackground;
 }
 
 a {

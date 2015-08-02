@@ -2,6 +2,10 @@ footer {
 	padding: $spacing;
 	background-color: $colorText;
 	color: #fff;
+	height: 120px;
+	position: absolute;
+	width: 100%;
+	height: auto;
 
 	.logo {
 		background-image: url(../images/logo.png);

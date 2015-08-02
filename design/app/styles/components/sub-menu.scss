@@ -1,95 +1,79 @@
 section.sub-menu {
-    position: absolute;
-    width: 220px;
-    background-color: #ccc;
-    background-color: $colorPrimaryLightShade1;
+  position: absolute;
+  width: 220px;
+  background-color: #ccc;
+  background-color: $colorPrimaryLightShade1;
+  margin: 0;
+  height: 100%;
 
+  a {
+    text-decoration: none;
+  }
+  h1 {
+    text-transform: uppercase;
     margin: 0;
-    height: 100%;
-
-	a {
-		text-decoration: none;
-	}
-
-    h1 {
-        text-transform: uppercase;
-        margin: 0;
-        text-align: center;
-        color: $colorWhite;
-        font-size: 18px;
-
-        a {
-            text-decoration: none;
-            color: $colorWhite;
-            padding: 15px 0;
-            display: block;
-        }
-
-        i {
-            margin-right: 5px;
-            width: 20px;
-        }
+    text-align: center;
+    color: $colorWhite;
+    font-size: 18px;
+    a {
+      text-decoration: none;
+      color: $colorWhite;
+      padding: 15px 0;
+      display: block;
+    }
+    i {
+      margin-right: 5px;
+      width: 20px;
+    }
+  }
+  ul {
+    padding: 0 0 0 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      font-size: 14px;
+      color: $colorMenuItem;
+      a {
+        color: $colorMenuItem;
+        padding: 13px 0 13px 20px;
+        display: block;
+      }
+      i {
+        width: 20px;
+        margin-right: 10px;
+      }
+      .item-dropdown {
+        float: right;
+      }
     }
 
-    ul {
-        padding: 0 0 0 10px;
-        list-style: none;
-        margin: 0;
+    // Second level of the menu
+    li.second-level {
+      padding: 0;
+      a {
+        color: $colorMenuItem;
+        display: block;
+        padding: 13px 0 13px 20px;
+      }
+      ul {
+        background-color: $colorPrimaryDarkShade1;
         padding: 0;
-
+        display: block;
         li {
-            font-size: 14px;
-            color: $colorMenuItem;
-
-            a {
-                color: $colorMenuItem;
-                padding: 13px 0 13px 20px;
-                display: block;
-            }
-
-            i {
-                width: 20px;
-                margin-right: 10px;
-            }
-
-            .item-dropdown {
-                float: right;
-            }
+          background-color: $colorPrimaryDarkShade1;
+          border-bottom: 1px solid $colorPrimaryDarkShade2;
+          a {
+            padding: 13px 0 13px 20px;
+          }
         }
-
-        // Second level of the menu
-        li.second-level {
-            padding: 0;
-
-            a {
-                color: $colorMenuItem;
-                display: block;
-
-                padding: 13px 0 13px 20px;
-            }
-
-            ul {
-                background-color: $colorPrimaryDarkShade1;
-                padding: 0;
-                display: block;
-
-                li {
-                    background-color: $colorPrimaryDarkShade1;
-                    border-bottom: 1px solid $colorPrimaryDarkShade2;
-
-                    a {
-                        padding: 13px 0 13px 20px;
-                    }
-                }
-            }
-        }
-
-        li.active {
-            border-left: 5px solid $colorMenuItemActive;
-        }
-
-        li:nth-child(odd) {
-            background-color: $colorPrimaryLightShade2;
-        }
+      }
     }
+    li.active {
+      border-left: 5px solid $colorMenuItemActive;
+    }
+    li:nth-child(odd) {
+      background-color: $colorPrimaryLightShade2;
+    }
+  }
 }

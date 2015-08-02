@@ -23,3 +23,11 @@
     margin-left: 200px;
     position: relative;
 }
+
+@media screen and (max-width: 600px) {
+  .content > .container {
+      height: 100%;
+      margin-left: 50px;
+      position: relative;
+  }
+}

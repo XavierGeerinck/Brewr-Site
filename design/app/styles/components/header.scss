@@ -1,91 +1,82 @@
 header {
-	background-color: $colorPrimary;
-	background-image: url(../images/header.jpg);
-	background-size: cover;
-	background-position: bottom center;
-	padding-top: $spacing * 6;
-	padding-bottom: $spacing * 5;
-	color: #fff;
-	text-align: center;
-
-	&.small {
-		padding: 0;
-		background-image: none;
-
-		nav {
-			position: relative;
-			padding: $spacing / 1.5;
-
-			.container {
-				width: auto;
-			}
-		}
-	}
-
-	h1 {
-		font-weight: 200;
-		font-size: 54px;
-		letter-spacing: 2px;
-		margin-bottom: 30px;
-	}
-
-	p.subtitle {
-		font-size: 22px;
-		letter-spacing: 1px;
-		opacity: 0.9;
-
-		a {
-			color: #fff;
-
-			&:hover {
-				color: $colorAccent;
-				text-decoration: none;
-			}
-		}
-	}
-
-	form {
-		margin-top: $spacing * 2;
-		max-width: 800px;
-		margin-left: auto;
-		margin-right: auto;
-		width: auto;
-
-		@media ($sm) {
-			max-width: 500px;
-		}
-
-		input[type="text"], input[type="email"], input[type="password"] {
-			border: none;
-			background-color: #fff;
-			border-radius: 4px;
-			padding: 12px 20px;
-			font-size: 18px;
-			display: inline-block;
-			margin-right: $spacing/2;
-			width: auto;
-
-			@media ($sm) {
-				display: block;
-				width: 100%;
-				margin-bottom: $spacing/2;
-				margin-right: 0;
-			}
-		}
-
-		.button {
-			padding: 12px 20px;
-			width: auto;
-
-			@media ($sm) {
-				display: block;
-				width: 100%;
-			}
-		}
-
-		p.details {
-			margin-top: 30px;
-			opacity: 0.5;
-		}
-	}
+  background-color: $colorPrimary;
+  background-image: url("../images/header.jpg");
+  background-size: cover;
+  background-position: bottom center;
+  padding-top: $spacing * 6;
+  padding-bottom: $spacing * 5;
+  color: #fff;
+  text-align: center;
+  &.small {
+    padding: 0;
+    background-image: none;
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    nav {
+      position: relative;
+      padding: $spacing / 1.5;
+      .container {
+        width: auto;
+      }
+    }
+  }
+  h1 {
+    font-weight: 200;
+    font-size: 54px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+  }
+  p.subtitle {
+    font-size: 22px;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    a {
+      color: #fff;
+      &:hover {
+        color: $colorAccent;
+        text-decoration: none;
+      }
+    }
+  }
+  form {
+    margin-top: $spacing * 2;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    @media ($sm) {
+      max-width: 500px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      border: none;
+      background-color: #fff;
+      border-radius: 4px;
+      padding: 12px 20px;
+      font-size: 18px;
+      display: inline-block;
+      margin-right: $spacing/2;
+      width: auto;
+      @media ($sm) {
+        display: block;
+        width: 100%;
+        margin-bottom: $spacing/2;
+        margin-right: 0;
+      }
+    }
+    .button {
+      padding: 12px 20px;
+      width: auto;
+      @media ($sm) {
+        display: block;
+        width: 100%;
+      }
+    }
+    p.details {
+      margin-top: 30px;
+      opacity: 0.5;
+    }
+  }
 }
