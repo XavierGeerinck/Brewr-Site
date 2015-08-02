@@ -8,11 +8,11 @@
 	}
 }
 
-media (min-width: 992px)
+@media (min-width: 992px) {
 .container {
     width: auto;
 }
-
+}
 @media screen and (max-width: 900px) {
 	#screenshot-image {
 		background-size: 385px 285px;
@@ -56,10 +56,15 @@ media (min-width: 992px)
       }
     }
     ul {
+			.second-level {
+				a {
+					padding: 13px 0 !important;
+				}
+			}
       li {
         a {
           text-align: center;
-          padding: 0;
+          padding: 13px 0;
           margin: 0 auto;
           span {
             display: none;
