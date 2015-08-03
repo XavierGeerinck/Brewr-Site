@@ -2,4 +2,11 @@
   position: relative;
 	padding-bottom: 120px; // Footer
 	padding-top: 100px; // Header
+  min-height:100%;
+}
+
+.wrapper-no-header {
+  position: relative;
+  padding-bottom: 120px; // Footer
+  min-height:100%;
 }
