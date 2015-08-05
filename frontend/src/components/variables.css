@@ -1,0 +1,82 @@
+/* React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
+
+:root {
+
+  /*
+   * Colors
+   * ======================================================================== */
+
+  --white-base:            hsl(255, 255, 255);
+  --gray-darker:           color(black lightness(+13.5%)); /* #222 */
+  --gray-dark:             color(black lightness(+25%));   /* #404040 */
+  --gray:                  color(black lightness(+33.5%)); /* #555 */
+  --gray-light:            color(black lightness(+46.7%)); /* #777 */
+  --gray-lighter:          color(black lightness(+93.5%)); /* #eee */
+
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+
+  --color-help-box: #333333;
+  --color-help-icon: #333333;
+  --color-help-icon-hover: #999999;
+
+  --color-background: #F5F5F5;
+
+  --color-primary-light-shade-one: #2a3c50;
+  --color-primary-light-shade-two: #32465d;
+  --color-primary-light-shade-three: #39506A;
+  --color-primary: #233141;
+  --color-primary-dark-shade-one: #151E28;
+  --color-primary-dark-shade-two: #1D2835;
+
+  --color-menu-item: #d3d6d9;
+  --color-menu-item-active: #56789f;
+
+  --color-box-border: #cccccc;
+
+  --color-button-next: #f15843;
+  --color-button-next-hover: #ff604b;
+  --color-left-list-part: #F7F7F7;
+  --color-left-list-part-text: #6C6C6C;
+
+  --color-secondary: #1c2632;
+  --color-accent: #f15843;
+  --color-success: #41b222;
+  --color-light: #999999;
+  --color-text: #101010;
+  --color-text-header: #32465d;
+  --color-text-title: #ffffff;
+  --color-blue: #227ab2;
+  --color-success: #41b222;
+  --color-info: #227ab2;
+  --color-primary-highlight: #3a4856;
+  --color-bg-dropdown: #E9E9E9;
+
+  /*
+   * Typography
+   * ======================================================================== */
+
+  --font-family-base:      'Segoe UI', 'HelveticaNeue-Light', sans-serif;
+
+  /*
+   * Layout
+   * ======================================================================== */
+
+  --max-content-width:     1000px;
+
+  /*
+   * Media queries breakpoints
+   * ======================================================================== */
+
+  --screen-xs-min:         480px;  /* Extra small screen / phone */
+  --screen-sm-min:         768px;  /* Small screen / tablet */
+  --screen-md-min:         992px;  /* Medium screen / desktop */
+  --screen-lg-min:         1200px; /* Large screen / wide desktop */
+
+  /*
+   * Animations
+   * ======================================================================== */
+
+  --animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;
+
+}
