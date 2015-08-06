@@ -1,0 +1,6 @@
+{
+  "name": "SideMenu",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./SideMenu.js"
+}

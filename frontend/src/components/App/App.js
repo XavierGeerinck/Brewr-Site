@@ -5,9 +5,7 @@ import styles from './App.css';
 import withContext from '../../decorators/withContext';
 import withStyles from '../../decorators/withStyles';
 import HeaderSmall from '../HeaderSmall';
-import Feedback from '../Feedback';
 import Footer from '../Footer';
-import { Grid, Row, Col } from 'react-bootstrap';
 
 @withContext
 @withStyles(styles)
@@ -23,13 +21,6 @@ class App {
       <div>
         <HeaderSmall />
         {this.props.children}
-        <Grid fluid={true}>
-          <Row>
-            <Col xs={12} md={8}>SubMenu</Col>
-            <Col xs={6} md={4}>Content</Col>
-          </Row>
-        </Grid>
-        <Feedback />
         <Footer />
       </div>
     ) : this.props.children;

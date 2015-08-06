@@ -1,6 +1,7 @@
 @import '../../../node_modules/normalize.css/normalize.css';
-@import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
-@import '../../../node_modules/bootstrap/dist/css/bootstrap-theme.css';
+@import '../../../node_modules/font-awesome/css/font-awesome.css';
+@import '../bootstrap.css';
+@import '../bootstrap-theme.css';
 
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
@@ -91,6 +92,10 @@ textarea {
   background: #ccc;
   color: #000;
   padding: 0.2em 0;
+}
+
+.clear {
+  clear: both;
 }
 
 /*

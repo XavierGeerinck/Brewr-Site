@@ -25,15 +25,59 @@ class Footer {
     return (
       <div className="Footer">
         <div className="Footer-container">
-          <span className="Footer-text">© Your Company</span>
-          <span className="Footer-spacer">·</span>
-          <a className="Footer-link" href="/" onClick={Link.handleClick}>Home</a>
-          <span className="Footer-spacer">·</span>
-          <a className="Footer-link" href="/privacy" onClick={Link.handleClick}>Privacy</a>
-          <span className="Footer-spacer">·</span>
-          <a className="Footer-link" href="/not-found" onClick={Link.handleClick}>Not Found</a>
-          <span className="Footer-spacer"> | </span>
-          <span ref="viewport" className="Footer-viewport Footer-text Footer-text--muted">Viewport:</span>
+          <div className="row">
+            {/* Logo + Social */}
+            <div className="col-md-3">
+              <a href="http://brewr.io" className="Footer-Logo">Brewr</a>
+              <div className="Footer-SocialLinks">
+                <a href="#" onClick={Link.handleClick}>
+                  <i class="fa fa-facebook"></i>
+                </a>
+                <a href="#" onClick={Link.handleClick}>
+                  <i class="fa fa-twitter"></i>
+                </a>
+                <a href="#" onClick={Link.handleClick}>
+                  <i class="fa fa-github"></i>
+                </a>
+              </div>
+            </div>
+
+            {/* Our Service */}
+            <div className="col-md-3">
+              <h2>Our Service</h2>
+              <ul>
+                <li><a href="#" onClick={Link.handleClick}>Pricing</a></li>
+                <li><a href="#" onClick={Link.handleClick}>Features</a></li>
+                <li><a href="#" onClick={Link.handleClick}>Sign in</a></li>
+                <li><a href="#" onClick={Link.handleClick}>Register</a></li>
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div className="col-md-3">
+              <h2>Company</h2>
+              <ul>
+                <li><a href="#" onClick={Link.handleClick}>About Us</a></li>
+                <li><a href="#" onClick={Link.handleClick}>Team</a></li>
+                <li><a href="#" onClick={Link.handleClick}>Contact</a></li>
+                <li><a href="#" onClick={Link.handleClick}>FAQ</a></li>
+              </ul>
+            </div>
+
+            {/* Legal */}
+            <div className="col-md-3">
+              <h2>Our Service</h2>
+              <ul>
+                <li><a href="#" onClick={Link.handleClick}>Terms</a></li>
+                <li><a href="#" onClick={Link.handleClick}>Privacy</a></li>
+                <li><a href="#" onClick={Link.handleClick}></a></li>
+                <li><a href="#" onClick={Link.handleClick}></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="Footer-copyright">
+          Copyright © 2015 Brewr
         </div>
       </div>
     );

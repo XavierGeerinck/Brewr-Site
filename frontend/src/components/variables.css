@@ -13,44 +13,23 @@
   --gray-light:            color(black lightness(+46.7%)); /* #777 */
   --gray-lighter:          color(black lightness(+93.5%)); /* #eee */
 
+  --color-primary-shade-darker-4: #070a0d;
+  --color-primary-shade-darker-3: #0e141b;
+  --color-primary-shade-darker-2: #151E28;
+  --color-primary-shade-darker-1: #1D2835;
+  --color-primary: #233141;
+  --color-primary-shade-lighter-1: #2A3C50;
+  --color-primary-shade-lighter-2: #32465D;
+  --color-primary-shade-lighter-3: #39506A;
+  --color-primary-shade-lighter-4: #56789f;
+
+  --color-sidemenu: #d3d6d9;
+  --color-footer: #101010;
+
   --color-white: #FFFFFF;
   --color-black: #000000;
-
-  --color-help-box: #333333;
-  --color-help-icon: #333333;
-  --color-help-icon-hover: #999999;
-
-  --color-background: #F5F5F5;
-
-  --color-primary-light-shade-one: #2a3c50;
-  --color-primary-light-shade-two: #32465d;
-  --color-primary-light-shade-three: #39506A;
-  --color-primary: #233141;
-  --color-primary-dark-shade-one: #151E28;
-  --color-primary-dark-shade-two: #1D2835;
-
-  --color-menu-item: #d3d6d9;
-  --color-menu-item-active: #56789f;
-
-  --color-box-border: #cccccc;
-
-  --color-button-next: #f15843;
-  --color-button-next-hover: #ff604b;
-  --color-left-list-part: #F7F7F7;
-  --color-left-list-part-text: #6C6C6C;
-
-  --color-secondary: #1c2632;
-  --color-accent: #f15843;
-  --color-success: #41b222;
-  --color-light: #999999;
-  --color-text: #101010;
-  --color-text-header: #32465d;
-  --color-text-title: #ffffff;
-  --color-blue: #227ab2;
-  --color-success: #41b222;
-  --color-info: #227ab2;
-  --color-primary-highlight: #3a4856;
-  --color-bg-dropdown: #E9E9E9;
+  --color-black-shade-lighter-1: #0A0A0A;
+  --color-black-shade-lighter-2: #141414;
 
   /*
    * Typography

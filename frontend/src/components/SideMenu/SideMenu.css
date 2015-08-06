@@ -1,0 +1,92 @@
+/* React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
+
+@import '../variables.css';
+
+:root {
+  --brand-color: #61dafb;
+}
+
+.SideMenu {
+  color: #fff;
+
+  width: 220px;
+  background-color: var(--color-primary-shade-lighter-1);
+  font-weight: normal;
+}
+
+.SideMenu h1 {
+  text-transform: uppercase;
+  margin: 0;
+  text-align: center;
+  color: var(--color-white);
+  font-size: 18px;
+}
+
+.SideMenu h1 a {
+  text-decoration: none;
+  color: var(--color-white);
+  padding: 15px 0;
+  display: block;
+}
+
+.SideMenu h1 i {
+  margin-right: 5px;
+}
+
+.SideMenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.SideMenu ul li {
+  font-size: 14px;
+  color: var(--color-sidemenu);
+}
+
+.SideMenu ul li i {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.SideMenu ul li .item-dropdown {
+  float: right;
+}
+
+.SideMenu ul li a {
+  color: var(--color-sidemenu);
+  padding: 13px 0 13px 20px;
+  display: block;
+  text-decoration: none;
+}
+
+.SideMenu ul li:nth-child(odd) {
+  background-color: var(--color-primary-shade-lighter-2);
+}
+
+.SideMenu ul li.second-level {
+  padding: 0;
+}
+
+.SideMenu ul li.second-level ul {
+  background-color: var(--color-primary-shade-darker-2);
+  padding: 0;
+  display: block;
+}
+
+.SideMenu ul li.second-level ul li {
+  background-color: var(--color-primary-shade-darker-2);
+  border-bottom: 1px solid var(--color-primary-shade-darker-1);
+  padding: 0;
+  display: block;
+}
+
+.SideMenu ul li.second-level a {
+  color: var(--color-sidemenu);
+  display: block;
+  padding: 13px 0 13px 20px;
+}
+
+.SideMenu ul li.active {
+  border-left: 5px solid var(--color-primary-shade-lighter-4);
+}

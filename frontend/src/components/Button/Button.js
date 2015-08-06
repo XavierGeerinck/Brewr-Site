@@ -1,44 +1,31 @@
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
 import React, { PropTypes } from 'react';
-import withStyles from '../../decorators/withStyles';
 import styles from './Button.css';
+import withStyles from '../../decorators/withStyles';
 
 @withStyles(styles)
 class Button {
 
   static propTypes = {
     text: PropTypes.string,
-    color: PropTypes.string,
-    location: PropTypes.string,
-    isBig: PropTypes.bool
+    color: PropTypes.string
   };
 
   static defaultProps = {
     text: "",
-    color: "",
-    location: undefined,
-    isBig: false
+    color: "White"
   };
 
   render() {
-    var classString = 'button';
+    var className = "Button";
 
     if (this.props.color) {
-      classString += ' ' + this.props.color;
-    }
-
-    if (this.props.isBig) {
-      classString += ' big';
+      className += " Button-Color-" + this.props.color;
     }
 
     return (
-      <div className="Button">
-      {this.props.location ?
-          <a href={this.props.location} className={classString}>{this.props.text}</a> :
-          <input type="submit" value={this.props.text} className={classString} />
-        }
-      </div>
+      <button className={className}>{this.props.text}</button>
     );
   }
 

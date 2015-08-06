@@ -3,6 +3,7 @@
 import React, { PropTypes } from 'react';
 import styles from './ContentPage.css';
 import withStyles from '../../decorators/withStyles';
+import SideMenu from '../SideMenu';
 
 @withStyles(styles)
 class ContentPage {
@@ -21,6 +22,7 @@ class ContentPage {
     this.context.onSetTitle(this.props.title);
     return (
       <div className="ContentPage">
+        <SideMenu />
         <div className="ContentPage-container">
           {
             this.props.path === '/' ? null : <h1>{this.props.title}</h1>
