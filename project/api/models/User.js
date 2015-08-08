@@ -11,7 +11,7 @@ module.exports = {
     id: {
       type: 'integer',
       unique: true,
-      primarKey: true,
+      primaryKey: true,
       columnName: 'id',
       autoIncrement: true
     },
@@ -21,7 +21,6 @@ module.exports = {
       columnName: 'email'
     },
     password: 'string',
-    scope: 'string',
     createdOn: {
       type: 'datetime',
       columnName: 'created_on'
@@ -39,7 +38,7 @@ module.exports = {
 
     // associations
     memberOf: {
-      collection: 'UserOrganisation',
+      collection: 'OrganisationUser',
       via: 'user'
     },
     sessions: {

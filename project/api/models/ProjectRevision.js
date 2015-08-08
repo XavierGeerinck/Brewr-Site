@@ -12,7 +12,7 @@ module.exports = {
     id: {
       type: 'integer',
       unique: true,
-      primarKey: true,
+      primaryKey: true,
       columnName: 'id',
       autoIncrement: true
     },

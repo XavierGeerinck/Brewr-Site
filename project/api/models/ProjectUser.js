@@ -8,6 +8,13 @@
 module.exports = {
   tableName: 'project_user',
   attributes: {
+    id: {
+      type: 'integer',
+      unique: true,
+      primaryKey: true,
+      columnName: 'id',
+      autoIncrement: true
+    },
     addedOn: {
       type: 'datetime',
       columnName: 'added_on'
