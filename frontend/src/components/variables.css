@@ -33,6 +33,10 @@
   --color-black-shade-lighter-1: #0A0A0A;
   --color-black-shade-lighter-2: #141414;
 
+  --color-accent: #f15843;
+  --color-accent-shade-darker-1: #EB5A47;
+  --color-accent-shade-lighter-1: #FF4B33;
+
   /*
    * Typography
    * ======================================================================== */

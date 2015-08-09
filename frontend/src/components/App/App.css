@@ -30,13 +30,14 @@
   background-color: var(--color-white);
   width: 100%;
   position: relative;
+  padding: 5px 20px;
 }
 
 .App-Page-Content > section > h1 {
   font-size: 20px;
-  padding: 20px 0 15px 10px;
+  padding: 20px 0 15px 0;
   border-bottom: 1px solid var(--color-white-shade-darker-1);
-  margin: 0px 10px 5px 10px;
+  margin: 0 0 10px 0;
 }
 
 .App-Page-Title {

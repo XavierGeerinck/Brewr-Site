@@ -15,6 +15,14 @@
   flex-grow: 3;
 }
 
+.BuilderPage-PickImageBlock:first-child {
+  margin: 10px 10px 10px 0;
+}
+
+.BuilderPage-PickImageBlock:last-child {
+  margin: 10px 0px 10px 10px;
+}
+
 .BuilderPage-PickImageBlock h1 {
   font-size: 18px;
 }
@@ -40,4 +48,23 @@
    font-size: 12px;
    font-weight: normal;
    padding: 5px 25px 5px 10px;
+}
+
+.BuilderPage-PickImageSearch {
+  width: 100%;
+}
+
+.BuilderPage-PickImageSearch input {
+  width: 100%;
+  padding: 10px 10px;
+  font-weight: normal;
+  color: #000000;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+}
+
+.BuilderStep1Page Button {
+  margin: 20px 0 10px 0;
+  float: right;
 }

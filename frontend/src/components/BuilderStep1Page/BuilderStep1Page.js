@@ -4,6 +4,8 @@ import React, { PropTypes } from 'react';
 import styles from './BuilderStep1Page.css';
 import withStyles from '../../decorators/withStyles';
 import SideMenu from '../SideMenu';
+import Button from '../Button';
+import Link from '../../utils/Link';
 
 @withStyles(styles)
 class BuilderStep1Page {
@@ -36,7 +38,7 @@ class BuilderStep1Page {
                 <h1>Pick your base image</h1>
 
                 <div className="BuilderPage-FlexContainer">
-                  <div className="flex-item BuilderPage-PickImageBlock">
+                  <div className="BuilderPage-PickImageBlock">
                     <h1>Ubuntu</h1>
                     <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
                     <select>
@@ -44,7 +46,7 @@ class BuilderStep1Page {
                     </select>
                   </div>
 
-                  <div className="flex-item BuilderPage-PickImageBlock">
+                  <div className="BuilderPage-PickImageBlock">
                     <h1>Ubuntu</h1>
                     <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
                     <select>
@@ -52,7 +54,7 @@ class BuilderStep1Page {
                     </select>
                   </div>
 
-                  <div className="flex-item BuilderPage-PickImageBlock">
+                  <div className="BuilderPage-PickImageBlock">
                     <h1>Ubuntu</h1>
                     <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
                     <select>
@@ -60,7 +62,7 @@ class BuilderStep1Page {
                     </select>
                   </div>
 
-                  <div className="flex-item BuilderPage-PickImageBlock">
+                  <div className="BuilderPage-PickImageBlock">
                     <h1>Ubuntu</h1>
                     <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
                     <select>
@@ -68,7 +70,7 @@ class BuilderStep1Page {
                     </select>
                   </div>
 
-                  <div className="flex-item BuilderPage-PickImageBlock">
+                  <div className="BuilderPage-PickImageBlock">
                     <h1>Ubuntu</h1>
                     <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
                     <select>
@@ -76,7 +78,7 @@ class BuilderStep1Page {
                     </select>
                   </div>
 
-                  <div className="flex-item BuilderPage-PickImageBlock">
+                  <div className="BuilderPage-PickImageBlock">
                     <h1>Ubuntu</h1>
                     <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
                     <select>
@@ -85,13 +87,27 @@ class BuilderStep1Page {
                   </div>
                 </div>
               </section>
+
+              {/* Search docker */}
+      				<section className="sub-content">
+      					<h1>Or search Docker Hub</h1>
+
+      					<div className="BuilderPage-FlexContainer">
+      						<div className="BuilderPage-PickImageSearch">
+      							<input type="text" placeholder="Type a keyword..." />
+      						</div>
+      					</div>
+      				</section>
+
+      				{/* Next Button */}
+              <Button text="Next >" color="Orange" onClick={Link.handleClick} />
+              <div className="clear"></div>
             </div>
           </div>
         </div>
       </div>
     );
   }
-
 }
 
 export default BuilderStep1Page;
