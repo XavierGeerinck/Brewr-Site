@@ -12,7 +12,6 @@ class BuilderStep1Page {
 
   static propTypes = {
     path: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
     title: PropTypes.string
   };
 
@@ -39,48 +38,48 @@ class BuilderStep1Page {
 
                 <div className="BuilderPage-FlexContainer">
                   <div className="BuilderPage-PickImageBlock">
-                    <h1>Ubuntu</h1>
                     <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
+                    <h1>Ubuntu</h1>
                     <select>
                       <option value="">v15.04 - Vilvid Vervet</option>
                     </select>
                   </div>
 
                   <div className="BuilderPage-PickImageBlock">
-                    <h1>Ubuntu</h1>
                     <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
+                    <h1>Ubuntu</h1>
                     <select>
                       <option value="">v15.04 - Vilvid Vervet</option>
                     </select>
                   </div>
 
                   <div className="BuilderPage-PickImageBlock">
-                    <h1>Ubuntu</h1>
                     <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
+                    <h1>Ubuntu</h1>
                     <select>
                       <option value="">v15.04 - Vilvid Vervet</option>
                     </select>
                   </div>
 
                   <div className="BuilderPage-PickImageBlock">
-                    <h1>Ubuntu</h1>
                     <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
+                    <h1>Ubuntu</h1>
                     <select>
                       <option value="">v15.04 - Vilvid Vervet</option>
                     </select>
                   </div>
 
                   <div className="BuilderPage-PickImageBlock">
-                    <h1>Ubuntu</h1>
                     <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
+                    <h1>Ubuntu</h1>
                     <select>
                       <option value="">v15.04 - Vilvid Vervet</option>
                     </select>
                   </div>
 
-                  <div className="BuilderPage-PickImageBlock">
-                    <h1>Ubuntu</h1>
+                  <div className="BuilderPage-PickImageBlock BuilderPage-PickImageBlock-Selected">
                     <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
+                    <h1>Ubuntu</h1>
                     <select>
                       <option value="">v15.04 - Vilvid Vervet</option>
                     </select>
@@ -88,9 +87,13 @@ class BuilderStep1Page {
                 </div>
               </section>
 
+              <div className="BuilderPage-Divider">
+                <span>Or</span>
+              </div>
+
               {/* Search docker */}
       				<section className="sub-content">
-      					<h1>Or search Docker Hub</h1>
+      					<h1>Search Docker Hub</h1>
 
       					<div className="BuilderPage-FlexContainer">
       						<div className="BuilderPage-PickImageSearch">

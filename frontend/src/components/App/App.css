@@ -11,11 +11,21 @@
  * Extra style for the content
  * ========================================================================== */
 #app .app-container > div {
+  height: 100%;
   display: flex;
 }
 
 #app {
   background-color: var(--color-white-shade-darker-1);
+  height: 100%;
+}
+
+#app > div {
+  height: 100%;
+}
+
+#app > div > div {
+  height: 100%;
 }
 
 .App-Page {
@@ -23,7 +33,8 @@
 }
 
 .App-Page-Container {
-  padding: 40px;
+  padding: 40px 100px;
+  background-color: var(--color-white-shade-darker-1);
 }
 
 .App-Page-Content {
@@ -34,18 +45,19 @@
 }
 
 .App-Page-Content > section > h1 {
-  font-size: 20px;
+  font-size: 24px;
   padding: 20px 0 15px 0;
-  border-bottom: 1px solid var(--color-white-shade-darker-1);
   margin: 0 0 10px 0;
+  text-align: center;
 }
 
 .App-Page-Title {
   width: 100%;
-  background-color: var(--color-primary-shade-lighter-1);
-  color: var(--color-text);
+  background-color: var(--color-white);
+  color: var(--color-black);
   padding-left: 15px;
   height: 49px;
+  border-bottom: 1px solid var(--color-white-shade-darker-1);
 }
 
 .App-Page-Title h1 {
@@ -71,6 +83,11 @@ html {
   font-size: 1em; /* ~16px; */
   font-family: var(--font-family-base);
   line-height: 1.375; /* ~22px */
+  height: 100%;
+}
+
+body {
+  height: 100%;
 }
 
 /*

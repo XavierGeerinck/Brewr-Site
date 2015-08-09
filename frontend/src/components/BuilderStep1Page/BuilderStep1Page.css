@@ -1,3 +1,5 @@
+@import '../variables.css';
+
 .BuilderPage-FlexContainer {
   display: flex;
   flex-wrap: wrap;
@@ -7,39 +9,51 @@
   background-color: #FFFFFF;
   border: 1px solid #cccccc;
 
-  margin: 10px;
+  margin: 20px;
   font-weight: bold;
   font-size: 14px;
   text-align: center;
   padding: 10px;
   flex-grow: 3;
+  border-radius: 3px;
+}
+
+.BuilderPage-PickImageBlock-Selected {
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent) !important;
+}
+
+.BuilderPage-PickImageBlock-Selected select {
+  background: url("./option-dropdown-accent.png") no-repeat right #FFF !important;
+  color: var(--color-accent) !important;
 }
 
 .BuilderPage-PickImageBlock:first-child {
-  margin: 10px 10px 10px 0;
+  margin: 20px 20px 20px 0;
 }
 
 .BuilderPage-PickImageBlock:last-child {
-  margin: 10px 0px 10px 10px;
+  margin: 20px 0px 20px 20px;
 }
 
 .BuilderPage-PickImageBlock h1 {
-  font-size: 18px;
+  font-size: 24px;
+  margin: 0 0 5px 0;
 }
 
 .BuilderPage-PickImageBlock img {
    height: 64px;
    max-width: 150px;
    margin: 0 auto;
-   padding: 10px 0 20px 0;
+   padding: 10px 0 10px 0;
    display: block;
 }
 
 .BuilderPage-PickImageBlock select {
    margin: 0;
    width: 90%;
-   background: url("./option-dropdown.png") no-repeat right #E9E9E9;
-   color: #000000;
+   background: url("./option-dropdown.png") no-repeat right #FFF;
+   color: var(--color-black);
    border: 0;
    border-radius: 0;
    -webkit-appearance: none;
@@ -51,14 +65,15 @@
 }
 
 .BuilderPage-PickImageSearch {
-  width: 100%;
+  margin: 0 auto;
+  width: 30%;
 }
 
 .BuilderPage-PickImageSearch input {
   width: 100%;
   padding: 10px 10px;
   font-weight: normal;
-  color: #000000;
+  color: var(--color-black);
   display: inline-block;
   box-sizing: border-box;
   border: 1px solid #cccccc;
@@ -67,4 +82,23 @@
 .BuilderStep1Page Button {
   margin: 20px 0 10px 0;
   float: right;
+}
+
+.BuilderPage-Divider {
+  text-align: center;
+}
+
+.BuilderPage-Divider span {
+  padding: 0 10px;
+  background: #FFF;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.BuilderPage-Divider {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid var(--color-white-shade-darker-1);
+  line-height: 0.1em;
+  margin: 20px 0;
 }
