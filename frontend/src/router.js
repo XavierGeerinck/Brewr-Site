@@ -10,6 +10,7 @@ import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';
+import BuilderStep1Page from './components/BuilderStep1Page';
 
 const router = new Router(on => {
 
@@ -25,8 +26,8 @@ const router = new Router(on => {
   on('/register', async () => <RegisterPage />);
 
   on('*', async (state) => {
-    const content = await http.get(`/api/content?path=${state.path}`);
-    return content && <ContentPage {...content} />;
+    //const content = await http.get(`/api/content?path=${state.path}`);
+    return <BuilderStep1Page />;
   });
 
   on('error', (state, error) => state.statusCode === 404 ?

@@ -20,7 +20,11 @@ class App {
     return !this.props.error ? (
       <div>
         <HeaderSmall />
+
+        <div className="app-container">
         {this.props.children}
+        </div>
+
         <Footer />
       </div>
     ) : this.props.children;

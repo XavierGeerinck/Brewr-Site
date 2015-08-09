@@ -23,7 +23,8 @@ class ContentPage {
     return (
       <div className="ContentPage">
         <SideMenu />
-        <div className="ContentPage-container">
+
+        <div className="container-fluid">
           {
             this.props.path === '/' ? null : <h1>{this.props.title}</h1>
           }

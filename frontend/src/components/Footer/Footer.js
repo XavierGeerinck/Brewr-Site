@@ -27,23 +27,23 @@ class Footer {
         <div className="Footer-container">
           <div className="row">
             {/* Logo + Social */}
-            <div className="col-md-3">
-              <a href="http://brewr.io" className="Footer-Logo">Brewr</a>
+            <div className="col-md-4 Footer-Company">
+              <a href="http://brewr.io" className="Footer-Logo">Brewr.io</a>
               <div className="Footer-SocialLinks">
                 <a href="#" onClick={Link.handleClick}>
-                  <i class="fa fa-facebook"></i>
+                  <i className="fa fa-facebook"></i>
                 </a>
                 <a href="#" onClick={Link.handleClick}>
-                  <i class="fa fa-twitter"></i>
+                  <i className="fa fa-twitter"></i>
                 </a>
                 <a href="#" onClick={Link.handleClick}>
-                  <i class="fa fa-github"></i>
+                  <i className="fa fa-github"></i>
                 </a>
               </div>
             </div>
 
             {/* Our Service */}
-            <div className="col-md-3">
+            <div className="col-md-2">
               <h2>Our Service</h2>
               <ul>
                 <li><a href="#" onClick={Link.handleClick}>Pricing</a></li>
@@ -54,7 +54,7 @@ class Footer {
             </div>
 
             {/* Company */}
-            <div className="col-md-3">
+            <div className="col-md-2">
               <h2>Company</h2>
               <ul>
                 <li><a href="#" onClick={Link.handleClick}>About Us</a></li>
@@ -65,7 +65,7 @@ class Footer {
             </div>
 
             {/* Legal */}
-            <div className="col-md-3">
+            <div className="col-md-2">
               <h2>Our Service</h2>
               <ul>
                 <li><a href="#" onClick={Link.handleClick}>Terms</a></li>

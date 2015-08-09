@@ -1,0 +1,43 @@
+.BuilderPage-FlexContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.BuilderPage-PickImageBlock {
+  background-color: #FFFFFF;
+  border: 1px solid #cccccc;
+
+  margin: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  padding: 10px;
+  flex-grow: 3;
+}
+
+.BuilderPage-PickImageBlock h1 {
+  font-size: 18px;
+}
+
+.BuilderPage-PickImageBlock img {
+   height: 64px;
+   max-width: 150px;
+   margin: 0 auto;
+   padding: 10px 0 20px 0;
+   display: block;
+}
+
+.BuilderPage-PickImageBlock select {
+   margin: 0;
+   width: 90%;
+   background: url("./option-dropdown.png") no-repeat right #E9E9E9;
+   color: #000000;
+   border: 0;
+   border-radius: 0;
+   -webkit-appearance: none;
+   height: 34px;
+   line-height: 1;
+   font-size: 12px;
+   font-weight: normal;
+   padding: 5px 25px 5px 10px;
+}
