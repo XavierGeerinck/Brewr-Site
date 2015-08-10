@@ -10,6 +10,7 @@ import ActionTypes from './constants/ActionTypes';
 
 const container = document.getElementById('app');
 const context = {
+  title: document.title,
   onSetTitle: value => document.title = value,
   onSetMeta: (name, content) => {
     // Remove and create a new <meta /> tag in order to make it work
