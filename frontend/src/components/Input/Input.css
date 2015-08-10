@@ -3,6 +3,7 @@
 }
 
 .Input > input {
-  display: block;
+  margin: 0 auto;
   padding: 5px 10px;
+  width: 30%;
 }

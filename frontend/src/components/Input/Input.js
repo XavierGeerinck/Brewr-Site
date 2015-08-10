@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import styles from './Input.css';
+import WithStyles from '../../decorators/withStyles';
 
+@WithStyles(styles)
 class Input {
 
   static propTypes = {
