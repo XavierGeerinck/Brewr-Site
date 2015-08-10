@@ -25,43 +25,43 @@ class BuilderStep3Page {
     return (
       <div className="BuilderStep3Page">
         {/* Add Command */}
-        <section class="sub-content flex-container">
-          <div class="flex-container">
-            <div id="pick-settings" class="flex-item">
-              <label for="input_cmd">Add Command</label>
+        <section className="sub-content flex-container">
+          <div className="flex-container">
+            <div id="pick-settings" className="flex-item">
+              <label htmlFor="input_cmd">Add Command</label>
               <input type="text" name="input_cmd" placeholder="Type a command..." />
             </div>
           </div>
         </section>
 
         {/* Current Command */}
-        <section class="sub-content flex-container">
-          <div class="flex-container">
-            <div class="help_block"> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+        <section className="sub-content flex-container">
+          <div className="flex-container">
+            <div className="help_block"> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</div>
 
-            <div id="pick-settings-filled" class="flex-item">
+            <div id="pick-settings-filled" className="flex-item">
               <h2>
                 Commands
-                <span class="help_popup">[?]</span>
+                <span className="help_popup">[?]</span>
               </h2>
 
               <ul>
                 <li>
-                  <a href="#" class="btn-square orange"><i class="fa fa-align-justify"></i></a> sudo apt-get install nodejs
-                  <a href="#" class="btn-square orange"><i class="fa fa-remove"></i></a>
+                  <a href="#" className="btn-square orange"><i className="fa fa-align-justify"></i></a> sudo apt-get install nodejs
+                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
                 </li>
                 <li>
-                  <a href="#" class="btn-square orange"><i class="fa fa-align-justify"></i></a> sudo apt-get install nodejs
-                  <a href="#" class="btn-square orange"><i class="fa fa-remove"></i></a>
+                  <a href="#" className="btn-square orange"><i className="fa fa-align-justify"></i></a> sudo apt-get install nodejs
+                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
                 </li>
                 <li>
-                  <a href="#" class="btn-square orange"><i class="fa fa-align-justify"></i></a> sudo apt-get install nodejs
-                  <a href="#" class="btn-square orange"><i class="fa fa-remove"></i></a>
+                  <a href="#" className="btn-square orange"><i className="fa fa-align-justify"></i></a> sudo apt-get install nodejs
+                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
                 </li>
                 <li>
-                  <a href="#" class="btn-square orange"><i class="fa fa-align-justify"></i></a> sudo apt-get install nodejs
-                  <a href="#" class="btn-square orange"><i class="fa fa-remove"></i></a>
+                  <a href="#" className="btn-square orange"><i className="fa fa-align-justify"></i></a> sudo apt-get install nodejs
+                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
                 </li>
               </ul>
             </div>

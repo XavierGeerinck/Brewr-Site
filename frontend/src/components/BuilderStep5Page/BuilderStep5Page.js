@@ -25,29 +25,29 @@ class BuilderStep5Page {
     return (
       <div className="BuilderStep5Page">
         {/* Add Volumes */}
-        <section class="sub-content flex-container">
-          <div class="flex-container">
-            <div id="pick-settings" class="flex-item">
-              <label for="input_cmd">Add Volumes</label>
+        <section className="sub-content flex-container">
+          <div className="flex-container">
+            <div id="pick-settings" className="flex-item">
+              <label htmlFor="input_cmd">Add Volumes</label>
               <input type="text" name="input_cmd" placeholder="Type a volume, format: /data..." />
             </div>
           </div>
         </section>
 
         {/* Current Volumes */}
-        <section class="sub-content flex-container">
-          <div class="flex-container">
-            <div id="pick-settings-filled" class="flex-item">
+        <section className="sub-content flex-container">
+          <div className="flex-container">
+            <div id="pick-settings-filled" className="flex-item">
               <h2>Volumes</h2>
 
               <ul>
                 <li>
                   /data
-                  <a href="#" class="btn-square orange"><i class="fa fa-remove"></i></a>
+                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
                 </li>
                 <li>
                   /logs
-                  <a href="#" class="btn-square orange"><i class="fa fa-remove"></i></a>
+                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
                 </li>
               </ul>
             </div>

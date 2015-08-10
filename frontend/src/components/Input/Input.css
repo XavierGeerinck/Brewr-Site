@@ -1,0 +1,8 @@
+.Input > label {
+  display: block;
+}
+
+.Input > input {
+  display: block;
+  padding: 5px 10px;
+}

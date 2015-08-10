@@ -25,33 +25,33 @@ class BuilderStep4Page {
     return (
       <div className="BuilderStep4Page">
         {/* Add Expose */}
-        <section class="sub-content flex-container">
-          <div class="flex-container">
-            <div id="pick-settings" class="flex-item">
-              <label for="input_cmd">Add Expose Port</label>
+        <section className="sub-content flex-container">
+          <div className="flex-container">
+            <div id="pick-settings" className="flex-item">
+              <label htmlFor="input_cmd">Add Expose Port</label>
               <input type="text" name="input_cmd" placeholder="Type a port in the format port_container:port_local..." />
             </div>
           </div>
         </section>
 
         {/* Current Expose */}
-        <section class="sub-content flex-container">
-          <div class="flex-container">
-            <div id="pick-settings-filled" class="flex-item">
+        <section className="sub-content flex-container">
+          <div className="flex-container">
+            <div id="pick-settings-filled" className="flex-item">
               <h2>Commands</h2>
 
               <ul>
                 <li>
                   80 : 80
-                  <a href="#" class="btn-square orange"><i class="fa fa-remove"></i></a>
+                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
                 </li>
                 <li>
                   3336 : 3336
-                  <a href="#" class="btn-square orange"><i class="fa fa-remove"></i></a>
+                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
                 </li>
                 <li>
                   22 : 22
-                  <a href="#" class="btn-square orange"><i class="fa fa-remove"></i></a>
+                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
                 </li>
               </ul>
             </div>

@@ -6,6 +6,7 @@ import withStyles from '../../decorators/withStyles';
 import SideMenu from '../SideMenu';
 import Button from '../Button';
 import Link from '../../utils/Link';
+import Input from '../Input';
 
 @withStyles(styles)
 class BuilderStep2Page {
@@ -25,22 +26,15 @@ class BuilderStep2Page {
     return (
       <div className="BuilderStep2Page">
         {/* Search docker */}
-        <section className="sub-content flex-container">
-          <div className="BuilderPage-FlexContainer">
+        <section className="BuilderStep2Page-Content">
+          <form>
             <div id="pick-settings" className="flex-item">
-              <label htmlFor="input_maintainer">Maintainer</label>
-              <input type="text" name="input_maintainer" placeholder="Type a keyword..." />
-
-              <label htmlFor="input_workdir">Workdir</label>
-              <input type="text" name="input_workdir" placeholder="Type a keyword..." />
-
-              <label htmlFor="input_user">User</label>
-              <input type="text" name="input_user" placeholder="Type a keyword..." />
-
-              <label htmlFor="input_label">Label</label>
-              <input type="text" name="input_label" placeholder="Type a keyword..." />
+              <Input type="text" id="input_maintainer" label="Maintainer" placeholder="Enter the maintainer for the project.." />
+              <Input type="text" id="input_workdir" label="Workdir" placeholder="Enter the directory where you will work from..." />
+              <Input type="text" id="input_user" label="User" placeholder="Type a keyword..." />
+              <Input type="text" id="input_label" label="Label" placeholder="Type a keyword..." />
             </div>
-          </div>
+          </form>
         </section>
 
   			{/* Next Button */}

@@ -25,29 +25,29 @@ class BuilderStep7Page {
     return (
       <div className="BuilderStep7Page">
         {/* Add Volumes */}
-        <section class="sub-content flex-container">
-          <div class="flex-container">
-            <div id="pick-settings" class="flex-item">
-              <label for="input_cmd">Add Environment Variables</label>
+        <section className="sub-content flex-container">
+          <div className="flex-container">
+            <div id="pick-settings" className="flex-item">
+              <label htmlFor="input_cmd">Add Environment Variables</label>
               <input type="text" name="input_cmd" placeholder="Type a environment variable, format: ENV_VARIABLE=value" />
             </div>
           </div>
         </section>
 
         {/* Current Volumes */}
-        <section class="sub-content flex-container">
-          <div class="flex-container">
-            <div id="pick-settings-filled" class="flex-item">
+        <section className="sub-content flex-container">
+          <div className="flex-container">
+            <div id="pick-settings-filled" className="flex-item">
               <h2>Environment Variables</h2>
 
               <ul>
                 <li>
                   ENVIRONMENT=staging
-                  <a href="#" class="btn-square orange"><i class="fa fa-remove"></i></a>
+                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
                 </li>
                 <li>
                   TEST=test123
-                  <a href="#" class="btn-square orange"><i class="fa fa-remove"></i></a>
+                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
                 </li>
               </ul>
             </div>
