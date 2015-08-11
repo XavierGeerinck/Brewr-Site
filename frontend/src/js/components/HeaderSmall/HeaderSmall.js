@@ -1,14 +1,17 @@
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
 import React from 'react';
-import styles from './HeaderSmall.css';
-import withStyles from '../../decorators/withStyles';
-import Link from '../../utils/Link';
 import Navigation from '../Navigation';
 import Logo from '../Logo';
 
-@withStyles(styles)
-class Header {
+export default React.createClass({
+  propTypes: {
+  },
+
+  getDefaultProps() {
+    return {
+    }
+  },
 
   render() {
     return (
@@ -22,6 +25,4 @@ class Header {
     );
   }
 
-}
-
-export default Header;
+});

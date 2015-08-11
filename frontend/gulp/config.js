@@ -25,7 +25,7 @@ module.exports = {
     settings: {
       transform: ['babelify', 'reactify']
     },
-    src: src + '/js/index.jsx',
+    src: src + '/js/index.js',
     dest: dest + '/js',
     outputName: 'index.js',
     debug: gutil.env.type === 'dev'

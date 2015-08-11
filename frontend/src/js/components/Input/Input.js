@@ -1,45 +1,43 @@
 import React, { PropTypes } from 'react';
-import styles from './Input.css';
-import WithStyles from '../../decorators/withStyles';
 
-@WithStyles(styles)
-class Input {
-
-  static propTypes = {
+export default React.createClass({
+  propTypes: {
     type: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     text: PropTypes.string,
     label: PropTypes.string,
     id: PropTypes.string
-  };
+  },
 
-  static defaultProps = {
-    type: "text"
-  };
+  getDefaultProps() {
+    return {
+      type: "text"
+    }
+  },
 
   render() {
     let children = this.renderChildren();
     return this.renderFormGroup(children);
-  }
+  },
 
   renderFormGroup(children) {
     return (
        <div className="Input">{children}</div>
     );
-  }
+  },
 
   renderChildren() {
     return [
       this.renderLabel(),
       this.renderInput()
     ];
-  }
+  },
 
   renderInput() {
     return (
       <input type={this.props.type} placeholder={this.props.placeholder} value={this.props.text} name={this.props.id} key="input"/>
     )
-  }
+  },
 
   renderLabel() {
     return this.props.label ? (
@@ -48,6 +46,4 @@ class Input {
       </label>
     ) : null;
   }
-}
-
-export default Input;
+});

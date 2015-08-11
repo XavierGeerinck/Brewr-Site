@@ -1,27 +1,19 @@
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
 import React, { PropTypes } from 'react';
-import styles from './BuilderStep5Page.css';
-import withStyles from '../../decorators/withStyles';
 import SideMenu from '../SideMenu';
 import Button from '../Button';
-import Link from '../../utils/Link';
 
-@withStyles(styles)
-class BuilderStep5Page {
+export default React.createClass({
+  propTypes: {
+  },
 
-  static propTypes = {
-    path: PropTypes.string.isRequired,
-    title: PropTypes.string
-  };
-
-  static contextTypes = {
-    onSetTitle: PropTypes.func.isRequired
-  };
+  getDefaultProps() {
+    return {
+    }
+  },
 
   render() {
-    this.context.onSetTitle(this.props.title);
-
     return (
       <div className="BuilderStep5Page">
         {/* Add Volumes */}
@@ -60,6 +52,4 @@ class BuilderStep5Page {
       </div>
     );
   }
-}
-
-export default BuilderStep5Page;
+});

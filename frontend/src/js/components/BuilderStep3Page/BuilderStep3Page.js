@@ -1,29 +1,21 @@
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
 import React, { PropTypes } from 'react';
-import styles from './BuilderStep3Page.css';
-import withStyles from '../../decorators/withStyles';
 import SideMenu from '../SideMenu';
 import Button from '../Button';
 import Input from '../Input';
 import InlineContainer from '../InlineContainer';
-import Link from '../../utils/Link';
 
-@withStyles(styles)
-class BuilderStep3Page {
+export default React.createClass({
+  propTypes: {
+  },
 
-  static propTypes = {
-    path: PropTypes.string.isRequired,
-    title: PropTypes.string
-  };
-
-  static contextTypes = {
-    onSetTitle: PropTypes.func.isRequired
-  };
+  getDefaultProps() {
+    return {
+    }
+  },
 
   render() {
-    this.context.onSetTitle(this.props.title);
-
     return (
       <div className="BuilderStep3Page">
         {/* Add Command */}
@@ -47,8 +39,7 @@ class BuilderStep3Page {
             <div id="pick-settings-filled" className="flex-item">
               <h2>
                 Commands
-                
-                <OverlayTrigger placement="top" overlay=
+
                 <span className="help_popup">[?]</span>
               </h2>
 
@@ -80,6 +71,4 @@ class BuilderStep3Page {
       </div>
     );
   }
-}
-
-export default BuilderStep3Page;
+});

@@ -1,25 +1,23 @@
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
 import React, { PropTypes } from 'react';
-import styles from './Button.css';
-import withStyles from '../../decorators/withStyles';
 
-@withStyles(styles)
-class Button {
-
-  static propTypes = {
+export default React.createClass({
+  propTypes: {
     text: PropTypes.string,
     color: PropTypes.string,
     isInline: PropTypes.bool,
     isForm: PropTypes.bool
-  };
+  },
 
-  static defaultProps = {
-    text: "",
-    color: "Orange",
-    isInline: true,
-    isForm: false
-  };
+  getDefaultProps() {
+    return {
+      text: "",
+      color: "Orange",
+      isInline: true,
+      isForm: false
+    }
+  },
 
   render() {
     var className = "Button";
@@ -41,6 +39,4 @@ class Button {
     );
   }
 
-}
-
-export default Button;
+});

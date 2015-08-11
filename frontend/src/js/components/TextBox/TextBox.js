@@ -1,19 +1,17 @@
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
 import React, { PropTypes } from 'react';
-import withStyles from '../../decorators/withStyles';
-import styles from './TextBox.css';
 
-@withStyles(styles)
-class TextBox {
-
-  static propTypes = {
+export default React.createClass({
+  propTypes: {
     maxLines: PropTypes.number
-  };
+  },
 
-  static defaultProps = {
-    maxLines: 1
-  };
+  getDefaultProps() {
+    return {
+      maxLines: 1
+    }
+  },
 
   render() {
     return (
@@ -24,7 +22,4 @@ class TextBox {
       </div>
     );
   }
-
-}
-
-export default TextBox;
+});

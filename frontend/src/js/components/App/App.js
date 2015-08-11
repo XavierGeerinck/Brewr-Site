@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
+import Router from 'react-router';
 import Footer from '../Footer';
 import SideMenu from '../SideMenu';
+var RouteHandler = Router.RouteHandler;
 
 export default React.createClass({
   propTypes: {
@@ -23,7 +25,7 @@ export default React.createClass({
 
           <div className="App-Page-Container">
             <div className="App-Page-Content">
-              CONTENT
+              <RouteHandler />
             </div>
           </div>
         </div>

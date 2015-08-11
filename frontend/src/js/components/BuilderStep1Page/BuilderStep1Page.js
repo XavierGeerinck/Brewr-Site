@@ -1,27 +1,19 @@
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
 import React, { PropTypes } from 'react';
-import styles from './BuilderStep1Page.css';
-import withStyles from '../../decorators/withStyles';
 import SideMenu from '../SideMenu';
 import Button from '../Button';
-import Link from '../../utils/Link';
 
-@withStyles(styles)
-class BuilderStep1Page {
+export default React.createClass({
+  propTypes: {
+  },
 
-  static propTypes = {
-    path: PropTypes.string.isRequired,
-    title: PropTypes.string
-  };
-
-  static contextTypes = {
-    onSetTitle: PropTypes.func.isRequired
-  };
+  getDefaultProps() {
+    return {
+    }
+  },
 
   render() {
-    this.context.onSetTitle(this.props.title);
-
     return (
       <div className="BuilderStep1Page">
         {/* Pick Predefined Docker Image */}
@@ -95,11 +87,9 @@ class BuilderStep1Page {
   			</section>
 
   			{/* Next Button */}
-        <Button text="Next >" color="Orange" onClick={Link.handleClick} />
+        <Button text="Next >" color="Orange" />
         <div className="clear"></div>
       </div>
     );
   }
-}
-
-export default BuilderStep1Page;
+});

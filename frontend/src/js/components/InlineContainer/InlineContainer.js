@@ -1,12 +1,15 @@
 import React, { PropTypes } from 'react';
-import styles from './InlineContainer.css';
-import WithStyles from '../../decorators/withStyles';
 
-@WithStyles(styles)
-class InlineContainer {
+export default React.createClass({
+  propTypes: {
+  },
+
+  getDefaultProps() {
+    return {
+    }
+  },
+
   render() {
     return <div className="Inline-Container">{this.props.children}</div>;
   }
-}
-
-export default InlineContainer;
+});

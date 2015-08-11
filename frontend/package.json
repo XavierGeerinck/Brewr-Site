@@ -13,6 +13,7 @@
     "gulp-copy": "0.0.2",
     "gulp-sass": "^2.0.4",
     "gulp-util": "^3.0.6",
+    "gulp-webp": "^2.3.0",
     "normalize.css": "^3.0.3",
     "react-router": "^0.13.3",
     "reactify": "^1.1.1",

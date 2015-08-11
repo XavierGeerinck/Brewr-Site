@@ -2,17 +2,18 @@
 
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import styles from './Navigation.css';
-import withStyles from '../../decorators/withStyles';
 import Link from '../../utils/Link';
 import Button from '../Button';
 
-@withStyles(styles)
-class Navigation {
-
-  static propTypes = {
+export default React.createClass({
+  propTypes: {
     className: PropTypes.string
-  };
+  },
+
+  getDefaultProps() {
+    return {
+    }
+  },
 
   render() {
     return (
@@ -24,7 +25,4 @@ class Navigation {
       </div>
     );
   }
-
-}
-
-export default Navigation;
+});

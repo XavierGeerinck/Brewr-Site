@@ -1,9 +1,13 @@
 import React, { PropTypes } from 'react';
 
-export class Footer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+export default React.createClass({
+  propTypes: {
+  },
+
+  getDefaultProps() {
+    return {
+    }
+  },
 
   render() {
     return (
@@ -66,7 +70,4 @@ export class Footer extends React.Component {
       </div>
     );
   }
-}
-
-Footer.propTypes = {
-}
+});
