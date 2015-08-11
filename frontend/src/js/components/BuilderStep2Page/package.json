@@ -1,0 +1,6 @@
+{
+  "name": "BuilderStep2Page",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./BuilderStep2Page.js"
+}

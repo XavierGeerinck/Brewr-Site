@@ -1,0 +1,3 @@
+.Inline-Container > * {
+  display: inline-block;
+}

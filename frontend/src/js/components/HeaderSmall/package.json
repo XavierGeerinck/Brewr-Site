@@ -1,0 +1,6 @@
+{
+  "name": "HeaderSmall",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./HeaderSmall.js"
+}

@@ -1,0 +1,11 @@
+.Input > label {
+  display: block;
+  font-size: 16px;
+}
+
+.Input > input {
+  margin: 0 auto;
+  padding: 5px 10px;
+  width: 250px;
+  margin: 2px 0 5px 0;
+}

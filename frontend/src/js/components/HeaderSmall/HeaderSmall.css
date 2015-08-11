@@ -1,0 +1,13 @@
+.HeaderSmall {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.HeaderSmall-container {
+  margin: 0 auto;
+  padding: 20px 40px;
+}
+
+.HeaderSmall-nav {
+  float: right;
+}
