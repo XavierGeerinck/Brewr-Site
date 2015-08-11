@@ -30,7 +30,7 @@ export default React.createClass({
         </section>
 
   			{/* Next Button */}
-        <Button text="Next >" color="Orange" onClick={Link.handleClick} />
+        <Button text="Next >" color="Orange" />
         <div className="clear"></div>
       </div>
     );
