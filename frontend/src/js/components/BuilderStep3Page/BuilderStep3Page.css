@@ -92,3 +92,47 @@
   line-height: 0.1em;
   margin: 20px 0;
 }
+
+.BuilderPage-List {
+  list-style: none;
+  padding: 0;
+}
+
+.BuilderPage-List li {
+  border: 1px solid var(--color-white-shade-darker-2);
+  border-bottom: none;
+  height: 35px;
+  position: relative;
+  line-height: 35px;
+}
+
+.BuilderPage-List li > span {
+  padding-left: 10px;
+}
+
+.BuilderPage-List li:nth-child(odd) {
+  border-bottom: none;
+}
+
+.BuilderPage-List li:last-child {
+  border-bottom: 1px solid var(--color-white-shade-darker-2);
+}
+
+.BuilderPage-List Button:first-child {
+  margin-right: 5px;
+  color: var(--color-white-shade-darker-5);
+  background-color: var(--color-white-shade-darker-1);
+  border: 2px solid #ebebeb;
+}
+
+.BuilderPage-List Button:last-child {
+  margin-left: 15px;
+  position: absolute;
+  right: 0;
+}
+
+.BuilderPage-List Button {
+  height: 35px;
+  line-height: 22px;
+  text-align: center;
+}

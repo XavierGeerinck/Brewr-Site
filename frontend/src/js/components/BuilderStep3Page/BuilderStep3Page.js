@@ -5,6 +5,7 @@ import SideMenu from '../SideMenu';
 import Button from '../Button';
 import Input from '../Input';
 import InlineContainer from '../InlineContainer';
+import { Tooltip, OverlayTrigger, } from 'react-bootstrap';
 
 export default React.createClass({
   propTypes: {
@@ -16,6 +17,13 @@ export default React.createClass({
   },
 
   render() {
+    var tooltip = (
+        <Tooltip>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+          dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </Tooltip>
+    );
+
     return (
       <div className="BuilderStep3Page">
         {/* Add Command */}
@@ -33,32 +41,32 @@ export default React.createClass({
         {/* Current Command */}
         <section className="sub-content flex-container">
           <div className="flex-container">
-            <div className="help_block"> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</div>
-
             <div id="pick-settings-filled" className="flex-item">
               <h2>
                 Commands
-
-                <span className="help_popup">[?]</span>
+                <span className="BuilderPage-HelpIcon"><OverlayTrigger placement='right' overlay={tooltip}><i className="fa fa-question-circle" /></OverlayTrigger></span>
               </h2>
 
-              <ul>
+              <ul className="BuilderPage-List">
                 <li>
-                  <a href="#" className="btn-square orange"><i className="fa fa-align-justify"></i></a> sudo apt-get install nodejs
-                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
+                  <Button text=<i className="fa fa-align-justify"></i> isForm="true"/>
+                  sudo apt-get install nodejs
+                  <Button text=<i className="fa fa-remove"></i> isForm="true"/>
                 </li>
                 <li>
-                  <a href="#" className="btn-square orange"><i className="fa fa-align-justify"></i></a> sudo apt-get install nodejs
-                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
+                  <Button text=<i className="fa fa-align-justify"></i> isForm="true"/>
+                  sudo apt-get install nodejs
+                  <Button text=<i className="fa fa-remove"></i> isForm="true"/>
                 </li>
                 <li>
-                  <a href="#" className="btn-square orange"><i className="fa fa-align-justify"></i></a> sudo apt-get install nodejs
-                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
+                  <Button text=<i className="fa fa-align-justify"></i> isForm="true"/>
+                  sudo apt-get install nodejs
+                  <Button text=<i className="fa fa-remove"></i> isForm="true"/>
                 </li>
                 <li>
-                  <a href="#" className="btn-square orange"><i className="fa fa-align-justify"></i></a> sudo apt-get install nodejs
-                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
+                  <Button text=<i className="fa fa-align-justify"></i> isForm="true"/>
+                  sudo apt-get install nodejs
+                  <Button text=<i className="fa fa-remove"></i> isForm="true"/>
                 </li>
               </ul>
             </div>
@@ -66,7 +74,7 @@ export default React.createClass({
         </section>
 
   			{/* Next Button */}
-        <Button text="Next >" color="Orange" />
+        <Button text=<span>Next <i className="fa fa-angle-right" /></span> color="Orange" />
         <div className="clear"></div>
       </div>
     );

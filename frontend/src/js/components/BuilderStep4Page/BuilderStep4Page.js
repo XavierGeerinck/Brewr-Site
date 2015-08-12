@@ -3,6 +3,8 @@
 import React, { PropTypes } from 'react';
 import SideMenu from '../SideMenu';
 import Button from '../Button';
+import InlineContainer from '../InlineContainer';
+import Input from '../Input';
 
 export default React.createClass({
   propTypes: {
@@ -20,8 +22,10 @@ export default React.createClass({
         <section className="sub-content flex-container">
           <div className="flex-container">
             <div id="pick-settings" className="flex-item">
-              <label htmlFor="input_cmd">Add Expose Port</label>
-              <input type="text" name="input_cmd" placeholder="Type a port in the format port_container:port_local..." />
+              <InlineContainer>
+                <Input type="text" name="input_cmd" label="Add Expose Port" placeholder="Type a port in the format port_container:port_local..." />
+                <Button text="Add" isForm="true"/>
+              </InlineContainer>
             </div>
           </div>
         </section>
@@ -32,18 +36,18 @@ export default React.createClass({
             <div id="pick-settings-filled" className="flex-item">
               <h2>Commands</h2>
 
-              <ul>
+              <ul className="BuilderPage-List">
                 <li>
-                  80 : 80
-                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
+                  <span>80 : 80</span>
+                  <Button text=<i className="fa fa-remove"></i> isForm="true"/>
                 </li>
                 <li>
-                  3336 : 3336
-                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
+                  <span>3336 : 3336</span>
+                  <Button text=<i className="fa fa-remove"></i> isForm="true"/>
                 </li>
                 <li>
-                  22 : 22
-                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
+                  <span>22 : 22</span>
+                  <Button text=<i className="fa fa-remove"></i> isForm="true"/>
                 </li>
               </ul>
             </div>

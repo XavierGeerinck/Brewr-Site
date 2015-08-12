@@ -3,6 +3,8 @@
 import React, { PropTypes } from 'react';
 import SideMenu from '../SideMenu';
 import Button from '../Button';
+import InlineContainer from '../InlineContainer';
+import Input from '../Input';
 
 export default React.createClass({
   propTypes: {
@@ -20,8 +22,10 @@ export default React.createClass({
         <section className="sub-content flex-container">
           <div className="flex-container">
             <div id="pick-settings" className="flex-item">
-              <label htmlFor="input_cmd">Add Volumes</label>
-              <input type="text" name="input_cmd" placeholder="Type a volume, format: /data..." />
+              <InlineContainer>
+                <Input type="text" name="input_cmd" label="Add Volumes" placeholder="Type a volume, format: /data..." />
+                <Button text="Add" isForm="true"/>
+              </InlineContainer>
             </div>
           </div>
         </section>
@@ -32,14 +36,14 @@ export default React.createClass({
             <div id="pick-settings-filled" className="flex-item">
               <h2>Volumes</h2>
 
-              <ul>
+              <ul className="BuilderPage-List">
                 <li>
-                  /data
-                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
+                  <span>/data</span>
+                  <Button text=<i className="fa fa-remove"></i> isForm="true"/>
                 </li>
                 <li>
-                  /logs
-                  <a href="#" className="btn-square orange"><i className="fa fa-remove"></i></a>
+                  <span>/logs</span>
+                  <Button text=<i className="fa fa-remove"></i> isForm="true"/>
                 </li>
               </ul>
             </div>
