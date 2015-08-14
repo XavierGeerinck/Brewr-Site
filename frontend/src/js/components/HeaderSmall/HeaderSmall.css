@@ -8,6 +8,11 @@
   padding: 20px 40px;
 }
 
-.HeaderSmall-nav {
+.HeaderSmall .Navigation {
   float: right;
+}
+
+.HeaderSmall .Logo {
+  float: left;
+  height: auto;
 }
