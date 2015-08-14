@@ -6,17 +6,18 @@ import Button from '../Button';
 import Input from '../Input';
 import MainLayout from '../MainLayout';
 
-class LoginPage extends React.Component {
+class RegisterPage extends React.Component {
   render() {
     var isInline = false;
     return (
       <MainLayout>
         <div className="LoginPage">
           <form>
-            <Input type="email" placeholder="Email" label="Email" id="user_email" />
-            <Input type="password" label="Password" id="user_password" />
+            <Input type="email" placeholder="Email" label="Email*" id="user_email" />
+            <Input type="password" label="Password*" id="user_password" />
+            <Input type="password" label="Confirm Password*" id="user_password_confirm" />
 
-            <Button text="Login" isInline={isInline} />
+            <Button text="Register" isInline={isInline} />
           </form>
         </div>
       </MainLayout>
@@ -24,12 +25,12 @@ class LoginPage extends React.Component {
   }
 }
 
-LoginPage.defaultProps = {
+RegisterPage.defaultProps = {
 
 };
 
-LoginPage.propTypes = {
+RegisterPage.propTypes = {
 
 };
 
-export default LoginPage;
+export default RegisterPage;
