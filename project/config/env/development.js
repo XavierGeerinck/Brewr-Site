@@ -21,4 +21,6 @@ module.exports = {
   //   connection: 'someMongodbServer'
   // }
 
+  tokenSecret: 'TqSn6Y@Pr@3TFq*f6_7&f@*+V!$766hnfcY#Njz=A=K-_yhF_PjPJAYLxBCK%_As'
+
 };

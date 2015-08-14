@@ -12,6 +12,11 @@
 
 module.exports = {
 
+  jwt: {
+    tokenSecret: 'TqSn6Y@Pr@3TFq*f6_7&f@*+V!$766hnfcY#Njz=A=K-_yhF_PjPJAYLxBCK%_As'
+  }
+
+
   /***************************************************************************
    * Set the default database connection for models in the production        *
    * environment (see config/connections.js and config/models.js )           *

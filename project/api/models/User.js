@@ -18,7 +18,8 @@ module.exports = {
     email: {
       type: 'email',
       unique: true,
-      columnName: 'email'
+      columnName: 'email',
+      required: true
     },
     password: 'string',
     createdOn: {
@@ -29,7 +30,10 @@ module.exports = {
       type: 'datetime',
       columnName: 'updated_on'
     },
-    enabled: 'boolean',
+    enabled: {
+      type: 'boolean',
+      defaultsTo: true
+    },
     expiresOn: {
       type: 'datetime',
       columnName: 'expires_on'
@@ -44,7 +48,20 @@ module.exports = {
     sessions: {
       collection: 'UserSession',
       via: 'user'
+    },
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.password;
+      return obj;
     }
+  },
+  beforeCreate: function(values, next){
+    AuthService.hashPassword(values);
+    next();
+  },
+  beforeUpdate: function(values, next) {
+    AuthService.hashPassword(values);
+    next();
   }
 };
 
