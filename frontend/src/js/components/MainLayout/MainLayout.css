@@ -1,0 +1,10 @@
+.MainLayout-Content {
+  padding: 40px;
+  margin: 0 auto;
+
+  display:flex;
+  justify-content:
+  center;
+  align-items:center;
+  width:100%;
+}

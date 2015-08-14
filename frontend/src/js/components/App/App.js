@@ -4,32 +4,22 @@ import Footer from '../Footer';
 import SideMenu from '../SideMenu';
 var RouteHandler = Router.RouteHandler;
 
-export default React.createClass({
-  propTypes: {
-  },
-
-  getDefaultProps() {
-    return {
-    }
-  },
-
+class App extends React.Component {
   render() {
     return (
       <div id="app" className="App-Container">
-        <SideMenu />
-
-        <div className="App-Content">
-          <div className="App-Page-Title">
-            <h1>PAGE TITLE</h1>
-          </div>
-
-          <div className="App-Page-Container">
-            <div className="App-Page-Content">
-              <RouteHandler />
-            </div>
-          </div>
-        </div>
+        <RouteHandler />
       </div>
     );
   }
-});
+}
+
+App.defaultProps = {
+
+};
+
+App.propTypes = {
+
+};
+
+export default App;

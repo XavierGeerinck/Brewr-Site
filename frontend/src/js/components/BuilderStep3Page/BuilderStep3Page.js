@@ -6,16 +6,9 @@ import Button from '../Button';
 import Input from '../Input';
 import InlineContainer from '../InlineContainer';
 import { Tooltip, OverlayTrigger, } from 'react-bootstrap';
+import DashboardLayout from '../DashboardLayout';
 
-export default React.createClass({
-  propTypes: {
-  },
-
-  getDefaultProps() {
-    return {
-    }
-  },
-
+class BuilderStep3Page extends React.Component {
   render() {
     var tooltip = (
         <Tooltip>
@@ -25,58 +18,70 @@ export default React.createClass({
     );
 
     return (
-      <div className="BuilderStep3Page">
-        {/* Add Command */}
-        <section className="sub-content flex-container">
-          <div className="flex-container">
-            <div id="pick-settings" className="flex-item">
-              <InlineContainer>
-                <Input type="text" name="input_cmd" label="Add Command" placeholder="Type a command..." />
-                <Button text="Add" isForm="true"/>
-              </InlineContainer>
+      <DashboardLayout>
+        <div className="BuilderStep3Page">
+          {/* Add Command */}
+          <section className="sub-content flex-container">
+            <div className="flex-container">
+              <div id="pick-settings" className="flex-item">
+                <InlineContainer>
+                  <Input type="text" name="input_cmd" label="Add Command" placeholder="Type a command..." />
+                  <Button text="Add" isForm="true"/>
+                </InlineContainer>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Current Command */}
-        <section className="sub-content flex-container">
-          <div className="flex-container">
-            <div id="pick-settings-filled" className="flex-item">
-              <h2>
-                Commands
-                <span className="BuilderPage-HelpIcon"><OverlayTrigger placement='right' overlay={tooltip}><i className="fa fa-question-circle" /></OverlayTrigger></span>
-              </h2>
+          {/* Current Command */}
+          <section className="sub-content flex-container">
+            <div className="flex-container">
+              <div id="pick-settings-filled" className="flex-item">
+                <h2>
+                  Commands
+                  <span className="BuilderPage-HelpIcon"><OverlayTrigger placement='right' overlay={tooltip}><i className="fa fa-question-circle" /></OverlayTrigger></span>
+                </h2>
 
-              <ul className="BuilderPage-List">
-                <li>
-                  <Button text=<i className="fa fa-align-justify"></i> isForm="true"/>
-                  sudo apt-get install nodejs
-                  <Button text=<i className="fa fa-remove"></i> isForm="true"/>
-                </li>
-                <li>
-                  <Button text=<i className="fa fa-align-justify"></i> isForm="true"/>
-                  sudo apt-get install nodejs
-                  <Button text=<i className="fa fa-remove"></i> isForm="true"/>
-                </li>
-                <li>
-                  <Button text=<i className="fa fa-align-justify"></i> isForm="true"/>
-                  sudo apt-get install nodejs
-                  <Button text=<i className="fa fa-remove"></i> isForm="true"/>
-                </li>
-                <li>
-                  <Button text=<i className="fa fa-align-justify"></i> isForm="true"/>
-                  sudo apt-get install nodejs
-                  <Button text=<i className="fa fa-remove"></i> isForm="true"/>
-                </li>
-              </ul>
+                <ul className="BuilderPage-List">
+                  <li>
+                    <Button text=<i className="fa fa-align-justify"></i> isForm="true"/>
+                    sudo apt-get install nodejs
+                    <Button text=<i className="fa fa-remove"></i> isForm="true"/>
+                  </li>
+                  <li>
+                    <Button text=<i className="fa fa-align-justify"></i> isForm="true"/>
+                    sudo apt-get install nodejs
+                    <Button text=<i className="fa fa-remove"></i> isForm="true"/>
+                  </li>
+                  <li>
+                    <Button text=<i className="fa fa-align-justify"></i> isForm="true"/>
+                    sudo apt-get install nodejs
+                    <Button text=<i className="fa fa-remove"></i> isForm="true"/>
+                  </li>
+                  <li>
+                    <Button text=<i className="fa fa-align-justify"></i> isForm="true"/>
+                    sudo apt-get install nodejs
+                    <Button text=<i className="fa fa-remove"></i> isForm="true"/>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-  			{/* Next Button */}
-        <Button text=<span>Next <i className="fa fa-angle-right" /></span> color="Orange" />
-        <div className="clear"></div>
-      </div>
+    			{/* Next Button */}
+          <Button text=<span>Next <i className="fa fa-angle-right" /></span> color="Orange" />
+          <div className="clear"></div>
+        </div>
+      </DashboardLayout>
     );
   }
-});
+}
+
+BuilderStep3Page.defaultProps = {
+
+};
+
+BuilderStep3Page.propTypes = {
+
+};
+
+export default BuilderStep3Page;

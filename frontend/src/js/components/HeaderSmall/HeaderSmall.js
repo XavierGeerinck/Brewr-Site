@@ -4,15 +4,7 @@ import React from 'react';
 import Navigation from '../Navigation';
 import Logo from '../Logo';
 
-export default React.createClass({
-  propTypes: {
-  },
-
-  getDefaultProps() {
-    return {
-    }
-  },
-
+class HeaderSmall extends React.Component {
   render() {
     return (
       <div className="HeaderSmall">
@@ -24,5 +16,14 @@ export default React.createClass({
       </div>
     );
   }
+}
 
-});
+HeaderSmall.defaultProps = {
+
+};
+
+HeaderSmall.propTypes = {
+
+};
+
+export default HeaderSmall;
