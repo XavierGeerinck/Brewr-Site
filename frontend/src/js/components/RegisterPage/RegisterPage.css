@@ -1,21 +1,21 @@
-.RegisterPage  {
+.LoginPage  {
   width: 30%;
   margin: auto 0;
 }
 
-.RegisterPage button {
+.LoginPage button {
   margin: 0 auto;
   display: block;
 }
 
-.RegisterPage form  {
+.LoginPage form  {
   width: 100%;
 }
 
-.RegisterPage .Input {
+.LoginPage .Input {
   width: 100%;
 }
 
-.RegisterPage .Input input {
+.LoginPage .Input input {
   width: 100%;
 }

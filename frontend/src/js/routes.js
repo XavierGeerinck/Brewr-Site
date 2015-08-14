@@ -9,6 +9,7 @@ import BuilderStep5Page from './components/BuilderStep5Page';
 import BuilderStep6Page from './components/BuilderStep6Page';
 import BuilderStep7Page from './components/BuilderStep7Page';
 import LoginPage from './components/LoginPage';
+import RegisterPage from './components/RegisterPage';
 
 var Route = Router.Route;
 var DefaultRoute = Router.DefaultRoute;
@@ -24,6 +25,7 @@ var routes = (
       <Route name="BuilderStep6Page" path="/builder/6" handler={BuilderStep6Page} />
       <Route name="BuilderStep7Page" path="/builder/7" handler={BuilderStep7Page} />
       <Route name="LoginPage" path="/login" handler={LoginPage} />
+      <Route name="RegisterPage" path="/register" handler={RegisterPage} />
       <DefaultRoute name="default" handler={BuilderStep1Page}/>
     </Route>
 );
