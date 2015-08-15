@@ -35,7 +35,7 @@ export default React.createClass({
 
   renderInput() {
     return (
-      <input type={this.props.type} placeholder={this.props.placeholder} value={this.props.text} name={this.props.id} key="input"/>
+      <input type={this.props.type} valueLink={this.props.valueLink} placeholder={this.props.placeholder} value={this.props.text} name={this.props.id} key="input"/>
     )
   },
 

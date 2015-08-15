@@ -44,7 +44,18 @@
     "eslint": "^1.1.0",
     "eslint-plugin-react": "^3.2.2",
     "flux": "^2.0.3",
+    "gulp-connect": "^2.2.0",
+    "gulp-cssnext": "^1.0.1",
+    "jquery": "^1.9.1",
+    "jwt-decode": "^1.1.0",
+    "kendo-ui-core": "^1.0.2",
     "object-assign": "^3.0.0",
-    "react": "^0.13.3"
+    "react": "^0.13.3",
+    "react-bootstrap": "^0.24.5",
+    "react-mixin": "^1.7.0",
+    "reqwest": "^1.1.6",
+    "underscore": "^1.7.0",
+    "when": "^3.7.2",
+    "wingspan-forms": "^0.9.3"
   }
 }

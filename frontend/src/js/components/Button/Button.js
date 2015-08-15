@@ -35,7 +35,7 @@ export default React.createClass({
     }
 
     return (
-      <button className={className}>{this.props.text}</button>
+      <button className={className} onClick={this.props.onClick}>{this.props.text}</button>
     );
   }
 
