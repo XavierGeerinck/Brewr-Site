@@ -7,7 +7,9 @@ import Input from '../../elements/Input';
 import InlineContainer from '../../elements/InlineContainer';
 import { Tooltip, OverlayTrigger, } from 'react-bootstrap';
 import DashboardLayout from '../../layouts/DashboardLayout';
+import ListCommand from '../../elements/ListCommand';
 
+var commands = [ "sudo apt-get install nodejs", "sudo apt-get install nodejs", "sudo apt-get install nodejs", "sudo apt-get install nodejs", "sudo apt-get install nodejs" ];
 class BuilderStep3Page extends React.Component {
   render() {
     var tooltip = (
@@ -21,53 +23,19 @@ class BuilderStep3Page extends React.Component {
       <DashboardLayout>
         <div className="BuilderStep3Page">
           {/* Add Command */}
-          <section className="sub-content flex-container">
-            <div className="flex-container">
-              <div id="pick-settings" className="flex-item">
-                <InlineContainer>
-                  <Input type="text" name="input_cmd" label="Add Command" placeholder="Type a command..." />
-                  <Button text="Add" isForm="true"/>
-                </InlineContainer>
-              </div>
-            </div>
-          </section>
+          <InlineContainer>
+            <Input type="text" name="input_cmd" label="Add Command" placeholder="Type a command..." />
+            <Button text="Add" isForm="true"/>
+          </InlineContainer>
 
           {/* Current Command */}
-          <section className="sub-content flex-container">
-            <div className="flex-container">
-              <div id="pick-settings-filled" className="flex-item">
-                <h2>
-                  Commands
-                  <span className="BuilderPage-HelpIcon"><OverlayTrigger placement='right' overlay={tooltip}><i className="fa fa-question-circle" /></OverlayTrigger></span>
-                </h2>
+          <h2>
+            Commands
+            <span className="BuilderPage-HelpIcon"><OverlayTrigger placement='right' overlay={tooltip}><i className="fa fa-question-circle" /></OverlayTrigger></span>
+          </h2>
+          <ListCommand items={commands} />
 
-                <ul className="BuilderPage-List">
-                  <li>
-                    <Button text=<i className="fa fa-align-justify"></i> isForm="true"/>
-                    sudo apt-get install nodejs
-                    <Button text=<i className="fa fa-remove"></i> isForm="true"/>
-                  </li>
-                  <li>
-                    <Button text=<i className="fa fa-align-justify"></i> isForm="true"/>
-                    sudo apt-get install nodejs
-                    <Button text=<i className="fa fa-remove"></i> isForm="true"/>
-                  </li>
-                  <li>
-                    <Button text=<i className="fa fa-align-justify"></i> isForm="true"/>
-                    sudo apt-get install nodejs
-                    <Button text=<i className="fa fa-remove"></i> isForm="true"/>
-                  </li>
-                  <li>
-                    <Button text=<i className="fa fa-align-justify"></i> isForm="true"/>
-                    sudo apt-get install nodejs
-                    <Button text=<i className="fa fa-remove"></i> isForm="true"/>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-    			{/* Next Button */}
+          {/* Next Button */}
           <Button text=<span>Next <i className="fa fa-angle-right" /></span> color="Orange" />
           <div className="clear"></div>
         </div>

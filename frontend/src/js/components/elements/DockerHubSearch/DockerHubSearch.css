@@ -1,0 +1,14 @@
+.DockerHubSearch {
+  margin: 0 auto;
+  width: 30%;
+}
+
+.DockerHubSearch input {
+  width: 100%;
+  padding: 10px 10px;
+  font-weight: normal;
+  color: var(--color-black);
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+}

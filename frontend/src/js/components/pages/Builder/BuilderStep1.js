@@ -1,92 +1,81 @@
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
-
-import React, { PropTypes } from 'react';
+import React, {
+    PropTypes
+}
+from 'react';
 import SideMenu from '../../elements/SideMenu';
 import Button from '../../elements/Button';
 import DashboardLayout from '../../layouts/DashboardLayout';
+import DistributionPicker from '../../elements/DistributionPicker';
+import DockerHubSearch from '../../elements/DockerHubSearch';
+import Divider from '../../elements/Divider';
+
+var images = [
+    {
+        "distribution": "ubuntu",
+        "logo_url": "http://summit.ubuntu.com/media/images/cof_orange_hex1.png",
+        "versions": [{
+            name: "v15.04 - Vilvid Vervet",
+            value: "15.04"
+        }]
+    },
+    {
+        "distribution": "fedora",
+        "logo_url": "http://summit.ubuntu.com/media/images/cof_orange_hex1.png",
+        "versions": [{
+            name: "v15.04 - Vilvid Vervet",
+            value: "15.04"
+        }]
+    },
+    {
+        "distribution": "coreos",
+        "logo_url": "http://summit.ubuntu.com/media/images/cof_orange_hex1.png",
+        "versions": [{
+            name: "v15.04 - Vilvid Vervet",
+            value: "15.04"
+        }]
+    },
+    {
+        "distribution": "mint",
+        "logo_url": "http://summit.ubuntu.com/media/images/cof_orange_hex1.png",
+        "versions": [{
+            name: "v15.04 - Vilvid Vervet",
+            value: "15.04"
+        }]
+    }
+];
 
 class BuilderStep1Page extends React.Component {
-  render() {
-    return (
-      <DashboardLayout>
-        <div className="BuilderStep1Page">
-          {/* Pick Predefined Docker Image */}
-          <section className="sub-content">
-            <h1>Pick your base image</h1>
+    getInitialState() {
+        return {
+            distribution: 'ubuntu',
+            distribution_version: '15.04',
+            hub_search: ''
+        }
+    }
 
-            <div className="BuilderPage-FlexContainer">
-              <div className="BuilderPage-PickImageBlock">
-                <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
-                <h1>Ubuntu</h1>
-                <select>
-                  <option value="">v15.04 - Vilvid Vervet</option>
-                </select>
-              </div>
+    render() {
+        return (
+            <DashboardLayout>
+                <div className="BuilderStep1Page">
 
-              <div className="BuilderPage-PickImageBlock">
-                <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
-                <h1>Ubuntu</h1>
-                <select>
-                  <option value="">v15.04 - Vilvid Vervet</option>
-                </select>
-              </div>
+                    {/* Pick Predefined Docker Image */}
+                    <h1>Pick your base image</h1>
+                    <DistributionPicker distributions={images} />
 
-              <div className="BuilderPage-PickImageBlock">
-                <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
-                <h1>Ubuntu</h1>
-                <select>
-                  <option value="">v15.04 - Vilvid Vervet</option>
-                </select>
-              </div>
+                    <Divider text="Or" />
 
-              <div className="BuilderPage-PickImageBlock">
-                <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
-                <h1>Ubuntu</h1>
-                <select>
-                  <option value="">v15.04 - Vilvid Vervet</option>
-                </select>
-              </div>
+                    {/* Search docker */}
+            		<h1>Search Docker Hub</h1>
+                    <DockerHubSearch />
 
-              <div className="BuilderPage-PickImageBlock">
-                <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
-                <h1>Ubuntu</h1>
-                <select>
-                  <option value="">v15.04 - Vilvid Vervet</option>
-                </select>
-              </div>
-
-              <div className="BuilderPage-PickImageBlock BuilderPage-PickImageBlock-Selected">
-                <img src="http://summit.ubuntu.com/media/images/cof_orange_hex1.png" />
-                <h1>Ubuntu</h1>
-                <select>
-                  <option value="">v15.04 - Vilvid Vervet</option>
-                </select>
-              </div>
-            </div>
-          </section>
-
-          <div className="BuilderPage-Divider">
-            <span>Or</span>
-          </div>
-
-          {/* Search docker */}
-    			<section className="sub-content">
-    				<h1>Search Docker Hub</h1>
-
-    				<div className="BuilderPage-FlexContainer">
-    					<div className="BuilderPage-PickImageSearch">
-    						<input type="text" placeholder="Type a keyword..." />
-    					</div>
-    				</div>
-    			</section>
-
-    			{/* Next Button */}
-          <Button text="Next >" color="Orange" />
-          <div className="clear"></div>
-        </div>
-      </DashboardLayout>
-    );
-  }
+                	{/* Next Button */}
+                    <Button text="Next >" color="Orange" />
+                    <div className="clear"></div>
+                </div>
+            </DashboardLayout>
+        );
+    }
 }
 
 BuilderStep1Page.defaultProps = {

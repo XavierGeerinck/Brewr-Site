@@ -6,49 +6,25 @@ import Button from '../../elements/Button';
 import InlineContainer from '../../elements/InlineContainer';
 import Input from '../../elements/Input';
 import DashboardLayout from '../../layouts/DashboardLayout';
+import ListPort from '../../elements/ListPort';
 
+var ports = [ "80:80", "3306:3306", "8000:8000" ];
 class BuilderStep4Page extends React.Component {
   render() {
     return (
       <DashboardLayout>
         <div className="BuilderStep4Page">
           {/* Add Expose */}
-          <section className="sub-content flex-container">
-            <div className="flex-container">
-              <div id="pick-settings" className="flex-item">
-                <InlineContainer>
-                  <Input type="text" name="input_cmd" label="Add Expose Port" placeholder="Type a port in the format port_container:port_local..." />
-                  <Button text="Add" isForm="true"/>
-                </InlineContainer>
-              </div>
-            </div>
-          </section>
+          <InlineContainer>
+            <Input type="text" name="input_cmd" label="Add Expose Port" placeholder="Type a port in the format port_container:port_local..." />
+            <Button text="Add" isForm="true"/>
+          </InlineContainer>
 
           {/* Current Expose */}
-          <section className="sub-content flex-container">
-            <div className="flex-container">
-              <div id="pick-settings-filled" className="flex-item">
-                <h2>Commands</h2>
+          <h1>Ports</h1>
+          <ListPort items={ports} />
 
-                <ul className="BuilderPage-List">
-                  <li>
-                    <span>80 : 80</span>
-                    <Button text=<i className="fa fa-remove"></i> isForm="true"/>
-                  </li>
-                  <li>
-                    <span>3336 : 3336</span>
-                    <Button text=<i className="fa fa-remove"></i> isForm="true"/>
-                  </li>
-                  <li>
-                    <span>22 : 22</span>
-                    <Button text=<i className="fa fa-remove"></i> isForm="true"/>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-    			{/* Next Button */}
+		  {/* Next Button */}
           <Button text="Next >" color="Orange" />
           <div className="clear"></div>
         </div>

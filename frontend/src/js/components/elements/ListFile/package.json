@@ -1,0 +1,6 @@
+{
+  "name": "ListFile",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ListFile.js"
+}
