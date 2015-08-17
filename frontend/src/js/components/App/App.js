@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Router from 'react-router';
-import Footer from '../Footer';
-import SideMenu from '../SideMenu';
+import Footer from '../elements/Footer';
+import SideMenu from '../elements/SideMenu';
 var RouteHandler = Router.RouteHandler;
 
 class App extends React.Component {

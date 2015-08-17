@@ -1,0 +1,50 @@
+.DashboardLayout-Container {
+  height: 100%;
+  display: flex;
+}
+
+.DashboardLayout-Content {
+  width: 100%;
+}
+
+.DashboardLayout-Page {
+  width: 100%;
+}
+
+.DashboardLayout-Page-Container {
+  padding: 40px 50px;
+  background-color: var(--color-white-shade-darker-1);
+}
+
+.DashboardLayout-Page-Content {
+  background-color: var(--color-white);
+  width: 100%;
+  position: relative;
+  padding: 15px 20px;
+  border-radius: 5px;
+  border: 1px solid var(--color-white-shade-darker-2);
+}
+
+.DashboardLayout-Page-Content > div > h1 {
+  font-size: 24px;
+  padding: 20px 0 15px 0;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.DashboardLayout-Page-Title {
+  width: 100%;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  padding-left: 15px;
+  height: 49px;
+  border-bottom: 1px solid var(--color-white-shade-darker-2);
+}
+
+.DashboardLayout-Page-Title h1 {
+  height: 49px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 49px;
+  text-transform: uppercase;
+}
