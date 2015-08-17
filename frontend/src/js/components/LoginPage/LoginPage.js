@@ -6,8 +6,10 @@ import Button from '../Button';
 import Input from '../Input';
 import MainLayout from '../MainLayout';
 import Auth from '../../services/AuthService'
+import BaseComponent from '../BaseComponent';
 
-export default class LoginPage extends React.Component {
+
+export default class LoginPage extends BaseComponent {
 
   constructor() {
     super();
@@ -15,9 +17,10 @@ export default class LoginPage extends React.Component {
       email: '',
       password: ''
     };
+    this._bind('_login');
   }
 
-  login(e) {
+  _login(e) {
     e.preventDefault();
 
     Auth.login(this.state.email, this.state.password)
@@ -37,7 +40,7 @@ export default class LoginPage extends React.Component {
             <Input type="email" valueLink={this.linkState('email')} placeholder="Email" label="Email" id="user_email" />
             <Input type="password" valueLink={this.linkState('password')} label="Password" id="user_password" />
 
-            <Button type="submit" text="Login" isInline={isInline} onClick={this.login.bind(this)} />
+            <Button type="submit" text="Login" isInline={isInline} onClick={this._login} />
           </form>
         </div>
       </MainLayout>

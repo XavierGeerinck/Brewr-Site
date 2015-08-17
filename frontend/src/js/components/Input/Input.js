@@ -6,7 +6,8 @@ export default React.createClass({
     placeholder: PropTypes.string,
     text: PropTypes.string,
     label: PropTypes.string,
-    id: PropTypes.string
+    id: PropTypes.string,
+    name: PropTypes.string
   },
 
   getDefaultProps() {
@@ -35,7 +36,7 @@ export default React.createClass({
 
   renderInput() {
     return (
-      <input type={this.props.type} valueLink={this.props.valueLink} placeholder={this.props.placeholder} value={this.props.text} name={this.props.id} key="input"/>
+      <input type={this.props.type} name={this.props.name} valueLink={this.props.valueLink} placeholder={this.props.placeholder} value={this.props.text} onChange={this.props.onChange} key="input"/>
     )
   },
 
