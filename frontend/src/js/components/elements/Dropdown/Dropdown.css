@@ -1,0 +1,24 @@
+.Dropdown select {
+    margin: 0;
+    width: 90%;
+    background: url("../../../images/elements/Dropdown/option-dropdown.webp") no-repeat right #FFF;
+    color: var(--color-black);
+    border: 0;
+    border-radius: 0;
+    -webkit-appearance: none;
+    height: 34px;
+    line-height: 1;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 5px 25px 5px 10px;
+}
+
+.Dropdown-Selected {
+  color: var(--color-success) !important;
+}
+
+.Dropdown-Selected select {
+  background: url("../../../images/elements/Dropdown/option-dropdown-success.webp") no-repeat right #FFF !important;
+  color: var(--color-success) !important;
+  text-align: center;
+}
