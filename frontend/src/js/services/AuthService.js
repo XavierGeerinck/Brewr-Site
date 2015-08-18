@@ -25,18 +25,6 @@ class AuthService {
         LoginActions.logoutUser();
     }
 
-    signup(username, password, extra) {
-        return this.handleAuth(when(request({
-            url: SIGNUP_URL,
-            method: 'POST',
-            crossOrigin: true,
-            type: 'json',
-            data: {
-                email: username, password: password, extra: extra
-            }
-        })));
-    }
-
     handleAuth(loginPromise) {
         return loginPromise
             .then(function(response){

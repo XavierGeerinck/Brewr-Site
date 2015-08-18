@@ -1,12 +1,12 @@
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
+import MainLayout from '../../layouts/MainLayout';
 import React from 'react/addons';
 import ReactMixin from 'react-mixin';
-import SideMenu from '../SideMenu';
-import Button from '../Button';
-import Input from '../Input';
-import MainLayout from '../MainLayout';
-import Auth from '../../services/AuthService'
-import BaseComponent from '../BaseComponent';
+import SideMenu from '../../elements/SideMenu';
+import Button from '../../elements/Button';
+import Input from '../../elements/Input';
+import Auth from '../../../services/AuthService'
+import BaseComponent from '../../BaseComponent';
 
 
 export default class LoginPage extends BaseComponent {
