@@ -10,48 +10,20 @@ import DistributionPicker from '../../elements/DistributionPicker';
 import DockerHubSearch from '../../elements/DockerHubSearch';
 import Divider from '../../elements/Divider';
 
-var images = [
-    {
-        "distribution": "ubuntu",
-        "logo_url": "http://summit.ubuntu.com/media/images/cof_orange_hex1.png",
-        "versions": [{
-            name: "v15.04 - Vilvid Vervet",
-            value: "15.04"
-        }]
-    },
-    {
-        "distribution": "fedora",
-        "logo_url": "http://summit.ubuntu.com/media/images/cof_orange_hex1.png",
-        "versions": [{
-            name: "v15.04 - Vilvid Vervet",
-            value: "15.04"
-        }]
-    },
-    {
-        "distribution": "coreos",
-        "logo_url": "http://summit.ubuntu.com/media/images/cof_orange_hex1.png",
-        "versions": [{
-            name: "v15.04 - Vilvid Vervet",
-            value: "15.04"
-        }]
-    },
-    {
-        "distribution": "mint",
-        "logo_url": "http://summit.ubuntu.com/media/images/cof_orange_hex1.png",
-        "versions": [{
-            name: "v15.04 - Vilvid Vervet",
-            value: "15.04"
-        }]
-    }
-];
-
 class BuilderStep1Page extends React.Component {
     getInitialState() {
         return {
-            distribution: 'ubuntu',
-            distribution_version: '15.04',
+            selected_distribution: null,
             hub_search: ''
         }
+    }
+
+    onChangeDistribution (distribution) {
+        this.setState({
+            selected_distribution: distribution
+        });
+
+        console.log(this.state);
     }
 
     render() {
@@ -61,7 +33,7 @@ class BuilderStep1Page extends React.Component {
 
                     {/* Pick Predefined Docker Image */}
                     <h1>Pick your base image</h1>
-                    <DistributionPicker distributions={images} />
+                    <DistributionPicker onChangeDistribution={this.onChangeDistribution.bind(this)}/>
 
                     <Divider text="Or" />
 

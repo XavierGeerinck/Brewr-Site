@@ -1,7 +1,12 @@
 import React, {PropTypes } from 'react';
 
 class Dropdown extends React.Component {
+    handleChange (el) {
+        this.props.onChange(this.refs.dropdownOption.getDOMNode().value);
+    }
+
     render() {
+        var self = this;
         var cx = React.addons.classSet;
 
         var options = [];
@@ -17,7 +22,7 @@ class Dropdown extends React.Component {
 
         return (
             <div className={className}>
-                <select>
+                <select onChange={self.handleChange.bind(self)} ref="dropdownOption">
                   {options}
                 </select>
             </div>
@@ -27,7 +32,8 @@ class Dropdown extends React.Component {
 
 Dropdown.propTypes = {
     items: PropTypes.array,
-    isSelected: PropTypes.bool // Is the current selectdown box selected (different color)
+    isSelected: PropTypes.bool, // Is the current selectdown box selected (different color)
+    onChange: PropTypes.func
 };
 
 Dropdown.defaultProps = {
