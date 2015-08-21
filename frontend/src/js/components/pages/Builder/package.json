@@ -2,5 +2,5 @@
   "name": "Builder",
   "version": "0.0.0",
   "private": true,
-  "main": "./BuilderStep1.js"
+  "main": "./Builder.js"
 }

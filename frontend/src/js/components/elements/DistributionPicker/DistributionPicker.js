@@ -50,11 +50,13 @@ var distributions = [
 ];
 
 class DistributionPicker extends React.Component {
-    getInitialState () {
-        return {
+    constructor(props) {
+        super(props);
+
+        this.state = {
             selected_distribution: null,
             selected_version: null
-        }
+        };
     }
 
     handleClick (distribution) {
