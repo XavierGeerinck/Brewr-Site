@@ -8,8 +8,18 @@ import Button from '../Button';
  * A Crud list is able to add items, remove items, move items and edit items of a list.
  */
 class CRUDList extends React.Component {
-    handleRemove (item) {
-        console.log(item);
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            items: this.props.items
+        };
+    }
+
+    handleRemove (itemId) {
+        this.setState({
+            items: React.addons.update(this.state.items, { $splice: [[ itemId, 1 ]]})
+        });
     }
 
     handleMove (item) {
@@ -17,22 +27,25 @@ class CRUDList extends React.Component {
     }
 
     render () {
-        var isInline = true;
-        var isForm = true;
         var items = [];
 
-        this.props.items.forEach(function (item) {
+        this.state.items.forEach(function (item, index) {
+            var key = "item-" + index;
+
             items.push(<ListItem value={item}
                 canMove={this.props.canMove}
                 canRemove={this.props.canRemove}
-                onClickRemove={this.handleRemove.bind(this)} />);
+                onClickRemove={this.handleRemove.bind(this)}
+                key={key}
+                id={index}/>);
         }.bind(this));
 
         return (
             <div className="CRUDList">
                 <h1>Add Item</h1>
-                <Input type="text" isInline={isInline} />
-                <Button text="Add" isInline={isInline} isForm={isForm} />
+                <Input type="text" isInline="true" />
+                <Button text="Add" isInline="true" isForm="true" />
+
                 <h1>Items</h1>
                 <List>{items}</List>
             </div>

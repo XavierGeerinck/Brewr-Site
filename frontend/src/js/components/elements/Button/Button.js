@@ -1,24 +1,6 @@
-/*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
-
 import React, { PropTypes } from 'react';
 
-export default React.createClass({
-  propTypes: {
-    text: PropTypes.string,
-    color: PropTypes.string,
-    isInline: PropTypes.bool,
-    isForm: PropTypes.bool
-  },
-
-  getDefaultProps() {
-    return {
-      text: "",
-      color: "Orange",
-      isInline: true,
-      isForm: false
-    }
-  },
-
+class Button extends React.Component {
   render() {
     var className = "Button";
 
@@ -39,4 +21,20 @@ export default React.createClass({
     );
   }
 
-});
+};
+
+Button.propTypes = {
+    text: PropTypes.any,
+    color: PropTypes.string,
+    isInline: PropTypes.bool,
+    isForm: PropTypes.bool
+};
+
+Button.defaultProps = {
+    text: "",
+    color: "Orange",
+    isInline: true,
+    isForm: false
+};
+
+export default Button;
