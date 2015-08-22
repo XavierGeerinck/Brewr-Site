@@ -71,7 +71,7 @@ class DistributionPicker extends React.Component {
     }
 
     handleVersionChange (version) {
-        this.setState({ selected_version: version.value });
+        this.setState({ selected_version: version });
 
         if (this.props.onChangeDistribution) {
             this.props.onChangeDistribution(this.state);

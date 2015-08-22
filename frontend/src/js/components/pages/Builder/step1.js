@@ -8,21 +8,30 @@ import DockerHubSearch from '../../elements/DockerHubSearch';
 import Divider from '../../elements/Divider';
 
 class Step1 extends React.Component {
+    handleSave () {
+        var data = {
+            distribution: { $set: this.refs.distribution_picker.state.selected_distribution },
+            distribution_version: { $set: this.refs.distribution_picker.state.selected_version }
+        };
+
+        this.props.onClickNextPage(data);
+    }
+
   render() {
     return (
       <div className="BuilderStep1Page">
         {/* Pick Predefined Docker Image */}
         <h1>Pick your base image</h1>
-        <DistributionPicker onChangeDistribution={this.props.onChangeDistribution.bind(this)}/>
+        <DistributionPicker ref="distribution_picker"/>
 
-        <Divider  text="Or"/>
+        <Divider text="Or"/>
 
         {/* Search docker */}
         <h1>Search Docker Hub</h1>
         <DockerHubSearch/>
 
         {/* Next Button */}
-        <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.props.onClickNextPage.bind(this)}/>
+        <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.handleSave.bind(this)}/>
         <div className="clear"></div>
       </div>
     );

@@ -17,7 +17,27 @@ class Builder extends React.Component {
         this.stepCount = 7;
 
         this.state = {
-            selected_distribution: null,
+            config: {
+                distribution: null, // FROM (base)
+                distribution_version: null, // FROM (version)
+                instructions: {
+                    maintainer: null, // The MAINTAINER instruction allows you to set the Author field of the generated images.
+                    label: [], // The LABEL instruction adds metadata to an image. A LABEL is a key-value pair. (LABEL <key>=<value> <key>=<value> <key>=<value>)
+                    workdir: null, // The WORKDIR instruction sets the working directory
+                    user: null, // The USER instruction sets the user name or UID to use when running the image
+
+                    // TODO
+                    cmd: null,
+                    run: null,
+                    expose: null,
+                    env: null,
+                    add: null,
+                    copy: null,
+                    entrypoint: null,
+                    volume: null,
+                    onbuild: null
+                },
+            },
             hub_search: '',
             step: 1
         };
@@ -25,16 +45,21 @@ class Builder extends React.Component {
 
     handleDistributionChange (distribution) {
         this.setState({
-            selected_distribution: distribution
+            distribution: distribution.selected_distribution,
+            distribution_version: distribution.selected_version
         });
     }
 
-    handleNextPageClick () {
-        console.log(this.state);
+    handleNextPageClick (update) {
         var newStep = (this.state.step + 1) % (this.stepCount + 1);
 
-        this.setState({
-            step: newStep
+        var updateState = React.addons.update(this.state, {
+            step: { $set: newStep },
+            config: update
+        });
+
+        this.setState(updateState, function () {
+            console.log(this.state);
         });
     }
 
@@ -43,7 +68,8 @@ class Builder extends React.Component {
 
         switch (this.state.step) {
             case 2:
-                content = <BuilderStep2 onClickNextPage={this.handleNextPageClick.bind(this)} />;
+                content = <BuilderStep2
+                    onClickNextPage={this.handleNextPageClick.bind(this)} />;
                 break;
             case 3:
                 content = <BuilderStep3 onClickNextPage={this.handleNextPageClick.bind(this)} />;
@@ -63,7 +89,6 @@ class Builder extends React.Component {
             case 1:
             default:
                 content = <BuilderStep1
-                           onChangeDistribution={this.handleDistributionChange.bind(this)}
                            onClickNextPage={this.handleNextPageClick.bind(this)}/>;
         };
 

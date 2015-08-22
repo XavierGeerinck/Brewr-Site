@@ -56,7 +56,6 @@
     "react-mixin": "^1.7.0",
     "reqwest": "^1.1.6",
     "underscore": "^1.7.0",
-    "when": "^3.7.2",
-    "wingspan-forms": "^0.9.3"
+    "when": "^3.7.2"
   }
 }
