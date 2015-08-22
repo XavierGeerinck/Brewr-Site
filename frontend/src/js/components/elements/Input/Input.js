@@ -23,8 +23,15 @@ class Input extends React.Component {
     }
 
     renderFormGroup (children) {
+        var cx = React.addons.classSet;
+
+        var classes = cx({
+            'Input': true,
+            'Input-Inline': this.props.isInline
+        });
+
       return (
-         <div className="Input">{children}</div>
+         <div className={classes}>{children}</div>
       );
     }
 
@@ -58,7 +65,8 @@ class Input extends React.Component {
 }
 
 Input.defaultProps = {
-    type: "text"
+    type: "text",
+    isInline: false
 }
 
 Input.propTyps = {
@@ -68,6 +76,7 @@ Input.propTyps = {
     label: PropTypes.string,
     id: PropTypes.string,
     name: PropTypes.string,
+    isInline: PropTypes.bool,
     onChange: PropTypes.func
 }
 

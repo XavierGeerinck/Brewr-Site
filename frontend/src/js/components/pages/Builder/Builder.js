@@ -39,7 +39,7 @@ class Builder extends React.Component {
                 },
             },
             hub_search: '',
-            step: 1
+            step: 3
         };
     }
 

@@ -14,3 +14,7 @@
   border: 1px solid red;
   color:red;
 }
+
+.Input-Inline {
+    display: inline-block;
+}

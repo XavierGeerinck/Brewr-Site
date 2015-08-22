@@ -3,11 +3,9 @@ import SideMenu from '../../elements/SideMenu';
 import Button from '../../elements/Button';
 import Input from '../../elements/Input';
 import InlineContainer from '../../elements/InlineContainer';
-import {
-  Tooltip,
-  OverlayTrigger
-} from 'react-bootstrap';
+import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
 import DashboardLayout from '../../layouts/DashboardLayout';
+import CRUDList from '../../elements/CRUDList';
 import ListCommand from '../../elements/ListCommand';
 
 var commands = [
@@ -31,20 +29,13 @@ class Step3 extends React.Component {
 
     return (
       <div className="BuilderStep3Page">
-        {/* Add Command */}
-        <InlineContainer>
-          <Input  label="Add Command" name="input_cmd" placeholder="Type a command..." type="text"/>
-          <Button  isForm="true" text="Add"/>
-        </InlineContainer>
-
-        {/* Current Command */}
         <h2>
           Commands
           <span className="BuilderPage-HelpIcon">
             <OverlayTrigger overlay={tooltip} placement='right'><i  className="fa fa-question-circle"/></OverlayTrigger>
           </span>
         </h2>
-        <ListCommand  items={commands}/>
+        <CRUDList items={commands} />
 
         {/* Next Button */}
         <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.props.onClickNextPage.bind(this)}/>
