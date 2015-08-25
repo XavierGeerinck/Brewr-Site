@@ -13,15 +13,20 @@ export default class LengthConstraint extends Constraint {
     }
 
     validate(value) {
-        if(typeof max != "undefined" && max > 0) {
+
+        if(typeof value === "undefined") {
+            return false;
+        }
+
+        if(typeof this.max != "undefined" && this.max > 0) {
             if(value.length <= this.max) {
-                validate();
+                this.validateConstraint();
             }
         }
 
-        if(typeof min != "undefined" && typeof min == "Number") {
+        if(typeof this.min != "undefined" && typeof this.min == "number") {
             if(value.length >= this.min) {
-                validate();
+                this.validateConstraint();
             }
         }
 

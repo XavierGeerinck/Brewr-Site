@@ -10,7 +10,8 @@ import LoginActions from '../actions/LoginActions.js';
 class RegisterService {
 
     registerUser(email, password) {
-        return when(request({
+
+        var promise = request({
             url: REGISTER_URL,
             method: 'POST',
             crossOrigin: true,
@@ -19,12 +20,16 @@ class RegisterService {
                 email: email,
                 password: password
             }
-        }))
-        .then(function(response){
-            var jwt = response.id_token;
-            LoginActions.loginUser(jwt);
-            return true;
-        })
+        });
+
+        promise
+            .then(function(response){
+                var jwt = response.id_token;
+                LoginActions.loginUser(jwt);
+                return true;
+            });
+
+        return promise;
     }
 
 }
