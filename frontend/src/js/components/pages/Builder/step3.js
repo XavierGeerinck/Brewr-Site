@@ -9,7 +9,7 @@ import CRUDList from '../../elements/CRUDList';
 import ListCommand from '../../elements/ListCommand';
 
 var commands = [
-  "sudo apt-get install nodejs", "sudo apt-get install nodejs", "sudo apt-get install nodejs", "sudo apt-get install nodejs", "sudo apt-get install nodejs"
+  "sudo apt-get install nodejs", "sudo apt-get install nginx", "sudo apt-get install mariadb", "sudo apt-get install mongodb"
 ];
 class Step3 extends React.Component {
   handleNextPageClick () {

@@ -46,7 +46,6 @@
     "flux": "^2.0.3",
     "gulp-connect": "^2.2.0",
     "gulp-cssnext": "^1.0.1",
-    "jquery": "^1.9.1",
     "jwt-decode": "^1.1.0",
     "lodash": "^3.10.1",
     "object-assign": "^3.0.0",
