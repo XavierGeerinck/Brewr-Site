@@ -37,15 +37,21 @@ class Validator {
         // can assume that form is invalid
         this.invalidate();
 
+        //TODO: Move to component
         // add class
         field.classList.add('validation-error');
+
+        // add message
+        this.component.refs[key].addErrorMessage(message);
     }
 
     /**
      * Removes an error from the field
      * @param field
+     * @param key, the reference key of the error
      */
-    removeErrors(field) {
+    removeErrors(field, key) {
+        this.component.refs[key].removeErrorMessages();
         field.classList.remove('validation-error');
     }
 
@@ -95,7 +101,7 @@ class Validator {
             // find input field
             var reference = this.component.refs[key];
             var field = React.findDOMNode(reference).getElementsByTagName('input')[key];
-            self.removeErrors(field);
+            self.removeErrors(field, key);
 
             // apply constraints
             this.fields[key]["constraints"].forEach(constraint =>  {

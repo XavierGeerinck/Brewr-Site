@@ -1,11 +1,11 @@
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
+import React, { PropTypes } from 'react';
 import MainLayout from '../../layouts/MainLayout';
 import SideMenu from '../../elements/SideMenu';
 import Button from '../../elements/Button';
-import Input from '../../elements/Input';
+import ValidateInput from '../../elements/ValidateInput/ValidateInput.js';
 import BaseComponent from '../../BaseComponent';
 import RegisterService from '../../../services/RegisterService';
-import React from 'react';
 import Validator from '../../../validators/Validator.js';
 import LengthConstraint from '../../../validators/constraints/LengthConstraint.js';
 import EmailConstraint from '../../../validators/constraints/EmailConstraint.js';
@@ -68,9 +68,9 @@ export default class RegisterPage extends BaseComponent {
       <MainLayout>
         <div className="RegisterPage">
           <form ref="register_form">
-            <Input type="email" ref="email" name="email" placeholder="youremail@example.com" label="Email*" id="user_email" />
-            <Input type="password" ref="password" name="password" placeholder="password" label="Password*" id="user_password" />
-            <Input type="password" ref="password_confirm" name="password_confirm" placeholder="Confirm password" label="Confirm Password*" id="user_password_confirm" />
+            <ValidateInput type="email" ref="email" name="email" placeholder="youremail@example.com" label="Email*" id="user_email" />
+            <ValidateInput type="password" ref="password" name="password" placeholder="password" label="Password*" id="user_password" />
+            <ValidateInput type="password" ref="password_confirm" name="password_confirm" placeholder="Confirm password" label="Confirm Password*" id="user_password_confirm" />
 
             <Button text="Register" isInline={isInline} onClick={this._register} />
           </form>

@@ -51,6 +51,7 @@
     "object-assign": "^3.0.0",
     "react": "^0.13.3",
     "react-bootstrap": "^0.24.5",
+    "react-dnd": "^1.1.5",
     "react-kendo": "^0.13.11",
     "react-mixin": "^1.7.0",
     "reqwest": "^1.1.6",

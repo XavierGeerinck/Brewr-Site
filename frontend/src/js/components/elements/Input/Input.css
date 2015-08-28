@@ -12,7 +12,12 @@
 
 .validation-error {
   border: 1px solid red;
-  color:red;
+  color: red;
+}
+
+.validation-errors > li{
+    font-style: italic;
+    color: red;
 }
 
 .Input-Inline {
