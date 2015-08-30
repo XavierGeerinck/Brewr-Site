@@ -38,3 +38,7 @@
 .Button-Inline {
   display: inline-block;
 }
+
+.Button-DragIcon {
+    cursor: move;
+}

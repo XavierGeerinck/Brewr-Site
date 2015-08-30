@@ -15,9 +15,6 @@ import { DragDropContext } from 'react-dnd';
 class CRUDList extends React.Component {
     constructor (props) {
         super(props);
-
-        const { items } = props;
-
         this.state = {
             items: props.items.map((item, index) => {
                 return {
@@ -28,9 +25,27 @@ class CRUDList extends React.Component {
         }
     }
 
-    handleRemove (itemId) {
+    handleAdd () {
+        var self = this;
+        var value = this.refs.add_value.state.value;
+
         this.setState({
-            items: update(this.state.items, { $splice: [[ itemId, 1 ]]})
+            items: update(this.state.items, { $push: [
+                {
+                    value: value,
+                    id: self.state.items.length + 1
+                }
+            ]})
+        });
+    }
+
+    handleRemove (itemId) {
+        const { items } = this.state;
+        const item = items.filter(i => i.id === itemId)[0];
+        const itemIndex = items.indexOf(item);
+
+        this.setState({
+            items: update(this.state.items, { $splice: [[ itemIndex, 1 ]]})
         });
     }
 
@@ -59,8 +74,8 @@ class CRUDList extends React.Component {
         return (
             <div className="CRUDList">
                 <h1>Add Item</h1>
-                <Input type="text" isInline="true" />
-                <Button text="Add" isInline="true" isForm="true" />
+                <Input type="text" isInline="true" ref="add_value" />
+                <Button text="Add" isInline="true" isForm="true" onClick={this.handleAdd.bind(this)} />
 
                 <h1>Items</h1>
                 <List>
@@ -71,7 +86,7 @@ class CRUDList extends React.Component {
                                 canRemove={canRemove}
                                 onClickRemove={this.handleRemove.bind(this)}
                                 moveItem={this.handleMove.bind(this)}
-                                key={"item" + index}
+                                key={"item" + item.id}
                                 id={item.id}/>
                         );
                     })}

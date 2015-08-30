@@ -51,11 +51,11 @@ class ListItem extends React.Component {
 
     render() {
         const { isDragging, connectDragSource, connectDropTarget, canMove, value, canRemove, onClickMove } = this.props;
-        const opacity = isDragging ? 0 : 1;
+        const opacity = isDragging ? 0.4 : 1;
 
         return connectDragSource(connectDropTarget(
             <li style={{ ...style, opacity }}>
-                {canMove ? <Button text=<i className="fa fa-align-justify"></i> isForm="true" onClick={onClickMove.bind(this)} />  : '' }
+                {canMove ? <Button text=<i className="fa fa-align-justify"></i> isDragIcon="true" isForm="true" onClick={onClickMove.bind(this)} />  : '' }
                 {value}
                 {canRemove ? <Button text=<i className="fa fa-remove"></i> isForm="true" onClick={this.handleRemove.bind(this)} />  : '' }
             </li>
