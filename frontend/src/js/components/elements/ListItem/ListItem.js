@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import Button from '../Button';
 import { DragSource, DropTarget } from 'react-dnd';
 import { ItemTypes } from './Constants';
+import flow from 'lodash/function/flow';
 
 const style = {
 
@@ -51,11 +52,11 @@ class ListItem extends React.Component {
 
     render() {
         const { isDragging, connectDragSource, connectDropTarget, canMove, value, canRemove, onClickMove } = this.props;
-        const opacity = isDragging ? 0 : 1;
+        const opacity = isDragging ? 0.4 : 1;
 
         return connectDragSource(connectDropTarget(
             <li style={{ ...style, opacity }}>
-                {canMove ? <Button text=<i className="fa fa-align-justify"></i> isForm="true" onClick={onClickMove.bind(this)} />  : '' }
+                {canMove ? <Button text=<i className="fa fa-align-justify"></i> isDragIcon="true" isForm="true" onClick={onClickMove.bind(this)} />  : '' }
                 {value}
                 {canRemove ? <Button text=<i className="fa fa-remove"></i> isForm="true" onClick={this.handleRemove.bind(this)} />  : '' }
             </li>
@@ -87,4 +88,7 @@ ListItem.defaultProps = {
     onClickMove: function () {}
 };
 
-export default DragSource(Types.LIST_ITEM, listItemSource, collectSource)(DropTarget(Types.LIST_ITEM, listItemTarget, collectTarget)(ListItem));
+export default flow(
+    DragSource(Types.LIST_ITEM, listItemSource, collectSource),
+    DropTarget(Types.LIST_ITEM, listItemTarget, collectTarget)
+)(ListItem);

@@ -4,36 +4,36 @@ import Button from '../../elements/Button';
 import InlineContainer from '../../elements/InlineContainer';
 import Input from '../../elements/Input';
 import DashboardLayout from '../../layouts/DashboardLayout';
-import ListVolume from '../../elements/ListVolume';
+import CRUDList from '../../elements/CRUDList';
 
 var volumes = [
   "/data", "/logs"
 ];
 
 class Step5 extends React.Component {
-  handleNextPageClick () {
-    var newStep = (this.state.step + 1) % (this.stepCount + 1);
+    handleSave () {
+        var items = JSON.parse(JSON.stringify(this.refs.input_commands.refs.child.state.items));
 
-    this.setState({
-      step: newStep
-    });
-  }
+        var data = {
+            instructions: {
+                $merge: {
+                    volume: items
+                }
+            }
+        }
+
+        this.props.onClickNextPage(data);
+    }
 
   render() {
     return (
       <div className="BuilderStep5Page">
-        {/* Add Volumes */}
-        <InlineContainer>
-          <Input  label="Add Volumes" name="input_cmd" placeholder="Type a volume, format: /data..." type="text"/>
-          <Button  isForm="true" text="Add"/>
-        </InlineContainer>
-
         {/* Current Volumes */}
         <h1>Volumes</h1>
-        <ListVolume  items={volumes}/>
+        <CRUDList items={volumes} ref="input_commands"/>
 
         {/* Next Button */}
-        <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.props.onClickNextPage.bind(this)}/>
+        <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.handleSave.bind(this)}/>
         <div className="clear"></div>
       </div>
     );

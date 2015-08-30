@@ -1,6 +1,0 @@
-{
-  "name": "ListPort",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./ListPort.js"
-}

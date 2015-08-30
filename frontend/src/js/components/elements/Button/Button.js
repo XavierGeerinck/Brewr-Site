@@ -16,6 +16,10 @@ class Button extends React.Component {
       className += " Button-Form";
     }
 
+    if (this.props.isDragIcon) {
+        className += " Button-DragIcon";
+    }
+
     return (
       <button className={className} onClick={this.props.onClick}>{this.props.text}</button>
     );

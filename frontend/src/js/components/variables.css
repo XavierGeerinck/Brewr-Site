@@ -40,6 +40,10 @@
   --color-accent-shade-darker-1: #EB5A47;
   --color-accent-shade-lighter-1: #FF4B33;
 
+  --color-terminal: #555;
+  --color-terminal-text-shadow: #1f1f1f;
+  --color-terminal-text: #D6D6D6;
+
   /*
    * Typography
    * ======================================================================== */
