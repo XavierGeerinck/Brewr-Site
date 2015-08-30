@@ -1,6 +1,0 @@
-{
-  "name": "ListCommand",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./ListCommand.js"
-}

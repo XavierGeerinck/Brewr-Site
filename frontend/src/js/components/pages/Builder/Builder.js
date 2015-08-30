@@ -9,12 +9,13 @@ import BuilderStep4 from './step4';
 import BuilderStep5 from './step5';
 import BuilderStep6 from './step6';
 import BuilderStep7 from './step7';
+import BuilderStep8 from './step8';
 
 class Builder extends React.Component {
     constructor(props) {
         super(props);
 
-        this.stepCount = 7;
+        this.stepCount = 8;
 
         this.state = {
             config: {
@@ -39,7 +40,7 @@ class Builder extends React.Component {
                 },
             },
             hub_search: '',
-            step: 3
+            step: 8
         };
     }
 
@@ -85,6 +86,9 @@ class Builder extends React.Component {
                 break;
             case 7:
                 content = <BuilderStep7 onClickNextPage={this.handleNextPageClick.bind(this)} />;
+                break;
+            case 8:
+                content = <BuilderStep8 onClickNextPage={this.handleNextPageClick.bind(this)} dockerFileObject={this.state.config} />;
                 break;
             case 1:
             default:

@@ -4,35 +4,35 @@ import Button from '../../elements/Button';
 import InlineContainer from '../../elements/InlineContainer';
 import Input from '../../elements/Input';
 import DashboardLayout from '../../layouts/DashboardLayout';
-import ListPort from '../../elements/ListPort';
+import CRUDList from '../../elements/CRUDList';
 
 var ports = [
   "80:80", "3306:3306", "8000:8000"
 ];
 class Step4 extends React.Component {
-  handleNextPageClick () {
-    var newStep = (this.state.step + 1) % (this.stepCount + 1);
+    handleSave () {
+        var items = JSON.parse(JSON.stringify(this.refs.input_commands.refs.child.state.items));
 
-    this.setState({
-      step: newStep
-    });
-  }
+        var data = {
+            instructions: {
+                $merge: {
+                    expose: items
+                }
+            }
+        }
+
+        this.props.onClickNextPage(data);
+    }
 
   render() {
     return (
       <div className="BuilderStep4Page">
-        {/* Add Expose */}
-        <InlineContainer>
-          <Input  label="Add Expose Port" name="input_cmd" placeholder="Type a port in the format port_container:port_local..." type="text"/>
-          <Button  isForm="true" text="Add"/>
-        </InlineContainer>
-
         {/* Current Expose */}
         <h1>Ports</h1>
-        <ListPort  items={ports}/>
+        <CRUDList items={ports} ref="input_commands"/>
 
         {/* Next Button */}
-        <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.props.onClickNextPage.bind(this)}/>
+        <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.handleSave.bind(this)}/>
         <div className="clear"></div>
       </div>
     );

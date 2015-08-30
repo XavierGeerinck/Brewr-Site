@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import Button from '../Button';
 import { DragSource, DropTarget } from 'react-dnd';
 import { ItemTypes } from './Constants';
+import flow from 'lodash/function/flow';
 
 const style = {
 
@@ -87,4 +88,7 @@ ListItem.defaultProps = {
     onClickMove: function () {}
 };
 
-export default DragSource(Types.LIST_ITEM, listItemSource, collectSource)(DropTarget(Types.LIST_ITEM, listItemTarget, collectTarget)(ListItem));
+export default flow(
+    DragSource(Types.LIST_ITEM, listItemSource, collectSource),
+    DropTarget(Types.LIST_ITEM, listItemTarget, collectTarget)
+)(ListItem);

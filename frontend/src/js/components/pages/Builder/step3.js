@@ -6,19 +6,25 @@ import InlineContainer from '../../elements/InlineContainer';
 import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import CRUDList from '../../elements/CRUDList';
-import ListCommand from '../../elements/ListCommand';
 
 var commands = [
   "sudo apt-get install nodejs", "sudo apt-get install nginx", "sudo apt-get install mariadb", "sudo apt-get install mongodb"
 ];
-class Step3 extends React.Component {
-  handleNextPageClick () {
-    var newStep = (this.state.step + 1) % (this.stepCount + 1);
 
-    this.setState({
-      step: newStep
-    });
-  }
+export default class Step3 extends React.Component {
+    handleSave () {
+        var items = JSON.parse(JSON.stringify(this.refs.input_commands.refs.child.state.items));
+
+        var data = {
+            instructions: {
+                $merge: {
+                    cmd: items
+                }
+            }
+        }
+
+        this.props.onClickNextPage(data);
+    }
 
   render() {
     var tooltip = (
@@ -35,10 +41,10 @@ class Step3 extends React.Component {
             <OverlayTrigger overlay={tooltip} placement='right'><i  className="fa fa-question-circle"/></OverlayTrigger>
           </span>
         </h2>
-        <CRUDList items={commands} />
+        <CRUDList items={commands} ref="input_commands"/>
 
         {/* Next Button */}
-        <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.props.onClickNextPage.bind(this)}/>
+        <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.handleSave.bind(this)}/>
         <div className="clear"></div>
       </div>
     );
@@ -52,5 +58,3 @@ Step3.defaultProps = {
 Step3.propTypes = {
   onClickNextPage: function () {}
 };
-
-export default Step3;
