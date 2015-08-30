@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Brewr",
+    "description": "A project to create brewr, placeholder",
+    "organisation": 1,
+    "estimated_price": 100000
+  },
+  {
+    "id": 2,
+    "name": "What to eat",
+    "description": "A project to share what to eat",
+    "organisation": 1,
+    "estimated_price": 45000
+  }
+]
