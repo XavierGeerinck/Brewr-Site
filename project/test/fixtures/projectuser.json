@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "addedOn": "2015-08-10T08:59:43.000Z",
+    "deadline": "2015-11-13T08:59:43.000Z",
+    "isManager": true,
+    "user": 2,
+    "project": 1
+  },
+  {
+    "id": 2,
+    "addedOn": "2015-08-10T09:10:43.000Z",
+    "deadline": "2015-11-20T08:59:43.000Z",
+    "isManager": false,
+    "user": 3,
+    "project": 1
+  },
+  {
+    "id": 3,
+    "addedOn": "2015-08-10T09:13:43.000Z",
+    "deadline": "2015-12-10T08:59:43.000Z",
+    "isManager": true,
+    "user": 4,
+    "project": 2
+  }
+]
