@@ -5,6 +5,7 @@ import InlineContainer from '../../elements/InlineContainer';
 import Input from '../../elements/Input';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import CRUDList from '../../elements/CRUDList';
+import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
 
 var volumes = [
   "/data", "/logs"
@@ -26,10 +27,22 @@ class Step5 extends React.Component {
     }
 
   render() {
+      var tooltip = (
+        <Tooltip>
+          Specify the volumes where the data will be stored, you can use /path to let us choose a destination on the host and /hostpath:/containerpath to use an existing one.
+        </Tooltip>
+      );
+
     return (
       <div className="BuilderStep5Page">
         {/* Current Volumes */}
-        <h1>Volumes</h1>
+        <h1>
+            Volumes
+            <span className="BuilderPage-HelpIcon">
+                <OverlayTrigger overlay={tooltip} placement='right'><i  className="fa fa-question-circle"/></OverlayTrigger>
+            </span>
+        </h1>
+
         <CRUDList items={volumes} ref="input_commands"/>
 
         {/* Next Button */}

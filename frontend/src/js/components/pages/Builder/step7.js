@@ -5,6 +5,7 @@ import InlineContainer from '../../elements/InlineContainer';
 import Input from '../../elements/Input';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import CRUDList from '../../elements/CRUDList';
+import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
 
 var environmentVariables = [
   "ENVIRONMENT=staging", "TEST=test123"
@@ -26,10 +27,21 @@ class Step7 extends React.Component {
     }
 
   render() {
+      var tooltip = (
+        <Tooltip>
+          "Specify environment variables that will be installed in the environment, format: key:value, example: ENVIRONMENT:production"
+        </Tooltip>
+      );
+
     return (
       <div className="BuilderStep7Page">
         {/* Current Volumes */}
-        <h1>Environment Variables</h1>
+        <h1>
+            Environment Variables
+            <span className="BuilderPage-HelpIcon">
+                <OverlayTrigger overlay={tooltip} placement='right'><i  className="fa fa-question-circle"/></OverlayTrigger>
+            </span>
+        </h1>
         <CRUDList items={environmentVariables} ref="input_commands"/>
 
         {/* Next Button */}

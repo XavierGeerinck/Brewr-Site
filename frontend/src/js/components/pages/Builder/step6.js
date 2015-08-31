@@ -5,6 +5,7 @@ import InlineContainer from '../../elements/InlineContainer';
 import Input from '../../elements/Input';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import CRUDList from '../../elements/CRUDList';
+import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
 
 var files = [
   "/var/www:www", "/var/log:log"
@@ -25,10 +26,21 @@ class Step6 extends React.Component {
     }
 
   render() {
+      var tooltip = (
+        <Tooltip>
+          "Specify the files and where to copy them, format: src dest, example: config/nginx.conf /etc/nginx/nginx.conf"
+        </Tooltip>
+      );
+
     return (
       <div className="BuilderStep6Page">
-        {/* Current Volumes */}
-        <h1>Files</h1>
+        {/* Add Files */}
+        <h1>
+            Add Files
+            <span className="BuilderPage-HelpIcon">
+                <OverlayTrigger overlay={tooltip} placement='right'><i  className="fa fa-question-circle"/></OverlayTrigger>
+            </span>
+        </h1>
         <CRUDList items={files} ref="input_commands"/>
 
         {/* Next Button */}
