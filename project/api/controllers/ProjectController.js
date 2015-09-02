@@ -26,18 +26,18 @@ module.exports = {
     User.isMemberOf(user.id, organisation, function(isMember){
 
       if(!isMember) {
-
-        //TODO: Can't sent headers error fix here
-        //return res.notFound();
+        return res.notFound();
+      } else {
+        Project
+          .find({"organisation": organisation})
+          .exec(function(err, projects){
+            if(err) {
+              console.log(err);
+              return res.serverError();
+            }
+            return res.json(projects);
+          });
       }
-
-      Project
-        .find({"organisation": organisation})
-        .exec(function(err, projects){
-          if(err) console.log(err);
-          return res.json(projects);
-
-        });
     });
 
   },

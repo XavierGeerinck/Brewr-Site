@@ -89,19 +89,20 @@ module.exports = {
       .populate("ownerOf")
       .exec(function(err, user){
 
-        if(err){ return false; }
-        user.memberOf.forEach(function(organisation){
-          if(organisation.id == organisationId) {
+        if(err){ console.log(err); return cb(false); }
+
+        for(var i = 0; i < user.memberOf.length; i++) {
+          if(user.memberOf[i].id == organisationId) {
             return cb(true);
           }
-        });
+        }
 
         // user can also be the OWNER of the company
-        user.ownerOf.forEach(function(organisation){
-          if(organisation.id == organisationId) {
+        for(var i = 0; i < user.ownerOf.length; i++) {
+          if(user.ownerOf[i].id == organisationId) {
             return cb(true);
           }
-        });
+        }
 
         // not related to this company
         return cb(false);
