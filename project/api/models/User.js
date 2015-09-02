@@ -47,7 +47,7 @@ module.exports = {
     },
     ownerOf: {
       collection: 'Organisation',
-      via: 'owner'
+      via: 'owner',
     },
     sessions: {
       collection: 'UserSession',
@@ -64,8 +64,24 @@ module.exports = {
     },
 
     isManagerOf: function(projectId) {
-
+      for(var i = 0; i < this.assignedTo.length; i++) {
+        if(this.assignedTo[i].project == projectId && this.assignedTo[i].isManager) {
+          return true;
+        }
+      }
+      return false;
     },
+
+    isAssignedTo: function(projectId) {
+
+      for(var i = 0; i < this.assignedTo.length; i++) {
+        if(this.assignedTo[i].project == projectId) {
+          return true;
+        }
+      }
+
+      return false;
+    }
 
   },
   beforeCreate: function(values, next){
@@ -74,6 +90,7 @@ module.exports = {
   },
   beforeUpdate: function(values, next) {
     AuthService.hashPassword(values);
+    values.updatedOn = new Date();
     next();
   },
 
@@ -118,30 +135,26 @@ module.exports = {
       .populate("ownerOf")
       .exec(function(err, users){
 
-        var assignee = users[0];
-        var user = (assigneeId == userId) ? users[0] : users[1];
+        // failsafe to prevent ids from getting mixed up in query
+        var assignee = (users[0].id == assigneeId) ? users[0] : users[1];
+        var user = (assigneeId == userId) ? users[0] : (users[0].id == assigneeId) ? users[1] : users[0];
 
         // need to be manager or owner of company to assign people
         //TODO: make sure owners can always assign
-        var isManager = false;
-        for(var i = 0; i < assignee.assignedTo.length; i++) {
-          if(assignee.assignedTo[i].project == projectId) {
-            if(assignee.assignedTo[i].isManager) {
-              isManager = true;
-            }
-            break;
-          }
-        }
 
-        if(isManager) {
-          user.assignedTo.add(projectId);
-          user.save(function(err, user){
-            if(err){
-              console.log(err);
-              return cb(false);
-            }
-            return cb(true);
-          });
+
+        if(assignee.isManagerOf(projectId) && !user.isAssignedTo(projectId)) {
+
+          var values = {"project": projectId, "user": user.id};
+
+          ProjectUser
+            .create(values, function (err, projectUser) {
+              if (err) {
+                console.log(err);
+                return cb(false);
+              }
+              return cb(true);
+            });
         } else {
           return cb(false);
         }

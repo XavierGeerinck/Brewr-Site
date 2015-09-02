@@ -18,7 +18,8 @@ module.exports = {
     },
     createdOn: {
       type: 'datetime',
-      columnName: 'created_on'
+      columnName: 'created_on',
+      defaultsTo: function() { return new Date(); }
     },
     updatedOn: {
       type: 'datetime',
@@ -50,7 +51,8 @@ module.exports = {
 
     //assocations
     createdBy: {
-      model: 'user'
+      model: 'user',
+      columnName: 'created_by'
     },
     organisation: {
       model: 'organisation'

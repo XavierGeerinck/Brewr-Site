@@ -48,18 +48,14 @@ module.exports = {
     var userId = req.body.user;
     var projectId = req.param('project');
 
-    User.assign(assigneeId, userId, projectId, function(succeeded, message){
-
+    User.assign(assigneeId, userId, projectId, function(succeeded, code){
       if(succeeded) {
-        res.ok("Succeeded");
+        res.json({"success": true});
       } else {
-        res.ok("Failed")
+        //TODO: add status codes
+        res.json({"success": false});
       }
-
     });
-
   }
-
-
 
 };

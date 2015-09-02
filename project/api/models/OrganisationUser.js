@@ -17,7 +17,8 @@ module.exports = {
     },
     addedOn: {
       type: 'datetime',
-      columnName: 'added_on'
+      columnName: 'added_on',
+      defaultsTo: function() { return new Date(); }
     },
 
     //associations

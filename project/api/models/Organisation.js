@@ -17,7 +17,8 @@ module.exports = {
     },
     createdOn: {
       type: 'datetime',
-      columnName: 'created_on'
+      columnName: 'created_on',
+      defaultsTo: function() { return new Date(); }
     },
     updatedOn: {
       type: 'datetime',
@@ -43,15 +44,22 @@ module.exports = {
       type: 'datetime',
       columnName: 'deletion_time'
     },
-    active: 'boolean',
-
+    active: {
+      type: 'boolean',
+      defaultsTo: 'true'
+    },
     //associations
     createdBy: {
-      model: 'user'
+      model: 'user',
+      columnName: 'created_by'
     },
     owner: {
       model: 'user'
     }
+  },
+  beforeUpdate: function(values, next) {
+    values.updatedOn = new Date();
+    next();
   }
 };
 

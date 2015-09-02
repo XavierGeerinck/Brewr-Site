@@ -17,7 +17,8 @@ module.exports = {
     },
     createdOn: {
       type: 'datetime',
-      columnName: 'created_on'
+      columnName: 'created_on',
+      defaultsTo: function() { return new Date(); }
     },
     token: 'string',
     userAgent: {
