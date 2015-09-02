@@ -53,6 +53,10 @@ module.exports = {
       collection: 'UserSession',
       via: 'user'
     },
+    assignedTo: {
+      collection: 'ProjectUser',
+      via: 'user'
+    },
     toJSON: function() {
       var obj = this.toObject();
       delete obj.password;
@@ -63,9 +67,6 @@ module.exports = {
 
     },
 
-    isAssignedTo: function(projectId) {
-
-    }
   },
   beforeCreate: function(values, next){
     AuthService.hashPassword(values);
@@ -109,7 +110,41 @@ module.exports = {
       });
   },
 
-  assign: function(options, cb) {
+  assign: function(assigneeId, userId, projectId, cb) {
 
+    User
+      .find({"id": [assigneeId, userId]})
+      .populate("assignedTo")
+      .populate("ownerOf")
+      .exec(function(err, users){
+
+        var assignee = users[0];
+        var user = (assigneeId == userId) ? users[0] : users[1];
+
+        // need to be manager or owner of company to assign people
+        //TODO: make sure owners can always assign
+        var isManager = false;
+        for(var i = 0; i < assignee.assignedTo.length; i++) {
+          if(assignee.assignedTo[i].project == projectId) {
+            if(assignee.assignedTo[i].isManager) {
+              isManager = true;
+            }
+            break;
+          }
+        }
+
+        if(isManager) {
+          user.assignedTo.add(projectId);
+          user.save(function(err, user){
+            if(err){
+              console.log(err);
+              return cb(false);
+            }
+            return cb(true);
+          });
+        } else {
+          return cb(false);
+        }
+      });
   }
 };

@@ -44,8 +44,19 @@ module.exports = {
 
   assign: function(req, res) {
 
-    var user = req.user.id;
+    var assigneeId = req.user.id;
+    var userId = req.body.user;
     var projectId = req.param('project');
+
+    User.assign(assigneeId, userId, projectId, function(succeeded, message){
+
+      if(succeeded) {
+        res.ok("Succeeded");
+      } else {
+        res.ok("Failed")
+      }
+
+    });
 
   }
 
