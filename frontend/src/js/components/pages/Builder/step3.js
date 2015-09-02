@@ -18,7 +18,7 @@ export default class Step3 extends React.Component {
         var data = {
             instructions: {
                 $merge: {
-                    cmd: items
+                    run: items
                 }
             }
         }

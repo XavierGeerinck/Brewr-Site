@@ -7,13 +7,14 @@
 .List li {
   border: 1px solid var(--color-white-shade-darker-2);
   border-bottom: none;
-  height: 35px;
   position: relative;
-  line-height: 35px;
+  display: flex;
+  align-items: stretch;
 }
 
 .List li > span {
-  padding-left: 10px;
+  padding: 0 10px;
+  align-self: center;
 }
 
 .List li:nth-child(odd) {
@@ -25,20 +26,15 @@
 }
 
 .List Button:first-child {
-  margin-right: 5px;
   color: var(--color-white-shade-darker-5);
   background-color: var(--color-white-shade-darker-1);
   border: 2px solid #ebebeb;
 }
 
 .List Button:last-child {
-  margin-left: 15px;
-  position: absolute;
-  right: 0;
+  margin-left: auto;
 }
 
 .List Button {
-  height: 35px;
-  line-height: 22px;
   text-align: center;
 }
