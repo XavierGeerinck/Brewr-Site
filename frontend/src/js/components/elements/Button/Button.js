@@ -21,7 +21,7 @@ class Button extends React.Component {
     }
 
     return (
-      <button className={className} onClick={this.props.onClick}>{this.props.text}</button>
+        <button type={this.props.type} className={className} onClick={this.props.onClick}>{this.props.text}</button>
     );
   }
 
@@ -31,14 +31,16 @@ Button.propTypes = {
     text: PropTypes.any,
     color: PropTypes.string,
     isInline: PropTypes.bool,
-    isForm: PropTypes.bool
+    isForm: PropTypes.bool,
+    type: PropTypes.string
 };
 
 Button.defaultProps = {
     text: "",
     color: "Orange",
     isInline: true,
-    isForm: false
+    isForm: false,
+    type: ""
 };
 
 export default Button;

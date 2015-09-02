@@ -28,6 +28,7 @@ class CRUDList extends React.Component {
     handleAdd () {
         var self = this;
         var value = this.refs.add_value.state.value;
+        this.refs.add_value.state.value = "";
 
         this.setState({
             items: update(this.state.items, { $push: [
@@ -74,9 +75,10 @@ class CRUDList extends React.Component {
         return (
             <div className="CRUDList">
                 <h1>Add Item</h1>
-                <Input type="text" isInline="true" ref="add_value" />
-                <Button text="Add" isInline="true" isForm="true" onClick={this.handleAdd.bind(this)} />
-
+                <form onsubmit="this.reset(); return false;">
+                    <Input type="text" isInline="true" ref="add_value" />
+                    <Button text="Add" type="submit" isInline="true" isForm="true" onClick={this.handleAdd.bind(this)} />
+                </form>
                 <h1>Items</h1>
                 <List>
                     {items.map((item, index) => {
