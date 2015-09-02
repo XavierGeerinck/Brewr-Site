@@ -22,5 +22,13 @@
     "isManager": true,
     "user": 4,
     "project": 2
+  },
+  {
+    "id": 4,
+    "addedOn": "2015-08-10T09:13:43.000Z",
+    "deadline": "2015-12-10T08:59:43.000Z",
+    "isManager": true,
+    "user": 1,
+    "project": 2
   }
 ]

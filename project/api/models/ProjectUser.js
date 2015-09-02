@@ -19,7 +19,6 @@ module.exports = {
       type: 'datetime',
       columnName: 'added_on'
     },
-    deadline: 'datetime',
     isManager: {
       type: 'boolean',
       defaultsTo: 'false'

@@ -34,7 +34,11 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
+
+  'GET /projects/assigned': 'ProjectController.assigned',
+  'GET /organisations/:organisation/projects': 'ProjectController.allInOrganisation',
+  'POST /projects/:project/assign': 'ProjectController.assign',
 
   /***************************************************************************
   *                                                                          *

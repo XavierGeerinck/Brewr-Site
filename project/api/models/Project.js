@@ -29,6 +29,7 @@ module.exports = {
       type: 'string',
       columnName: 'image_url'
     },
+    deadline: 'datetime',
     archived: {
       type: 'boolean',
       defaultsTo: false
@@ -48,7 +49,12 @@ module.exports = {
     revisions: {
       collection: 'projectRevision',
       via: 'project'
+    },
+    assignees: {
+      collection: 'ProjectUser',
+      via: 'project'
     }
-  }
+  },
+
 };
 

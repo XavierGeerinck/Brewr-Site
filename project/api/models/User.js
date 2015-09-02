@@ -1,9 +1,9 @@
 /**
-* User.js
-*
-* @description :: Contains the User model data, represents a user of an organisation
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * User.js
+ *
+ * @description :: Contains the User model data, represents a user of an organisation
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
   tableName: 'user',
@@ -45,6 +45,10 @@ module.exports = {
       collection: 'OrganisationUser',
       via: 'user'
     },
+    ownerOf: {
+      collection: 'Organisation',
+      via: 'owner'
+    },
     sessions: {
       collection: 'UserSession',
       via: 'user'
@@ -53,6 +57,14 @@ module.exports = {
       var obj = this.toObject();
       delete obj.password;
       return obj;
+    },
+
+    isManagerOf: function(projectId) {
+
+    },
+
+    isAssignedTo: function(projectId) {
+
     }
   },
   beforeCreate: function(values, next){
@@ -62,6 +74,41 @@ module.exports = {
   beforeUpdate: function(values, next) {
     AuthService.hashPassword(values);
     next();
+  },
+
+  /**
+   * Check if the user is a member of the specified organisation
+   * @param {Integer} userId, the id of the user
+   * @param {Integer} organisationId, the id of the organisation
+   */
+  isMemberOf: function(userId, organisationId, cb) {
+
+    User
+      .findOne({"id": userId})
+      .populate("memberOf")
+      .populate("ownerOf")
+      .exec(function(err, user){
+
+        if(err){ return false; }
+        user.memberOf.forEach(function(organisation){
+          if(organisation.id == organisationId) {
+            return cb(true);
+          }
+        });
+
+        // user can also be the OWNER of the company
+        user.ownerOf.forEach(function(organisation){
+          if(organisation.id == organisationId) {
+            return cb(true);
+          }
+        });
+
+        // not related to this company
+        return cb(false);
+      });
+  },
+
+  assign: function(options, cb) {
+
   }
 };
-
