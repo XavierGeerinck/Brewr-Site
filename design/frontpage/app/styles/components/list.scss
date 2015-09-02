@@ -1,0 +1,45 @@
+.sub-content li {
+	background-color: white;
+	font-size: 14px;
+	border-top: 1px solid $colorBoxBorder;
+	border-left: 1px solid $colorBoxBorder;
+	border-right: 1px solid $colorBoxBorder;
+	text-align: left;
+	height: 35px;
+	position: relative;
+	line-height: 35px;
+	padding-left: 10px;
+
+	a {
+		width: 35px;
+		line-height: 35px;
+		padding: 0;
+		text-align: center;
+		top: 0;
+	}
+
+	a:first-child {
+		margin-left: -10px; // negate the padding-left
+		border-right: 1px solid $colorBoxBorder;
+		background-color: $colorLeftListPart;
+		color: $colorLeftListPartText;
+		left: 0;
+		display: inline-block;
+		position: initial;
+		margin-right: 10px;
+	}
+
+	a:last-child {
+		margin: 0;
+		border-right: none;
+		border-left: 1px solid $colorBoxBorder;
+		right: 0;
+		position: absolute;
+		left: initial;
+	}
+}
+
+.sub-content li:last-child {
+	border-top: 1px solid $colorBoxBorder;
+	border-bottom: 1px solid $colorBoxBorder;
+}
