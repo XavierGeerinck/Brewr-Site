@@ -27,11 +27,12 @@
     "rc": "~0.5.0",
     "sails": "~0.11.0",
     "sails-disk": "~0.10.0",
+    "sails-hook-babel": "^5.0.1",
     "sails-postgresql": "^0.10.16"
   },
   "scripts": {
-    "debug": "node debug app.js",
-    "start": "node app.js"
+    "debug": "babel-node debug app.js",
+    "start": "babel-node app.js"
   },
   "main": "app.js",
   "repository": {
@@ -41,6 +42,7 @@
   "author": "anonymous node/sails user",
   "license": "",
   "devDependencies": {
+    "babel": "^5.8.23",
     "barrels": "^1.5.0"
   }
 }

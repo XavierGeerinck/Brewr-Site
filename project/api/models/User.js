@@ -64,7 +64,7 @@ module.exports = {
     },
 
     isManagerOf: function(projectId) {
-      for(var i = 0; i < this.assignedTo.length; i++) {
+      for(let i = 0; i < this.assignedTo.length; i++) {
         if(this.assignedTo[i].project == projectId && this.assignedTo[i].isManager) {
           return true;
         }
@@ -74,7 +74,7 @@ module.exports = {
 
     isAssignedTo: function(projectId) {
 
-      for(var i = 0; i < this.assignedTo.length; i++) {
+      for(let i = 0; i < this.assignedTo.length; i++) {
         if(this.assignedTo[i].project == projectId) {
           return true;
         }
@@ -97,7 +97,8 @@ module.exports = {
   /**
    * Check if the user is a member of the specified organisation
    * @param {Integer} userId, the id of the user
-   * @param {Integer} organisationId, the id of the organisation
+   * @param {Integer} organisationId, the id of the organisation+
+   * @param {Function} cb, the callback function when the action is completed
    */
   isMemberOf: function(userId, organisationId, cb) {
 
@@ -109,14 +110,14 @@ module.exports = {
 
         if(err){ console.log(err); return cb(false); }
 
-        for(var i = 0; i < user.memberOf.length; i++) {
+        for(let i = 0; i < user.memberOf.length; i++) {
           if(user.memberOf[i].id == organisationId) {
             return cb(true);
           }
         }
 
         // user can also be the OWNER of the company
-        for(var i = 0; i < user.ownerOf.length; i++) {
+        for(let i = 0; i < user.ownerOf.length; i++) {
           if(user.ownerOf[i].id == organisationId) {
             return cb(true);
           }
