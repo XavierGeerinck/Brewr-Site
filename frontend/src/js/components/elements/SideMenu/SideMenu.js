@@ -18,7 +18,7 @@ export default class SideMenu extends BaseComponent {
             </li>
 
             <li className="second-level">
-              <a href="#">
+              <a href="/#/projects">
                 <i className="fa fa-folder"></i><span>Projects</span>
                 <i className="fa fa-caret-down item-dropdown"></i>
               </a>
