@@ -13,17 +13,13 @@ export default class LoginPage extends BaseComponent {
 
   constructor() {
     super();
-    this.state = {
-      email: '',
-      password: ''
-    };
     this._bind('_login');
   }
 
   _login(e) {
     e.preventDefault();
 
-    Auth.login(this.state.email, this.state.password)
+    Auth.login(this.refs["email"].state.value, this.refs["password"].state.value)
       .catch(function(err){
           console.log(err);
           alert("error logging in");
@@ -37,8 +33,8 @@ export default class LoginPage extends BaseComponent {
       <MainLayout>
         <div className="LoginPage">
           <form role="form">
-            <Input type="email" valueLink={this.linkState('email')} placeholder="Email" label="Email" id="user_email" />
-            <Input type="password" valueLink={this.linkState('password')} label="Password" id="user_password" />
+            <Input type="email" ref="email" placeholder="Email" label="Email" id="user_email" />
+            <Input type="password"  ref="password" label="Password" id="user_password" />
 
             <Button type="submit" text="Login" isInline={isInline} onClick={this._login} />
           </form>
