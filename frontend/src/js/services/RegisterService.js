@@ -1,6 +1,3 @@
-/**
- * Created by Maxim on 17/08/2015.
- */
 import request from 'reqwest';
 import when from 'when';
 import {REGISTER_URL} from '../constants/RegisterConstants';

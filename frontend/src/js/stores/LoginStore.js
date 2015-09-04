@@ -1,6 +1,3 @@
-/**
- * Created by Maxim on 15/08/2015.
- */
 import {LOGIN_USER, LOGOUT_USER} from '../constants/LoginConstants';
 import BaseStore from './BaseStore';
 import jwt_decode from 'jwt-decode';

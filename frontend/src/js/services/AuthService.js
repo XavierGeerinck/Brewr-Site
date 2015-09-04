@@ -1,6 +1,3 @@
-/**
- * Created by Maxim on 15/08/2015.
- */
 import request from 'reqwest';
 import when from 'when';
 import {LOGIN_URL, SIGNUP_URL} from '../constants/LoginConstants';
