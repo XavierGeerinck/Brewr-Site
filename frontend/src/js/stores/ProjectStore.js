@@ -74,4 +74,4 @@ Dispatcher.register(function(action) {
 
 });
 
-module.exports = ProjectStore;
+export default ProjectStore;

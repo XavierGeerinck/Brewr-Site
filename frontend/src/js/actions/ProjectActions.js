@@ -29,4 +29,4 @@ var ProjectActions = {
   }
 };
 
-module.exports = ProjectActions;
+export default ProjectActions;
