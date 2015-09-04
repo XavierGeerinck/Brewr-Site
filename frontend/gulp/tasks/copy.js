@@ -15,6 +15,6 @@ gulp.task('copy-vendor-styles', function () {
 
 gulp.task('copy-images', function () {
   return gulp.src('src/js/components/**/*.{png,jpg,jpeg}')
-    .pipe(webp())
+    //.pipe(webp())
     .pipe(gulp.dest('dist/images'));
 });
