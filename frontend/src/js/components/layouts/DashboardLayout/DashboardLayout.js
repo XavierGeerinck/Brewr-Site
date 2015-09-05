@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import SideMenu from '../../elements/SideMenu';
+import './DashboardLayout.css';
 
 class DashboardLayout extends React.Component {
   render() {

@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import './Logo.css';
 
 class Logo extends React.Component {
   render() {

@@ -1,3 +1,5 @@
+@import '../../variables.css';
+
 .DockerfileViewer-Dockerfile {
     background-color: var(--color-terminal);
     min-height: 100px;

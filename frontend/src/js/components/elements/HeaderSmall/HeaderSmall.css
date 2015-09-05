@@ -1,3 +1,5 @@
+@import '../../variables.css';
+
 .HeaderSmall {
   background: var(--color-primary);
   color: #fff;

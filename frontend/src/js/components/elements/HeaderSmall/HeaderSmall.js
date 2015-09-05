@@ -1,8 +1,7 @@
-/*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
-
 import React from 'react';
 import Navigation from '../Navigation';
 import Logo from '../Logo';
+import './HeaderSmall.css';
 
 class HeaderSmall extends React.Component {
   render() {

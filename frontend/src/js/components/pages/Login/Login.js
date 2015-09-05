@@ -1,4 +1,3 @@
-/*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 import MainLayout from '../../layouts/MainLayout';
 import React from 'react/addons';
 import ReactMixin from 'react-mixin';
@@ -7,7 +6,7 @@ import Button from '../../elements/Button';
 import Input from '../../elements/Input';
 import Auth from '../../../services/AuthService'
 import BaseComponent from '../../BaseComponent';
-
+import './Login.css';
 
 export default class LoginPage extends BaseComponent {
 

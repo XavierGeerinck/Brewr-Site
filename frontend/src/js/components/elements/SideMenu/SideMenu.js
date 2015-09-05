@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseComponent from '../../BaseComponent';
-
+import './SideMenu.css';
 
 export default class SideMenu extends BaseComponent {
   render() {

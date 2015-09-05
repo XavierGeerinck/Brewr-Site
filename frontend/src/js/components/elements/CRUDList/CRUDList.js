@@ -4,6 +4,7 @@ import List from '../List';
 import ListItem from '../ListItem';
 import Input from '../Input';
 import Button from '../Button';
+import './CRUDList.css';
 
 // Drag and drop functionallity of the listitems
 import HTML5Backend from 'react-dnd/modules/backends/HTML5';

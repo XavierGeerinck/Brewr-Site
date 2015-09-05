@@ -11,13 +11,13 @@ import BuilderStep6 from './step6';
 import BuilderStep7 from './step7';
 import BuilderStep8 from './step8';
 import BuilderStep9 from './step9';
+// import builderStore from '../../../stores/BuilderStore';
+import './Builder.css';
 
 class Builder extends React.Component {
     constructor(props) {
         super(props);
-
-        this.stepCount = 9;
-
+        //this.state = builderStore.getState();
         this.state = {
             config: {
                 distribution: null, // FROM (base)
@@ -41,7 +41,8 @@ class Builder extends React.Component {
                 },
             },
             hub_search: '',
-            step: 1
+            step: 1,
+            steps: 9
         };
     }
 
@@ -53,7 +54,7 @@ class Builder extends React.Component {
     }
 
     handleNextPageClick (update) {
-        var newStep = (this.state.step + 1) % (this.stepCount + 1);
+        var newStep = (this.state.step + 1) % (this.state.steps + 1);
 
         var updateState = React.addons.update(this.state, {
             step: { $set: newStep },

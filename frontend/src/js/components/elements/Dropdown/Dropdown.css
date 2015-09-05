@@ -1,7 +1,9 @@
+@import '../../variables.css';
+
 .Dropdown select {
     margin: 0;
     width: 90%;
-    background: url("../../../images/elements/Dropdown/option-dropdown.webp") no-repeat right #FFF;
+    background: url("./option-dropdown.png") no-repeat right #FFF;
     color: var(--color-black);
     border: 0;
     border-radius: 0;
@@ -18,7 +20,7 @@
 }
 
 .Dropdown-Selected select {
-  background: url("../../../images/elements/Dropdown/option-dropdown-success.webp") no-repeat right #FFF !important;
+  background: url("./option-dropdown-success.png") no-repeat right #FFF !important;
   color: var(--color-success) !important;
   text-align: center;
 }

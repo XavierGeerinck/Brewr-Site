@@ -1,7 +1,6 @@
-/*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
-
 import React, { PropTypes } from 'react';
 import Button from '../Button';
+import './Navigation.css';
 
 export default React.createClass({
   propTypes: {

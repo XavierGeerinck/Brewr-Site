@@ -1,6 +1,5 @@
-/*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
-
 import React, { PropTypes } from 'react';
+import './TextBox.css';
 
 export default React.createClass({
   propTypes: {

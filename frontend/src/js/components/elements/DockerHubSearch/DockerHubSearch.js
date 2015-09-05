@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import DockerHubService from '../../../services/DockerHubService';
+import './DockerHubSearch.css';
 
 export default class DockerHubSearch extends React.Component {
     constructor(props) {

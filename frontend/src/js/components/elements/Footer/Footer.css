@@ -1,3 +1,5 @@
+@import '../../variables.css';
+
 .Footer {
   background: var(--color-footer);
   color: var(--color-white);

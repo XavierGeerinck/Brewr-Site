@@ -1,3 +1,7 @@
+@import '../../../../node_modules/normalize.css/normalize.css';
+@import '../../../../node_modules/font-awesome/css/font-awesome.min.css';
+@import '../variables.css';
+
 /*
  * Extra style for the content
  * ========================================================================== */
@@ -15,7 +19,6 @@
 /*
  * Base styles
  * ========================================================================== */
-
 html {
   color: #222;
   font-weight: 100;

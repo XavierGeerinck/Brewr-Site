@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import './List.css';
 
 class List extends React.Component {
     render() {

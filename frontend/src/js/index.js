@@ -19,5 +19,14 @@ if(jwt) {
 //TODO: load data in respectful component? Check FLUX way (should be in router somewhere)
 // LOAD DATA
 ProjectAPI.getProjectData();
-
 router.run(Handler => React.render(<Handler />, document.body));
+
+// Hot module loading
+if (module.hot) {
+  require('react-hot-loader/Injection').RootInstanceProvider.injectProvider({
+    getRootInstances: function () {
+      // Help React Hot Loader figure out the root component instances on the page:
+      return [rootInstance];
+    }
+  });
+}

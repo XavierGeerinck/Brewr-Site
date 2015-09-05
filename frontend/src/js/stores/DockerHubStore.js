@@ -1,7 +1,7 @@
 import BaseStore from './BaseStore';
 import * as types from '../constants/ActionTypes';
 
-export default class DockerHubStore extends BaseStore {
+class DockerHubStore extends BaseStore {
     constructor () {
         super();
 
@@ -15,3 +15,5 @@ export default class DockerHubStore extends BaseStore {
             break;
     }
 }
+
+export default new DockerHubStore();

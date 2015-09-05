@@ -1,3 +1,5 @@
+@import '../../variables.css';
+
 .Navigation-link {
   display: inline-block;
   padding: 3px 8px;

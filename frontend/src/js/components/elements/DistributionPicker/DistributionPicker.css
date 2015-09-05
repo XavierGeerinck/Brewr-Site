@@ -1,3 +1,5 @@
+@import '../../variables.css';
+
 .DistributionPicker-FlexContainer {
   display: flex;
   flex-wrap: wrap;

@@ -1,3 +1,5 @@
+@import '../../variables.css';
+
 .Inline-Container > * {
   display: inline-block;
 }

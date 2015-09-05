@@ -1,11 +1,7 @@
-/**
- * Created by Maxim on 30/08/2015.
- */
 import React, { PropTypes } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import BaseComponent from '../../BaseComponent';
 import ProjectStore from '../../../stores/ProjectStore';
-
 
 function getStateFromStores() {
   return {

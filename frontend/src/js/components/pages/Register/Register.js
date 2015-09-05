@@ -1,4 +1,3 @@
-/*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 import React, { PropTypes } from 'react';
 import MainLayout from '../../layouts/MainLayout';
 import SideMenu from '../../elements/SideMenu';
@@ -10,6 +9,7 @@ import Validator from '../../../validators/Validator.js';
 import LengthConstraint from '../../../validators/constraints/LengthConstraint.js';
 import EmailConstraint from '../../../validators/constraints/EmailConstraint.js';
 import ConfirmConstraint from '../../../validators/constraints/ConfirmConstraint.js';
+import './Register.css';
 
 export default class RegisterPage extends BaseComponent {
 

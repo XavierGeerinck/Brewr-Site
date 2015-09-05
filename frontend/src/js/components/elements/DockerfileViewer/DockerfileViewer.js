@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import './DockerfileViewer.css';
 
 export default class DockerfileViewer extends React.Component {
     constructor (props) {

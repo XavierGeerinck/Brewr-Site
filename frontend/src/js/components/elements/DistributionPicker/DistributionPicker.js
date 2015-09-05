@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import DistributionItem from './DistributionItem';
+import './DistributionPicker.css';
 
 var distributions = [
     {

@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import './Footer.css';
 
 export default React.createClass({
   propTypes: {

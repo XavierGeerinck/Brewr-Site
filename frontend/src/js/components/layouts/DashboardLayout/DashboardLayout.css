@@ -1,3 +1,5 @@
+@import '../../variables.css';
+
 .DashboardLayout-Container {
   height: 100%;
   display: flex;
@@ -18,7 +20,6 @@
 
 .DashboardLayout-Page-Content {
   background-color: var(--color-white);
-  width: 100%;
   position: relative;
   padding: 15px 20px;
   border-radius: 2px;
@@ -33,7 +34,6 @@
 }
 
 .DashboardLayout-Page-Title {
-  width: 100%;
   background-color: var(--color-white);
   color: var(--color-black);
   padding-left: 15px;

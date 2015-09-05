@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import './Divider.css';
 
 class Divider extends React.Component {
     render() {

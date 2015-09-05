@@ -1,3 +1,5 @@
+@import '../../variables.css';
+
 .Button {
   border-radius: 4px;
   border: 2px solid var(--color-primary);

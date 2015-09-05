@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import HeaderSmall from '../../elements/HeaderSmall';
 import Footer from '../../elements/Footer';
+import './MainLayout.css';
 
 class MainLayout extends React.Component {
   render() {
