@@ -1,7 +1,4 @@
-/**
- * Created by Maxim on 03/09/2015.
- */
-import AppDispatcher from '../Dispatcher';
+import AppDispatcher from '../dispatchers/AppDispatcher';
 import ProjectConstants from '../constants/ProjectConstants';
 
 var ProjectActions = {

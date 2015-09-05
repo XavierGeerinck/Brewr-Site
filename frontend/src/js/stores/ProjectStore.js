@@ -1,7 +1,4 @@
-/**
- * Created by Maxim on 03/09/2015.
- */
-import Dispatcher from '../Dispatcher';
+import Dispatcher from '../dispatchers/AppDispatcher';
 import Constants from '../Constants';
 import BaseStore from './BaseStore';
 import assign from 'object-assign';

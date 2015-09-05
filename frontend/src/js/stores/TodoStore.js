@@ -1,4 +1,4 @@
-import Dispatcher from '../Dispatcher';
+import Dispatcher from '../dispatchers/AppDispatcher';
 import Constants from '../Constants';
 import BaseStore from './BaseStore';
 import assign from 'object-assign';

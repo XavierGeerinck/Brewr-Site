@@ -1,7 +1,4 @@
-/**
- * Created by Maxim on 15/08/2015.
- */
-import AppDispatcher from '../Dispatcher.js';
+import AppDispatcher from '../dispatchers/AppDispatcher.js';
 import {LOGIN_USER, LOGOUT_USER} from '../constants/LoginConstants.js';
 import RouterContainer from '../services/RouterContainer.js';
 

@@ -1,4 +1,4 @@
-import AppDispatcher from '../Dispatcher.js';
+import AppDispatcher from '../dispatchers/AppDispatcher.js';
 import * as types from '../constants/ActionTypes';
 
 export function setRepositories(repositories) {

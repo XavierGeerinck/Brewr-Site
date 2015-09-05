@@ -1,19 +1,30 @@
-import assign from 'object-assign';
 import Constants from '../Constants';
 import {EventEmitter} from 'events';
+import AppDispatcher from '../dispatchers/AppDispatcher';
 
-export default assign({}, EventEmitter.prototype, {
-  // Allow Controller-View to register itself with store
-  addChangeListener(callback) {
-    this.on(Constants.CHANGE_EVENT, callback);
-  },
+export default class BaseStore extends EventEmitter {
+    constructor() {
+        super();
+    }
 
-  removeChangeListener(callback) {
-    this.removeListener(Constants.CHANGE_EVENT, callback);
-  },
+    addChangeListener(callback) {
+        this.on(Constants.CHANGE_EVENT, callback);
+    }
 
-  // triggers change listener above, firing controller-view callback
-  emitChange() {
-    this.emit(Constants.CHANGE_EVENT);
-  }
-});
+    removeChangeListener(callback) {
+        this.removeListener(Constants.CHANGE_EVENT, callback);
+    }
+
+    // triggers change listener above, firing controller-view callback
+    emitChange() {
+        this.emit(Constants.CHANGE_EVENT);
+    }
+
+    subscribe(actionSubscribe) {
+        this._dispatchToken = AppDispatcher.register(actionSubscribe());
+    }
+
+    get dispatchToken() {
+        return this._dispatchToken;
+    }
+}

@@ -6,15 +6,12 @@ import DashboardLayout from '../../layouts/DashboardLayout';
 import DistributionPicker from '../../elements/DistributionPicker';
 import DockerHubSearch from '../../elements/DockerHubSearch';
 import Divider from '../../elements/Divider';
+import BuilderActions from '../../../actions/BuilderActions';
 
 class Step1 extends React.Component {
     handleSave () {
-        var data = {
-            distribution: { $set: this.refs.distribution_picker.state.selected_distribution },
-            distribution_version: { $set: this.refs.distribution_picker.state.selected_version }
-        };
-
-        this.props.onClickNextPage(data);
+        BuilderActions.changeDistribution(this.refs.distribution_picker.state.selected_distribution , this.refs.distribution_picker.state.selected_version);
+        BuilderActions.nextPage();
     }
 
   render() {
@@ -39,13 +36,9 @@ class Step1 extends React.Component {
 }
 
 Step1.defaultProps = {
-  onChangeDistribution: PropTypes.func,
-  onClickNextPage: PropTypes.func
 };
 
 Step1.propTypes = {
-  onChangeDistribution: function() {},
-  onClickNextPage: function () {}
 };
 
 export default Step1;
