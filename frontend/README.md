@@ -1,7 +1,38 @@
 
 # frontend (frontend)
-
-> ...
+## Directory Structure
+```
+- build/
+- src/
+    - images/                           # deprecated -- to be removed
+    - js/
+        - actions/                      # Actions will be called by components and they will adapt a store
+        - components/
+            - App/                      # Main entry points of the app
+            - elements/                 # consists out of all the different elements (drag and drop). These are STORELESS
+            - layouts/                  # Different page layouts, made abstract
+            - pages/                    # consists out of a collection of elements mostly. These can have a store
+            - BaseComponents.js
+            - variables.css             # File containing the different variables used in the elements
+        - constants/                    # Contains the constants such as the actionTypes
+        - dispatchers/                  # Dispatchers
+        - services/                     # API Calls, should be refactored into API
+        - stores/                       # The stores contain the state of a page as a whole
+        - utils/
+        - validators/
+        - Constants.js                  # deprecated -- to be removed
+        - index.js
+        - routes.js
+    - styles/                           # deprecated -- to be removed
+    - index.html
+- .babelrc                              # babel config, set on level 1
+- .editorconfig
+- .gitignore                            # files not to be pushed to git
+- bower.json
+- package.json                          # dependencies
+- README.md                             # this file
+- webpack.config.js                     # workflow configuration
+```
 
 ## Running your project
 
@@ -15,26 +46,6 @@ If you prefer to just build without the live reload and build-on-each-change wat
 
 ```bash
 $ npm run build
-```
-
-
-## Generating Additional Code
-
-You can add additional functionality to your application by invoking the subgenerators included in the Flux Generator. You can add components using the following commands:
-
-#### Components
-```bash
-$ yo flux:component ComponentName
-```
-
-#### Actions
-```bash
-$ yo flux:action ActionCreatorName
-```
-
-#### Stores
-```bash
-$ yo flux:store StoreName
 ```
 
 ## Validations

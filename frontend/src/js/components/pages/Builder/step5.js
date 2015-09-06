@@ -6,6 +6,7 @@ import Input from '../../elements/Input';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import CRUDList from '../../elements/CRUDList';
 import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
+import BuilderActions from '../../../actions/BuilderActions';
 
 var volumes = [
   "/data", "/logs"
@@ -13,17 +14,12 @@ var volumes = [
 
 class Step5 extends React.Component {
     handleSave () {
-        var items = JSON.parse(JSON.stringify(this.refs.input_commands.refs.child.state.items));
-
-        var data = {
-            instructions: {
-                $merge: {
-                    volume: items
-                }
-            }
+        if (this.refs.input_commands) {
+            var items = JSON.parse(JSON.stringify(this.refs.input_commands.refs.child.state.items));
+            BuilderActions.changeVolumeItems(items);
         }
-
-        this.props.onClickNextPage(data);
+        
+        BuilderActions.nextPage();
     }
 
   render() {

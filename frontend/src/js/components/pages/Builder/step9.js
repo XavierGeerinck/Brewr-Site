@@ -3,12 +3,11 @@ import SideMenu from '../../elements/SideMenu';
 import Button from '../../elements/Button';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import DockerfileViewer from '../../elements/DockerfileViewer';
+import BuilderActions from '../../../actions/BuilderActions';
 
 class Step9 extends React.Component {
     handleSave () {
-        var data = {};
-
-        this.props.onClickNextPage(data);
+        BuilderActions.nextPage();
     }
 
   render() {
@@ -27,12 +26,10 @@ class Step9 extends React.Component {
 }
 
 Step9.defaultProps = {
-  onClickNextPage: function () {},
   dockerFileObject: {}
 };
 
 Step9.propTypes = {
-  onClickNextPage: PropTypes.func,
   dockerFileObject: PropTypes.object
 };
 

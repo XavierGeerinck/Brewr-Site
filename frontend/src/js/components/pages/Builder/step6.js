@@ -6,23 +6,19 @@ import Input from '../../elements/Input';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import CRUDList from '../../elements/CRUDList';
 import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
+import BuilderActions from '../../../actions/BuilderActions';
 
 var files = [
   "/var/www:www", "/var/log:log"
 ];
 class Step6 extends React.Component {
     handleSave () {
-        var items = JSON.parse(JSON.stringify(this.refs.input_commands.refs.child.state.items));
-
-        var data = {
-            instructions: {
-                $merge: {
-                    add: items
-                }
-            }
+        if (this.refs.input_commands) {
+            var items = JSON.parse(JSON.stringify(this.refs.input_commands.refs.child.state.items));
+            BuilderActions.changeAddItems(items);
         }
 
-        this.props.onClickNextPage(data);
+        BuilderActions.nextPage();
     }
 
   render() {

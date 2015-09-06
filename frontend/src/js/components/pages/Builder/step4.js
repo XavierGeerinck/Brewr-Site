@@ -5,23 +5,20 @@ import InlineContainer from '../../elements/InlineContainer';
 import Input from '../../elements/Input';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import CRUDList from '../../elements/CRUDList';
+import BuilderActions from '../../../actions/BuilderActions';
 
 var ports = [
   "80:80", "3306:3306", "8000:8000"
 ];
+
 class Step4 extends React.Component {
     handleSave () {
-        var items = JSON.parse(JSON.stringify(this.refs.input_commands.refs.child.state.items));
-
-        var data = {
-            instructions: {
-                $merge: {
-                    expose: items
-                }
-            }
+        if (this.refs.input_commands) {
+            var items = JSON.parse(JSON.stringify(this.refs.input_commands.refs.child.state.items));
+            BuilderActions.changeExposeItems(items);
         }
-
-        this.props.onClickNextPage(data);
+        
+        BuilderActions.nextPage();
     }
 
   render() {

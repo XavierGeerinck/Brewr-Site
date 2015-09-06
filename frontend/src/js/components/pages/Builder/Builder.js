@@ -24,7 +24,8 @@ class Builder extends React.Component {
 
     _getBuilderState() {
         return {
-            currentStep: BuilderStore.currentStep
+            currentStep: BuilderStore.currentStep,
+            dockerfile: BuilderStore.dockerfile
         }
     }
 
@@ -67,7 +68,7 @@ class Builder extends React.Component {
                 content = <BuilderStep8 />;
                 break;
             case 9:
-                content = <BuilderStep9 dockerFileObject={this.state.config} />;
+                content = <BuilderStep9 dockerFileObject={this.state.dockerfile} />;
                 break;
             case 1:
             default:

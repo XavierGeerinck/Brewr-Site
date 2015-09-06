@@ -45,6 +45,46 @@ class BuilderStore extends BaseStore {
                 this._currentStep = (this._currentStep + 1) % (this._numberOfSteps + 1);
                 this.emitChange();
                 break;
+            case types.BUILDER_CHANGE_MAINTAINER:
+                this._dockerfile.instructions.maintainer = action.maintainer;
+                this.emitChange();
+                break;
+            case types.BUILDER_CHANGE_WORKDIR:
+                this._dockerfile.instructions.workdir = action.workdir;
+                this.emitChange();
+                break;
+            case types.BUILDER_CHANGE_USER:
+                this._dockerfile.instructions.user = action.user;
+                this.emitChange();
+                break;
+            case types.BUILDER_CHANGE_LABEL_ITEMS:
+                this._dockerfile.instructions.label = action.items;
+                this.emitChange();
+                break;
+            case types.BUILDER_CHANGE_RUN_ITEMS:
+                this._dockerfile.instructions.run = action.items;
+                this.emitChange();
+                break;
+            case types.BUILDER_CHANGE_EXPOSE_ITEMS:
+                this._dockerfile.instructions.expose = action.items;
+                this.emitChange();
+                break;
+            case types.BUILDER_CHANGE_VOLUME_ITEMS:
+                this._dockerfile.instructions.volume = action.items;
+                this.emitChange();
+                break;
+            case types.BUILDER_CHANGE_ADD_ITEMS:
+                this._dockerfile.instructions.add = action.items;
+                this.emitChange();
+                break;
+            case types.BUILDER_CHANGE_ENV_ITEMS:
+                this._dockerfile.instructions.env = action.items;
+                this.emitChange();
+                break;
+            case types.BUILDER_CHANGE_CMD_ITEMS:
+                this._dockerfile.instructions.cmd = action.items;
+                this.emitChange();
+                break;
         }
     }
 
