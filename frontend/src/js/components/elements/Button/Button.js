@@ -2,30 +2,25 @@ import React, { PropTypes } from 'react';
 import './Button.css';
 
 class Button extends React.Component {
-  render() {
-    var className = "Button";
+    render() {
+        var cx = React.addons.classSet;
 
-    if (this.props.color) {
-      className += " Button-Color-" + this.props.color;
+        var className = cx({
+            'Button': true,
+            'Button-Color-Orange': this.props.color.toLowerCase() === 'orange' ? true : false,
+            'Button-Color-White': this.props.color.toLowerCase() === 'white' ? true : false,
+            'Button-Inline': this.props.isInline ? true : false,
+            'Button-Form': this.props.isForm ? true : false,
+            'Button-DragIcon': this.props.isDragIcon ? true : false,
+            'Button-Align-Right': this.props.align.toLowerCase() === 'right',
+            'Button-Align-Left': this.props.align.toLowerCase() === 'left'
+        });
+
+        // <div className="clear"></div>
+        return (
+            <button type={this.props.type} className={className} onClick={this.props.onClick}>{this.props.text}</button>
+        );
     }
-
-    if (this.props.isInline) {
-      className += " Button-Inline";
-    }
-
-    if (this.props.isForm) {
-      className += " Button-Form";
-    }
-
-    if (this.props.isDragIcon) {
-        className += " Button-DragIcon";
-    }
-
-    return (
-        <button type={this.props.type} className={className} onClick={this.props.onClick}>{this.props.text}</button>
-    );
-  }
-
 };
 
 Button.propTypes = {
@@ -33,15 +28,17 @@ Button.propTypes = {
     color: PropTypes.string,
     isInline: PropTypes.bool,
     isForm: PropTypes.bool,
-    type: PropTypes.string
+    type: PropTypes.string,
+    align: PropTypes.string
 };
 
 Button.defaultProps = {
     text: "",
-    color: "Orange",
+    color: "orange",
     isInline: true,
     isForm: false,
-    type: ""
+    type: "",
+    align: ''
 };
 
 export default Button;

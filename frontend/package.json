@@ -34,6 +34,7 @@
   "dependencies": {
     "babel-eslint": "^4.0.5",
     "babel-runtime": "^5.8.20",
+    "bootstrap": "^3.3.5",
     "eslint": "^1.1.0",
     "eslint-plugin-react": "^3.2.2",
     "flux": "^2.0.3",

@@ -1,0 +1,4 @@
+.FlexContainer {
+    display: flex;
+    flex-wrap: wrap;
+}

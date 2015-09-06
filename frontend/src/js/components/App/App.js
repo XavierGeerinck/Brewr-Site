@@ -9,13 +9,14 @@ class App extends React.Component {
     constructor() {
         super();
     }
-  render() {
-    return (
-      <div id="app" className="App-Container">
-        <RouteHandler />
-      </div>
-    );
-  }
+    
+    render() {
+        return (
+            <div id="app" className="App-Container">
+                <RouteHandler />
+            </div>
+        );
+    }
 }
 
 App.defaultProps = {

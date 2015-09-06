@@ -44,3 +44,11 @@
 .Button-DragIcon {
     cursor: move;
 }
+
+.Button-Align-Right {
+    float: right;
+}
+
+.Button-Align-Left {
+    float: left;
+}

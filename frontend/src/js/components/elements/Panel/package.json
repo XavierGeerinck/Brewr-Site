@@ -1,0 +1,6 @@
+{
+    "name": "Panel",
+    "private": true,
+    "version": "0.0.0",
+    "main": "./Panel.js"
+}
