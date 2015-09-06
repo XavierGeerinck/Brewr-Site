@@ -10,7 +10,7 @@ import BuilderActions from '../../../actions/BuilderActions';
 import BuilderStore from '../../../stores/BuilderStore';
 
 class Step1 extends React.Component {
-    handleSave () {
+    handleNextPage () {
         BuilderActions.changeDistribution(this.refs.distribution_picker.state.selected_distribution , this.refs.distribution_picker.state.selected_version);
         BuilderActions.nextPage();
     }
@@ -29,7 +29,7 @@ class Step1 extends React.Component {
                 <DockerHubSearch/>
 
                 {/* Next Button */}
-                <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.handleSave.bind(this)}/>
+                <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.handleNextPage.bind(this)}/>
                 <div className="clear"></div>
             </div>
         );

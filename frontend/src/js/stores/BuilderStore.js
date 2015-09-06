@@ -163,8 +163,8 @@ class BuilderStore extends BaseStore {
         };
 
         this._hubSearchTerm = '';
-        this._currentStep = 3;
-        this._numberOfSteps = 9;
+        this._currentStep = 2;
+        this._numberOfSteps = 3;
     }
 
     _registerToActions(action) {
@@ -175,7 +175,10 @@ class BuilderStore extends BaseStore {
             this.emitChange();
             break;
             case types.BUILDER_NEXT_PAGE:
-            this._currentStep = (this._currentStep + 1) % (this._numberOfSteps + 1);
+            if ((this._currentStep + 1) <= this._numberOfSteps) {
+                this._currentStep++;
+            }
+
             this.emitChange();
             break;
             case types.BUILDER_PREVIOUS_PAGE:
@@ -184,6 +187,8 @@ class BuilderStore extends BaseStore {
             } else {
                 this._currentStep = 1;
             }
+
+            this.emitChange();
             break;
             case types.BUILDER_CHANGE_MAINTAINER:
             this._dockerfile.instructions.maintainer = action.maintainer;
@@ -225,6 +230,9 @@ class BuilderStore extends BaseStore {
             this._dockerfile.instructions.cmd = action.items;
             this.emitChange();
             break;
+            case types.BUILDER_FINISH_DOCKERFILE:
+            default:
+                console.log(action.actionType + ' Not Implemented');
         }
     }
 
