@@ -85,39 +85,44 @@ class CRUDList extends React.Component {
                     <Input type="text" isInline="true" ref="add_value" />
                     <Button text="Add" type="submit" isInline="true" isForm="true" onClick={this.handleAdd.bind(this)} />
                 </form>
-                <h1>Items</h1>
-                <List>
-                    {items.map((item, index) => {
-                        return (
-                            <ListItem value={item.value}
-                                canMove={canMove}
-                                canRemove={canRemove}
-                                onClickRemove={this.handleRemove.bind(this)}
-                                moveItem={this.handleMove.bind(this)}
-                                key={"item" + item.id}
-                                id={item.id}/>
-                        );
-                    })}
-                </List>
-            </div>
-        );
-    }
-};
 
-CRUDList.propTypes = {
-    items: PropTypes.array,
-    canMove: PropTypes.bool,
-    canRemove: PropTypes.bool,
-    canEdit: PropTypes.bool,
-    canAdd: PropTypes.bool
-};
+                { items.length > 0 ?
+                    <div>
+                        <h1>Items</h1>
+                        <List>
+                            {items.map((item, index) => {
+                                return (
+                                    <ListItem value={item.value}
+                                        canMove={canMove}
+                                        canRemove={canRemove}
+                                        onClickRemove={this.handleRemove.bind(this)}
+                                        moveItem={this.handleMove.bind(this)}
+                                        key={"item" + item.id}
+                                        id={item.id}/>
+                                );
+                            })}
+                        </List>
+                    </div>
+                    : null }
+                </div>
+            );
+        }
+    };
 
-CRUDList.defaultProps = {
-    items: [],
-    canMove: true,
-    canRemove: true,
-    canAdd: true,
-    canEdit: false
-};
+    CRUDList.propTypes = {
+        items: PropTypes.array,
+        canMove: PropTypes.bool,
+        canRemove: PropTypes.bool,
+        canEdit: PropTypes.bool,
+        canAdd: PropTypes.bool
+    };
 
-export default DragDropContext(HTML5Backend)(CRUDList);
+    CRUDList.defaultProps = {
+        items: [],
+        canMove: true,
+        canRemove: true,
+        canAdd: true,
+        canEdit: false
+    };
+
+    export default DragDropContext(HTML5Backend)(CRUDList);
