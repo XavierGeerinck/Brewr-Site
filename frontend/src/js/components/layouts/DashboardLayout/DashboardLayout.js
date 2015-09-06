@@ -18,7 +18,7 @@ class DashboardLayout extends React.Component {
                     </div>
 
                     <div className="DashboardLayout-Page-Container">
-                        <div className="DashboardLayour-Page-Title">
+                        <div className="DashboardLayout-Page-Title">
                             Environment Builder Wizard
                         </div>
 

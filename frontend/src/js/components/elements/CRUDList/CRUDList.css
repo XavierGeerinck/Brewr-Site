@@ -1,5 +1,14 @@
 @import '../../variables.css';
 
 .CRUDList h1 {
-    font-size: 20px;
+    font-size: 14px;
+}
+
+.CRUDList form .Input {
+    width: calc(100% - 80px);
+}
+
+.CRUDList form .Button {
+    width: 80px;
+    border: 1px solid rgba(0, 0, 0, 0.07);
 }

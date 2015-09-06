@@ -68,9 +68,10 @@
     font-size: 14px;
 }
 
-.DashboardLayour-Page-Title {
+.DashboardLayout-Page-Title {
     font-size: 30px;
     font-weight: 700;
     padding: 20px 0;
-    letter-spacing: 1.2px;
+    letter-spacing: 2px;
+    color: var(--color-text);
 }

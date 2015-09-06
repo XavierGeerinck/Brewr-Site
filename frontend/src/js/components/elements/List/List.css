@@ -29,7 +29,7 @@
 .List Button:first-child {
   color: var(--color-white-shade-darker-5);
   background-color: var(--color-white-shade-darker-1);
-  border: 2px solid #ebebeb;
+  border: 1px solid rgba(0, 0, 0, 0.07);
 }
 
 .List Button:last-child {
