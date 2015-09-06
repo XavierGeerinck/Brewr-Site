@@ -7,10 +7,7 @@ import DashboardLayout from '../../layouts/DashboardLayout';
 import CRUDList from '../../elements/CRUDList';
 import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
 import BuilderActions from '../../../actions/BuilderActions';
-
-var startupCmd = [
-  "nginx -g daemon off;"
-];
+import BuilderStore from '../../../stores/BuilderStore';
 
 class Step8 extends React.Component {
     handleSave () {
@@ -18,42 +15,43 @@ class Step8 extends React.Component {
             var items = JSON.parse(JSON.stringify(this.refs.input_commands.refs.child.state.items));
             BuilderActions.changeCmdItems(items);
         }
-        
+
         BuilderActions.nextPage();
     }
 
-  render() {
-      var tooltip = (
-        <Tooltip>
-          "Add the commands to be executed on the startup of the environment, example: first build the files, then run nginx as long running command"
-        </Tooltip>
-      );
+    render() {
+        let dockerfile = BuilderStore.dockerfile.instructions;
+        var tooltip = (
+            <Tooltip>
+                "Add the commands to be executed on the startup of the environment, example: first build the files, then run nginx as long running command"
+            </Tooltip>
+        );
 
-    return (
-      <div className="BuilderStep8Page">
-        {/* Current Volumes */}
-        <h1>
-            Environment Startup Commands
-            <span className="BuilderPage-HelpIcon">
-                <OverlayTrigger overlay={tooltip} placement='right'><i  className="fa fa-question-circle"/></OverlayTrigger>
-            </span>
-        </h1>
-        <CRUDList items={startupCmd} ref="input_commands"/>
+        return (
+            <div className="BuilderStep8Page">
+                {/* Current Volumes */}
+                <h1>
+                    Environment Startup Commands
+                    <span className="BuilderPage-HelpIcon">
+                        <OverlayTrigger overlay={tooltip} placement='right'><i  className="fa fa-question-circle"/></OverlayTrigger>
+                    </span>
+                </h1>
+                <CRUDList items={dockerfile.cmd} ref="input_commands"/>
 
-        {/* Next Button */}
-        <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.handleSave.bind(this)}/>
-        <div className="clear"></div>
-      </div>
-    );
-  }
+                {/* Next Button */}
+                <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.handleSave.bind(this)}/>
+                <div className="clear"></div>
+            </div>
+        );
+    }
 }
 
 Step8.defaultProps = {
-  onClickNextPage: PropTypes.func
+    onClickNextPage: PropTypes.func
 };
 
 Step8.propTypes = {
-  onClickNextPage: function () {}
+    onClickNextPage: function () {}
 };
 
 export default Step8;

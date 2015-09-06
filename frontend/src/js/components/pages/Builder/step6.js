@@ -7,10 +7,8 @@ import DashboardLayout from '../../layouts/DashboardLayout';
 import CRUDList from '../../elements/CRUDList';
 import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
 import BuilderActions from '../../../actions/BuilderActions';
+import BuilderStore from '../../../stores/BuilderStore';
 
-var files = [
-  "/var/www:www", "/var/log:log"
-];
 class Step6 extends React.Component {
     handleSave () {
         if (this.refs.input_commands) {
@@ -21,39 +19,40 @@ class Step6 extends React.Component {
         BuilderActions.nextPage();
     }
 
-  render() {
-      var tooltip = (
-        <Tooltip>
-          "Specify the files and where to copy them, format: src dest, example: config/nginx.conf /etc/nginx/nginx.conf"
-        </Tooltip>
-      );
+    render() {
+        let dockerfile = BuilderStore.dockerfile.instructions;
+        var tooltip = (
+            <Tooltip>
+                "Specify the files and where to copy them, format: src dest, example: config/nginx.conf /etc/nginx/nginx.conf"
+            </Tooltip>
+        );
 
-    return (
-      <div className="BuilderStep6Page">
-        {/* Add Files */}
-        <h1>
-            Add Files
-            <span className="BuilderPage-HelpIcon">
-                <OverlayTrigger overlay={tooltip} placement='right'><i  className="fa fa-question-circle"/></OverlayTrigger>
-            </span>
-        </h1>
-        <CRUDList items={files} ref="input_commands"/>
+        return (
+            <div className="BuilderStep6Page">
+                {/* Add Files */}
+                <h1>
+                    Add Files
+                    <span className="BuilderPage-HelpIcon">
+                        <OverlayTrigger overlay={tooltip} placement='right'><i  className="fa fa-question-circle"/></OverlayTrigger>
+                    </span>
+                </h1>
+                <CRUDList items={dockerfile.add} ref="input_commands"/>
 
-        {/* Next Button */}
-        <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.handleSave.bind(this)}/>
-        <div className="clear"></div>
-      </div>
-      );
-  }
+                {/* Next Button */}
+                <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.handleSave.bind(this)}/>
+                <div className="clear"></div>
+            </div>
+        );
+    }
 }
 
 
 Step6.defaultProps = {
-  onClickNextPage: PropTypes.func
+    onClickNextPage: PropTypes.func
 };
 
 Step6.propTypes = {
-  onClickNextPage: function () {}
+    onClickNextPage: function () {}
 };
 
 export default Step6;

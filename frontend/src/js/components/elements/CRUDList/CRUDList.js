@@ -11,15 +11,16 @@ import HTML5Backend from 'react-dnd/modules/backends/HTML5';
 import { DragDropContext } from 'react-dnd';
 
 /**
- * A Crud list is able to add items, remove items, move items and edit items of a list.
- */
+* A Crud list is able to add items, remove items, move items and edit items of a list.
+*/
 class CRUDList extends React.Component {
     constructor (props) {
         super(props);
+
         this.state = {
             items: props.items.map((item, index) => {
                 return {
-                    value: item,
+                    value: item.value ? item.value : item,
                     id: index
                 };
             })

@@ -15,14 +15,14 @@ class DistributionItem extends React.Component {
 
         var classes = cx({
             'DistributionPicker-PickDistribution': true,
-            'DistributionPicker-PickDistribution-Selected': this.props.distribution.is_selected
+            'DistributionPicker-PickDistribution-Selected': this.props.distribution.isSelected
         });
 
         return (
             <div className={classes} onClick={this.handleClick.bind(this)}>
               <img src={this.props.distribution.logo_url}  />
               <h1>{this.props.distribution.distribution}</h1>
-              <Dropdown items={this.props.distribution.versions} isSelected={this.props.distribution.is_selected} onChange={this.handleDropdownChange.bind(this)} />
+              <Dropdown items={this.props.distribution.versions} isSelected={this.props.distribution.isSelected} onChange={this.handleDropdownChange.bind(this)} />
             </div>
         )
     }

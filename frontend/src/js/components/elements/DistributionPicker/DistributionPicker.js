@@ -2,61 +2,13 @@ import React, { PropTypes } from 'react';
 import DistributionItem from './DistributionItem';
 import './DistributionPicker.css';
 
-var distributions = [
-    {
-        "distribution": "ubuntu",
-        "logo_url": "http://summit.ubuntu.com/media/images/cof_orange_hex1.png",
-        "versions": [{
-            "name": "v15.04 - Vilvid Vervet",
-            "value": "15.04",
-            "isSelected": true
-        },
-        {
-            "name": "v14.10 - Utopic Unicorn",
-            "value": "14.10"
-        },
-        {
-            "name": "v14.04 - LTS Trusty Tahr",
-            "value": "14.04"
-        },
-        {
-            "name": "v13.10 Saucy Salamander",
-            "value": "13.10"
-        }]
-    },
-    {
-        "distribution": "fedora",
-        "logo_url": "http://summit.ubuntu.com/media/images/cof_orange_hex1.png",
-        "versions": [{
-            name: "v15.04 - Vilvid Vervet",
-            value: "15.04"
-        }]
-    },
-    {
-        "distribution": "coreos",
-        "logo_url": "http://summit.ubuntu.com/media/images/cof_orange_hex1.png",
-        "versions": [{
-            name: "v15.04 - Vilvid Vervet",
-            value: "15.04"
-        }]
-    },
-    {
-        "distribution": "mint",
-        "logo_url": "http://summit.ubuntu.com/media/images/cof_orange_hex1.png",
-        "versions": [{
-            name: "v15.04 - Vilvid Vervet",
-            value: "15.04"
-        }]
-    }
-];
-
 class DistributionPicker extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            selected_distribution: null,
-            selected_version: null
+            selected_distribution: props.selectedDistribution,
+            selected_version: props.selectedVersion
         };
     }
 
@@ -81,9 +33,17 @@ class DistributionPicker extends React.Component {
 
     render () {
         var distributionComponents = [];
-        distributions.forEach(function (distributionItem) {
+        this.props.distributions.forEach(function (distributionItem) {
+            // Set selected for the item
             if (this.state && this.state.selected_distribution === distributionItem.distribution) {
-                distributionItem.is_selected = true;
+                distributionItem.isSelected = true;
+
+                // For the selected item, set the selected version
+                distributionItem.versions.forEach(i => {
+                    if (i.value === this.state.selected_version) {
+                        i.isSelected = true;
+                    }
+                });
             } else {
                 distributionItem.is_selected = false;
             }
@@ -106,11 +66,17 @@ class DistributionPicker extends React.Component {
 };
 
 DistributionPicker.propTypes = {
-    onChangeDistribution: PropTypes.func
+    onChangeDistribution: PropTypes.func,
+    distributions: PropTypes.array.isRequired,
+    selectedVersion: PropTypes.string,
+    selectedDistribution: PropTypes.string
 }
 
 DistributionPicker.defaultProps = {
-    onChangeDistribution: function () {}
+    onChangeDistribution: function () {},
+    distributions: [],
+    selectedVersion: null,
+    selectedDistribution: null
 };
 
 export default DistributionPicker;

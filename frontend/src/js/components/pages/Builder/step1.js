@@ -7,6 +7,7 @@ import DistributionPicker from '../../elements/DistributionPicker';
 import DockerHubSearch from '../../elements/DockerHubSearch';
 import Divider from '../../elements/Divider';
 import BuilderActions from '../../../actions/BuilderActions';
+import BuilderStore from '../../../stores/BuilderStore';
 
 class Step1 extends React.Component {
     handleSave () {
@@ -14,25 +15,25 @@ class Step1 extends React.Component {
         BuilderActions.nextPage();
     }
 
-  render() {
-    return (
-      <div className="BuilderStep1Page">
-        {/* Pick Predefined Docker Image */}
-        <h1>Pick your base image</h1>
-        <DistributionPicker ref="distribution_picker"/>
+    render() {
+        return (
+            <div className="BuilderStep1Page">
+                {/* Pick Predefined Docker Image */}
+                <h1>Pick your base image</h1>
+                <DistributionPicker distributions={BuilderStore.featuredDistributions} selectedDistribution={BuilderStore.dockerfile.distribution} selectedVersion={BuilderStore.dockerfile.distribution_version} ref="distribution_picker"/>
 
-        <Divider text="Or"/>
+                <Divider text="Or"/>
 
-        {/* Search docker */}
-        <h1>Search Docker Hub</h1>
-        <DockerHubSearch/>
+                {/* Search docker */}
+                <h1>Search Docker Hub</h1>
+                <DockerHubSearch/>
 
-        {/* Next Button */}
-        <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.handleSave.bind(this)}/>
-        <div className="clear"></div>
-      </div>
-    );
-  }
+                {/* Next Button */}
+                <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.handleSave.bind(this)}/>
+                <div className="clear"></div>
+            </div>
+        );
+    }
 }
 
 Step1.defaultProps = {
