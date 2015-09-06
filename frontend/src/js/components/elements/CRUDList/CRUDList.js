@@ -31,6 +31,10 @@ class CRUDList extends React.Component {
         var value = this.refs.add_value.state.value;
         this.refs.add_value.state.value = "";
 
+        if (value === undefined || value === '') {
+            return;
+        }
+
         this.setState({
             items: update(this.state.items, { $push: [
                 {
