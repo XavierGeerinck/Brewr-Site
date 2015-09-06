@@ -45,6 +45,13 @@ class BuilderStore extends BaseStore {
                 this._currentStep = (this._currentStep + 1) % (this._numberOfSteps + 1);
                 this.emitChange();
                 break;
+            case types.BUILDER_PREVIOUS_PAGE:
+                if (this._currentStep > 1) {
+                    this._currentStep--;
+                } else {
+                    this._currentStep = 1;
+                }
+                break;
             case types.BUILDER_CHANGE_MAINTAINER:
                 this._dockerfile.instructions.maintainer = action.maintainer;
                 this.emitChange();

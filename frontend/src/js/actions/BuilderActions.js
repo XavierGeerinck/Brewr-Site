@@ -12,7 +12,13 @@ class BuilderActions {
 
     static nextPage() {
         AppDispatcher.dispatch({
-            actionType: types.BUILDER_NEXT_PAGE,
+            actionType: types.BUILDER_NEXT_PAGE
+        });
+    }
+
+    static previousPage() {
+        AppDispatcher.dispatch({
+            actionType: types.BUILDER_PREVIOUS_PAGE
         });
     }
 
