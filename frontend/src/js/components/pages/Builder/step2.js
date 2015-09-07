@@ -10,6 +10,11 @@ import CRUDList from '../../elements/CRUDList';
 import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
 import BuilderStore from '../../../stores/BuilderStore';
 
+/**
+ * Step 2: Install programs (example: git, gulp, nginx, MySQL, ...)
+ *
+ * The user should be able to specify RUN commands to install it's favorite tools
+ */
 class Step2 extends React.Component {
     handleNextPage () {
         this._save();

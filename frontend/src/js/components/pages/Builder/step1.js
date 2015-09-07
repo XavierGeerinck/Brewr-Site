@@ -9,6 +9,12 @@ import Divider from '../../elements/Divider';
 import BuilderActions from '../../../actions/BuilderActions';
 import BuilderStore from '../../../stores/BuilderStore';
 
+/**
+ * Step 1: Distribution picker
+ *
+ * The user should be able to pick from several predefined distributions (featured)
+ * but should also be able to search on the docker hub for already existing ones.
+ */
 class Step1 extends React.Component {
     handleNextPage () {
         BuilderActions.changeDistribution(this.refs.distribution_picker.state.selected_distribution , this.refs.distribution_picker.state.selected_version);
