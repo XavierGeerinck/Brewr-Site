@@ -163,7 +163,7 @@ class BuilderStore extends BaseStore {
         };
 
         this._hubSearchTerm = '';
-        this._currentStep = 2;
+        this._currentStep = 1;
         this._numberOfSteps = 6;
     }
 
