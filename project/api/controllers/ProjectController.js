@@ -24,9 +24,8 @@ module.exports = {
     var user = req.user;
 
     User.isMemberOf(user.id, organisation, function(isMember){
-
       if(!isMember) {
-        return res.notFound();
+        return res.json({"success": false, "message": "ORGANISATION_NON_MEMBER"})
       } else {
         Project
           .find({"organisation": organisation})
@@ -39,7 +38,6 @@ module.exports = {
           });
       }
     });
-
   },
 
   assign: function(req, res) {

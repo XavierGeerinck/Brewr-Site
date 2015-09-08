@@ -1,7 +1,15 @@
 import AppDispatcher from '../dispatchers/AppDispatcher';
 import ProjectConstants from '../constants/ProjectConstants';
+import ProjectService from '../services/ProjectService';
 
 var ProjectActions = {
+
+  load: function() {
+    ProjectService.fetchProjects(function(projects){
+      // store
+      //DISPATCH LATER
+    });
+  },
 
   create: function(project) {
     AppDispatcher.dispatch({

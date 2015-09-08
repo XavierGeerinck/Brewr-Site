@@ -16,9 +16,6 @@ if(jwt) {
   LoginActions.loginUser(jwt);
 }
 
-//TODO: load data in respectful component? Check FLUX way (should be in router somewhere)
-// LOAD DATA
-ProjectAPI.getProjectData();
 router.run(Handler => React.render(<Handler />, document.body));
 
 // Hot module loading

@@ -37,7 +37,14 @@ module.exports.routes = {
   },
 
   'GET /projects/assigned': 'ProjectController.assigned',
-  'GET /organisations/:organisation/projects': 'ProjectController.allInOrganisation',
+  'GET /organisations/:organisation/projects': {
+    controller: 'ProjectController',
+    action: 'allInOrganisation',
+    cors: {
+      origin: '*',
+      headers: 'Content-Type, Authorization'
+    }
+  },
   'POST /projects/:project/assign': 'ProjectController.assign',
 
   /***************************************************************************
