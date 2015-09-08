@@ -6,10 +6,13 @@ class DistributionPicker extends React.Component {
     constructor(props) {
         super(props);
 
+        // Set initial state of the picker
         this.state = {
             selected_distribution: props.selectedDistribution,
             selected_version: props.selectedVersion
         };
+
+        this._distributions = JSON.parse(JSON.stringify(props.distributions));
     }
 
     handleClick (distribution) {
@@ -33,27 +36,29 @@ class DistributionPicker extends React.Component {
 
     render () {
         var distributionComponents = [];
-        this.props.distributions.forEach(function (distributionItem) {
+        this._distributions.forEach(di => {
             // Set selected for the item
-            if (this.state && this.state.selected_distribution === distributionItem.distribution) {
-                distributionItem.isSelected = true;
+            if (this.state && this.state.selected_distribution === di.distribution) {
+                di.is_selected = true;
 
                 // For the selected item, set the selected version
-                distributionItem.versions.forEach(i => {
-                    if (i.value === this.state.selected_version) {
-                        i.isSelected = true;
+                di.versions.forEach(v => {
+                    if (v.value === this.state.selected_version) {
+                        v.is_selected = true;
+                    } else {
+                        v.is_selected = false;
                     }
                 });
             } else {
-                distributionItem.is_selected = false;
+                di.is_selected = false;
             }
 
             distributionComponents.push(
                 <DistributionItem
                     onClick={this.handleClick.bind(this)}
                     onVersionChange={this.handleVersionChange.bind(this)}
-                    distribution={distributionItem}
-                    key={distributionItem.distribution} />
+                    distribution={di}
+                    key={di.distribution} />
             );
         }.bind(this));
 

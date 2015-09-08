@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
-import SideMenu from '../../elements/SideMenu';
+import FlexContainer from '../../elements/FlexContainer';
 import Button from '../../elements/Button';
+import Input from '../../elements/Input';
+import Panel from '../../elements/Panel';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import DockerfileViewer from '../../elements/DockerfileViewer';
 import BuilderActions from '../../../actions/BuilderActions';
@@ -17,19 +19,21 @@ class Step6 extends React.Component {
 
     render() {
         return (
-            <div className="BuilderStep3Page">
+            <FlexContainer>
                 {/* Current Volumes */}
-                <h1>Finalize</h1>
-                <DockerfileViewer dockerFileObject={this.props.dockerFileObject} />
+                <Panel heading="Finalize">
+                    <DockerfileViewer dockerFileObject={this.props.dockerFileObject} />
+                </Panel>
 
-                {/* Previous Button */}
-                <Button text=<span><i  className="fa fa-angle-left"/> Previous</span> color="Orange" onClick={this.handlePreviousPage.bind(this)}/>
-                <div className="clear"></div>
+                {/* Buttons */}
+                <Panel size="full">
+                    {/* Previous Button */}
+                    <Button align="left" text=<span><i  className="fa fa-angle-left"/> Previous</span> color="Orange" isInline={true} onClick={this.handlePreviousPage.bind(this)}/>
 
-                {/* Finish Button */}
-                <Button text="Finish" color="Orange" onClick={this.handleNextPage.bind(this)}/>
-                <div className="clear"></div>
-            </div>
+                    {/* Next Button */}
+                    <Button align="right" text=<span>Finish <i  className="fa fa-angle-right"/></span> color="Orange" isInline={true} onClick={this.handleNextPage.bind(this)}/>
+                </Panel>
+            </FlexContainer>
         );
     }
 }

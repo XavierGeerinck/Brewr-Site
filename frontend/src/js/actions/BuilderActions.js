@@ -4,10 +4,10 @@ import * as types from '../constants/ActionTypes';
 class BuilderActions {
     static finishDockerfile() {
         AppDispatcher.dispatch({
-            actionTypes: types.BUILDER_FINISH_DOCKERFILE
+            actionType: types.BUILDER_FINISH_DOCKERFILE
         });
     }
-    
+
     static changeDistribution(distribution, distribution_version) {
         AppDispatcher.dispatch({
             actionType: types.BUILDER_DISTRIBUTION_CHANGE,

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import "./Panel.css";
-import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
+import Tooltip from "../Tooltip";
 
 class Panel extends React.Component {
     constructor(props) {
@@ -37,7 +37,7 @@ class Panel extends React.Component {
     renderTooltip() {
         return (
             <span className="Panel-HelpIcon">
-                <OverlayTrigger overlay={this.props.tooltip} placement='right'><i  className="fa fa-question-circle"/></OverlayTrigger>
+                <Tooltip text={this.props.tooltip} placement='top'><i  className="fa fa-question-circle"/></Tooltip>
             </span>
         )
     }

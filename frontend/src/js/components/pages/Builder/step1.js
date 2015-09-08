@@ -17,8 +17,12 @@ import BuilderStore from '../../../stores/BuilderStore';
  */
 class Step1 extends React.Component {
     handleNextPage () {
-        BuilderActions.changeDistribution(this.refs.distribution_picker.state.selected_distribution , this.refs.distribution_picker.state.selected_version);
+        this._save();
         BuilderActions.nextPage();
+    }
+
+    _save() {
+        BuilderActions.changeDistribution(this.refs.distribution_picker.state.selected_distribution , this.refs.distribution_picker.state.selected_version);
     }
 
     render() {

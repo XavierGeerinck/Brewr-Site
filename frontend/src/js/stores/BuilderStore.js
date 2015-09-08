@@ -29,6 +29,7 @@ class BuilderStore extends BaseStore {
         //     }
         // };
 
+        this._builderSteps = [ "Distribution Picker", "Install Programs", "Manage Files & Src", "Startup Commands", "Ports & Env", "Finalize" ];
         this._featuredDistributions = [
             {
                 "distribution": "ubuntu",
@@ -163,8 +164,8 @@ class BuilderStore extends BaseStore {
         };
 
         this._hubSearchTerm = '';
-        this._currentStep = 2;
-        this._numberOfSteps = 3;
+        this._currentStep = 1;
+        this._numberOfSteps = 6;
     }
 
     _registerToActions(action) {
@@ -232,6 +233,7 @@ class BuilderStore extends BaseStore {
             break;
             case types.BUILDER_FINISH_DOCKERFILE:
             default:
+            console.log(action);
                 console.log(action.actionType + ' Not Implemented');
         }
     }
@@ -242,6 +244,10 @@ class BuilderStore extends BaseStore {
 
     get currentStep() {
         return this._currentStep;
+    }
+
+    get steps() {
+        return this._builderSteps;
     }
 
     get featuredDistributions() {
