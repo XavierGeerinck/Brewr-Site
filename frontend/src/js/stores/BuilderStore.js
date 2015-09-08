@@ -164,7 +164,7 @@ class BuilderStore extends BaseStore {
 
         this._hubSearchTerm = '';
         this._currentStep = 2;
-        this._numberOfSteps = 3;
+        this._numberOfSteps = 6;
     }
 
     _registerToActions(action) {
@@ -232,6 +232,7 @@ class BuilderStore extends BaseStore {
             break;
             case types.BUILDER_FINISH_DOCKERFILE:
             default:
+            console.log(action);
                 console.log(action.actionType + ' Not Implemented');
         }
     }
