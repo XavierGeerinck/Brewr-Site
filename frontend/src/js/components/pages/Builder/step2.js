@@ -7,7 +7,6 @@ import FlexContainer from '../../elements/FlexContainer';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import BuilderActions from '../../../actions/BuilderActions';
 import CRUDList from '../../elements/CRUDList';
-import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
 import BuilderStore from '../../../stores/BuilderStore';
 
 /**
@@ -15,6 +14,8 @@ import BuilderStore from '../../../stores/BuilderStore';
  *
  * The user should be able to specify RUN commands to install it's favorite tools
  */
+const tooltipRunItems = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+
 class Step2 extends React.Component {
     handleNextPage () {
         this._save();
@@ -46,12 +47,6 @@ class Step2 extends React.Component {
     }
 
     render() {
-        var tooltipRunItems = (
-            <Tooltip>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Tooltip>
-        );
-
         let dockerfile = BuilderStore.dockerfile.instructions;
 
         return (

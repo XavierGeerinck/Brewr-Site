@@ -18,6 +18,10 @@ import CRUDList from '../../elements/CRUDList';
  *      - Specify the commands to download the repository (example: git clone http://.... <destinationfolder>)
  *      - Specify the directories local to sync to the fileserver (<local_dir>:<remote_dir>)
  */
+const tooltipRunItems = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+const tooltipVolumeItems = "Specify the volumes where the data will be stored, you can use /path to let us choose a destination on the host and /hostpath:/containerpath to use an existing one.";
+const tooltipAddItems = "Specify the files and where to copy them, format: src dest, example: config/nginx.conf /etc/nginx/nginx.conf";
+
 class Step3 extends React.Component {
     handleNextPage () {
         BuilderActions.nextPage();
@@ -45,24 +49,6 @@ class Step3 extends React.Component {
     }
 
     render() {
-        var tooltipRunItems = (
-            <Tooltip>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Tooltip>
-        );
-
-        var tooltipVolumeItems = (
-            <Tooltip>
-                Specify the volumes where the data will be stored, you can use /path to let us choose a destination on the host and /hostpath:/containerpath to use an existing one.
-            </Tooltip>
-        );
-
-        var tooltipAddItems = (
-            <Tooltip>
-                "Specify the files and where to copy them, format: src dest, example: config/nginx.conf /etc/nginx/nginx.conf"
-            </Tooltip>
-        );
-
         let dockerfile = BuilderStore.dockerfile.instructions;
 
         return (

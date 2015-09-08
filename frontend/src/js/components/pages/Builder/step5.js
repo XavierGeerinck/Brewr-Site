@@ -15,6 +15,9 @@ import CRUDList from '../../elements/CRUDList';
  * - Allow for environment variables <envvariable>=value
  * - Allow for metadata (see docker label, user, workdir, ...)
  */
+const tooltipLabels = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident;nt mollit anim id est laborum.";
+const tooltipEnvItems = "Specify environment variables that will be installed in the environment, format: key:value, example: ENVIRONMENT:production";
+
 class Step5 extends React.Component {
     handleNextPage () {
         this._save();
@@ -44,18 +47,6 @@ class Step5 extends React.Component {
     }
 
     render() {
-        var tooltipLabels = (
-            <Tooltip>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Tooltip>
-        );
-
-        var tooltipEnvItems = (
-            <Tooltip>
-                "Specify environment variables that will be installed in the environment, format: key:value, example: ENVIRONMENT:production"
-            </Tooltip>
-        );
-
         let dockerfile = BuilderStore.dockerfile.instructions;
 
         return (

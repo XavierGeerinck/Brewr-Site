@@ -15,6 +15,8 @@ import CRUDList from '../../elements/CRUDList';
  * We will automatically migrate these to supervisord! so they should be by path and not by service.
  * Example: nginx -t and node /var/www/test/node.js (We will automatically pick the logging dirs, probably /var/log)
  */
+const tooltipStartupCommandItems = "Add the commands to be executed on the startup of the environment, example: first build the files, then run nginx as long running command";
+
 class Step4 extends React.Component {
     handleNextPage () {
         this._save();
@@ -34,12 +36,6 @@ class Step4 extends React.Component {
     }
 
     render() {
-        var tooltipStartupCommandItems = (
-            <Tooltip>
-                "Add the commands to be executed on the startup of the environment, example: first build the files, then run nginx as long running command"
-            </Tooltip>
-        );
-
         let dockerfile = BuilderStore.dockerfile.instructions;
 
         return (
