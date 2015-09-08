@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import SideMenu from '../../elements/SideMenu';
 import Button from '../../elements/Button';
+import Wizard from '../../elements/Wizard';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import BuilderStep1 from './step1';
 import BuilderStep2 from './step2';
@@ -65,6 +66,10 @@ class Builder extends React.Component {
 
         return (
             <DashboardLayout>
+                {/* Wizard */}
+                <Wizard steps={BuilderStore.steps} currentStepIdx={BuilderStore.currentStep} />
+
+                {/* Show content */}
                 {content}
             </DashboardLayout>
         );

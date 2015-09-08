@@ -29,6 +29,7 @@ class BuilderStore extends BaseStore {
         //     }
         // };
 
+        this._builderSteps = [ "Distribution Picker", "Install Programs", "Manage Files & Src", "Startup Commands", "Ports & Env", "Finalize" ];
         this._featuredDistributions = [
             {
                 "distribution": "ubuntu",
@@ -243,6 +244,10 @@ class BuilderStore extends BaseStore {
 
     get currentStep() {
         return this._currentStep;
+    }
+
+    get steps() {
+        return this._builderSteps;
     }
 
     get featuredDistributions() {
