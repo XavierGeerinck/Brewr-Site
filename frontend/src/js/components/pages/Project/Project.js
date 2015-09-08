@@ -20,7 +20,6 @@ export default class Project extends BaseComponent {
     ProjectService.fetchProjects(function(projects){
       // store
       self.setState({_projects: projects});
-      self.forceUpdate();
     });
   }
 
