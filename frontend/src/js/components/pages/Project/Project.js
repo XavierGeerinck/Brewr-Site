@@ -2,17 +2,25 @@ import React, { PropTypes } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import BaseComponent from '../../BaseComponent';
 import ProjectStore from '../../../stores/ProjectStore';
-
-function getStateFromStores() {
-  return {
-    projects: ProjectStore.getAll()
-  };
-}
+import ProjectActions from '../../../actions/ProjectActions';
+import ProjectService from '../../../services/ProjectService';
 
 export default class Project extends BaseComponent {
 
-  getInitialState() {
-    return getStateFromStores();
+  constructor() {
+    super();
+    this.state = {
+      _projects: []
+    }
+  }
+
+  componentDidMount() {
+    var self = this;
+
+    ProjectService.fetchProjects(function(projects){
+      // store
+      self.setState({_projects: projects});
+    });
   }
 
   render() {
@@ -20,17 +28,13 @@ export default class Project extends BaseComponent {
       return (
           <DashboardLayout>
               <h1>Projects</h1>
-              <ul>
-                {this.state.projects.map((project) => {
-                  <li>{project.name}</li>
+            <ul>
+                {this.state._projects.map((project) => {
+                  return <li key={project.id}>{project.name}</li>
                 })}
               </ul>
           </DashboardLayout>
       )
-  }
-
-  _onChange() {
-    this.setState(getStateFromStores());
   }
 
 }
