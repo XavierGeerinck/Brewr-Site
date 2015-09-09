@@ -82,28 +82,27 @@ class CRUDList extends React.Component {
 
     render () {
         const { items } = this.state;
-        const { canMove, canRemove, canUploadFile } = this.props;
+        const { canMove, canRemove, canUploadFile, addItemText, withFileUploadDestination, textAddValue } = this.props;
 
         return (
             <div className="CRUDList">
-                <h1>Add Item</h1>
-
                 <TabContainer>
                     {
                         canUploadFile ?
                         <TabItem text="Upload File">
                             <form onsubmit="this.reset(); return false;">
-                                <Input type="file" label="Upload File" isInline="true" ref="add_file" />
-                                <Input type="text" />
+                                <Input type="file" label="Upload File" ref="add_file" />
+                                <Input type="text" label="Destination Path"/>
                                 <Button text="Upload" type="submit" isForm="true" onClick={this.handleUpload.bind(this)} />
                             </form>
                         </TabItem>
                         : null
                     }
 
-                    <TabItem text="Replace With Existing File">
+                    <TabItem text={addItemText}>
                         <form onsubmit="this.reset(); return false;">
-                            <Input type="text" isInline="true" ref="add_value" />
+                            <Input type="text" label={textAddValue} ref="add_value" />
+                            { withFileUploadDestination ? <Input type="text" label="Destination Path" ref="add_path"/> : null }
                             <Button text="Add" type="submit" isInline="true" isForm="true" onClick={this.handleAdd.bind(this)} />
                         </form>
                     </TabItem>
@@ -139,7 +138,9 @@ class CRUDList extends React.Component {
         canEdit: PropTypes.bool,
         canAdd: PropTypes.bool,
         canUploadFile: PropTypes.bool, // Allows for file uploading
-        withFileUploadDestination: PropTypes.bool // Allows us to set a destination for the uploaded file
+        withFileUploadDestination: PropTypes.bool, // Allows us to set a destination for the uploaded file
+        addItemText: PropTypes.string, // Allow for changing the add item header
+        textAddValue: PropTypes.string, // Change the first textbox
     };
 
     CRUDList.defaultProps = {
@@ -149,7 +150,9 @@ class CRUDList extends React.Component {
         canAdd: true,
         canEdit: false,
         canUploadFile: false,
-        withFileUploadDestination: false
+        withFileUploadDestination: false,
+        addItemText: "",
+        textAddValue: "Enter Value"
     };
 
     export default DragDropContext(HTML5Backend)(CRUDList);

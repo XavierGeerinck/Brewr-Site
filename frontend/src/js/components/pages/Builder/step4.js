@@ -42,7 +42,7 @@ class Step4 extends React.Component {
             <FlexContainer>
                 {/* Startup Command Items */}
                 <Panel heading="Environment Startup Commands" tooltip={tooltipStartupCommandItems}>
-                    <CRUDList items={dockerfile.cmd} ref="input_startup_command_items"/>
+                    <CRUDList items={dockerfile.cmd} textAddValue="Startup Command" ref="input_startup_command_items"/>
                 </Panel>
 
 

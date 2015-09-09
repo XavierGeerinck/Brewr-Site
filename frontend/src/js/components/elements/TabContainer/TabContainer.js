@@ -20,8 +20,13 @@ class TabContainer extends React.Component {
         var self = this;
         let cx = React.addons.classSet;
 
-        const { children } = this.props;
+        let children = this.props.children;
         const { selectedItemIdx } = this.state;
+
+        // Filter out the null children
+        children = children.filter(i => {
+            return i !== null && i !== undefined;
+        });
 
         return (
             <div className="TabContainer">
@@ -38,7 +43,7 @@ class TabContainer extends React.Component {
                             })
                         }
                     </ul>
-                    : <div>{children[0].props.text}</div>
+                    : <h1>{children[0].props.text}</h1>
                 }
 
                 {

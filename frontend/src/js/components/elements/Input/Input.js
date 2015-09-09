@@ -28,8 +28,7 @@ class Input extends React.Component {
 
         var classes = cx({
             'Input': true,
-            'Input-Inline': this.props.isInline,
-            'Input-Type-File': this.props.type === 'file' ? true : false
+            'Input-Inline': this.props.isInline
         });
 
       return (

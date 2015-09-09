@@ -15,10 +15,6 @@
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.Input-Type-File > input {
-    padding: 4px 10px;
-}
-
 .validation-error {
   border: 1px solid red;
   color: red;

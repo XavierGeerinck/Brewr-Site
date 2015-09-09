@@ -55,17 +55,17 @@ class Step3 extends React.Component {
             <FlexContainer>
                 {/* Specify the files to add to it's environment + where to copy them: (pick file and type in a destination directory) */}
                 <Panel heading="Add Files" tooltip={tooltipAddItems}>
-                    <CRUDList items={dockerfile.add} canUploadFile={true} withFileUploadDestination={true} ref="input_add_items"/>
+                    <CRUDList items={dockerfile.add} canUploadFile={true} withFileUploadDestination={true} textAddValue="Source Path" addItemText="Copy local file" ref="input_add_items"/>
                 </Panel>
 
                 {/* Specify the commands to download the repository (example: git clone http://.... <destinationfolder>) */}
                 <Panel heading="Download Source Code" tooltip={tooltipRunItems}>
-                    <CRUDList items={dockerfile.run} ref="input_run_items"/>
+                    <CRUDList items={dockerfile.run} textAddValue="Command" ref="input_run_items"/>
                 </Panel>
 
                 {/* Specify the directories local to sync to the fileserver (<local_dir>:<remote_dir>) */}
                 <Panel heading="Synchronise Directories" tooltip={tooltipVolumeItems}>
-                    <CRUDList items={dockerfile.volume} ref="input_volume_items"/>
+                    <CRUDList items={dockerfile.volume} textAddValue="Directory" ref="input_volume_items"/>
                 </Panel>
 
                 {/* Buttons */}

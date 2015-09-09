@@ -2,11 +2,12 @@
 
 .CRUDList h1 {
     font-size: 14px;
+    letter-spacing: 1px;
 }
 
-.CRUDList form .Input {
+/*.CRUDList form .Input {
     width: calc(100% - 80px);
-}
+}*/
 
 .CRUDList form .Button {
     width: 80px;
