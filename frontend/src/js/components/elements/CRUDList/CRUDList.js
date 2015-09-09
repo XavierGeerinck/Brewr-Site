@@ -91,8 +91,8 @@ class CRUDList extends React.Component {
                         canUploadFile ?
                         <TabItem text="Upload File">
                             <form onsubmit="this.reset(); return false;">
-                                <Input type="file" label="Upload File" ref="add_file" />
-                                <Input type="text" label="Destination Path"/>
+                                <Input type="file" label="Upload File" ref="value_1" />
+                                <Input type="text" label="Destination Path" ref="value_2"/>
                                 <Button text="Upload" type="submit" isForm="true" onClick={this.handleUpload.bind(this)} />
                             </form>
                         </TabItem>
@@ -101,8 +101,8 @@ class CRUDList extends React.Component {
 
                     <TabItem text={addItemText}>
                         <form onsubmit="this.reset(); return false;">
-                            <Input type="text" label={textAddValue} ref="add_value" />
-                            { withFileUploadDestination ? <Input type="text" label="Destination Path" ref="add_path"/> : null }
+                            <Input type="text" label={textAddValue} ref="value_1" />
+                            { withFileUploadDestination ? <Input type="text" label="Destination Path" ref="value_2"/> : null }
                             <Button text="Add" type="submit" isInline="true" isForm="true" onClick={this.handleAdd.bind(this)} />
                         </form>
                     </TabItem>
