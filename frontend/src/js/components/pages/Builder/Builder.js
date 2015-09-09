@@ -68,7 +68,7 @@ class Builder extends React.Component {
             <DashboardLayout>
                 {/* Wizard */}
                 <Wizard steps={BuilderStore.steps} currentStepIdx={BuilderStore.currentStep} />
-
+                
                 {/* Show content */}
                 {content}
             </DashboardLayout>

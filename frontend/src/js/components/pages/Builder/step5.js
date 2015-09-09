@@ -15,8 +15,9 @@ import CRUDList from '../../elements/CRUDList';
  * - Allow for environment variables <envvariable>=value
  * - Allow for metadata (see docker label, user, workdir, ...)
  */
-const tooltipLabels = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident;nt mollit anim id est laborum.";
+const tooltipLabels = "Set labels to identify your container <labelname>=<value>, example: com.brewr.io=somevalue";
 const tooltipEnvItems = "Specify environment variables that will be installed in the environment, format: key:value, example: ENVIRONMENT:production";
+const tooltipPorts = "Pick the ports to be forwarded to the local environment: <local_port>:<remote_port>, example: 80:80";
 
 class Step5 extends React.Component {
     handleNextPage () {
@@ -57,7 +58,7 @@ class Step5 extends React.Component {
                 </Panel>
 
                 {/* Expose Items (Ports) */}
-                <Panel heading="Ports">
+                <Panel heading="Forward Ports">
                     <CRUDList items={dockerfile.expose} ref="input_expose_items"/>
                 </Panel>
 

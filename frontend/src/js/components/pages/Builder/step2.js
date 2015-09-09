@@ -14,7 +14,8 @@ import BuilderStore from '../../../stores/BuilderStore';
  *
  * The user should be able to specify RUN commands to install it's favorite tools
  */
-const tooltipRunItems = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+const tooltipRunItems = "Specify the commands to install programs here, example: `sudo apt-get install git` or `sudo apt-get install nginx`";
+const tooltipGeneral = "Here you can choose the general variables such as the maintainer, the working directory and the user to execute the environment.";
 
 class Step2 extends React.Component {
     handleNextPage () {
@@ -52,14 +53,14 @@ class Step2 extends React.Component {
         return (
             <FlexContainer>
                 {/* Maintainer, workdir and user */}
-                <Panel heading="General">
+                <Panel heading="General" tooltip={tooltipGeneral}>
                     <Input id="input_maintainer" text={dockerfile.maintainer} label="Maintainer" placeholder="Enter the maintainer for the project.." type="text" ref="input_maintainer" />
                     <Input id="input_workdir" text={dockerfile.workdir} label="Workdir" placeholder="Enter the directory where you will work from..." type="text" ref="input_workdir" />
                     <Input id="input_user" text={dockerfile.user} label="User" placeholder="Type a keyword..." type="text" ref="input_user" />
                 </Panel>
 
                 {/* Run Items */}
-                <Panel heading="Commands" tooltip={tooltipRunItems}>
+                <Panel heading="Install Programs & Tools" tooltip={tooltipRunItems}>
                     <CRUDList items={dockerfile.run} ref="input_run_items"/>
                 </Panel>
 

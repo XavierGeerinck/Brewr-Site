@@ -18,9 +18,9 @@ import CRUDList from '../../elements/CRUDList';
  *      - Specify the commands to download the repository (example: git clone http://.... <destinationfolder>)
  *      - Specify the directories local to sync to the fileserver (<local_dir>:<remote_dir>)
  */
-const tooltipRunItems = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-const tooltipVolumeItems = "Specify the volumes where the data will be stored, you can use /path to let us choose a destination on the host and /hostpath:/containerpath to use an existing one.";
-const tooltipAddItems = "Specify the files and where to copy them, format: src dest, example: config/nginx.conf /etc/nginx/nginx.conf";
+const tooltipRunItems = "Specify the commands to run and get the source code of your project, example: `git clone http://<giturl> <target_dir>`";
+const tooltipVolumeItems = "Specify the paths to synchronize in the format: `<local_dir>:<remote_dir>`, example: `/c/my_nginx.conf:/etc/nginx/nginx.conf`";
+const tooltipAddItems = "Upload files or specify existing files and choose where to copy them too (replace existing by default)";
 
 class Step3 extends React.Component {
     handleNextPage () {
@@ -54,17 +54,17 @@ class Step3 extends React.Component {
         return (
             <FlexContainer>
                 {/* Specify the files to add to it's environment + where to copy them: (pick file and type in a destination directory) */}
-                <Panel heading="Add Files" overlay={tooltipAddItems}>
+                <Panel heading="Add Files" tooltip={tooltipAddItems}>
                     <CRUDList items={dockerfile.add} ref="input_add_items"/>
                 </Panel>
 
                 {/* Specify the commands to download the repository (example: git clone http://.... <destinationfolder>) */}
-                <Panel heading="Commands" tooltip={tooltipRunItems}>
+                <Panel heading="Download Source Code" tooltip={tooltipRunItems}>
                     <CRUDList items={dockerfile.run} ref="input_run_items"/>
                 </Panel>
 
                 {/* Specify the directories local to sync to the fileserver (<local_dir>:<remote_dir>) */}
-                <Panel heading="Volumes" tooltip={tooltipVolumeItems}>
+                <Panel heading="Synchronise Directories" tooltip={tooltipVolumeItems}>
                     <CRUDList items={dockerfile.volume} ref="input_volume_items"/>
                 </Panel>
 

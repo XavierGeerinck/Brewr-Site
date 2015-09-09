@@ -3,6 +3,7 @@
 .Tooltip {
   position: relative;
   cursor: pointer;
+  letter-spacing: 1px;
 }
 
 /* Base styles for the entire tooltip */
