@@ -4,6 +4,8 @@ import List from '../List';
 import ListItem from '../ListItem';
 import Input from '../Input';
 import Button from '../Button';
+import TabContainer from '../TabContainer';
+import TabItem from '../TabContainer/TabItem';
 import './CRUDList.css';
 
 // Drag and drop functionallity of the listitems
@@ -74,17 +76,38 @@ class CRUDList extends React.Component {
         }));
     }
 
+    handleUpload () {
+
+    }
+
     render () {
         const { items } = this.state;
-        const { canMove, canRemove } = this.props;
+        const { canMove, canRemove, canUploadFile } = this.props;
 
         return (
             <div className="CRUDList">
                 <h1>Add Item</h1>
-                <form onsubmit="this.reset(); return false;">
-                    <Input type="text" isInline="true" ref="add_value" />
-                    <Button text="Add" type="submit" isInline="true" isForm="true" onClick={this.handleAdd.bind(this)} />
-                </form>
+
+                <TabContainer>
+                    {
+                        canUploadFile ?
+                        <TabItem text="Upload File">
+                            <form onsubmit="this.reset(); return false;">
+                                <Input type="file" label="Upload File" isInline="true" ref="add_file" />
+                                <Input type="text" />
+                                <Button text="Upload" type="submit" isForm="true" onClick={this.handleUpload.bind(this)} />
+                            </form>
+                        </TabItem>
+                        : null
+                    }
+
+                    <TabItem text="Replace With Existing File">
+                        <form onsubmit="this.reset(); return false;">
+                            <Input type="text" isInline="true" ref="add_value" />
+                            <Button text="Add" type="submit" isInline="true" isForm="true" onClick={this.handleAdd.bind(this)} />
+                        </form>
+                    </TabItem>
+                </TabContainer>
 
                 { items.length > 0 ?
                     <div>
@@ -114,7 +137,9 @@ class CRUDList extends React.Component {
         canMove: PropTypes.bool,
         canRemove: PropTypes.bool,
         canEdit: PropTypes.bool,
-        canAdd: PropTypes.bool
+        canAdd: PropTypes.bool,
+        canUploadFile: PropTypes.bool, // Allows for file uploading
+        withFileUploadDestination: PropTypes.bool // Allows us to set a destination for the uploaded file
     };
 
     CRUDList.defaultProps = {
@@ -122,7 +147,9 @@ class CRUDList extends React.Component {
         canMove: true,
         canRemove: true,
         canAdd: true,
-        canEdit: false
+        canEdit: false,
+        canUploadFile: false,
+        withFileUploadDestination: false
     };
 
     export default DragDropContext(HTML5Backend)(CRUDList);

@@ -55,7 +55,7 @@ class Step3 extends React.Component {
             <FlexContainer>
                 {/* Specify the files to add to it's environment + where to copy them: (pick file and type in a destination directory) */}
                 <Panel heading="Add Files" tooltip={tooltipAddItems}>
-                    <CRUDList items={dockerfile.add} ref="input_add_items"/>
+                    <CRUDList items={dockerfile.add} canUploadFile={true} withFileUploadDestination={true} ref="input_add_items"/>
                 </Panel>
 
                 {/* Specify the commands to download the repository (example: git clone http://.... <destinationfolder>) */}

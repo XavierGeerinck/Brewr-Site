@@ -1,0 +1,39 @@
+@import "../../variables.css";
+
+.TabContainer {
+
+}
+
+.TabContainer-Tabs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.TabContainer-Tab-Selected  {
+    border: 1px solid #ddd;
+    border-bottom-color: transparent !important;
+}
+
+.TabContainer-Tab-Selected a {
+    color: var(--color-text-selected) !important;
+}
+
+.TabContainer-Tabs li {
+    display: inline-block;
+    padding: 5px 10px;
+
+    margin-bottom: -1px; /* Hack to remove the border */
+    background-color: var(--color-white);
+}
+
+.TabContainer-Tabs li a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.TabContainer-Tabs li a:hover {
+    color: var(--color-text-hover);
+}

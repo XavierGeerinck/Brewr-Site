@@ -28,7 +28,8 @@ class Input extends React.Component {
 
         var classes = cx({
             'Input': true,
-            'Input-Inline': this.props.isInline
+            'Input-Inline': this.props.isInline,
+            'Input-Type-File': this.props.type === 'file' ? true : false
         });
 
       return (
@@ -48,7 +49,7 @@ class Input extends React.Component {
         <input
             type={this.props.type}
             name={this.props.name}
-            //valueLink={this.props.valueLink}
+            valueLink={this.props.valueLink}
             value={this.state.value}
             placeholder={this.props.placeholder}
             onChange={this.handleChange.bind(this)}
