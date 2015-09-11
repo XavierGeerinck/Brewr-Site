@@ -110,11 +110,11 @@ var config = {
 // as that is what you use to require the actual node modules
 // in your code. Then use the complete path to point to the correct
 // file and make sure webpack does not try to parse it
-DEPS.forEach(function (dep) {
-  var depPath = path.resolve(node_modules_dir, dep);
-  config.resolve.alias[dep.split(path.sep)[0]] = depPath;
-  config.module.noParse.push(depPath);
-});
+// DEPS.forEach(function (dep) {
+//   var depPath = path.resolve(node_modules_dir, dep);
+//   config.resolve.alias[dep.split(path.sep)[0]] = depPath;
+//   config.module.noParse.push(depPath);
+// });
 
 //config.addVendor('react', node_modules + '/react/react.min.js');
 
