@@ -39,6 +39,11 @@ export default class DockerfileViewer extends React.Component {
                 <div className="DockerfileViewer-StartupScript">
                     <div dangerouslySetInnerHTML={{ __html: this.renderStartupScript() }} />
                 </div>
+
+                <h1>Files to create</h1>
+                <div className="DockerfileViewer-StartupScript">
+                    <div dangerouslySetInnerHTML={{ __html: this.renderCreateFiles() }} />
+                </div>
             </div>
         )
     }
@@ -106,7 +111,13 @@ export default class DockerfileViewer extends React.Component {
 
         var lines = "";
 
+        lines += "<br /># Running the install program commands<br />";
         obj.instructions.run.forEach(r => {
+            lines += "RUN " + r.value + "\n<br />";
+        });
+
+        lines += "<br /># Downloading the source code<br />";
+        obj.instructions.source_code.forEach(r => {
             lines += "RUN " + r.value + "\n<br />";
         });
 
@@ -125,6 +136,7 @@ export default class DockerfileViewer extends React.Component {
 
         var lines = "";
 
+        lines += "<br /># Metadata settings<br />";
         obj.instructions.label.forEach(l => {
             lines += "LABEL " + "\"" + l.value.split("=")[0] + "\"" + "=" + "\"" + l.value.split("=")[1] + "\"" + "<br />"
         });
@@ -214,6 +226,7 @@ export default class DockerfileViewer extends React.Component {
         var lines = "";
 
         // First map the ports correctly (so only the left port)
+        lines += "<br /># Exposing the ports<br />";
         obj.instructions.expose.map(e => {
             if (e.value.indexOf(":") > -1) return e.value.split(":")[e.value.split(":").length - 1];
             return e.value;
@@ -236,8 +249,10 @@ export default class DockerfileViewer extends React.Component {
             return;
         }
 
-        var lines = "VOLUME [ ";
+        var lines = "";
 
+        lines += "<br /># Synching directories<br />";
+        lines += "VOLUME [ ";
         lines += obj.instructions.volume.map(v => {
             if (v.value.indexOf(":") > -1) return "\"" + v.value.split(":")[v.value.split(":").length - 1] + "\"";
             return "\"" + v.value + "\"";
@@ -261,6 +276,7 @@ export default class DockerfileViewer extends React.Component {
 
         var lines = "";
 
+        lines += "<br /># Adding files<br />";
         obj.instructions.add.forEach(v => {
             lines += "ADD " + v.value + "<br />";
         });
@@ -281,12 +297,33 @@ export default class DockerfileViewer extends React.Component {
 
         var lines = "";
 
+        lines += "<br />#Environment variables<br />";
         obj.instructions.env.forEach(e => {
             lines += "ENV " + e.value.split("=")[0] + " " + e.value.split("=")[1] + "<br />";
         });
 
         return lines;
     }
+
+    /**
+     * When we upload files the part content will be set in the add instructions, these need to be files that have to be created
+     */
+     renderCreateFiles() {
+         const obj = this.props.dockerFileObject;
+
+         if (!obj.instructions || !obj.instructions.add) {
+             return;
+         }
+
+         var lines = "";
+         obj.instructions.add.forEach(v => {
+             if (v.content) {
+                 lines += "# File: " + v.value.split(':')[0] + "<br />" + v.content + "<br />";
+             }
+         });
+
+         return lines;
+     }
 };
 
 DockerfileViewer.propTypes = {

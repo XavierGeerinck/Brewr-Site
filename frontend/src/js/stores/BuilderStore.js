@@ -18,6 +18,7 @@ class BuilderStore extends BaseStore {
         //
         //         // TODO
         //         cmd: null,
+        //         source_code: null, // This is separate to make it easier to create a dockerfile
         //         run: null,
         //         expose: null,
         //         env: null,
@@ -108,6 +109,7 @@ class BuilderStore extends BaseStore {
                         "id": 3
                     }
                 ],
+                "source_code": null,
                 "cmd": [
                     {
                         "value": "nginx -g daemon off;"
@@ -209,6 +211,10 @@ class BuilderStore extends BaseStore {
             break;
             case types.BUILDER_CHANGE_RUN_ITEMS:
             this._dockerfile.instructions.run = action.items;
+            this.emitChange();
+            break;
+            case types.BUILDER_CHANGE_SOURCE_CODE_ITEMS:
+            this._dockerfile.instructions.source_code = action.items;
             this.emitChange();
             break;
             case types.BUILDER_CHANGE_EXPOSE_ITEMS:

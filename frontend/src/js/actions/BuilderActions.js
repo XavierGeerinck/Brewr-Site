@@ -97,6 +97,13 @@ class BuilderActions {
             items: items
         });
     }
+
+    static changeDownloadSourceCode(items) {
+        AppDispatcher.dispatch({
+            actionType: types.BUILDER_CHANGE_SOURCE_CODE_ITEMS,
+            items: items
+        });
+    }
 }
 
 export default BuilderActions;

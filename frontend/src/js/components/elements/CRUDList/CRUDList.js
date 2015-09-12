@@ -19,21 +19,30 @@ class CRUDList extends React.Component {
     constructor (props) {
         super(props);
 
-        this.state = {
-            items: props.items.map((item, index) => {
-                return {
-                    value: item.value ? item.value : item,
-                    content: '', // Contains content in case of a file upload! (Data_uri)
-                    id: index
-                };
-            })
+        if (props.items) {
+            this.state = {
+                items: props.items.map((item, index) => {
+                    return {
+                        value: item.value ? item.value : item,
+                        content: '', // Contains content in case of a file upload! (Data_uri)
+                        id: index
+                    };
+                })
+            }
+        } else {
+            this.state = {
+                items: []
+            };
         }
     }
 
-    handleAdd () {
+    handleAdd (e) {
+        // Do not submit the form
+        e.preventDefault();
+
         var self = this;
-        var value = this.refs.add_value.state.value;
-        this.refs.add_value.state.value = "";
+        var value = this.refs.value_1.state.value;
+        this.refs.value_1.state.value = "";
 
         if (value === undefined || value === '') {
             return;
@@ -80,16 +89,25 @@ class CRUDList extends React.Component {
     handleUpload (e) {
         // Do not submit the form
         e.preventDefault();
-        console.log(e);
-    }
 
-    handleFile (e) {
+        var self = this;
+        var inputBox = React.findDOMNode(this.refs.value_1).querySelector('input');
         var reader = new FileReader();
-        console.log(e);
-        var file = e.target.files[0];
+        var file = inputBox.files[0];
 
+        // Callback of the readAsDataURL
         reader.onload = function (upload) {
-            console.log(upload.target.result);
+            self.setState({
+                items: update(self.state.items, { $push: [
+                    {
+                        value: file.name + ':' + self.refs.value_2.state.value,
+                        content: upload.target.result,
+                        id: self.state.items.length + 1
+                    }
+                ]})
+            });
+
+            self.refs.upload_form.getDOMNode().reset();
         }
 
         reader.readAsDataURL(file);
@@ -98,6 +116,7 @@ class CRUDList extends React.Component {
     render () {
         const { items } = this.state;
         const { canMove, canRemove, canUploadFile, addItemText, withFileUploadDestination, textAddValue } = this.props;
+        let self = this;
 
         return (
             <div className="CRUDList">
@@ -105,8 +124,8 @@ class CRUDList extends React.Component {
                     {
                         canUploadFile ?
                         <TabItem text="Upload File">
-                            <form action="#" onSubmit={this.handleUpload} encType="multipart/form-data">
-                                <Input type="file" label="Upload File" ref="value_1" onChange={this.handleFile} />
+                            <form action="#" ref="upload_form" onSubmit={this.handleUpload.bind(self)} encType="multipart/form-data">
+                                <Input type="file" label="Upload File" ref="value_1" />
                                 <Input type="text" label="Destination Path" ref="value_2"/>
                                 <Button text="Upload" type="submit" isForm="true" />
                             </form>

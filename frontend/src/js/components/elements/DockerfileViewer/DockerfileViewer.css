@@ -7,6 +7,7 @@
     padding: 10px 15px;
     color: var(--color-terminal-text);
     text-shadow: 0 0 1px var(--color-terminal-text-shadow);
+    overflow-x: scroll;
 }
 
 .DockerfileViewer-Dockerfile > div {

@@ -24,6 +24,7 @@ const tooltipAddItems = "Upload files or specify existing files and choose where
 
 class Step3 extends React.Component {
     handleNextPage () {
+        this._save();
         BuilderActions.nextPage();
     }
 
@@ -34,7 +35,7 @@ class Step3 extends React.Component {
     _save() {
         if (this.refs.input_run_items) {
             var items = JSON.parse(JSON.stringify(this.refs.input_run_items.refs.child.state.items));
-            BuilderActions.changeRunItems(items);
+            BuilderActions.changeDownloadSourceCode(items);
         }
 
         if (this.refs.input_volume_items) {
@@ -44,6 +45,7 @@ class Step3 extends React.Component {
 
         if (this.refs.input_add_items) {
             var items = JSON.parse(JSON.stringify(this.refs.input_add_items.refs.child.state.items));
+            console.log(items);
             BuilderActions.changeAddItems(items);
         }
     }
@@ -60,7 +62,7 @@ class Step3 extends React.Component {
 
                 {/* Specify the commands to download the repository (example: git clone http://.... <destinationfolder>) */}
                 <Panel heading="Download Source Code" tooltip={tooltipRunItems}>
-                    <CRUDList items={dockerfile.run} textAddValue="Command" ref="input_run_items"/>
+                    <CRUDList items={dockerfile.source_code} textAddValue="Command" ref="input_run_items"/>
                 </Panel>
 
                 {/* Specify the directories local to sync to the fileserver (<local_dir>:<remote_dir>) */}
