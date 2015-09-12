@@ -11,16 +11,24 @@ class Input extends React.Component {
     }
 
     handleChange (event) {
-        this.setState({ value: event.target.value })
+        if (this.props.type === 'file') {
+            if (this.props.onChange) {
+                this.props.onChange(event);
+            }
 
-        if (this.props.onChange) {
-            this.props.onChange(event.target.value);
+            this.setState({ value: event });
+        } else {
+            if (this.props.onChange) {
+                this.props.onChange(event.target.value);
+            }
+
+            this.setState({ value: event.target.value });
         }
     }
 
     render () {
-      let children = this.renderChildren();
-      return this.renderFormGroup(children);
+        let children = this.renderChildren();
+        return this.renderFormGroup(children);
     }
 
     renderFormGroup (children) {
@@ -31,21 +39,29 @@ class Input extends React.Component {
             'Input-Inline': this.props.isInline
         });
 
-      return (
-         <div className={classes}>{children}</div>
-      );
+        return (
+            <div className={classes}>{children}</div>
+        );
     }
 
     renderChildren () {
-      return [
-        this.renderLabel(),
-        this.renderInput()
-      ];
+        return [
+            this.renderLabel(),
+            this.renderInput()
+        ];
     }
 
     renderInput () {
-      return (
-        <input
+        if (this.props.type === 'file') {
+            return <input
+            type={this.props.type}
+            name={this.props.name}
+            valueLink={this.props.valueLink}
+            placeholder={this.props.placeholder}
+            onChange={this.handleChange.bind(this)}
+            key="input"/>
+        } else {
+            return <input
             type={this.props.type}
             name={this.props.name}
             valueLink={this.props.valueLink}
@@ -53,15 +69,15 @@ class Input extends React.Component {
             placeholder={this.props.placeholder}
             onChange={this.handleChange.bind(this)}
             key="input"/>
-      )
+        }
     }
 
     renderLabel() {
-      return this.props.label ? (
-        <label htmlFor={this.props.id} key="label">
-          {this.props.label}
-        </label>
-      ) : null;
+        return this.props.label ? (
+            <label htmlFor={this.props.id} key="label">
+            {this.props.label}
+            </label>
+        ) : null;
     }
 }
 

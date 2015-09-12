@@ -23,6 +23,7 @@ class CRUDList extends React.Component {
             items: props.items.map((item, index) => {
                 return {
                     value: item.value ? item.value : item,
+                    content: '', // Contains content in case of a file upload! (Data_uri)
                     id: index
                 };
             })
@@ -76,8 +77,22 @@ class CRUDList extends React.Component {
         }));
     }
 
-    handleUpload () {
+    handleUpload (e) {
+        // Do not submit the form
+        e.preventDefault();
+        console.log(e);
+    }
 
+    handleFile (e) {
+        var reader = new FileReader();
+        console.log(e);
+        var file = e.target.files[0];
+
+        reader.onload = function (upload) {
+            console.log(upload.target.result);
+        }
+
+        reader.readAsDataURL(file);
     }
 
     render () {
@@ -90,17 +105,17 @@ class CRUDList extends React.Component {
                     {
                         canUploadFile ?
                         <TabItem text="Upload File">
-                            <form onsubmit="this.reset(); return false;">
-                                <Input type="file" label="Upload File" ref="value_1" />
+                            <form action="#" onSubmit={this.handleUpload} encType="multipart/form-data">
+                                <Input type="file" label="Upload File" ref="value_1" onChange={this.handleFile} />
                                 <Input type="text" label="Destination Path" ref="value_2"/>
-                                <Button text="Upload" type="submit" isForm="true" onClick={this.handleUpload.bind(this)} />
+                                <Button text="Upload" type="submit" isForm="true" />
                             </form>
                         </TabItem>
                         : null
                     }
 
                     <TabItem text={addItemText}>
-                        <form onsubmit="this.reset(); return false;">
+                        <form action="#" onsubmit="this.reset(); return false;">
                             <Input type="text" label={textAddValue} ref="value_1" />
                             { withFileUploadDestination ? <Input type="text" label="Destination Path" ref="value_2"/> : null }
                             <Button text="Add" type="submit" isInline="true" isForm="true" onClick={this.handleAdd.bind(this)} />
