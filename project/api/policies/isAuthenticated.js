@@ -1,13 +1,15 @@
-/**
- * Created by Maxim on 14/08/2015.
- */
 var passport = require('passport');
 
 module.exports = function(req, res, next) {
     passport.authenticate('jwt', function(err, user, info) {
-        if(err) return res.serverError(err);
-        if(!user)
+        if(err) {
+            return res.serverError(err);
+        }
+
+        if(!user) {
             return res.unauthorized(null, info && info.code, info && info.message);
+        }
+
         req.user = user;
         next();
     })(req, res);

@@ -6,33 +6,32 @@
 */
 
 module.exports = {
-  tableName: 'project_user',
-  attributes: {
-    id: {
-      type: 'integer',
-      unique: true,
-      primaryKey: true,
-      columnName: 'id',
-      autoIncrement: true
-    },
-    addedOn: {
-      type: 'datetime',
-      columnName: 'added_on',
-      defaultsTo: function() { return new Date(); }
-    },
-    isManager: {
-      type: 'boolean',
-      defaultsTo: 'false',
-      columnName: 'is_manager'
-    },
+    tableName: 'project_user',
+    attributes: {
+        id: {
+            type: 'integer',
+            unique: true,
+            primaryKey: true,
+            columnName: 'id',
+            autoIncrement: true
+        },
+        addedOn: {
+            type: 'datetime',
+            columnName: 'added_on',
+            defaultsTo: function() { return new Date(); }
+        },
+        isManager: {
+            type: 'boolean',
+            defaultsTo: 'false',
+            columnName: 'is_manager'
+        },
 
-    //associations
-    user: {
-      model: 'user'
-    },
-    project: {
-      model: 'project'
+        //associations
+        user: {
+            model: 'user'
+        },
+        project: {
+            model: 'project'
+        }
     }
-  }
 };
-

@@ -6,28 +6,27 @@
 */
 
 module.exports = {
-  tableName: 'organisation_user',
-  attributes: {
-    id: {
-      type: 'integer',
-      unique: true,
-      primaryKey: true,
-      columnName: 'id',
-      autoIncrement: true
-    },
-    addedOn: {
-      type: 'datetime',
-      columnName: 'added_on',
-      defaultsTo: function() { return new Date(); }
-    },
+    tableName: 'organisation_user',
+    attributes: {
+        id: {
+            type: 'integer',
+            unique: true,
+            primaryKey: true,
+            columnName: 'id',
+            autoIncrement: true
+        },
+        addedOn: {
+            type: 'datetime',
+            columnName: 'added_on',
+            defaultsTo: function() { return new Date(); }
+        },
 
-    //associations
-    user: {
-      model: 'user'
-    },
-    organisation: {
-      model: 'organisation'
+        //associations
+        user: {
+            model: 'user'
+        },
+        organisation: {
+            model: 'organisation'
+        }
     }
-  }
 };
-

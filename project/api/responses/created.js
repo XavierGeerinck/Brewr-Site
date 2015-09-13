@@ -1,7 +1,4 @@
 /**
- * Created by Maxim on 14/08/2015.
- */
-/**
  * 201 (Created) Response
  * Successful creation occurred (via either POST or PUT).
  * Set the Location header to contain a link

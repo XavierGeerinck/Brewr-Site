@@ -10,11 +10,12 @@ module.exports = {
     audience: sails.config.jwtSettings.audience,
 
     hashPassword: function(user) {
-        if(user.password) {
+        if (user.password) {
             user.password = bcrypt.hashSync(user.password);
-        } else {
-            console.log("No password given");
+            return;
         }
+
+        console.log("No password given");
     },
 
     comparePassword: function(password, user) {

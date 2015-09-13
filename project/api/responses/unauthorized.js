@@ -1,7 +1,4 @@
 /**
- * Created by Maxim on 14/08/2015.
- */
-/**
  * 401 (Unauthorized) Response
  * Similar to 403 Forbidden.
  * Specifically for authentication failed or not yet provided.

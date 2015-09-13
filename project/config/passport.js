@@ -27,7 +27,9 @@ function _onLocalStrategyAuth(email, password, next) {
 
     User.findOne({ email: email}).exec(function(err, user) {
 
-        if (err) return next(err, false, {});
+        if (err) {
+            return next(err, false, {});
+        }
 
         // user not found
         if (!user) {

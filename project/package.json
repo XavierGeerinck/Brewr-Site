@@ -5,7 +5,9 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "async": "^1.4.2",
     "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^2.10.0",
     "ejs": "~0.8.4",
     "grunt": "0.4.2",
     "grunt-contrib-clean": "~0.5.0",
@@ -28,7 +30,8 @@
     "sails": "~0.11.0",
     "sails-disk": "~0.10.0",
     "sails-hook-babel": "^5.0.1",
-    "sails-postgresql": "^0.10.16"
+    "sails-postgresql": "^0.10.16",
+    "uuid": "^2.0.1"
   },
   "scripts": {
     "debug": "babel-node debug app.js",
