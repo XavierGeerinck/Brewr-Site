@@ -36,16 +36,18 @@ module.exports.routes = {
         view: 'homepage'
     },
 
-    'GET /projects/assigned': 'ProjectController.assigned',
     'GET /organisations/:organisation/projects': {
         controller: 'ProjectController',
-        action: 'allInOrganisation',
+        action: 'index',
         cors: {
             origin: '*',
             headers: 'Content-Type, Authorization'
         }
     },
-    'POST /projects/:project/assign': 'ProjectController.assign',
+    'GET /organisations/:organisation/projects/:project': 'ProjectController.show',
+    'GET /organisations/:organisation/projects/assigned': 'ProjectController.assigned',
+    'POST /organisations/:organisation/projects/:project/assign': 'ProjectController.assign',
+
     'POST /projects': 'ProjectController.create',
 
     /***************************************************************************

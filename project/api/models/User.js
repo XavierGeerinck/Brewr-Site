@@ -112,19 +112,19 @@ module.exports = {
 
             for(let i = 0; i < user.memberOf.length; i++) {
                 if(user.memberOf[i].id == organisationId) {
-                    return cb(true);
+                  cb(true);
                 }
             }
 
             // user can also be the OWNER of the company
             for(let i = 0; i < user.ownerOf.length; i++) {
                 if(user.ownerOf[i].id == organisationId) {
-                    return cb(true);
+                  cb(true);
                 }
             }
 
             // not related to this company
-            return cb(false);
+            cb(false);
         });
     },
 
