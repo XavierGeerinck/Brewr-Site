@@ -7,6 +7,10 @@
 var uuid = require('uuid');
 var async = require('async');
 var Promise = require('bluebird');
+var server = require('../../index.js');
+var Boom = require('boom');
+
+var User = server.getModel('user');
 
 module.exports = {
   /**
@@ -29,11 +33,11 @@ module.exports = {
    * Integer organisation: The organisation parameter given in the request
    * Integer user: The logged in user who is requesting
    * @param req
-   * @param res
+   * @param reply
    */
-  index: function(req, res) {
+  index: function(req, reply) {
     var organisation = req.params.organisation;
-    var user = req.user;
+    var user = req.payload.user;
 
     User.isMemberOf(user.id, organisation, function (isMember) {
       if (!isMember) {
@@ -45,7 +49,7 @@ module.exports = {
         .exec(function (err, projects) {
           if (err) {
             console.log(err);
-            return res.serverError();
+            return reply(Boom.badRequest("Could not find project"));
           }
 
           return res.json(projects);
@@ -94,7 +98,7 @@ module.exports = {
   assign: function (req, res) {
     var assigneeId = req.user.id;
     var userId = req.body.user;
-    var projectId = req.params.project;
+    var projectId = req.param('project');
 
     User.assign(assigneeId, userId, projectId, function (succeeded, code) {
       if (succeeded) {
@@ -135,8 +139,9 @@ module.exports = {
    *
    * The table is project_env_info for this dockerfile info and project_file for the files to be created
    */
-  create: function (req, res) {
-    var organisation = req.params.organisation;
+  create: function (req, reply) {
+
+    var organisation = req.param('organisation');
     var user = req.user;
     var params = {};
     params.meta = {}; // contains info about the project
