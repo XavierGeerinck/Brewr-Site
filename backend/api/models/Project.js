@@ -6,7 +6,6 @@
  */
 
 module.exports = {
-  identity: 'project',
   tableName: 'project',
   attributes: {
     id: {

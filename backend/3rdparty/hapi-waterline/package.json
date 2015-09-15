@@ -1,0 +1,61 @@
+{
+  "name": "hapi-waterline",
+  "version": "0.1.2",
+  "description": "Waterline (an adapter-based ORM for Node.js) as plugin for Hapi",
+  "main": "hapi-waterline.js",
+  "scripts": {
+    "test": "mocha --bail --ui bdd --reporter spec -- test/*-test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pencroff/hapi-waterline.git"
+  },
+  "keywords": [
+    "orm",
+    "odm",
+    "dal",
+    "data access layer"
+  ],
+  "author": {
+    "name": "Pencroff"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Pencroff/hapi-waterline/issues"
+  },
+  "homepage": "https://github.com/Pencroff/hapi-waterline",
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "require-dir": "^0.1.0",
+    "waterline": "^0.10.14",
+    "waterline-fixtures": "0.2.3"
+  },
+  "devDependencies": {
+    "chai": "~1.10.0",
+    "hapi": "~8.0.0",
+    "mocha": "~2.0.1",
+    "sails-disk": "^0.10.7"
+  },
+  "gitHead": "28c6467d5edfaa53d5525194f00bc2a3687478e4",
+  "_id": "hapi-waterline@0.1.2",
+  "_shasum": "0334509997095ff1381ce2f15fca98b81eae79da",
+  "_from": "hapi-waterline@*",
+  "_npmVersion": "1.4.28",
+  "_npmUser": {
+    "name": "pencroff",
+    "email": "pencroff@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "pencroff",
+      "email": "pencroff@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "0334509997095ff1381ce2f15fca98b81eae79da",
+    "tarball": "http://registry.npmjs.org/hapi-waterline/-/hapi-waterline-0.1.2.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/hapi-waterline/-/hapi-waterline-0.1.2.tgz",
+  "readme": "ERROR: No README data found!"
+}
