@@ -1,6 +1,8 @@
 'use strict';
 
 var ProjectController = require('../../controllers/ProjectController');
+var Joi = require('joi');
+
 
 module.exports = [
     {
