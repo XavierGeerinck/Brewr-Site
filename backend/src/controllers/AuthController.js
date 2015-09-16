@@ -4,6 +4,7 @@
  */
 var Boom = require('boom');
 var AuthService = require('../services/AuthService.js');
+var _ = require('lodash');
 
 function _onAuth(request, reply, err, user, info) {
     if (err) {
@@ -36,8 +37,17 @@ module.exports = {
                 user: user
             };
         })
-        .then(reply(user))
-        .catch(reply(Boom.conflict("Something went wrong")));
+        .then(function (data, code, message, root){
+            reply(reply.continue());
+        })
+
+        .catch(function(data, options){
+
+            var err = Boom.badData(data.code);
+            err.output.payload.invalidAttributes = data.invalidAttributes;
+            reply(err);
+
+        });
     },
     signin: function (request, reply){
         var User = request.collections.user;
