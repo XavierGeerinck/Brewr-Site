@@ -10,6 +10,7 @@
     "boom": "^2.8.0",
     "dogwater": "^1.0.1",
     "hapi": "^10.0.0",
+    "hapi-auth-jwt": "^3.0.0",
     "jsonwebtoken": "^5.0.5",
     "require-all": "^1.1.0",
     "sails-postgresql": "^0.10.16",

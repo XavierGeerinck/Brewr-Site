@@ -6,7 +6,7 @@ module.exports = [
     {
         method: 'GET',
         path: '/organisations/{organisation}/projects',
-        config: {handler: ProjectController.index}
+        config: {handler: ProjectController.index, auth: 'token'}
     },
     {
         method: 'GET',

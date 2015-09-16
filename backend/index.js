@@ -12,4 +12,4 @@ server.start()
 })
 .catch(function (err) {
     console.log(err);
-})
+});

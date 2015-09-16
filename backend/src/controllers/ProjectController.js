@@ -18,7 +18,7 @@ module.exports = {
     */
     assigned: function (request, reply) {
         var ProjectUser = request.server.plugins.dogwater.projectuser;
-        var user = request.user;
+        var user = request.auth.credentials.user;
         
         ProjectUser
         .find({"user": user.id})
@@ -37,11 +37,11 @@ module.exports = {
     */
     index: function(request, reply) {
         var organisation = request.params.organisation;
-        var user = request.payload.user;
+        var userObj = request.auth.credentials.user;
 
-        var User = request.server.plugins.dogwater.user;
+        var User = request.collections.user;
 
-        User.isMemberOf(user.id, organisation, function (isMember) {
+        User.isMemberOf(userObj.id, organisation, function (isMember) {
             if (!isMember) {
                 return res.json({"success": false, "message": "ORGANISATION_NON_MEMBER"})
             }
@@ -65,9 +65,9 @@ module.exports = {
     * @param res
     */
     show: function(request, reply) {
-        var User = request.server.plugins.dogwater.user;
+        var User = request.collections.user;
 
-        var user = request.user;
+        var user = request.auth.credentials.user;
         var organisation = request.param('organisation');
         var project = request.param('project');
 
@@ -99,9 +99,9 @@ module.exports = {
     * @param res
     */
     assign: function (request, reply) {
-        var User = request.server.plugins.dogwater.user;
+        var User = request.collections.user;
 
-        var assigneeId = request.user.id;
+        var assigneeId = request.auth.credentials.user;
         var userId = request.body.user;
         var projectId = request.param('project');
 
@@ -145,12 +145,12 @@ module.exports = {
     * The table is project_env_info for this dockerfile info and project_file for the files to be created
     */
     create: function (request, reply) {
-        var Project = request.server.plugins.dogwater.user;
-        var ProjectRevision = request.server.plugins.dogwater.user;
-        var ProjectFile = request.server.plugins.dogwater.user;
+        var Project = request.collections.user;
+        var ProjectRevision = request.collections.user;
+        var ProjectFile = request.collections.user;
 
         var organisation = request.param('organisation');
-        var user = request.user;
+        var user = request.auth.credentials.user;
         var params = {};
         params.meta = {}; // contains info about the project
         params.envInfo = {}; // Contains environment info

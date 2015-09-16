@@ -15,7 +15,7 @@ function _onAuth(request, reply, err, user, info) {
         return reply(Boom.unauthorized(null, info && info.code, info && info.message));
     }
 
-    return res.ok({
+    return reply({
         token: AuthService.createToken(user),
         user: user
     });
@@ -23,7 +23,7 @@ function _onAuth(request, reply, err, user, info) {
 
 module.exports = {
     signup: function (request, reply) {
-        var User = request.server.plugins.dogwater.user;
+        var User = request.collections.user;
 
         User
         .create(_.omit(request.params, 'id'))
@@ -37,25 +37,31 @@ module.exports = {
         .catch(reply(Boom.conflict("Something went wrong")));
     },
     signin: function (request, reply){
-        var User = request.server.plugins.dogwater.user;
+        var User = request.collections.user;
 
         User.findOne({ email: request.payload.email}).exec(function(err, user) {
 
+            var info = {};
+
             if (err) {
-                return reply({success: false, code: "ERR"});
+                info.code = "ERR";
+                info.message = "An error occured";
             }
 
             // user not found
             if (!user) {
-                return reply({success: false, code: "E_USER_NOT_FOUND", message: "Unknown user: " + request.payload.email});
+                info.code = "E_USER_NOT_FOUND";
+                info.message = "Unknown user: " + request.payload.email;
             }
 
             // wrong password
-            if (!AuthService.comparePassword(password, user)) {
-                return reply({success: false, code: 'E_WRONG_PASSWORD', message: 'Invalid password'});
+            if (!AuthService.comparePassword(request.payload.password, user)) {
+                info.code = "E_WRONG_PASSWORD";
+                info.message = "Invalid password";
             }
 
-            return reply(user);
+
+            return _onAuth(request, reply, err, user, info);
         });
 
 

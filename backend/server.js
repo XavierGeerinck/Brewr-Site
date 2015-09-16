@@ -65,7 +65,12 @@ function registerPlugins() {
                     models: Object.keys(models).map(function (key) { return models[key]; }),
                     //fixtures: Object.keys(fixtures).map(function (key) { return fixtures[key]; })
                 }
-            }//,
+            },
+            {
+                register: require('hapi-auth-jwt'),
+                options: {}
+            }
+            //,
             // {
             //     register: require('hapi-auth-bearer-simple'),
             //     options: {}
@@ -74,7 +79,8 @@ function registerPlugins() {
             if (err) {
                 return reject(err);
             }
-            //registerStrategy(server);
+
+            registerStrategy(server);
             registerRoutes(server);
 
             return resolve();
@@ -82,10 +88,23 @@ function registerPlugins() {
     });
 }
 
+function validateFunction(request, decodedToken, callback) {
+
+    if(!decodedToken) {
+        return callback(error, false, decodedToken);
+    }
+
+    request.payload.user = decodedToken;
+    server.expose('request', request);
+    return callback(error, true, decodedToken);
+
+};
+
 // Register the authentication strategies
 function registerStrategy(server) {
     // Register the strategy
-    server.auth.strategy('bearer', 'bearerAuth', {
+    server.auth.strategy('token', 'jwt', {
+        key: config.jwt.privateKey,
         validateFunction: validateFunction
     });
 }
