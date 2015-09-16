@@ -39,7 +39,7 @@ module.exports = [
                     }).required(),
 
                     // The files for the project
-                    files: Joi.array().includes(Joi.object({
+                    files: Joi.array().items(Joi.object({
                         name: Joi.string().required(),
                         content: Joi.string().required()
                     })),
@@ -49,18 +49,18 @@ module.exports = [
                         distribution: Joi.string(),
                         distributionVersion: Joi.string(),
                         maintainer: Joi.string(),
-                        label: Joi.array().includes(Joi.string()),
+                        label: Joi.array().items(Joi.string()),
                         workdir: Joi.string(),
                         user: Joi.string(),
-                        cmd: Joi.array().includes(Joi.string()),
-                        sourceCode: Joi.array().includes(Joi.string()),
-                        run: Joi.array().includes(Joi.string()),
-                        expose: Joi.array().includes(Joi.string()),
-                        env: Joi.array().includes(Joi.string()),
-                        add: Joi.array().includes(Joi.string()),
-                        copy: Joi.array().includes(Joi.string()),
+                        cmd: Joi.array().items(Joi.string()),
+                        sourceCode: Joi.array().items(Joi.string()),
+                        run: Joi.array().items(Joi.string()),
+                        expose: Joi.array().items(Joi.string()),
+                        env: Joi.array().items(Joi.string()),
+                        add: Joi.array().items(Joi.string()),
+                        copy: Joi.array().items(Joi.string()),
                         entrypoint: Joi.string(),
-                        volume: Joi.array().includes(Joi.string()),
+                        volume: Joi.array().items(Joi.string()),
                         onbuild: Joi.string().allow(null)
                     }).required()
                 }
