@@ -10,6 +10,7 @@ var AuthService = require('../services/AuthService.js');
 module.exports = {
     identity: 'user',
     tableName: 'user',
+    connection: 'simple',
     attributes: {
         id: {
             type: 'integer',
@@ -115,14 +116,14 @@ module.exports = {
 
             for(var i = 0; i < user.memberOf.length; i++) {
                 if(user.memberOf[i].id == organisationId) {
-                  cb(true);
+                    cb(true);
                 }
             }
 
             // user can also be the OWNER of the company
             for(var i = 0; i < user.ownerOf.length; i++) {
                 if(user.ownerOf[i].id == organisationId) {
-                  cb(true);
+                    cb(true);
                 }
             }
 

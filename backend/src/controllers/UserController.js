@@ -6,7 +6,9 @@
  */
 
 module.exports = {
-    all: function (req, res) {
+    all: function (request, reply) {
+        var User = request.server.plugins.dogwater.user;
+        
         User.find({}, function (err, users){
            res.json(users);
         });

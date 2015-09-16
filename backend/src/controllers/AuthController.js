@@ -3,10 +3,9 @@
  * @description handles the authentications
  */
 var Boom = require('boom');
-var User = hapiServer.getModel('user');
 var AuthService = require('../services/AuthService.js');
 
-function _onAuth(req, reply, err, user, info) {
+function _onAuth(request, reply, err, user, info) {
     if (err) {
         console.log(err);
         return res.serverError(err);
@@ -23,9 +22,11 @@ function _onAuth(req, reply, err, user, info) {
 }
 
 module.exports = {
-    signup: function (req, reply) {
+    signup: function (request, reply) {
+        var User = request.server.plugins.dogwater.user;
+
         User
-        .create(_.omit(req.params, 'id'))
+        .create(_.omit(request.params, 'id'))
         .then(function (user) {
             return {
                 token: AuthService.createToken(user),
@@ -35,9 +36,10 @@ module.exports = {
         .then(reply.created)
         .catch(reply(Boom.conflict("Something went wrong")));
     },
-    signin: function (req, reply){
+    signin: function (request, reply){
+        var User = request.server.plugins.dogwater.user;
 
-        User.findOne({ email: req.payload.email}).exec(function(err, user) {
+        User.findOne({ email: request.payload.email}).exec(function(err, user) {
 
             if (err) {
                 return reply({success: false, code: "ERR"});
@@ -45,7 +47,7 @@ module.exports = {
 
             // user not found
             if (!user) {
-                return reply({success: false, code: "E_USER_NOT_FOUND", message: "Unknown user: " + req.payload.email});
+                return reply({success: false, code: "E_USER_NOT_FOUND", message: "Unknown user: " + request.payload.email});
             }
 
             // wrong password

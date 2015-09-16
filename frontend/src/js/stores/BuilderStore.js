@@ -7,10 +7,10 @@ class BuilderStore extends BaseStore {
 
         this.subscribe(() => this._registerToActions.bind(this));
 
-        // this._dockerfile = {
+        // this._params = {
         //     distribution: null, // FROM (base)
         //     distribution_version: null, // FROM (version)
-        //     instructions: {
+        //     envInfo: {
         //         maintainer: null, // The MAINTAINER instruction allows you to set the Author field of the generated images.
         //         label: [], // The LABEL instruction adds metadata to an image. A LABEL is a key-value pair. (LABEL <key>=<value> <key>=<value> <key>=<value>)
         //         workdir: null, // The WORKDIR instruction sets the working directory
@@ -78,10 +78,15 @@ class BuilderStore extends BaseStore {
             }
         ];
 
-        this._dockerfile = {
-            "distribution": "ubuntu",
-            "distribution_version": "14.04",
-            "instructions": {
+        this._params = {
+            meta: {
+                name: "",                   // Project Name
+                description: ""             // Project Description
+            },
+            files: [],                      // Files to add, format: { name: "", content: "" }
+            envInfo: {
+                "distribution": "ubuntu",
+                "distributionVersion": "14.04",
                 "maintainer": "Xavier",
                 "label": [
                     {
@@ -109,7 +114,7 @@ class BuilderStore extends BaseStore {
                         "id": 3
                     }
                 ],
-                "source_code": null,
+                "sourceCode": null,
                 "cmd": [
                     {
                         "value": "nginx -g daemon off;"
@@ -173,8 +178,8 @@ class BuilderStore extends BaseStore {
     _registerToActions(action) {
         switch (action.actionType) {
             case types.BUILDER_DISTRIBUTION_CHANGE:
-            this._dockerfile.distribution = action.distribution;
-            this._dockerfile.distribution_version = action.distribution_version;
+            this._params.distribution = action.distribution;
+            this._params.distributionVersion = action.distribution_version;
             this.emitChange();
             break;
             case types.BUILDER_NEXT_PAGE:
@@ -194,50 +199,61 @@ class BuilderStore extends BaseStore {
             this.emitChange();
             break;
             case types.BUILDER_CHANGE_MAINTAINER:
-            this._dockerfile.instructions.maintainer = action.maintainer;
+            this._params.envInfo.maintainer = action.maintainer;
             this.emitChange();
             break;
             case types.BUILDER_CHANGE_WORKDIR:
-            this._dockerfile.instructions.workdir = action.workdir;
+            this._params.envInfo.workdir = action.workdir;
             this.emitChange();
             break;
             case types.BUILDER_CHANGE_USER:
-            this._dockerfile.instructions.user = action.user;
+            this._params.envInfo.user = action.user;
             this.emitChange();
             break;
             case types.BUILDER_CHANGE_LABEL_ITEMS:
-            this._dockerfile.instructions.label = action.items;
+            this._params.envInfo.label = action.items;
             this.emitChange();
             break;
             case types.BUILDER_CHANGE_RUN_ITEMS:
-            this._dockerfile.instructions.run = action.items;
+            this._params.envInfo.run = action.items;
             this.emitChange();
             break;
             case types.BUILDER_CHANGE_SOURCE_CODE_ITEMS:
-            this._dockerfile.instructions.source_code = action.items;
+            this._params.envInfo.sourceCode = action.items;
             this.emitChange();
             break;
             case types.BUILDER_CHANGE_EXPOSE_ITEMS:
-            this._dockerfile.instructions.expose = action.items;
+            this._params.envInfo.expose = action.items;
             this.emitChange();
             break;
             case types.BUILDER_CHANGE_VOLUME_ITEMS:
-            this._dockerfile.instructions.volume = action.items;
+            this._params.envInfo.volume = action.items;
             this.emitChange();
             break;
             case types.BUILDER_CHANGE_ADD_ITEMS:
-            this._dockerfile.instructions.add = action.items;
+            action.items.forEach(i => {
+                if (i.content) {
+                    this._params.files.push({
+                        name: i.value.split(':')[0],
+                        content: i.content
+                    });
+
+                    delete i.content;
+                }
+            });
+
+            this._params.envInfo.add = action.items;
             this.emitChange();
             break;
             case types.BUILDER_CHANGE_ENV_ITEMS:
-            this._dockerfile.instructions.env = action.items;
+            this._params.envInfo.env = action.items;
             this.emitChange();
             break;
             case types.BUILDER_CHANGE_CMD_ITEMS:
-            this._dockerfile.instructions.cmd = action.items;
+            this._params.envInfo.cmd = action.items;
             this.emitChange();
             break;
-            case types.BUILDER_FINISH_DOCKERFILE:
+            case types.BUILDER_FINISH_params:
             default:
             console.log(action);
                 console.log(action.actionType + ' Not Implemented');
@@ -245,7 +261,7 @@ class BuilderStore extends BaseStore {
     }
 
     get dockerfile() {
-        return this._dockerfile;
+        return this._params;
     }
 
     get currentStep() {

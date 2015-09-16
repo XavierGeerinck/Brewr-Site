@@ -9,19 +9,23 @@ module.exports = [
         config: {handler: ProjectController.index}
     },
     {
-        method: 'GET', path: '/organisations/{organisation}/projects/{project}',
+        method: 'GET',
+        path: '/organisations/{organisation}/projects/{project}',
         config: { handler: ProjectController.show }
     },
     {
-        method: 'GET', path: '/organisations/{organisation}/projects/assigned',
+        method: 'GET',
+        path: '/organisations/{organisation}/projects/assigned',
         config: { handler: ProjectController.assigned }
     },
     {
-        method: 'POST', path: '/organisations/{organisation}/projects/{project}/assign',
+        method: 'POST',
+        path: '/organisations/{organisation}/projects/{project}/assign',
         config: { handler: ProjectController.assign }
     },
     {
-        method: 'POST', path: '/projects',
+        method: 'POST',
+        path: '/projects',
         config: {handler: ProjectController.create }
     }
 ];

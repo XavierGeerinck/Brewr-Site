@@ -8,6 +8,7 @@
 module.exports = {
     identity: 'organisationuser',
     tableName: 'organisation_user',
+    connection: 'simple',
     attributes: {
         id: {
             type: 'integer',

@@ -8,6 +8,7 @@
 module.exports = {
     identity: 'projectfile',
     tableName: 'project_file',
+    connection: 'simple',
     attributes: {
         id: {
             type: 'integer',
@@ -19,9 +20,9 @@ module.exports = {
         fileName: 'string',
         fileDataUri: 'text',
         createdOn: {
-          type: 'datetime',
-          columnName: 'created_on',
-          defaultsTo: function() { return new Date(); }
+            type: 'datetime',
+            columnName: 'created_on',
+            defaultsTo: function() { return new Date(); }
         },
 
         //assocations

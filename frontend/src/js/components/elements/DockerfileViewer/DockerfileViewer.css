@@ -13,7 +13,7 @@
 .DockerfileViewer-Dockerfile > div {
     margin-bottom: 10px;
 }
-
+  
 .DockerfileViewer-Dockerfile > div:last-child {
     margin-bottom: 0px;
 }

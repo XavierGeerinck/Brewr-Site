@@ -6,7 +6,9 @@
 */
 
 module.exports = {
+    identity: 'projectrevision',
     tableName: 'projectrevision',
+    connection: 'simple',
     attributes: {
         id: {
             type: 'integer',

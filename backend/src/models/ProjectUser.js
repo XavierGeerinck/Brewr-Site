@@ -1,13 +1,14 @@
 /**
-* UserSession.js
+* ProjectUser.js
 *
-* @description :: Represents a session of a user
+* @description :: Represents the users assigned to a project
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
 module.exports = {
-    identity: 'usersession',
-    tableName: 'user_session',
+    identity: 'projectuser',
+    tableName: 'project_user',
+    connection: 'simple',
     attributes: {
         id: {
             type: 'integer',
@@ -16,21 +17,23 @@ module.exports = {
             columnName: 'id',
             autoIncrement: true
         },
-        createdOn: {
+        addedOn: {
             type: 'datetime',
-            columnName: 'created_on',
+            columnName: 'added_on',
             defaultsTo: function() { return new Date(); }
         },
-        token: 'string',
-        userAgent: {
-            type: 'string',
-            columnName: 'user_agent'
+        isManager: {
+            type: 'boolean',
+            defaultsTo: 'false',
+            columnName: 'is_manager'
         },
-        ip: 'string',
 
         //associations
         user: {
             model: 'user'
+        },
+        project: {
+            model: 'project'
         }
     }
 };

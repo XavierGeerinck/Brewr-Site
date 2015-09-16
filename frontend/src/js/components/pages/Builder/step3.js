@@ -45,13 +45,12 @@ class Step3 extends React.Component {
 
         if (this.refs.input_add_items) {
             var items = JSON.parse(JSON.stringify(this.refs.input_add_items.refs.child.state.items));
-            console.log(items);
             BuilderActions.changeAddItems(items);
         }
     }
 
     render() {
-        let dockerfile = BuilderStore.dockerfile.instructions;
+        let dockerfile = BuilderStore.dockerfile.envInfo;
 
         return (
             <FlexContainer>

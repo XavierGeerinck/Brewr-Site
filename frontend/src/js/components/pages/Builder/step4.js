@@ -36,7 +36,7 @@ class Step4 extends React.Component {
     }
 
     render() {
-        let dockerfile = BuilderStore.dockerfile.instructions;
+        let dockerfile = BuilderStore.dockerfile.envInfo;
 
         return (
             <FlexContainer>

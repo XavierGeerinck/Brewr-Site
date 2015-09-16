@@ -1,0 +1,19 @@
+{
+  "main": "./index.js",
+  "name": "Brewr-Backend",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "async": "^1.4.2",
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^2.10.0",
+    "boom": "^2.8.0",
+    "dogwater": "^1.0.1",
+    "hapi": "^10.0.0",
+    "jsonwebtoken": "^5.0.5",
+    "require-all": "^1.1.0",
+    "sails-postgresql": "^0.10.16",
+    "underscore": "^1.8.3",
+    "uuid": "^2.0.1"
+  }
+}

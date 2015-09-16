@@ -1,143 +1,143 @@
 [
-  {
-    "model": "user",
-    "items": [
-      {
-        "id": 1,
-        "email": "maximgeerinck@hotmail.com",
-        "password": "test",
-        "enabled": true,
-        "scope": null,
-        "createdOn": "2015-08-08T08:58:43.000Z",
-        "updatedOn": "2015-08-08T08:58:47.000Z",
-        "expiresOn": "2015-08-08T08:58:48.000Z"
-      },
-      {
-        "id": 2,
-        "email": "NicholasTCoakley@brewr.com",
-        "password": "test",
-        "enabled": true,
-        "scope": null,
-        "createdOn": "2015-08-08T08:58:43.000Z",
-        "updatedOn": "2015-08-08T08:58:47.000Z",
-        "expiresOn": "2015-08-08T08:58:48.000Z"
-      },
-      {
-        "id": 3,
-        "email": "AdelineNPedraza@brewr.com",
-        "password": "test",
-        "enabled": true,
-        "scope": null,
-        "createdOn": "2015-08-08T08:58:43.000Z",
-        "updatedOn": "2015-08-08T08:58:47.000Z",
-        "expiresOn": "2015-08-08T08:58:48.000Z"
-      },
-      {
-        "id": 4,
-        "email": "SeanAMurphy@brewr.com",
-        "password": "test",
-        "enabled": true,
-        "scope": null,
-        "createdOn": "2015-08-08T08:58:43.000Z",
-        "updatedOn": "2015-08-08T08:58:47.000Z",
-        "expiresOn": "2015-08-08T08:58:48.000Z"
-      }
-    ]
-  },
-  {
-    "model": "organisation",
-    "items": [
-      {
-        "id": 1,
-        "name": "Test organisation",
-        "description": "an organization which focus on lipsum...",
-        "subdomain": "test.organisation.com",
-        "owner": 1,
-        "user_limit": 25,
-        "project_limit": 5,
-        "createdBy": 1
-      }
-    ]
-  },
-  {
-    "model": "project",
-    "items": [
-      {
-        "id": 1,
-        "name": "Brewr",
-        "description": "A project to create brewr, placeholder",
-        "organisation": 1,
-        "estimated_price": 100000,
-        "created_by": 1
-      },
-      {
-        "id": 2,
-        "name": "What to eat",
-        "description": "A project to share what to eat",
-        "organisation": 1,
-        "estimated_price": 45000,
-        "created_by": 1
-      }
-    ]
-  },
-  {
-    "model": "projectuser",
-    "items": [
-      {
-        "id": 1,
-        "addedOn": "2015-08-10T08:59:43.000Z",
-        "deadline": "2015-11-13T08:59:43.000Z",
-        "isManager": true,
-        "user": 2,
-        "project": 1
-      },
-      {
-        "id": 2,
-        "addedOn": "2015-08-10T09:10:43.000Z",
-        "deadline": "2015-11-20T08:59:43.000Z",
-        "isManager": false,
-        "user": 3,
-        "project": 1
-      },
-      {
-        "id": 3,
-        "addedOn": "2015-08-10T09:13:43.000Z",
-        "deadline": "2015-12-10T08:59:43.000Z",
-        "isManager": true,
-        "user": 4,
-        "project": 2
-      },
-      {
-        "id": 4,
-        "addedOn": "2015-08-10T09:13:43.000Z",
-        "deadline": "2015-12-10T08:59:43.000Z",
-        "isManager": true,
-        "user": 1,
-        "project": 2
-      }
-    ]
-  },
-  {
-    "model": "organisationuser",
-    "items": [
-      {
-        "id": 1,
-        "addedOn": "2015-08-10T08:58:43.000Z",
-        "user": 2,
-        "organisation": 1
-      },
-      {
-        "id": 2,
-        "addedOn": "2015-08-10T08:58:43.000Z",
-        "user": 3,
-        "organisation": 1
-      },
-      {
-        "id": 3,
-        "addedOn": "2015-08-10T08:58:43.000Z",
-        "user": 4,
-        "organisation": 1
-      }
-    ]
-  }
+    {
+        "model": "user",
+        "items": [
+            {
+                "id": 1,
+                "email": "maximgeerinck@hotmail.com",
+                "password": "test",
+                "enabled": true,
+                "scope": null,
+                "createdOn": "2015-08-08T08:58:43.000Z",
+                "updatedOn": "2015-08-08T08:58:47.000Z",
+                "expiresOn": "2015-08-08T08:58:48.000Z"
+            },
+            {
+                "id": 2,
+                "email": "NicholasTCoakley@brewr.com",
+                "password": "test",
+                "enabled": true,
+                "scope": null,
+                "createdOn": "2015-08-08T08:58:43.000Z",
+                "updatedOn": "2015-08-08T08:58:47.000Z",
+                "expiresOn": "2015-08-08T08:58:48.000Z"
+            },
+            {
+                "id": 3,
+                "email": "AdelineNPedraza@brewr.com",
+                "password": "test",
+                "enabled": true,
+                "scope": null,
+                "createdOn": "2015-08-08T08:58:43.000Z",
+                "updatedOn": "2015-08-08T08:58:47.000Z",
+                "expiresOn": "2015-08-08T08:58:48.000Z"
+            },
+            {
+                "id": 4,
+                "email": "SeanAMurphy@brewr.com",
+                "password": "test",
+                "enabled": true,
+                "scope": null,
+                "createdOn": "2015-08-08T08:58:43.000Z",
+                "updatedOn": "2015-08-08T08:58:47.000Z",
+                "expiresOn": "2015-08-08T08:58:48.000Z"
+            }
+        ]
+    },
+    {
+        "model": "organisation",
+        "items": [
+            {
+                "id": 1,
+                "name": "Test organisation",
+                "description": "an organization which focus on lipsum...",
+                "subdomain": "test.organisation.com",
+                "owner": 1,
+                "user_limit": 25,
+                "project_limit": 5,
+                "createdBy": 1
+            }
+        ]
+    },
+    {
+        "model": "project",
+        "items": [
+            {
+                "id": 1,
+                "name": "Brewr",
+                "description": "A project to create brewr, placeholder",
+                "organisation": 1,
+                "estimated_price": 100000,
+                "created_by": 1
+            },
+            {
+                "id": 2,
+                "name": "What to eat",
+                "description": "A project to share what to eat",
+                "organisation": 1,
+                "estimated_price": 45000,
+                "created_by": 1
+            }
+        ]
+    },
+    {
+        "model": "projectuser",
+        "items": [
+            {
+                "id": 1,
+                "addedOn": "2015-08-10T08:59:43.000Z",
+                "deadline": "2015-11-13T08:59:43.000Z",
+                "isManager": true,
+                "user": 2,
+                "project": 1
+            },
+            {
+                "id": 2,
+                "addedOn": "2015-08-10T09:10:43.000Z",
+                "deadline": "2015-11-20T08:59:43.000Z",
+                "isManager": false,
+                "user": 3,
+                "project": 1
+            },
+            {
+                "id": 3,
+                "addedOn": "2015-08-10T09:13:43.000Z",
+                "deadline": "2015-12-10T08:59:43.000Z",
+                "isManager": true,
+                "user": 4,
+                "project": 2
+            },
+            {
+                "id": 4,
+                "addedOn": "2015-08-10T09:13:43.000Z",
+                "deadline": "2015-12-10T08:59:43.000Z",
+                "isManager": true,
+                "user": 1,
+                "project": 2
+            }
+        ]
+    },
+    {
+        "model": "organisationuser",
+        "items": [
+            {
+                "id": 1,
+                "addedOn": "2015-08-10T08:58:43.000Z",
+                "user": 2,
+                "organisation": 1
+            },
+            {
+                "id": 2,
+                "addedOn": "2015-08-10T08:58:43.000Z",
+                "user": 3,
+                "organisation": 1
+            },
+            {
+                "id": 3,
+                "addedOn": "2015-08-10T08:58:43.000Z",
+                "user": 4,
+                "organisation": 1
+            }
+        ]
+    }
 ]
