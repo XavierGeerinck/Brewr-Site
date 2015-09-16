@@ -8,9 +8,13 @@ import TeamPage from './components/pages/Team';
 import ProjectPage from './components/pages/Project';
 import HomePage from './components/pages/Home';
 
+const createBrowserHistory = require('history/lib/createBrowserHistory');
+
+let history = createBrowserHistory();
+
 // Todo: add onEnter={requireAuth} to projects, teams, builder paths!!
 var routes = (
-    <Router>
+    <Router history={history}>
         <Route path="/" component={App}>
             <IndexRoute component={HomePage} />
             <Route path="builder"   component={BuilderPage} />
