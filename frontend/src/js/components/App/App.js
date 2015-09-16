@@ -6,14 +6,14 @@ import './App.css';
 var RouteHandler = Router.RouteHandler;
 
 class App extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
-    
+
     render() {
         return (
             <div id="app" className="App-Container">
-                <RouteHandler />
+                {this.props.children}
             </div>
         );
     }

@@ -1,0 +1,6 @@
+{
+    "name": "HomePage",
+    "main": "./Home.js",
+    "private": true,
+    "version": "0.0.0"
+}
