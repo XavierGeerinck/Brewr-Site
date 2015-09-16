@@ -24,7 +24,6 @@ function _onAuth(request, reply, err, user, info) {
 module.exports = {
     signup: function (request, reply) {
         var User = request.collections.user;
-
         User
         .create(_.omit(request.params, 'id'))
         .then(function (user) {
@@ -33,7 +32,7 @@ module.exports = {
                 user: user
             };
         })
-        .then(reply.created)
+        .then(reply(user))
         .catch(reply(Boom.conflict("Something went wrong")));
     },
     signin: function (request, reply){

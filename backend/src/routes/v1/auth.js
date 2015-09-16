@@ -6,5 +6,9 @@ module.exports = [
         method: 'POST',
         path: '/auth/signin',
         config: { handler: AuthController.signin }
+    },
+    {
+        method: 'POST', path: '/auth/signup',
+        config: {handler: AuthController.signup }
     }
 ];
