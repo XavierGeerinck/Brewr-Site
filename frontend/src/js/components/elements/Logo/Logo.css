@@ -17,3 +17,11 @@
   letter-spacing: 1px;
   font-weight: bold;
 }
+
+.Logo-Align-Left {
+    float: left;
+}
+
+.Logo-Align-Right {
+    float: right;
+}

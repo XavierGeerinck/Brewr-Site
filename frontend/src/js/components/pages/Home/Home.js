@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
-import Footer from '../../elements/Footer'
+import Footer from '../../elements/Footer';
+import Logo from '../../elements/Logo';
 import './Home.css';
 import { Link } from 'react-router';
 
@@ -15,7 +16,9 @@ class Home extends React.Component {
             	<header>
             		<nav>
             			<div className="container">
-                            <Link to="/" className="logo"/>
+                            <Link to="/">
+                                <Logo align="left" />
+                            </Link>
 
             				<ul>
             					<li><Link to="/">Home</Link></li>
