@@ -19,7 +19,7 @@ module.exports = {
     assigned: function (request, reply) {
         var ProjectUser = request.server.plugins.dogwater.projectuser;
         var user = request.auth.credentials.user;
-        
+
         ProjectUser
         .find({"user": user.id})
         .populate("project")
@@ -151,28 +151,6 @@ module.exports = {
 
         var organisation = request.param('organisation');
         var user = request.auth.credentials.user;
-        var params = {};
-        params.meta = {}; // contains info about the project
-        params.envInfo = {}; // Contains environment info
-        params.files = request.body.files || [];
-        params.envInfo.distribution = request.body.envInfo.distribution;
-        params.envInfo.distributionVersion = request.body.envInfo.distributionVersion;
-        params.envInfo.maintainer = request.body.envInfo.maintainer;
-        params.envInfo.label = request.body.envInfo.label;
-        params.envInfo.workdir = request.body.envInfo.workdir;
-        params.envInfo.user = request.body.envInfo.user;
-        params.envInfo.cmd = request.body.envInfo.cmd;
-        params.envInfo.sourceCode = request.body.envInfo.sourceCode;
-        params.envInfo.run = request.body.envInfo.run;
-        params.envInfo.expose = request.body.envInfo.expose;
-        params.envInfo.env = request.body.envInfo.env;
-        params.envInfo.add = request.body.envInfo.add;
-        params.envInfo.copy = request.body.envInfo.copy;
-        params.envInfo.entrypoint = request.body.envInfo.entrypoint;
-        params.envInfo.volume = request.body.envInfo.volume;
-        params.envInfo.onbuild = request.body.envInfo.onbuild;
-        params.meta.name = request.body.meta.name;
-        params.meta.description = request.body.meta.description;
 
         // Project name is required
         if (!params.meta.name) {
@@ -183,12 +161,10 @@ module.exports = {
         Project.create({
             organisation: organisation,
             createdBy: user,
-            name: params.meta.name,
-            description: params.meta.description
+            name: request.meta.name,
+            description: request.meta.description || ''
         })
         .then(function (project) {
-            console.log(project);
-
             // Create the revision
             return ProjectRevision.create({
                 project: project,
@@ -196,10 +172,8 @@ module.exports = {
             });
         })
         .then(function (projectRevision) {
-            console.log(projectRevision);
-
             // Create the project files
-            async.each(params.files, function (file, cb) {
+            async.each(request.payload.files, function (file, cb) {
                 ProjectFile.create({
                     projectRevision: projectRevision,
                     fileName: file.name,
@@ -221,17 +195,16 @@ module.exports = {
             });
         })
         .then(function (projectRevision) {
-            var info = params.envInfo;
+            var info = request.payload.envInfo;
             info.projectRevision = projectRevision;
 
             return ProjectEnvInfo.create(info);
         })
         .then(function (projectEnvInfo) {
-            console.log(projectEnvInfo);
-            return res.json({succes: true});
+            return reply({ succes: true });
         })
         .catch(function (err) {
-            return res.badRequest(err, 'POST /project');
+            return reply(Boom.badRequest(err));
         });
     }
 };
