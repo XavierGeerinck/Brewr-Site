@@ -25,7 +25,7 @@ class Home extends React.Component {
             					<li><a href="tour.html">Tour</a></li>
             					<li><a href="pricing.html">Pricing</a></li>
             					<li><Link to="/login">Sign in</Link></li>
-            					<li><Link className="button white" to="/login">Sign up</Link></li>
+            					<li><Link className="button white" to="/register">Sign up</Link></li>
             				</ul>
             			</div>
             		</nav>

@@ -14,8 +14,9 @@ const createBrowserHistory = require('history/lib/createBrowserHistory');
 let history = createBrowserHistory();
 
 // Todo: add onEnter={requireAuth} to projects, teams, builder paths!!
+// <Router history={history}>
 var routes = (
-    <Router history={history}>
+    <Router>
         <Route path="/" component={App}>
             <IndexRoute component={HomePage} />
             <Route path="builder"   component={BuilderPage} />

@@ -6,7 +6,7 @@
 - src/
     - images/                           # deprecated -- to be removed
     - js/
-        - actions/                      # Actions will be called by components and they will adapt a store
+        - actions/                      # Actions will be called by components and they will adapt a store, everything that ends on Creators does an API call
         - components/
             - App/                      # Main entry points of the app
             - elements/                 # consists out of all the different elements (drag and drop). These are STORELESS
