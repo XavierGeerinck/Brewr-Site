@@ -5,7 +5,10 @@
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
+var AuthService = require('../services/AuthService.js');
+
 module.exports = {
+    identity: 'user',
     tableName: 'user',
     attributes: {
         id: {

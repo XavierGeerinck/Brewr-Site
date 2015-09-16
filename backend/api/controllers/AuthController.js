@@ -3,8 +3,7 @@
  * @description handles the authentications
  */
 var Boom = require('boom');
-var server = require('../../index.js');
-var User = server.getModel('user');
+var User = hapiServer.getModel('user');
 var AuthService = require('../services/AuthService.js');
 
 function _onAuth(req, reply, err, user, info) {
