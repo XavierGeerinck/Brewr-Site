@@ -15,13 +15,8 @@ module.exports = {
     secret: SECRET,
     algorithm: ALGORITHM,
 
-    hashPassword: function(user) {
-        if (user.password) {
-            user.password = bcrypt.hashSync(user.password);
-            return;
-        }
-
-        console.log("No password given");
+    hashPassword: function (password) {
+        return bcrypt.hashSync(password);
     },
 
     comparePassword: function(password, user) {

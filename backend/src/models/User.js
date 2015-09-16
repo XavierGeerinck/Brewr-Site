@@ -88,13 +88,25 @@ module.exports = {
         }
 
     },
-    beforeCreate: function(values, next){
-        AuthService.hashPassword(values);
+    beforeCreate: function (values, next) {
+        // Hash the password
+        if (values.password) {
+            values.password = AuthService.hashPassword(values.password);
+        }
+
+        // Callback
         next();
     },
     beforeUpdate: function(values, next) {
-        AuthService.hashPassword(values);
+        // Hash password
+        if (values.password) {
+            values.password = AuthService.hashPassword(values.password);
+        }
+
+        // Set updated field
         values.updatedOn = new Date();
+
+        // Callback
         next();
     },
 
