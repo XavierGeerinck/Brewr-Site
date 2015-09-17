@@ -1,5 +1,6 @@
 import React from 'react';
 import BaseComponent from '../../BaseComponent';
+import { Link } from 'react-router';
 import './SideMenu.css';
 
 export default class SideMenu extends BaseComponent {
@@ -10,7 +11,7 @@ export default class SideMenu extends BaseComponent {
 
                 <ul>
                     <li>
-                        <a href="#"><i className="fa fa-home"></i><span>Dashboard</span></a>
+                        <Link to="/dashboard"><i className="fa fa-home"></i><span>Dashboard</span></Link>
                     </li>
 
                     <li>
@@ -32,7 +33,7 @@ export default class SideMenu extends BaseComponent {
                         </ul>
                     </li>
                     <li className="active">
-                        <a href="#"><i className="fa fa-gears"></i><span>Image Creator</span></a>
+                        <Link to="/builder"><i className="fa fa-gears"></i><span>Image Creator</span></Link>
                     </li>
                     <li>
                         <a href="#"><i className="fa fa-lock"></i><span>Admin</span></a>
