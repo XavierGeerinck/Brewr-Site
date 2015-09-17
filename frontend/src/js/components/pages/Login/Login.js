@@ -13,6 +13,8 @@ import './Login.css';
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
+
+        console.log(props);
     }
 
     _getAuthState() {
@@ -37,7 +39,12 @@ class LoginPage extends React.Component {
 
         // If logged in, redirect
         if (newState.isLoggedIn) {
-            this.props.history.pushState(null, '/');
+            // If we got old state, go to that path
+            if (this.props.location.state) {
+                this.props.history.pushState(null, this.props.location.state.nextPathname);
+            } else {
+                this.props.history.pushState(null, '/');
+            }
         }
     }
 

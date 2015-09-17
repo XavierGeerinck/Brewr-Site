@@ -1,7 +1,6 @@
 import * as AuthServerActions from '../actions/AuthServerActions';
 import request from 'superagent';
 
-// Todo: Superagent, zie https://github.com/tribou/react-todo/blob/1.1.0/js/utils/RandomUserAPI.js
 export function login(email, password) {
     request
     .post('http://localhost:8000/auth/signin')

@@ -35,7 +35,7 @@ class AuthStore extends BaseStore {
                 this.emitChange();
                 break;
             case actionTypes.RESPONSE_USER:
-                this._user = source.action.response.user;
+                this._user = source.action.response;
                 this.emitChange();
                 break;
             case actionTypes.RESPONSE_LOGOUT:
@@ -58,6 +58,10 @@ class AuthStore extends BaseStore {
 
     get user() {
         return this._user;
+    }
+
+    get isLoggedIn() {
+        return !!this._user;
     }
 }
 
