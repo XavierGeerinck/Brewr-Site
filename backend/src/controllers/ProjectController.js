@@ -1,9 +1,9 @@
 /**
-* ProjectController
-*
-* @description :: Server-side logic for managing projects
-* @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
-*/
+ * ProjectController
+ *
+ * @description :: Server-side logic for managing projects
+ * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
+ */
 var uuid = require('uuid');
 var async = require('async');
 var Promise = require('bluebird');
@@ -12,30 +12,30 @@ var Boom = require('boom');
 
 module.exports = {
     /**
-    * Find a user's assigned projects
-    * @param req
-    * @param res
-    */
+     * Find a user's assigned projects
+     * @param req
+     * @param res
+     */
     assigned: function (request, reply) {
-        var ProjectUser = request.server.plugins.dogwater.projectuser;
+        var ProjectUser = request.collections.projectuser;
         var user = request.auth.credentials.user;
 
         ProjectUser
-        .find({"user": user.id})
-        .populate("project")
-        .exec(function (err, assigned) {
-            res.json(assigned);
-        });
+            .find({"user": user.id})
+            .populate("project")
+            .exec(function (err, assigned) {
+                return reply(assigned);
+            });
     },
 
     /**
-    * Returns all projects in a given organisation
-    * Integer organisation: The organisation parameter given in the request
-    * Integer user: The logged in user who is requesting
-    * @param req
-    * @param reply
-    */
-    index: function(request, reply) {
+     * Returns all projects in a given organisation
+     * Integer organisation: The organisation parameter given in the request
+     * Integer user: The logged in user who is requesting
+     * @param req
+     * @param reply
+     */
+    index: function (request, reply) {
         var organisation = request.params.organisation;
         var userObj = request.auth.credentials.user;
 
@@ -48,57 +48,54 @@ module.exports = {
             }
 
             Project
-            .find({"organisation": organisation})
-            .exec(function (err, projects) {
-                if (err) {
-                    console.log(err);
-                    return reply(Boom.badRequest("Could not find project"));
-                }
+                .find({"organisation": organisation})
+                .exec(function (err, projects) {
+                    if (err) {
+                        console.log(err);
+                        return reply(Boom.badRequest("Could not find project"));
+                    }
 
-                return reply(projects);
+                    return reply(projects);
+                });
+        });
+    },
+
+    /**
+     * Show a project given by its ID and Logged user
+     * @param req
+     * @param res
+     */
+    show: function (request, reply) {
+        var User = request.collections.user,
+            Project = request.collections.project;
+
+        var user = request.auth.credentials.user,
+            organisation = request.params.organisation,
+            project = request.params.project;
+
+
+        // verify that user belongs to this organisation
+        User.isMemberOf(user.id, organisation, function (isMember) {
+
+            if (!isMember) {
+                return reply(Boom.badRequest("ORGANISATION_NON_MEMBER"));
+            }
+
+            Project.belongsTo(project, organisation, function (belongs, project) {
+                if (!belongs) {
+                    return reply(Boom.badRequest("PROJECT_NO_BELONG"));
+                } else {
+                    return reply(project);
+                }
             });
         });
     },
 
     /**
-    * Show a project given by its ID and Logged user
-    * @param req
-    * @param res
-    */
-    show: function(request, reply) {
-        var User = request.collections.user;
-
-        var user = request.auth.credentials.user;
-        var organisation = request.params.organisation;
-        var project = request.params.project;
-
-        // verify that user belongs to this organisation
-        User.isMemberOf(user.id, organisation, function(isMember){
-
-            //res.end();
-            reply(Boom.badRequest("ORGANISATION_NON_MEMBER"));
-
-            //if(!isMember){
-            //  res.badRequest({"success": false, "message": "ORGANISATION_NON_MEMBER"})
-            //} else {
-            //
-            //  // verify that project belongs to organisation
-            //  Project.belongsTo(project, organisation, function (belongs, project) {
-            //    if (!belongs) {
-            //      res.badRequest({"success": false, "message": "PROJECT_NO_BELONG"})
-            //    } else {
-            //      res.json(project);
-            //    }
-            //  })
-            //}
-        });
-    },
-
-    /**
-    * Assign a user to a project
-    * @param req
-    * @param res
-    */
+     * Assign a user to a project
+     * @param req
+     * @param res
+     */
     assign: function (request, reply) {
         var User = request.collections.user;
 
@@ -117,12 +114,12 @@ module.exports = {
     },
 
     /**
-    * Creates a project, it accepts the following parameters:
-    * - startup_file_content (app.sh)
-    * - startup_command (how to boot docker)
-    * - files (contain name and data_uri)
-    * - dockerfile (see object definition below)
-    * dockerfile = {
+     * Creates a project, it accepts the following parameters:
+     * - startup_file_content (app.sh)
+     * - startup_command (how to boot docker)
+     * - files (contain name and data_uri)
+     * - dockerfile (see object definition below)
+     * dockerfile = {
     *     distribution: null, // FROM (base)
     *     distribution_version: null, // FROM (version)
     *     instructions: {
@@ -142,9 +139,9 @@ module.exports = {
     *         onbuild: null
     *     }
     * }
-    *
-    * The table is project_env_info for this dockerfile info and project_file for the files to be created
-    */
+     *
+     * The table is project_env_info for this dockerfile info and project_file for the files to be created
+     */
     create: function (request, reply) {
         var Project = request.collections.user;
         var ProjectRevision = request.collections.user;
@@ -155,7 +152,7 @@ module.exports = {
 
         // Project name is required
         if (!params.meta.name) {
-            return res.badRequest('EMPTY_PROJECT_NAME', 'POST /project');
+            return reply(Boom.badRequest("EMPTY_PROJECT_NAME", {"path": "POST /project"}));
         }
 
         // We first start by creating a new project
@@ -165,47 +162,47 @@ module.exports = {
             name: request.meta.name,
             description: request.meta.description || ''
         })
-        .then(function (project) {
-            // Create the revision
-            return ProjectRevision.create({
-                project: project,
-                revisionNumber: uuid.v4()
-            });
-        })
-        .then(function (projectRevision) {
-            // Create the project files
-            async.each(request.payload.files, function (file, cb) {
-                ProjectFile.create({
-                    projectRevision: projectRevision,
-                    fileName: file.name,
-                    fileDataUri: file.content
-                })
-                .exec(function (err, file) {
+            .then(function (project) {
+                // Create the revision
+                return ProjectRevision.create({
+                    project: project,
+                    revisionNumber: uuid.v4()
+                });
+            })
+            .then(function (projectRevision) {
+                // Create the project files
+                async.each(request.payload.files, function (file, cb) {
+                    ProjectFile.create({
+                        projectRevision: projectRevision,
+                        fileName: file.name,
+                        fileDataUri: file.content
+                    })
+                        .exec(function (err, file) {
+                            if (err) {
+                                return cb(err);
+                            }
+
+                            return cb();
+                        });
+                }, function (err) {
                     if (err) {
-                        return cb(err);
+                        return Promise.reject(err);
                     }
 
-                    return cb();
+                    return Promise.resolve(projectRevision);
                 });
-            }, function (err) {
-                if (err) {
-                    return Promise.reject(err);
-                }
+            })
+            .then(function (projectRevision) {
+                var info = request.payload.envInfo;
+                info.projectRevision = projectRevision;
 
-                return Promise.resolve(projectRevision);
+                return ProjectEnvInfo.create(info);
+            })
+            .then(function (projectEnvInfo) {
+                return reply({succes: true});
+            })
+            .catch(function (err) {
+                return reply(Boom.badRequest(err));
             });
-        })
-        .then(function (projectRevision) {
-            var info = request.payload.envInfo;
-            info.projectRevision = projectRevision;
-
-            return ProjectEnvInfo.create(info);
-        })
-        .then(function (projectEnvInfo) {
-            return reply({ succes: true });
-        })
-        .catch(function (err) {
-            return reply(Boom.badRequest(err));
-        });
     }
 };

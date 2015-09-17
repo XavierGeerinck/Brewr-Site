@@ -83,8 +83,5 @@ module.exports = {
                 if (err) return cb(false);
                 return cb(true, result);
             });
-
-        return cb(false);
-
     }
 };
