@@ -7,7 +7,9 @@ export default class SideMenu extends BaseComponent {
     render() {
         return (
             <div className="SideMenu">
-                <h1><a href="#"><i className="fa fa-bars"></i><span>Brewr</span></a></h1>
+                <h1>
+                    <Link to="/"><i className="fa fa-bars"></i><span>Brewr</span></Link>
+                </h1>
 
                 <ul>
                     <li>
@@ -15,14 +17,14 @@ export default class SideMenu extends BaseComponent {
                     </li>
 
                     <li>
-                        <a href="/#/teams"><i className="fa fa-group"></i><span>Teams</span></a>
+                        <Link to="/teams"><i className="fa fa-group"></i><span>Teams</span></Link>
                     </li>
 
                     <li className="second-level">
-                        <a href="/#/projects">
+                        <Link to="/projects">
                             <i className="fa fa-folder"></i><span>Projects</span>
                             <i className="fa fa-caret-down item-dropdown"></i>
-                        </a>
+                        </Link>
 
                         <div className="clear"></div>
 
