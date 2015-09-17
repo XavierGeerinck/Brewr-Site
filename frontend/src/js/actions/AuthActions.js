@@ -19,5 +19,36 @@ module.exports = {
 
         // login the user
         AuthAPIUtils.login(email, password);
+    },
+
+    /**
+     * Validate the token and get the user object (aka log user in with token)
+     */
+    getUser: function (token) {
+        AppDispatcher.handleViewAction({
+            type: actionTypes.REQUEST_USER,
+            token: token
+        });
+
+        AuthAPIUtils.getUser(token);
+    },
+
+    register: function (email, password) {
+        AppDispatcher.handleViewAction({
+            type: actionTypes.REQUEST_REGISTER,
+            email: email,
+            password: password
+        });
+
+        AuthAPIUtils.register(email, password);
+    },
+
+    logout: function (token) {
+        AppDispatcher.handleViewAction({
+            type: actionTypes.REQUEST_LOGOUT,
+            token: token
+        });
+
+        AuthAPIUtils.logout(token);
     }
 };
