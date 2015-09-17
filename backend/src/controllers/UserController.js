@@ -12,5 +12,9 @@ module.exports = {
         User.find({}, function (err, users){
            res.json(users);
         });
+    },
+
+    showLogged: function(request, reply) {
+        return reply(request.auth.credentials.user);
     }
 };

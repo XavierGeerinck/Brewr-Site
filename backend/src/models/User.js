@@ -156,11 +156,14 @@ module.exports = {
      * @return {Function}, the callback function with the result
      */
     assign: function (assigneeId, userId, projectId, cb) {
+
         this
-            .find({"id": [assigneeId, userId]})
+            //.find({"id": [assigneeId, userId]})
+            .find()
+            .where({or: [{ "id": assigneeId}, {"id": userId}]})
             .populate("assignedTo")
             .populate("ownerOf")
-            .exec(function (err, users) {
+            .then(function (users) {
 
                 // failsafe to prevent ids from getting mixed up in query
                 var assignee = (users[0].id == assigneeId) ? users[0] : users[1];
@@ -168,23 +171,30 @@ module.exports = {
 
                 // need to be manager or owner of company to assign people
                 //TODO: make sure owners can always assign
-
+                console.log(assignee.isManagerOf(projectId));
+                console.log(!user.isAssignedTo(projectId));
 
                 if (assignee.isManagerOf(projectId) && !user.isAssignedTo(projectId)) {
 
                     var values = {"project": projectId, "user": user.id};
 
+                    var ProjectUser = require('./ProjectUser.js');
+                    console.log(ProjectUser);
                     ProjectUser
-                        .create(values, function (err, projectUser) {
-                            if (err) {
-                                console.log(err);
-                                return cb(false);
-                            }
+                        .create(values, function (projectUser) {
                             return cb(true);
+                        })
+                        .catch(function(err){
+                            console.log(err);
+                            return cb(false);
                         });
+
                 } else {
                     return cb(false);
                 }
+            })
+            .catch(function(err){
+                console.log(err); return cb(false);
             });
     }
 };

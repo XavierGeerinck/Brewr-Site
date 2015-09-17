@@ -99,9 +99,9 @@ module.exports = {
     assign: function (request, reply) {
         var User = request.collections.user;
 
-        var assigneeId = request.auth.credentials.user;
-        var userId = request.body.user;
-        var projectId = request.params.project;
+        var assigneeId = request.auth.credentials.user.id,
+            userId = request.payload.user,
+            projectId = request.params.project;
 
         User.assign(assigneeId, userId, projectId, function (succeeded, code) {
             if (succeeded) {
@@ -109,7 +109,7 @@ module.exports = {
             }
 
             //TODO: add status codes
-            return reply({"success": false});
+            return reply(Boom.badRequest("ERROR_ASSIGN"));
         });
     },
 
