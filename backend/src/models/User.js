@@ -67,15 +67,6 @@ module.exports = {
             return obj;
         },
 
-        isManagerOf: function (projectId) {
-            for (var i = 0; i < this.assignedTo.length; i++) {
-                if (this.assignedTo[i].project == projectId && this.assignedTo[i].isManager) {
-                    return true;
-                }
-            }
-            return false;
-        },
-
         isAssignedTo: function (projectId) {
 
             for (var i = 0; i < this.assignedTo.length; i++) {
@@ -141,10 +132,70 @@ module.exports = {
                         return cb(true);
                     }
                 }
-
                 // not related to this company
                 return cb(false);
             });
+    },
+
+    /**
+     * Returns if the user is a manager of
+     * @param projectId
+     * @param organisationId
+     * @returns {boolean}
+     */
+    isManagerOf: function (assignee, project) {
+
+        for (var i = 0; i < assignee.assignedTo.length; i++) {
+            if (assignee.assignedTo[i].project == project.id && assignee.assignedTo[i].isManager) {
+                return true;
+            }
+        }
+
+        // if owner then automatically manager
+        for (var i = 0; i < assignee.ownerOf.length; i++) {
+            if (assignee.ownerOf[i].id == project.organisation) {
+                return true;
+            }
+        }
+        return false;
+
+        //
+        //var self = this;
+        //
+        //this
+        //    .findOne({"id": userId})
+        //    .populate("ownerOf")
+        //    .populate("assignedTo")
+        //    .then(function(user){
+        //
+        //        self.waterline.collections.project
+        //            .findOne({"id": projectId})
+        //            .then(function(project){
+        //
+        //                for (var i = 0; i < user.assignedTo.length; i++) {
+        //                    if (user.assignedTo[i].project == projectId && user.assignedTo[i].isManager) {
+        //                        return true;
+        //                    }
+        //                }
+        //
+        //                // if owner then automatically manager
+        //                for (var i = 0; i < user.ownerOf.length; i++) {
+        //                    if (user.ownerOf[i].id == project.organisation) {
+        //                        return true;
+        //                    }
+        //                }
+        //                return false;
+        //
+        //            })
+        //            .catch(function(err){
+        //                console.log(err);
+        //                return true;
+        //            });
+        //    })
+        //    .catch(function(err){
+        //        console.log(err);
+        //        return false;
+        //    });
     },
 
     /**
@@ -157,8 +208,8 @@ module.exports = {
      */
     assign: function (assigneeId, userId, projectId, cb) {
 
+        var self = this;
         this
-            //.find({"id": [assigneeId, userId]})
             .find()
             .where({or: [{ "id": assigneeId}, {"id": userId}]})
             .populate("assignedTo")
@@ -169,29 +220,38 @@ module.exports = {
                 var assignee = (users[0].id == assigneeId) ? users[0] : users[1];
                 var user = (assigneeId == userId) ? users[0] : (users[0].id == assigneeId) ? users[1] : users[0];
 
-                // need to be manager or owner of company to assign people
-                //TODO: make sure owners can always assign
-                console.log(assignee.isManagerOf(projectId));
-                console.log(!user.isAssignedTo(projectId));
+                // get project
+                self.waterline.collections.project
+                    .findOne({"id": projectId})
+                    .then(function(project){
 
-                if (assignee.isManagerOf(projectId) && !user.isAssignedTo(projectId)) {
 
-                    var values = {"project": projectId, "user": user.id};
+                        var isManager = self.isManagerOf(assignee, project)
+                        var isAssigned = user.isAssignedTo(projectId);
 
-                    var ProjectUser = require('./ProjectUser.js');
-                    console.log(ProjectUser);
-                    ProjectUser
-                        .create(values, function (projectUser) {
-                            return cb(true);
-                        })
-                        .catch(function(err){
-                            console.log(err);
-                            return cb(false);
-                        });
+                        if (!isManager) {
+                            return cb(false, "IS_NOT_MANAGER");
+                        }
+                        if(isAssigned) {
+                            return cb(false, "IS_ALREADY_ASSIGNED");
+                        }
 
-                } else {
-                    return cb(false);
-                }
+                        var values = {"project": projectId, "user": user.id};
+
+                        // create project-user
+                        self.waterline.collections.projectuser
+                            .create(values)
+                            .then(function (projectUser) {
+                                return cb(true);
+                            })
+                            .catch(function(err){
+                                console.log(err); return cb(false);
+                            });
+
+                    })
+                    .catch(function(err){
+                        console.log(err); return cb(false);
+                    });
             })
             .catch(function(err){
                 console.log(err); return cb(false);

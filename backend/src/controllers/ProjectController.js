@@ -109,7 +109,7 @@ module.exports = {
             }
 
             //TODO: add status codes
-            return reply(Boom.badRequest("ERROR_ASSIGN"));
+            return reply(Boom.badRequest(code));
         });
     },
 

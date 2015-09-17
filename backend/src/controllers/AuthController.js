@@ -67,7 +67,5 @@ module.exports = {
 
             return _onAuth(request, reply, err, user, info);
         });
-
-
     }
 };
