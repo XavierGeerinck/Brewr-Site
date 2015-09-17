@@ -6,7 +6,13 @@ module.exports = [
         method: 'POST',
         path: '/auth/signin',
         config: {
-            handler: AuthController.signin
+            handler: AuthController.signin,
+            validate: {
+                payload: {
+                    email: Joi.string().required(),
+                    password: Joi.string().required()
+                }
+            }
         }
     },
     {

@@ -68,8 +68,8 @@ module.exports = {
         var User = request.collections.user;
 
         var user = request.auth.credentials.user;
-        var organisation = request.param('organisation');
-        var project = request.param('project');
+        var organisation = request.params.organisation;
+        var project = request.params.project;
 
         // verify that user belongs to this organisation
         User.isMemberOf(user.id, organisation, function(isMember){
@@ -103,7 +103,7 @@ module.exports = {
 
         var assigneeId = request.auth.credentials.user;
         var userId = request.body.user;
-        var projectId = request.param('project');
+        var projectId = request.params.project;
 
         User.assign(assigneeId, userId, projectId, function (succeeded, code) {
             if (succeeded) {

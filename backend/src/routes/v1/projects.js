@@ -8,22 +8,54 @@ module.exports = [
     {
         method: 'GET',
         path: '/organisations/{organisation}/projects',
-        config: {handler: ProjectController.index, auth: 'token'}
+        config: {
+            handler: ProjectController.index,
+            auth: 'token',
+            validate: {
+                params: {
+                    organisation: Joi.number().integer()
+                }
+            }
+        }
     },
     {
         method: 'GET',
         path: '/organisations/{organisation}/projects/{project}',
-        config: { handler: ProjectController.show }
+        config: {
+            handler: ProjectController.show ,
+            auth: 'token',
+            validate: {
+                params: {
+                    organisation: Joi.number().integer(),
+                    project: Joi.number().integer()
+                }
+            }
+        }
     },
     {
         method: 'GET',
         path: '/organisations/{organisation}/projects/assigned',
-        config: { handler: ProjectController.assigned }
+        config: {
+            handler: ProjectController.assigned,
+            auth: 'token'
+        }
     },
     {
         method: 'POST',
         path: '/organisations/{organisation}/projects/{project}/assign',
-        config: { handler: ProjectController.assign }
+        config: {
+            handler: ProjectController.assign,
+            auth: 'token',
+            validate: {
+                params: {
+                    project: Joi.number().integer(),
+                    organisation: Joi.number().integer()
+                },
+                payload: {
+                    user: Joi.number().integer()
+                }
+            }
+        }
     },
     {
         method: 'POST',
