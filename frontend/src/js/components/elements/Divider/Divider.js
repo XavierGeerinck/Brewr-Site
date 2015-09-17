@@ -3,20 +3,34 @@ import './Divider.css';
 
 class Divider extends React.Component {
     render() {
+        var cx = React.addons.classSet;
+
+        var className = cx({
+            'Divider': true,
+            'Divider-Horizontal': this.props.align === 'horizontal',
+            'Divider-Vertical': this.props.align === 'vertical',
+        });
+
         return (
-            <div className="Divider">
-                <span>{this.props.text}</span>
+            <div className={className}>
+                {
+                    this.props.text ?
+                    <span>{this.props.text}</span>
+                    : undefined
+                }
             </div>
         );
     }
 };
 
 Divider.propTypes = {
-    text: PropTypes.string
+    text: PropTypes.string,
+    align: PropTypes.string
 };
 
 Divider.defaultProps = {
-    text: ''
+    text: '',
+    align: 'horizontal'
 };
 
 export default Divider;

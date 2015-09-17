@@ -1,56 +1,57 @@
 @import '../../variables.css';
 
 .DashboardLayout-Container {
-  height: 100%;
-  display: flex;
+    height: 100%;
+    display: flex;
 }
 
 .DashboardLayout-Content {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .DashboardLayout-Page {
-  width: 100%;
+    width: 100%;
 }
 
 .DashboardLayout-Page-Container {
-  padding: 20px 30px;
-  background-color: var(--color-white-shade-darker-1);
-  margin-top: 70px;
-  overflow-y: scroll;
-  position: relative;
-  height: calc(100% - 70px);
+    padding: 20px 30px;
+    background-color: var(--color-white-shade-darker-1);
+    margin-top: 70px;
+    overflow-y: scroll;
+    position: relative;
+    height: calc(100% - 70px);
 }
 
 .DashboardLayout-Page-Content {
-  background-color: var(--color-white);
-  padding: 15px 20px;
-  border-radius: 0;
-  border: 1px solid rgba(0, 0, 0, 0.07);
+    background-color: var(--color-white);
+    padding: 15px 20px;
+    border-radius: 0;
+    border: 1px solid rgba(0, 0, 0, 0.07);
 }
 
 .DashboardLayout-Page-Content > div > h1 {
-  font-size: 24px;
-  padding: 20px 0 15px 0;
-  margin: 0 0 10px 0;
-  text-align: center;
+    font-size: 24px;
+    padding: 20px 0 15px 0;
+    margin: 0 0 10px 0;
+    text-align: center;
 }
 
 .DashboardLayout-Page-Header {
-  background-color: var(--color-white);
-  color: var(--color-black);
-  height: 69px;
-  border-bottom: 1px solid var(--color-white-shade-darker-2);
-  position: fixed;
-  width: 100%;
-  z-index: 2;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    height: 69px;
+    border-bottom: 1px solid var(--color-white-shade-darker-2);
+    position: fixed;
+    width: calc(100% - 200px);
+    z-index: 2;
 }
 
 .DashboardLayout-Page-Header ul {
     height: 100%;
     padding: 0 0 0 20px;
     margin: 0;
+    float: left;
 }
 
 .DashboardLayout-Page-Header ul li {
@@ -74,4 +75,19 @@
     padding: 20px 0;
     letter-spacing: 2px;
     color: var(--color-text);
+}
+
+.DashboardLayout-UserPreview {
+    height: 100%;
+    float: right;
+    line-height: 70px;
+    padding-right: 20px;
+}
+
+.DashboardLayout-CompanyPicker {
+    display: block;
+    float: left;
+    line-height: 70px;
+    margin-left: 20px;
+    padding-right: 20px;
 }

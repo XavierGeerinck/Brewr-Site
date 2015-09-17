@@ -40,6 +40,35 @@
 - webpack.config.js                     # workflow configuration
 ```
 
+## Class Boilerplate
+
+```
+import React, { PropTypes } from 'react';
+
+class CLASSNAME extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="CLASSNAME">
+            </div>
+        );
+    }
+};
+
+CLASSNAME.propTypes = {
+
+};
+
+CLASSNAME.defaultProps = {
+
+};
+
+export default CLASSNAME;
+```
+
 ## Running your project
 
 The generated project includes a live-reloading static server on port `8080` (you can change the port in the `gulpfile.js` config), which will build, launch, and rebuild the app whenever you change application code. To start the server, run:
