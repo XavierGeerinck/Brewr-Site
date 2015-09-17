@@ -8,6 +8,7 @@ import TeamPage from './components/pages/Team';
 import ProjectPage from './components/pages/Project';
 import HomePage from './components/pages/Home';
 import NotFoundPage from './components/pages/NotFound';
+import DashboardPage from './components/pages/Dashboard';
 
 const createBrowserHistory = require('history/lib/createBrowserHistory');
 
@@ -20,6 +21,7 @@ var routes = (
         <Route path="/" component={App}>
             <IndexRoute component={HomePage} />
             <Route path="builder"   component={BuilderPage} />
+            <Route path="dashboard" component={DashboardPage} />
             <Route path="login"     component={LoginPage} />
             <Route path="register"  component={RegisterPage} />
             <Route path="teams"     component={TeamPage} />
