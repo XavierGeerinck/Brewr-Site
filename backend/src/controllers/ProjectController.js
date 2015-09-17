@@ -40,10 +40,11 @@ module.exports = {
         var userObj = request.auth.credentials.user;
 
         var User = request.collections.user;
+        var Project = request.collections.project;
 
         User.isMemberOf(userObj.id, organisation, function (isMember) {
             if (!isMember) {
-                return res.json({"success": false, "message": "ORGANISATION_NON_MEMBER"})
+                return reply({"success": false, "message": "ORGANISATION_NON_MEMBER"})
             }
 
             Project
@@ -54,7 +55,7 @@ module.exports = {
                     return reply(Boom.badRequest("Could not find project"));
                 }
 
-                return res.json(projects);
+                return reply(projects);
             });
         });
     },
@@ -75,7 +76,7 @@ module.exports = {
         User.isMemberOf(user.id, organisation, function(isMember){
 
             //res.end();
-            res.badRequest({"success": false, "message": "ORGANISATION_NON_MEMBER"});
+            reply(Boom.badRequest("ORGANISATION_NON_MEMBER"));
 
             //if(!isMember){
             //  res.badRequest({"success": false, "message": "ORGANISATION_NON_MEMBER"})
@@ -107,11 +108,11 @@ module.exports = {
 
         User.assign(assigneeId, userId, projectId, function (succeeded, code) {
             if (succeeded) {
-                return res.json({"success": true});
+                return reply({"success": true});
             }
 
             //TODO: add status codes
-            return res.json({"success": false});
+            return reply({"success": false});
         });
     },
 

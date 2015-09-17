@@ -81,6 +81,8 @@ function registerPlugins() {
                 return reject(err);
             }
 
+            console.log()
+
             registerStrategy(server);
             registerRoutes(server);
 

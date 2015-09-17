@@ -1,9 +1,9 @@
 /**
-* Project.js
-*
-* @description :: Represents a project
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * Project.js
+ *
+ * @description :: Represents a project
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
     identity: 'project',
@@ -70,21 +70,21 @@ module.exports = {
     },
 
     /**
-    * Check if the user is a member of the specified organisation
-    * @param {Integer} userId, the id of the user
-    * @param {Integer} organisationId, the id of the organisation+
-    * @param {Function} cb, the callback function when the action is completed
-    */
+     * Check if the user is a member of the specified organisation
+     * @param {Integer} projectId, the ID of the project that we want to verify
+     * @param {Integer} organisationId, the id of the organisation where the project should belong to
+     * @param {Function} cb, the callback function when the action is completed
+     * @return {Function} returns the callback function with the result
+     */
     belongsTo: function (projectId, organisationId, cb) {
 
-        Project
-        .findOne({'id': projectId, 'organisation': organisationId}, function(err, result){
-            if(err) return cb(false);
-            return cb(true, result);
-        });
+        this
+            .findOne({'id': projectId, 'organisation': organisationId}, function (err, result) {
+                if (err) return cb(false);
+                return cb(true, result);
+            });
 
         return cb(false);
 
-    },
-
+    }
 };
