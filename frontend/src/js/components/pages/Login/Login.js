@@ -4,43 +4,36 @@ import ReactMixin from 'react-mixin';
 import SideMenu from '../../elements/SideMenu';
 import Button from '../../elements/Button';
 import Input from '../../elements/Input';
-import Auth from '../../../services/AuthService'
+import AuthActions from '../../../actions/AuthActions';
+import AuthStore from '../../../stores/AuthStore';
 import BaseComponent from '../../BaseComponent';
 import './Login.css';
 
-export default class LoginPage extends BaseComponent {
+export default class LoginPage extends React.Component {
+    constructor() {
+        super();
+    }
 
-  constructor() {
-    super();
-    this._bind('_login');
-  }
+    login(e) {
+        e.preventDefault();
+        AuthActions.login(this.refs.email.state.value, this.refs.password.value);
+    }
 
-  _login(e) {
-    e.preventDefault();
+    render() {
+        var isInline = false;
+        return (
+            <MainLayout>
+                <div className="LoginPage">
+                    <form role="form">
+                        <Input type="email" ref="email" placeholder="Email" label="Email" id="user_email" />
+                        <Input type="password"  ref="password" label="Password" id="user_password" />
 
-    Auth.login(this.refs["email"].state.value, this.refs["password"].state.value)
-      .catch(function(err){
-          console.log(err);
-          alert("error logging in");
-          console.log("Error logging in");
-        })
-  }
-
-  render() {
-    var isInline = false;
-    return (
-      <MainLayout>
-        <div className="LoginPage">
-          <form role="form">
-            <Input type="email" ref="email" placeholder="Email" label="Email" id="user_email" />
-            <Input type="password"  ref="password" label="Password" id="user_password" />
-
-            <Button type="submit" text="Login" isInline={isInline} onClick={this._login} />
-          </form>
-        </div>
-      </MainLayout>
-    );
-  }
+                        <Button type="submit" text="Login" isInline={isInline} onClick={this.login.bind(this)} />
+                    </form>
+                </div>
+            </MainLayout>
+        );
+    }
 }
 
 //LinkStateMixin -> provides 2-way databinding
