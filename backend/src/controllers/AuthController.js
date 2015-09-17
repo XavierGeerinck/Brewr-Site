@@ -13,7 +13,7 @@ function _onAuth(request, reply, err, user, info) {
     }
 
     if (!user) {
-        return reply(Boom.unauthorized(null, info && info.code, info && info.message));
+        return reply(Boom.unauthorized(null, info && info.code));
     }
 
     return reply({
@@ -59,22 +59,22 @@ module.exports = {
             if (err) {
                 info.code = "ERR";
                 info.message = "An error occured";
+                return _onAuth(request, reply, err, user, info);
             }
 
             // user not found
             if (!user) {
                 info.code = "E_USER_NOT_FOUND";
                 info.message = "Unknown user: " + request.payload.email;
+                return _onAuth(request, reply, err, user, info);
             }
 
             // wrong password
             if (!AuthService.comparePassword(request.payload.password, user)) {
                 info.code = "E_WRONG_PASSWORD";
                 info.message = "Invalid password";
+                return _onAuth(request, reply, err, user, info);
             }
-
-
-            return _onAuth(request, reply, err, user, info);
         });
 
 
