@@ -1,5 +1,11 @@
 
 # frontend (frontend)
+## Best practices
+1. DO NOT let a component use a store or an action, try to do this through the pages or layouts, this way we allow maximum reusability.
+2. When performing requests, always implement the RESPONSE and RESPONSE_ERROR types. This allows for detailed error handling.
+3. We bind the changeListeners on the componentDidMount and componentWillUnmount
+4. We will not execute view actions in a store! so no Navigation.transitionTo things, the view will do this (see login page for an example)
+
 ## Directory Structure
 ```
 - build/

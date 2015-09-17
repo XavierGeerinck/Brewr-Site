@@ -1,15 +1,66 @@
 import React, { PropTypes } from 'react';
 import Footer from '../../elements/Footer';
 import Logo from '../../elements/Logo';
+import AuthStore from '../../../stores/AuthStore';
 import './Home.css';
 import { Link } from 'react-router';
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = this._getAuthState();
+    }
+
+    _getAuthState() {
+        return {
+            isLoggedIn: AuthStore.user != undefined,
+            user: AuthStore.user
+        }
+    }
+
+    componentDidMount() {
+        this.changeListener = this._onChange.bind(this);
+        AuthStore.addChangeListener(this.changeListener);
+    }
+
+    componentWillUnmount() {
+        AuthStore.removeChangeListener(this.changeListener);
+    }
+
+    _onChange() {
+        // Change state
+        var newState = this._getAuthState();
+        this.setState(newState);
+    }
+
+    renderLoggedInMenu() {
+        return (
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><a href="tour.html">Tour</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><Link to="/logout">Logout</Link></li>
+                <li><Link className="button white" to="/dashboard">Dashboard</Link></li>
+            </ul>
+        );
+    }
+
+    renderNogLoggedInMenu() {
+        return (
+            <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><a href="tour.html">Tour</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><Link to="/login">Sign in</Link></li>
+                <li><Link className="button white" to="/register">Sign up</Link></li>
+            </ul>
+        );
     }
 
     render() {
+        const { isLoggedIn, user } = this.state;
+
         return (
             <div className="HomePage">
 
@@ -20,13 +71,7 @@ class Home extends React.Component {
                                 <Logo align="left" />
                             </Link>
 
-            				<ul>
-            					<li><Link to="/">Home</Link></li>
-            					<li><a href="tour.html">Tour</a></li>
-            					<li><a href="pricing.html">Pricing</a></li>
-            					<li><Link to="/login">Sign in</Link></li>
-            					<li><Link className="button white" to="/register">Sign up</Link></li>
-            				</ul>
+                            { isLoggedIn ? this.renderLoggedInMenu() : this.renderNogLoggedInMenu() }
             			</div>
             		</nav>
 
