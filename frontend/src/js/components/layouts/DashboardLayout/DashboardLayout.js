@@ -4,6 +4,8 @@ import './DashboardLayout.css';
 
 class DashboardLayout extends React.Component {
     render() {
+        const { title, isBoxed } = this.props;
+
         return (
             <div className="DashboardLayout-Container">
                 <SideMenu />
@@ -18,13 +20,22 @@ class DashboardLayout extends React.Component {
                     </div>
 
                     <div className="DashboardLayout-Page-Container">
-                        <div className="DashboardLayout-Page-Title">
-                            Environment Builder Wizard
-                        </div>
+                        {
+                            title ?
+                            <div className="DashboardLayout-Page-Title">
+                                {title}
+                            </div>
+                            : undefined
+                        }
 
-                        <div className="DashboardLayout-Page-Content">
-                            {this.props.children}
-                        </div>
+                        {
+                            isBoxed ?
+                            <div className="DashboardLayout-Page-Content">
+                                {this.props.children}
+                            </div>
+                            :
+                            this.props.children
+                        }
                     </div>
                 </div>
             </div>
@@ -33,11 +44,13 @@ class DashboardLayout extends React.Component {
 }
 
 DashboardLayout.defaultProps = {
-
+    title: "",
+    isBoxed: true // Show the content in a white box
 };
 
 DashboardLayout.propTypes = {
-
+    title: PropTypes.string,
+    isBoxed: PropTypes.bool
 };
 
 export default DashboardLayout;

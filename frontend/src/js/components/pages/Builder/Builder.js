@@ -65,10 +65,10 @@ class Builder extends React.Component {
         };
 
         return (
-            <DashboardLayout>
+            <DashboardLayout title="Environment Builder">
                 {/* Wizard */}
                 <Wizard steps={BuilderStore.steps} currentStepIdx={BuilderStore.currentStep} />
-                
+
                 {/* Show content */}
                 {content}
             </DashboardLayout>
