@@ -55,6 +55,7 @@ function startServer() {
 }
 
 function registerPlugins() {
+
     return new Promise(function (resolve, reject) {
         server.register([
             {
@@ -63,7 +64,7 @@ function registerPlugins() {
                     adapters: config.database.adapters,
                     connections: config.database.connections,
                     models: Object.keys(models).map(function (key) { return models[key]; }),
-                    //fixtures: Object.keys(fixtures).map(function (key) { return fixtures[key]; })
+                    fixtures: Object.keys(fixtures).map(function (key) { return fixtures[key]; })[0]
                 }
             },
             {

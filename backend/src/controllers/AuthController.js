@@ -26,9 +26,6 @@ module.exports = {
     signup: function (request, reply) {
         var User = request.collections.user;
 
-        var email = request.payload.email;
-        var password = request.payload.password;
-
         User
         .create(_.omit(request.params, 'id'))
         .then(function (user) {
