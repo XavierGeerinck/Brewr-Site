@@ -138,6 +138,50 @@ module.exports = {
     },
 
     /**
+     * Checks if the given userIds belong to the organisation
+     * @param userIds
+     * @param organisationId
+     * @param cb
+     */
+    areMemberOf: function(userIds, organisationId, cb) {
+        this
+            .find()
+            .where({or: userIds.map(function(userId){ return {"id": userId}; })})
+            .populate("memberOf")
+            .populate("ownerOf")
+            .then(function (users) {
+
+                var isMemberOf =[];
+
+                for(var u = 0; u < users.length; u++) {
+                    for (var i = 0; i < users[u].memberOf.length; i++) {
+                        if (users[u].memberOf[i].id == organisationId) {
+                            isMemberOf.push(true);
+                            break;
+                        }
+                    }
+
+                    // user can also be the OWNER of the company
+                    for (var i = 0; i < users[u].ownerOf.length; i++) {
+                        if (users[u].ownerOf[i].id == organisationId) {
+                            isMemberOf.push(true);
+                            break;
+                        }
+                    }
+                }
+
+                if(isMemberOf.length == users.length) {
+                    return cb(true, users);
+                }
+
+                return cb(false, "Only " + isMemberOf.length + " are a member of this organisation");
+            })
+            .catch(function(err){
+                return cb(false, err)
+            });
+    },
+
+    /**
      * Returns if the user is a manager of
      * @param projectId
      * @param organisationId

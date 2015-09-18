@@ -15,9 +15,24 @@ module.exports = [
     },
     {
         method: 'GET',
-        path: '/users/{user}/organisations',
+        path: '/organisations/{organisation}/users/{user}',
+        config: {
+            handler: UserController.show,
+            auth: 'token',
+            validate: {
+                params: {
+                    organisation: Joi.number().integer(),
+                    user: Joi.number().integer()
+                }
+            }
+        }
+    },
+    {
+        method: 'GET',
+        path: '/users/{user}',
         config: {
             handler: UserController.memberOf,
+            auth: 'token',
             validate: {
                 params: {
                     user: Joi.number().integer()
@@ -27,11 +42,13 @@ module.exports = [
     },
     {
         method: 'GET',
-        path: '/users/{user}/projects',
+        path: '/organisations/{organisation}/users/{user}/projects',
         config: {
             handler: UserController.assignedTo,
+            auth: 'token',
             validate: {
                 params: {
+                    organisation: Joi.number().integer(),
                     user: Joi.number().integer()
                 }
             }
