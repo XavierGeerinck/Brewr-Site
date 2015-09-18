@@ -18,7 +18,10 @@ module.exports = [
         path: '/organisations/{organisation}/users/{user}',
         config: {
             handler: UserController.show,
-            auth: 'token',
+            auth: {
+                strategy: 'token',
+                scope: ['member-{params.organisation}']
+            },
             validate: {
                 params: {
                     organisation: Joi.number().integer(),
@@ -45,7 +48,10 @@ module.exports = [
         path: '/organisations/{organisation}/users/{user}/projects',
         config: {
             handler: UserController.assignedTo,
-            auth: 'token',
+            auth: {
+                strategy: 'token',
+                scope: ['member-{params.organisation}']
+            },
             validate: {
                 params: {
                     organisation: Joi.number().integer(),

@@ -33,5 +33,22 @@ module.exports = {
                 //issuer: sails.config.jwtSettings.issuer,
                 //audience: sails.config.jwtSettings.audience
             })
+    },
+
+    createReply: function(user) {
+        return {
+            token: this.createToken(user),
+            user: user
+        }
+    },
+
+    validateLogin: function(request, decodedToken, callback) {
+        if(!decodedToken) {
+            return callback(error, false, decodedToken);
+        }
+
+        request.payload.user = decodedToken;
+        server.expose('request', request);
+        return callback(error, true, decodedToken);
     }
-}
+};

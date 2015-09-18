@@ -71,13 +71,7 @@ module.exports = {
             .populate('memberOf')
             .populate('ownerOf')
             .then(function (user) {
-
-                var organisations = user.memberOf;
-
-                for (var i = 0; i < user.ownerOf.length; i++) {
-                    organisations.push(user.ownerOf[i]);
-                }
-                reply(organisations);
+                reply(user.isMemberOf());
             })
             .catch(function (err) {
                 console.log(err);

@@ -10,7 +10,10 @@ module.exports = [
         path: '/organisations/{organisation}/projects',
         config: {
             handler: ProjectController.index,
-            auth: 'token',
+            auth: {
+                strategy: 'token',
+                scope: ['member-{params.organisation}']
+            },
             validate: {
                 params: {
                     organisation: Joi.number().integer()
@@ -23,7 +26,10 @@ module.exports = [
         path: '/organisations/{organisation}/projects/{project}',
         config: {
             handler: ProjectController.show ,
-            auth: 'token',
+            auth: {
+                strategy: 'token',
+                scope: ['member-{params.organisation}']
+            },
             validate: {
                 params: {
                     organisation: Joi.number().integer(),
@@ -37,7 +43,10 @@ module.exports = [
         path: '/organisations/{organisation}/projects/assigned',
         config: {
             handler: ProjectController.assigned,
-            auth: 'token'
+            auth: {
+                strategy: 'token',
+                scope: ['member-{params.organisation}']
+            },
         }
     },
     {
@@ -45,7 +54,10 @@ module.exports = [
         path: '/organisations/{organisation}/projects/{project}/assign',
         config: {
             handler: ProjectController.assign,
-            auth: 'token',
+            auth: {
+                strategy: 'token',
+                scope: ['member-{params.organisation}']
+            },
             validate: {
                 params: {
                     project: Joi.number().integer(),
@@ -61,6 +73,10 @@ module.exports = [
         method: 'POST',
         path: '/projects',
         config: {
+            auth: {
+                strategy: 'token',
+                scope: ['member-{params.organisation}']
+            },
             handler: ProjectController.create,
             validate: {
                 payload: {

@@ -39,25 +39,19 @@ module.exports = {
         var organisation = request.params.organisation;
         var userObj = request.auth.credentials.user;
 
-        var User = request.collections.user;
-        var Project = request.collections.project;
+        var User = request.collections.user,
+            Project = request.collections.project;
 
-        User.isMemberOf(userObj.id, organisation, function (isMember) {
-            if (!isMember) {
-                return reply({"success": false, "message": "ORGANISATION_NON_MEMBER"})
-            }
+        Project
+            .find({"organisation": organisation})
+            .exec(function (err, projects) {
+                if (err) {
+                    console.log(err);
+                    return reply(Boom.badRequest("Could not find project"));
+                }
 
-            Project
-                .find({"organisation": organisation})
-                .exec(function (err, projects) {
-                    if (err) {
-                        console.log(err);
-                        return reply(Boom.badRequest("Could not find project"));
-                    }
-
-                    return reply(projects);
-                });
-        });
+                return reply(projects);
+            });
     },
 
     /**
@@ -73,21 +67,12 @@ module.exports = {
             organisation = request.params.organisation,
             project = request.params.project;
 
-
-        // verify that user belongs to this organisation
-        User.isMemberOf(user.id, organisation, function (isMember) {
-
-            if (!isMember) {
-                return reply(Boom.badRequest("ORGANISATION_NON_MEMBER"));
+        Project.belongsTo(project, organisation, function (belongs, project) {
+            if (!belongs) {
+                return reply(Boom.badRequest("PROJECT_NO_BELONG"));
+            } else {
+                return reply(project);
             }
-
-            Project.belongsTo(project, organisation, function (belongs, project) {
-                if (!belongs) {
-                    return reply(Boom.badRequest("PROJECT_NO_BELONG"));
-                } else {
-                    return reply(project);
-                }
-            });
         });
     },
 

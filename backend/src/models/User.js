@@ -42,8 +42,22 @@ module.exports = {
             type: 'datetime',
             columnName: 'expires_on'
         },
-        scope: 'array',
-
+        scopes: {
+            type: 'array',
+            defaultsTo: []
+        },
+        avatar: {
+            type: 'string',
+            defaultsTo: 'avatar.png',
+            columnName: 'avatar_url'
+        },
+        firstName: {
+            type: 'string',
+            columnName: 'first_name'
+        },
+        name: {
+            type: 'string'
+        },
         // associations
         memberOf: {
             collection: 'OrganisationUser',
@@ -61,12 +75,30 @@ module.exports = {
             collection: 'ProjectUser',
             via: 'user'
         },
+
+        /**
+         * Converts the object to JSON and removes the password from it
+         * @returns {*}
+         */
         toJSON: function () {
             var obj = this.toObject();
             delete obj.password;
             return obj;
         },
 
+        /**
+         * Gets the full name of the user
+         * @returns {string}
+         */
+        getFullName: function() {
+            return this.firstName + ' ' + this.name;
+        },
+
+        /**
+         * Checks if the user is assigned to a project
+         * @param projectId
+         * @returns {boolean}
+         */
         isAssignedTo: function (projectId) {
 
             for (var i = 0; i < this.assignedTo.length; i++) {
@@ -76,6 +108,27 @@ module.exports = {
             }
 
             return false;
+        },
+
+        /**
+         * Return the organisations where the user is a member of
+         * @returns {Array}
+         */
+        isMemberOf: function() {
+            var organisations = [];
+
+            // check which organisations this user owns
+            for(var i = 0; i < this.ownerOf.length; i++) {
+                organisations.push(this.ownerOf[i]);
+            }
+
+            for(var m = 0; m < this.memberOf.length; m++) {
+                if(organisations.indexOf(this.memberOf.organisation.id) > -1) {
+                    organisations.push(this.memberOf[m].organisation);
+                }
+            }
+
+            return organisations;
         }
 
     },

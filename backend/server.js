@@ -91,24 +91,14 @@ function registerPlugins() {
     });
 }
 
-function validateFunction(request, decodedToken, callback) {
-
-    if(!decodedToken) {
-        return callback(error, false, decodedToken);
-    }
-
-    request.payload.user = decodedToken;
-    server.expose('request', request);
-    return callback(error, true, decodedToken);
-
-};
-
 // Register the authentication strategies
 function registerStrategy(server) {
+
+    var AuthService = require('./src/services/AuthService.js');
     // Register the strategy
     server.auth.strategy('token', 'jwt', {
         key: config.jwt.privateKey,
-        validateFunction: validateFunction
+        validateFunction: AuthService.validateLogin
     });
 }
 
