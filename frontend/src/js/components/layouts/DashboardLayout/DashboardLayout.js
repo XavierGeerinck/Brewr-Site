@@ -54,7 +54,7 @@ class DashboardLayout extends React.Component {
                     </SideMenuContainer>
                     <SideMenuItem link="/builder"><i className="fa fa-gears"></i>Image Creator</SideMenuItem>
                     <SideMenuItem link="/organisation/1/admin"><i className="fa fa-lock"></i>Admin</SideMenuItem>
-                    <SideMenuItem link="/logout"><i className="fa fa-sign-out"></i>Logout</SideMenuItem>
+                    <SideMenuItem link="/logout" isStickBottom={true}><i className="fa fa-sign-out"></i>Logout</SideMenuItem>
                 </SideMenu>
 
                 {/* CONTENT */}

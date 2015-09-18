@@ -7,13 +7,14 @@ class SideMenuItem extends React.Component {
     }
 
     render() {
-        const { link } = this.props;
+        const { link, isStickBottom } = this.props;
 
         var cx = React.addons.classSet;
-        
+
         var className = cx({
             'SideMenuItem': true,
-            'SideMenuItem-Active':  window.location && window.location.hash.indexOf(link) !== -1
+            'SideMenuItem-Active':  window.location && window.location.hash.indexOf(link) !== -1,
+            'SideMenuItem-StickBottom': isStickBottom
         });
 
         return (
@@ -29,13 +30,13 @@ class SideMenuItem extends React.Component {
 };
 
 SideMenuItem.propTypes = {
-    isActive: PropTypes.bool,
-    link: PropTypes.string
+    link: PropTypes.string,
+    isStickBottom: PropTypes.bool
 };
 
 SideMenuItem.defaultProps = {
-    isActive: false,
-    link: null
+    link: null,
+    isStickBottom: false
 };
 
 export default SideMenuItem;

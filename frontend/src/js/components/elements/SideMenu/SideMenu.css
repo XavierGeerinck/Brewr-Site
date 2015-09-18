@@ -67,6 +67,11 @@
     border-left: 5px solid var(--color-primary-shade-lighter-4);
 }
 
+.SideMenuItem-StickBottom {
+    position: absolute;
+    bottom: 0;
+}
+
 .SideMenuContainer-Second-Level {
     padding: 0;
 }
