@@ -39,7 +39,7 @@ export default class ValidateInput extends Input {
 
         if(error_messages) {
             return (
-                <ul class="validation-errors">
+                <ul className="validation-errors">
                     {error_messages.map((message) => {
                         return <li key={message.id}>{message.text}</li>;
                     })}

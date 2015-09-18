@@ -75,7 +75,7 @@ class Home extends React.Component {
             			</div>
             		</nav>
 
-            		<div class="container">
+            		<div className="container">
             			<h1>Simple development environments.</h1>
             			<p className="subtitle">
             				Easily create and share environments with your team. <a href="#">Learn more</a>.
