@@ -1,47 +1,42 @@
-import React from 'react';
-import BaseComponent from '../../BaseComponent';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import './SideMenu.css';
+import SideMenuContainer from './SideMenuContainer';
+import SideMenuItem from './SideMenuItem';
 
-export default class SideMenu extends BaseComponent {
+class SideMenu extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
+        const { title } = this.props;
+
         return (
             <div className="SideMenu">
-                <h1>
-                    <Link to="/"><i className="fa fa-bars"></i><span>Brewr</span></Link>
-                </h1>
+                {
+                    title ?
+                    <h1>
+                        <Link to="/"><i className="fa fa-bars"></i><span>{title}</span></Link>
+                    </h1>
+                    : undefined
+                }
 
-                <ul>
-                    <li>
-                        <Link to="/dashboard"><i className="fa fa-home"></i><span>Dashboard</span></Link>
-                    </li>
-
-                    <li>
-                        <Link to="/teams"><i className="fa fa-group"></i><span>Teams</span></Link>
-                    </li>
-
-                    <li className="second-level">
-                        <Link to="/projects">
-                            <i className="fa fa-folder"></i><span>Projects</span>
-                            <i className="fa fa-caret-down item-dropdown"></i>
-                        </Link>
-
-                        <div className="clear"></div>
-
-                        <ul>
-                            <li><a href="#"><span>Google Inbox</span></a></li>
-                            <li><a href="#"><span>Google Analytics</span></a></li>
-                            <li><a href="#"><span>Google Drive</span></a></li>
-                        </ul>
-                    </li>
-                    <li className="active">
-                        <Link to="/builder"><i className="fa fa-gears"></i><span>Image Creator</span></Link>
-                    </li>
-                    <li>
-                        <a href="#"><i className="fa fa-lock"></i><span>Admin</span></a>
-                    </li>
-                </ul>
+                <ul>{this.props.children}</ul>
             </div>
         );
     }
-}
+};
+
+SideMenu.propTypes = {
+    title: PropTypes.string
+};
+
+SideMenu.defaultProps = {
+    title: ""
+};
+
+SideMenu.SideMenuContainer = SideMenuContainer;
+SideMenu.SideMenuItem = SideMenuItem;
+
+export default SideMenu;

@@ -1,6 +1,6 @@
 import './DashboardLayout.css';
 import React, { PropTypes } from 'react';
-import SideMenu from '../../elements/SideMenu';
+import SideMenu, { SideMenuItem, SideMenuContainer } from '../../elements/SideMenu';
 import Divider from '../../elements/Divider';
 import DropdownMenu, { DropdownMenuItem } from '../../elements/DropdownMenu';
 import AuthStore from '../../../stores/AuthStore';
@@ -33,14 +33,31 @@ class DashboardLayout extends React.Component {
         this.setState(this._getAuthState());
     }
 
+    handleSideMenuChange(active) {
+
+    }
+
     render() {
-        const { title, isBoxed } = this.props;
+        const { title, isBoxed, history } = this.props;
         const { user } = this.state;
 
         return (
             <div className="DashboardLayout-Container">
-                <SideMenu />
+                {/* SIDEMENU */}
+                <SideMenu title="brewr">
+                    <SideMenuItem link="/dashboard"><i className="fa fa-home"></i>Dashboard</SideMenuItem>
+                    <SideMenuItem link="/organisation/1/teams"><i className="fa fa-group"></i>Teams</SideMenuItem>
+                    <SideMenuContainer title={<span><i className="fa fa-folder"></i><span>Projects</span></span>}>
+                        <SideMenuItem link="/organisation/1/project/1">Google Inbox</SideMenuItem>
+                        <SideMenuItem link="/organisation/1/project/2">Google Analytics</SideMenuItem>
+                        <SideMenuItem link="/organisation/1/project/3">Google Drive</SideMenuItem>
+                    </SideMenuContainer>
+                    <SideMenuItem link="/builder"><i className="fa fa-gears"></i>Image Creator</SideMenuItem>
+                    <SideMenuItem link="/organisation/1/admin"><i className="fa fa-lock"></i>Admin</SideMenuItem>
+                    <SideMenuItem link="/logout"><i className="fa fa-sign-out"></i>Logout</SideMenuItem>
+                </SideMenu>
 
+                {/* CONTENT */}
                 <div className="DashboardLayout-Content">
                     <div className="DashboardLayout-Page-Header">
                         <div className="DashboardLayout-CompanyPicker">
@@ -59,11 +76,13 @@ class DashboardLayout extends React.Component {
                         </ul>
 
                         <div className="DashboardLayout-UserPreview">
-                            <DropdownMenu title="SomeUserName">
+                            <DropdownMenu title={user.name}>
                                 <DropdownMenuItem>
                                     <Link to="/user/settings"><i className="fa fa-cog"></i>Settings</Link>
                                 </DropdownMenuItem>
-                                <DropdownMenuItem>Item 2</DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <Link to="/logout"><i className="fa fa-sign-out"></i>Logout</Link>
+                                </DropdownMenuItem>
                             </DropdownMenu>
                         </div>
 

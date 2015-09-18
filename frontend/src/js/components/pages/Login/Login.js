@@ -13,8 +13,6 @@ import './Login.css';
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
-
-        console.log(props);
     }
 
     _getAuthState() {
