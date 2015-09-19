@@ -10,7 +10,10 @@ module.exports = [
         path: '/organisations/{organisation}/members',
         config: {
             handler: OrganisationController.members,
-            auth: 'token',
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'user' ]
+            },
             validate: {
                 params: {
                     organisation: Joi.number().integer()

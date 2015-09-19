@@ -8,21 +8,21 @@ var Boom = require('boom');
 module.exports = {
     all: function (request, reply) {
         var User = request.server.plugins.dogwater.user;
-        
+
         User.find({}, function (err, users){
            res.json(users);
         });
     },
 
-    showLogged: function(request, reply) {
-        return reply(request.auth.credentials.user);
+    getUser: function (request, reply) {
+        return reply(request.auth.credentials);
     },
     show: function(request, reply){
         var User = request.collections.user;
 
         var userId = request.params.user,
             organisationId = request.params.organisation,
-            loggedUser = request.auth.credentials.user;
+            loggedUser = request.auth.credentials;
 
         User.areMemberOf([loggedUser.id, userId], organisationId, function(areMembers, details){
             if(!areMembers) {
@@ -45,7 +45,7 @@ module.exports = {
 
         var userId = request.params.user,
             organisationId = request.params.organisation,
-            loggedUser = request.auth.credentials.user;
+            loggedUser = request.auth.credentials;
 
         User.areMemberOf([loggedUser.id, userId], organisationId, function(areMembers, details) {
             if (!areMembers) {

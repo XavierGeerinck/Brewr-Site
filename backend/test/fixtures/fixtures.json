@@ -7,7 +7,7 @@
                 "email": "maximgeerinck@hotmail.com",
                 "password": "test",
                 "enabled": true,
-                "scope": null,
+                "scope": "user",
                 "createdOn": "2015-08-08T08:58:43.000Z",
                 "updatedOn": "2015-08-08T08:58:47.000Z",
                 "expiresOn": "2015-08-08T08:58:48.000Z"
@@ -17,7 +17,7 @@
                 "email": "NicholasTCoakley@brewr.com",
                 "password": "test",
                 "enabled": true,
-                "scope": null,
+                "scope": "user",
                 "createdOn": "2015-08-08T08:58:43.000Z",
                 "updatedOn": "2015-08-08T08:58:47.000Z",
                 "expiresOn": "2015-08-08T08:58:48.000Z"
@@ -27,7 +27,7 @@
                 "email": "AdelineNPedraza@brewr.com",
                 "password": "test",
                 "enabled": true,
-                "scope": null,
+                "scope": "user",
                 "createdOn": "2015-08-08T08:58:43.000Z",
                 "updatedOn": "2015-08-08T08:58:47.000Z",
                 "expiresOn": "2015-08-08T08:58:48.000Z"
@@ -37,7 +37,20 @@
                 "email": "SeanAMurphy@brewr.com",
                 "password": "test",
                 "enabled": true,
-                "scope": null,
+                "scope": "user",
+                "createdOn": "2015-08-08T08:58:43.000Z",
+                "updatedOn": "2015-08-08T08:58:47.000Z",
+                "expiresOn": "2015-08-08T08:58:48.000Z"
+            },
+            {
+                "id": 5,
+                "email": "thebillkidy@gmail.com",
+                "password": "test",
+                "enabled": true,
+                "scope": "user",
+                "first_name": "Xavier",
+                "last_name": "Geerinck",
+                "name": "Xavier Geerinck",
                 "createdOn": "2015-08-08T08:58:43.000Z",
                 "updatedOn": "2015-08-08T08:58:47.000Z",
                 "expiresOn": "2015-08-08T08:58:48.000Z"

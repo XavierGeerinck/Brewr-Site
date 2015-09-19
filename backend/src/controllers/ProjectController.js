@@ -18,7 +18,7 @@ module.exports = {
      */
     assigned: function (request, reply) {
         var ProjectUser = request.collections.projectuser;
-        var user = request.auth.credentials.user;
+        var user = request.auth.credentials;
 
         ProjectUser
             .find({"user": user.id})
@@ -37,7 +37,7 @@ module.exports = {
      */
     index: function (request, reply) {
         var organisation = request.params.organisation;
-        var userObj = request.auth.credentials.user;
+        var userObj = request.auth.credentials;
 
         var User = request.collections.user,
             Project = request.collections.project;
@@ -63,7 +63,7 @@ module.exports = {
         var User = request.collections.user,
             Project = request.collections.project;
 
-        var user = request.auth.credentials.user,
+        var user = request.auth.credentials,
             organisation = request.params.organisation,
             project = request.params.project;
 
@@ -84,7 +84,7 @@ module.exports = {
     assign: function (request, reply) {
         var User = request.collections.user;
 
-        var assigneeId = request.auth.credentials.user.id,
+        var assigneeId = request.auth.credentials.id,
             userId = request.payload.user,
             projectId = request.params.project;
 
@@ -133,7 +133,7 @@ module.exports = {
         var ProjectFile = request.collections.user;
 
         var organisation = request.param('organisation');
-        var user = request.auth.credentials.user;
+        var user = request.auth.credentials;
 
         // Project name is required
         if (!params.meta.name) {

@@ -42,9 +42,9 @@ module.exports = {
             type: 'datetime',
             columnName: 'expires_on'
         },
-        scopes: {
-            type: 'array',
-            defaultsTo: []
+        scope: {
+            type: 'string',
+            defaultsTo: 'user'
         },
         avatar: {
             type: 'string',
@@ -54,6 +54,10 @@ module.exports = {
         firstName: {
             type: 'string',
             columnName: 'first_name'
+        },
+        lastName: {
+            type: 'string',
+            columnName: 'last_name'
         },
         name: {
             type: 'string'

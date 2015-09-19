@@ -21,8 +21,5 @@
         "cors_headers": [ "Authorization", "Content-Type", "If-None-Match", "Bearer", "x-http-method-override" ],
         "cors_methods": [ "GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS" ],
         "cors_credentials": true
-    },
-    "jwt": {
-        "privateKey": "TqSn6Y@Pr@3TFq*f6_7&f@*+V!$766hnfcY#Njz=A=K-_yhF_PjPJAYLxBCK%_As"
     }
 }

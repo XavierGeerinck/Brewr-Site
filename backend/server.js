@@ -68,9 +68,9 @@ function registerPlugins() {
                 }
             },
             {
-                register: require('hapi-auth-jwt'),
+                register: require('hapi-auth-bearer-simple'),
                 options: {}
-            }
+            },
             //,
             // {
             //     register: require('hapi-auth-bearer-simple'),
@@ -93,12 +93,11 @@ function registerPlugins() {
 
 // Register the authentication strategies
 function registerStrategy(server) {
-
     var AuthService = require('./src/services/AuthService.js');
+
     // Register the strategy
-    server.auth.strategy('token', 'jwt', {
-        key: config.jwt.privateKey,
-        validateFunction: AuthService.validateLogin
+    server.auth.strategy('bearer', 'bearerAuth', {
+        validateFunction: validateFunction
     });
 }
 
@@ -109,6 +108,35 @@ function registerRoutes(server) {
     Object.keys(routes).forEach(function (key) {
         server.route(routes[key]);
     });
+}
+
+// For now we do validate here until I got a good way to use the models everywhere
+function validateFunction (token, callback) {
+    if (!token) {
+        return callback('E_NO_TOKEN');
+    }
+
+    var collections = server.plugins.dogwater.collections;
+
+    collections.usersession
+    .findOne({ token: token })
+    .then(function (userSession) {
+        if (!userSession) {
+            return Promise.reject('E_INVALID_TOKEN');
+        }
+
+        return collections.user.findOne({ id: userSession.user });
+    })
+    .then(function (user) {
+        if (!user) {
+            return Promise.reject('E_INVALID_TOKEN');
+        }
+        
+        return callback(null, true, user);
+    })
+    .catch(function (err) {
+        return callback(err);
+    })
 }
 
 // Register routes

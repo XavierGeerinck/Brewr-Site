@@ -9,8 +9,11 @@ module.exports = [
         method: 'GET',
         path: '/user',
         config: {
-            handler: UserController.showLogged,
-            auth: 'token'
+            handler: UserController.getUser,
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'user' ]
+            }
         }
     },
     {
@@ -19,7 +22,7 @@ module.exports = [
         config: {
             handler: UserController.show,
             auth: {
-                strategy: 'token',
+                strategy: 'bearer',
                 scope: ['member-{params.organisation}']
             },
             validate: {
@@ -35,7 +38,10 @@ module.exports = [
         path: '/users/{user}',
         config: {
             handler: UserController.memberOf,
-            auth: 'token',
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'user' ]
+            },
             validate: {
                 params: {
                     user: Joi.number().integer()
@@ -49,7 +55,7 @@ module.exports = [
         config: {
             handler: UserController.assignedTo,
             auth: {
-                strategy: 'token',
+                strategy: 'bearer',
                 scope: ['member-{params.organisation}']
             },
             validate: {

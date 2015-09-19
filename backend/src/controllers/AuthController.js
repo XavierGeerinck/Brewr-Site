@@ -1,97 +1,114 @@
 /**
- * AuthController
- * @description handles the authentications
- */
+* AuthController
+* @description handles the authentications
+*/
 var Boom = require('boom');
 var AuthService = require('../services/AuthService.js');
 var _ = require('lodash');
 
-function _onAuth(request, reply, err, user, info) {
-    if (err) {
-        console.log(err);
-        return reply(Boom.badRequest(info && info.code));
-    }
-
-    if (!user) {
-        return reply(Boom.unauthorized(null, info && info.code));
-    }
-
-    return reply(AuthService.createReply(user));
-}
-
 module.exports = {
     /**
-     * Create a new user
-     * @param request
-     * @param reply
-     */
+    * Create a new user
+    * @param request
+    * @param reply
+    */
     signup: function (request, reply) {
         var User = request.collections.user;
 
         User
-        .create(_.omit(request.params, 'id'))
+        .create({
+            email: request.payload.email,
+            password: request.payload.password,
+            first_name: request.payload.firstName,
+            last_name: request.payload.lastName,
+            name: request.payload.firstName + ' ' + request.payload.lastName
+        })
         .then(function (user) {
             return reply(AuthService.createReply(user));
         })
-        .then(function (data, code, message, root){
-            reply(reply.continue());
-        })
-
-        .catch(function(data, options){
-
+        .catch(function (data, options){
             var err = Boom.badData(data.code);
             err.output.payload.invalidAttributes = data.invalidAttributes;
-            reply(err);
-
+            return reply(err);
         });
     },
 
     /**
-     * Create a response with a token according to given user details
-     * @param request
-     * @param reply
-     */
+    * Create a response with a token according to given user details
+    * @param request
+    * @param reply
+    */
     signin: function (request, reply){
         var User = request.collections.user;
-
+        var UserSession = request.collections.usersession;
         var info = {};
+        var userModel = null;
 
         User
-            .findOne({ email: request.payload.email})
-            .populate('memberOf')
-            .populate('ownerOf')
-            .then(function(user){
+        .findOne({ email: request.payload.email})
+        .populate('memberOf')
+        .populate('ownerOf')
+        .then(function (user){
+            userModel = user;
 
-                if(!user) {
-                    info.code = "E_USER_NOT_FOUND";
-                    info.message = "Unknown user: " + request.payload.email;
-                } else if(!AuthService.comparePassword(request.payload.password, user)) {
-                    info.code = "E_WRONG_PASSWORD";
-                    info.message = "Invalid password";
-                }
+            // Check if the user exists
+            if (!user) {
+                return Promise.reject(Boom.unauthorized(null, 'E_USER_NOT_FOUND'));
+            }
 
-                if(!user.scopes) {
-                    user.scopes = [];
-                }
+            // Also make sure that the password is correct
+            if (!AuthService.comparePassword(request.payload.password, user)) {
+                return Promise.reject(Boom.unauthorized(null, 'E_WRONG_PASSWORD'));
+            }
 
-                // dynamically modify SCOPES
-                // Add member scope
-                var isMemberOf = user.isMemberOf();
-                for(var m = 0; m < isMemberOf.length; m++) {
-                    user.scopes.push('member-' + isMemberOf[m].id);
-                }
+            // From here we are logged in
+            if (!user.scopes) {
+                user.scopes = [];
+            }
 
-                // Add owner scope
-                for(var o = 0; o < user.ownerOf.length; o++) {
-                    user.scopes.push('owner-' + user.ownerOf[o].id);
-                }
+            // dynamically modify SCOPES
+            // Add member scope
+            var isMemberOf = user.isMemberOf();
+            for(var m = 0; m < isMemberOf.length; m++) {
+                user.scopes.push('member-' + isMemberOf[m].id);
+            }
 
-                return _onAuth(request, reply, null, user, info)
-            })
-            .catch(function(err){
-                info.code = "ERR";
-                info.message = "An error occured";
-                return _onAuth(request, reply, err, null, info)
+            // Add owner scope
+            for(var o = 0; o < user.ownerOf.length; o++) {
+                user.scopes.push('owner-' + user.ownerOf[o].id);
+            }
+
+            var ip = request.info.remoteAddress;
+            var userAgent = request.headers['user-agent'];
+            return AuthService.createSession(UserSession, user, ip, userAgent);
+        }).then(function (session) {
+            return reply({
+                user: userModel,
+                token: session.token
             });
+        })
+        .catch(function (err) {
+            return reply(err);
+        });
+    },
+
+    logout: function (request, reply) {
+        var UserSession = request.collections.usersession;
+
+        UserSession
+        .findOne({ token: request.auth.credentials.token })
+        .then(function (userSession) {
+            if (!userSession) {
+                return Promise.reject(Boom.badRequest('INVALID_TOKEN'));
+            }
+
+            return userSession.destroy();
+        })
+        .then(function () {
+            return reply({ success: true });
+        })
+        .catch(function (err) {
+            return reply(err);
+        })
     }
 };

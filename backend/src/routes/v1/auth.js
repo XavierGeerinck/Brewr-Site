@@ -16,14 +16,28 @@ module.exports = [
         }
     },
     {
-        method: 'POST', path: '/auth/signup',
+        method: 'POST',
+        path: '/auth/signup',
         config: {
             handler: AuthController.signup,
             validate: {
                 payload: {
                     email: Joi.string().required(),
-                    password: Joi.string().required()
+                    password: Joi.string().required(),
+                    firstName: Joi.string().required(),
+                    lastName: Joi.string().required()
                 }
+            }
+        }
+    },
+    {
+        method: 'GET',
+        path: '/auth/logout',
+        config: {
+            handler: AuthController.logout,
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'user' ]
             }
         }
     }

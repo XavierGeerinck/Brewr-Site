@@ -1,20 +1,8 @@
 var bcrypt = require('bcrypt-nodejs');
-var jwt = require('jsonwebtoken');
-
-var tokenSecret = process.env.tokenSecret || 'TqSn6Y@Pr@3TFq*f6_7&f@*+V!$766hnfcY#Njz=A=K-_yhF_PjPJAYLxBCK%_As';
-
-var EXPIRES_IN_MINUTES = 60*24,
-    SECRET = tokenSecret,
-    ISSUER = 'localhost',//TODO: change to brewr.io
-    AUDIENCE = 'localhost',//TODO: change to brewr.io
-    ALGORITHM = 'HS256';
+var Promise = require('bluebird');
+var crypto = require('crypto');
 
 module.exports = {
-
-    expiresInMinutes: EXPIRES_IN_MINUTES,
-    secret: SECRET,
-    algorithm: ALGORITHM,
-
     hashPassword: function (password) {
         return bcrypt.hashSync(password);
     },
@@ -22,17 +10,31 @@ module.exports = {
     comparePassword: function(password, user) {
         return bcrypt.compareSync(password, user.password);
     },
-    createToken: function(user) {
-        return jwt.sign({
-                user: user.toJSON()
-            },
-            SECRET,
-            {
-                algorithm: ALGORITHM,
-                expiresInMinutes: EXPIRES_IN_MINUTES,
-                //issuer: sails.config.jwtSettings.issuer,
-                //audience: sails.config.jwtSettings.audience
+
+    createToken: function() {
+        var sha = crypto.createHash('sha256');
+        sha.update(Math.random().toString());
+        return sha.digest('hex');
+    },
+
+    createSession: function (sessionDB, user, ip, userAgent) {
+        var token = this.createToken();
+
+        return new Promise(function (resolve, reject) {
+            sessionDB
+            .create({
+                user: user,
+                token: token,
+                user_agent: userAgent,
+                ip: ip
             })
+            .then(function (usersession) {
+                return resolve(usersession);
+            })
+            .catch(function (data, options) {
+                return reject(data);
+            });
+        });
     },
 
     createReply: function(user) {
@@ -40,15 +42,5 @@ module.exports = {
             token: this.createToken(user),
             user: user
         }
-    },
-
-    validateLogin: function(request, decodedToken, callback) {
-        if(!decodedToken) {
-            return callback(error, false, decodedToken);
-        }
-
-        request.payload.user = decodedToken;
-        server.expose('request', request);
-        return callback(error, true, decodedToken);
     }
 };

@@ -11,7 +11,7 @@ module.exports = [
         config: {
             handler: ProjectController.index,
             auth: {
-                strategy: 'token',
+                strategy: 'bearer',
                 scope: ['member-{params.organisation}']
             },
             validate: {
@@ -27,7 +27,7 @@ module.exports = [
         config: {
             handler: ProjectController.show ,
             auth: {
-                strategy: 'token',
+                strategy: 'bearer',
                 scope: ['member-{params.organisation}']
             },
             validate: {
@@ -44,7 +44,7 @@ module.exports = [
         config: {
             handler: ProjectController.assigned,
             auth: {
-                strategy: 'token',
+                strategy: 'bearer',
                 scope: ['member-{params.organisation}']
             },
         }
@@ -55,7 +55,7 @@ module.exports = [
         config: {
             handler: ProjectController.assign,
             auth: {
-                strategy: 'token',
+                strategy: 'bearer',
                 scope: ['member-{params.organisation}']
             },
             validate: {
@@ -74,7 +74,7 @@ module.exports = [
         path: '/projects',
         config: {
             auth: {
-                strategy: 'token',
+                strategy: 'bearer',
                 scope: ['member-{params.organisation}']
             },
             handler: ProjectController.create,
