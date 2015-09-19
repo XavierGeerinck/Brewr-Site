@@ -14,7 +14,7 @@ class App extends React.Component {
 
     componentDidMount() {
         // Automatically login if possible
-        let token = localStorage.getItem('jwt');
+        let token = localStorage.getItem('bearer');
 
         if (!AuthStore.user && token) {
             AuthActions.getUser(token);

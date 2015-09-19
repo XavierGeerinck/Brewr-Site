@@ -18,12 +18,14 @@ export function login(email, password) {
     });
 }
 
-export function register(email, password) {
+export function register(email, password, firstName, lastName) {
     request
     .post('http://localhost:8000/auth/signup')
     .send({
         email: email,
-        password: password
+        password: password,
+        firstName: firstName,
+        lastName: lastName
     })
     .end(function (err, res) {
         if (err) {
@@ -49,7 +51,7 @@ export function getUser(token) {
 
 export function logout(token) {
     request
-    .get('http://localhost:8000/logout')
+    .get('http://localhost:8000/auth/logout')
     .set('Authorization', 'Bearer ' + token)
     .end(function (err, res) {
         if (err) {

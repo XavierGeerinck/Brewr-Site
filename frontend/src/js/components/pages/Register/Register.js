@@ -71,7 +71,12 @@ export default class RegisterPage extends BaseComponent {
         //     )
         // );
 
-        AuthActions.register(this.refs.email.state.value, this.refs.password.state.value);
+        let email = this.refs.email.state.value;
+        let password = this.refs.password.state.value;
+        let firstName = this.refs.first_name.state.value;
+        let lastName = this.refs.last_name.state.value;
+
+        AuthActions.register(email, password, firstName, lastName);
     }
 
     render() {
@@ -83,6 +88,9 @@ export default class RegisterPage extends BaseComponent {
                         <ValidateInput type="email" ref="email" name="email" placeholder="youremail@example.com" label="Email*" id="user_email" />
                         <ValidateInput type="password" ref="password" name="password" placeholder="password" label="Password*" id="user_password" />
                         <ValidateInput type="password" ref="password_confirm" name="password_confirm" placeholder="Confirm password" label="Confirm Password*" id="user_password_confirm" />
+
+                        <ValidateInput type="text" ref="first_name" name="first_name" placeholder="First Name" label="First Name*" id="user_first_name" />
+                        <ValidateInput type="text" ref="last_name" name="last_name" placeholder="Last Name" label="Last Name*" id="user_last_name" />
 
                         <Button text="Register" isInline={isInline} onClick={this.register} />
                     </form>

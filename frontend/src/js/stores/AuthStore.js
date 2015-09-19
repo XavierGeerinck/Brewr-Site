@@ -8,7 +8,7 @@ class AuthStore extends BaseStore {
 
         this.subscribe(() => this._registerToActions.bind(this));
         this._user = null; // Not logged in by default
-        this._token = localStorage.getItem('jwt'); // Stored in the JWT var (can be null) so rely on user
+        this._token = localStorage.getItem('bearer'); // Stored in the JWT var (can be null) so rely on user
     }
 
     // We get a source back (VIEW or SERVER) with there the action in
@@ -22,7 +22,7 @@ class AuthStore extends BaseStore {
                 console.log('doing request');
                 break;
             case actionTypes.RESPONSE_LOGIN:
-                localStorage.setItem('jwt', source.action.response.token);
+                localStorage.setItem('bearer', source.action.response.token);
                 this._token = source.action.response.token;
                 this._user = source.action.response.user;
                 this.emitChange();
@@ -41,8 +41,9 @@ class AuthStore extends BaseStore {
             case actionTypes.RESPONSE_LOGOUT:
                 this._user = null;
                 this._token = null;
-                localStorage.removeItem('jwt');
+                localStorage.removeItem('bearer');
                 this.emitChange();
+                break;
             case actionTypes.RESPONSE_LOGIN_ERROR:
             case actionTypes.RESPONSE_REGISTER_ERROR:
             case actionTypes.RESPONSE_USER_ERROR:
@@ -62,6 +63,10 @@ class AuthStore extends BaseStore {
 
     get isLoggedIn() {
         return !!this._user;
+    }
+
+    get token() {
+        return this._token;
     }
 }
 

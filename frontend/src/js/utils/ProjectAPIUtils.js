@@ -10,7 +10,7 @@ var ProjectAPIUtils = {
 
     request
       .get('http://localhost:1337/organisations/1/projects')
-      .set('Authorization', 'JWT ' + localStorage.getItem('jwt'))
+      .set('Authorization', 'JWT ' + localStorage.getItem('bearer'))
       .end(function(err, res){
         console.log(err);
         console.log(res);

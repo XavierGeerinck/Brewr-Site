@@ -33,14 +33,16 @@ module.exports = {
         AuthAPIUtils.getUser(token);
     },
 
-    register: function (email, password) {
+    register: function (email, password, firstName, lastName) {
         AppDispatcher.handleViewAction({
             type: actionTypes.REQUEST_REGISTER,
             email: email,
-            password: password
+            password: password,
+            firstName: firstName,
+            lastName: lastName
         });
 
-        AuthAPIUtils.register(email, password);
+        AuthAPIUtils.register(email, password, firstName, lastName);
     },
 
     logout: function (token) {
