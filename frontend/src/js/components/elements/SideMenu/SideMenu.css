@@ -76,10 +76,17 @@
     padding: 0;
 }
 
+.SideMenuContainer-Second-Level-Visible {
+    display: block;
+}
+
+.SideMenuContainer-Second-Level-NotVisible {
+    display: none;
+}
+
 .SideMenuContainer-Second-Level ul {
     background-color: var(--color-primary-shade-darker-2);
     padding: 0;
-    display: block;
 }
 
 .SideMenuContainer-Second-Level ul li {

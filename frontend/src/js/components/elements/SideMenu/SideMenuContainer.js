@@ -22,6 +22,13 @@ class SideMenuContainer extends React.Component {
         const { title } = this.props;
         const { showItems } = this.state;
 
+        const cx = React.addons.classSet;
+
+        var className = cx({
+            'SideMenuContainer-Second-Level-Visible': showItems,
+            'SideMenuContainer-Second-Level-NotVisible': !showItems,
+        });
+
         return (
             <li className="SideMenuContainer SideMenuContainer-Second-Level">
                 <a href="#" onClick={this.showItems.bind(this)}>
@@ -31,11 +38,9 @@ class SideMenuContainer extends React.Component {
 
                 <div className="clear"></div>
 
-                {
-                    showItems ?
-                    <ul>{this.props.children}</ul>
-                    : undefined
-                }
+                <ul className={className}>
+                    {this.props.children}
+                </ul>
             </li>
         );
     }
