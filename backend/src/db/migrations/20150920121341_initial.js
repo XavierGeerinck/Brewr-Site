@@ -35,7 +35,7 @@ exports.down = function(knex, Promise) {
         var tables = Object.keys(Schema);
 
         async.forEach(tables, function (tableName, callback) {
-            knex.schema.dropTable(tableName)
+            initDB.dropTable(tableName, knex)
             .then(function (result) {
                 callback(null, result);
             })

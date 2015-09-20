@@ -1,7 +1,28 @@
 /**
 * This file will initialize the database and it's tables
 */
-var Schema = require("../schemas/schema.js");
+var Schema = require('../schemas/schema.js');
+var Promise = require('bluebird');
+
+exports.dropTable = function (tableName, knex) {
+    return new Promise(function (resolve, reject) {
+        knex.schema.hasTable(tableName)
+        .then(function (exists) {
+            // If table does not exist, resolve anyway
+            if (!exists) {
+                return resolve('TABLE DOES NOT EXIST');
+            }
+
+            return knex.schema.dropTable(tableName)
+        })
+        .then(function (result) {
+            return resolve(result);
+        })
+        .catch(function (err) {
+            return reject(err);
+        });
+    })
+};
 
 exports.createTable = function (tableName, knex) {
     // And create a table for each one
@@ -47,7 +68,9 @@ exports.createTable = function (tableName, knex) {
             }
 
             // FK contstraint
-            if (currentKey.hasOwnProperty("references")) {
+            if (currentKey.inTable && currentKey.hasOwnProperty("references")) {
+                column.references(currentKey.inTable + '.' + currentKey.references);
+            } else if (currentKey.hasOwnProperty("references")) {
                 column.references(currentKey.references);
             }
 

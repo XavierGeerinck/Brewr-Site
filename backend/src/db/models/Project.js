@@ -1,0 +1,13 @@
+var Bookshelf = require('bookshelf');
+var User = require('./User');
+
+var Project = Bookshelf.Model.extend({
+    tableName: 'project',
+    hasTimestamps: true, // Define that we update the created_at and updated_at on change
+    owner: function () {
+        return this.belongsTo(User);
+    },
+    created_by: function() {
+        return this.belongsTo(User);
+    }
+})
