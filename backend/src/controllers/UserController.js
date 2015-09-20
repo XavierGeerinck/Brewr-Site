@@ -5,6 +5,8 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 var Boom = require('boom');
+var OrganisationService = require('../services/OrganisationService');
+
 module.exports = {
     all: function (request, reply) {
         var User = request.server.plugins.dogwater.user;
@@ -77,5 +79,16 @@ module.exports = {
                 console.log(err);
                 reply(Boom.badRequest("USER_NOT_FOUND"));
             });
+    },
+
+    getOrganisationsByUser: function (request, reply) {
+        OrganisationService
+        .getOrganisationsByUser(request.auth.credentials)
+        .then(function (organisations) {
+            return reply(organisations);
+        })
+        .catch(function (err) {
+            return reply(err);
+        })
     }
 };

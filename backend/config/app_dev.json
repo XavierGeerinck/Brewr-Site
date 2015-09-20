@@ -1,17 +1,23 @@
 {
     "database": {
-        "adapters": {
-            "brewrDB": "sails-postgresql"
+        "client": "postgresql",
+        "connection": {
+            "database": "brewr",
+            "user": "postgres",
+            "password": "root",
+            "port": 5432,
+            "host": "localhost"
         },
-        "connections": {
-            "simple": {
-                "adapter": "brewrDB",
-                "host": "localhost",
-                "port": 5432,
-                "user": "postgres",
-                "password": "root",
-                "database": "brewr"
-            }
+        "pool": {
+            "min": 2,
+            "max": 10
+        },
+        "migrations": {
+            "tableName": "knex_migrations",
+            "directory": "./src/db/migrations"
+        },
+        "seeds": {
+            "directory": "./src/db/seeds"
         }
     },
     "server": {

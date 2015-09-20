@@ -27,7 +27,6 @@ server.connection({
 });
 
 // Register plugins
-var models = require('require-all')(__dirname + '/src/models');
 var fixtures = require('require-all')(__dirname + '/test/fixtures');
 
 function start () {
@@ -59,15 +58,6 @@ function registerPlugins() {
     return new Promise(function (resolve, reject) {
         server.register([
             {
-                register: require('dogwater'),
-                options: {
-                    adapters: config.database.adapters,
-                    connections: config.database.connections,
-                    models: Object.keys(models).map(function (key) { return models[key]; }),
-                    fixtures: Object.keys(fixtures).map(function (key) { return fixtures[key]; })[0]
-                }
-            },
-            {
                 register: require('hapi-auth-bearer-simple'),
                 options: {}
             },
@@ -80,8 +70,6 @@ function registerPlugins() {
             if (err) {
                 return reject(err);
             }
-
-            console.log()
 
             registerStrategy(server);
             registerRoutes(server);
@@ -116,22 +104,28 @@ function validateFunction (token, callback) {
         return callback('E_NO_TOKEN');
     }
 
-    var collections = server.plugins.dogwater.collections;
+    var UserSession = require('./src/db/models/UserSession');
+    var User = require('./src/db/models/User');
 
-    collections.usersession
-    .findOne({ token: token })
+    UserSession
+    .forge({ token: token })
+    .fetch()
     .then(function (userSession) {
         if (!userSession) {
             return Promise.reject('E_INVALID_TOKEN');
         }
 
-        return collections.user.findOne({ id: userSession.user });
+        return User.forge({ id: userSession.get('id') }).fetch();
     })
     .then(function (user) {
         if (!user) {
             return Promise.reject('E_INVALID_TOKEN');
         }
-        
+
+        // Set scope object for hapi authenticator,
+        // needed since we can not access attributes instantly
+        user.scope = user.get('scope');
+
         return callback(null, true, user);
     })
     .catch(function (err) {

@@ -6,7 +6,7 @@ module.exports = [
         method: 'POST',
         path: '/auth/signin',
         config: {
-            handler: AuthController.signin,
+            handler: AuthController.login,
             validate: {
                 payload: {
                     email: Joi.string().required(),
@@ -19,7 +19,7 @@ module.exports = [
         method: 'POST',
         path: '/auth/signup',
         config: {
-            handler: AuthController.signup,
+            handler: AuthController.register,
             validate: {
                 payload: {
                     email: Joi.string().required(),

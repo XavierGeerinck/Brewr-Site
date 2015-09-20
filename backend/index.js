@@ -11,5 +11,6 @@ server.start()
     server.log(['info', 'server'], 'Server started on ' + config.server.ip + ':' + config.server.port);
 })
 .catch(function (err) {
-    console.log(err);
+    console.log(err.message);
+    console.trace(err);
 });
