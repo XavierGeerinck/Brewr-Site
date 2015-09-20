@@ -107,7 +107,9 @@ var Schema = {
         id: { type: 'increments', nullable: false, primary: true },
         project_id: { references: 'id', inTable: 'project', type: 'integer', nullable: false, unsigned: true },
         user_id: { references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true },
-        is_manager: { type: 'boolean', nullable: false, defaultsTo: false, comment: 'Defines if the user is a manager of the current project' }
+        is_manager: { type: 'boolean', nullable: false, defaultsTo: false, comment: 'Defines if the user is a manager of the current project' },
+        is_installed: { type: 'boolean', nullable: false, defaultsTo: false, comment: 'Is the project installed?' },
+        is_running: { type: 'boolean', nullable: false, defaultsTo: false, comment: 'Is the project running?' },
     }
 }
 

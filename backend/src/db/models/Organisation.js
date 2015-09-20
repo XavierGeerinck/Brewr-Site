@@ -9,5 +9,8 @@ var Organisation = Bookshelf.Model.extend({
     },
     created_by: function() {
         return this.belongsTo(User);
+    },
+    users: function () {
+        return this.belongsToMany(User);
     }
 })

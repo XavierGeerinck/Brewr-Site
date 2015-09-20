@@ -1,5 +1,6 @@
 var Bookshelf = require('bookshelf');
 var User = require('./User');
+var ProjectRevision = require('./ProjectRevisio');
 
 var Project = Bookshelf.Model.extend({
     tableName: 'project',
@@ -9,5 +10,11 @@ var Project = Bookshelf.Model.extend({
     },
     created_by: function() {
         return this.belongsTo(User);
+    },
+    users: function () {
+        return this.belongsToMany(User);
+    },
+    revision: function () {
+        return this.belongsToMany(ProjectRevision);
     }
 })
