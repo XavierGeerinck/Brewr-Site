@@ -1,5 +1,5 @@
 var Promise = require('bluebird');
-var OrganisationModel = require('../models/Organisation');
+var OrganisationModel = require('../db/models/Organisation');
 
 exports.getOrganisationsByUser = function(user) {
     console.log(user);

@@ -1,4 +1,4 @@
-var Bookshelf = require('bookshelf');
+var Bookshelf = require('../');
 var Project = require('./Project');
 var Organisation = require('./Organisation');
 var UserSession = require('./UserSession');
@@ -15,4 +15,6 @@ var User = Bookshelf.Model.extend({
     sessions: function () {
         return this.belongsToMany(UserSession);
     }
-})
+});
+
+module.exports = User;

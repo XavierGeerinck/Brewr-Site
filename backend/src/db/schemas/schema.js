@@ -5,21 +5,21 @@
 var Schema = {
     user: {
         id: { type: 'increments', nullable: false, primary: true },
-        email: { type: 'string', nullable: false },
+        email: { type: 'string', unique: true, nullable: false },
         password: { type: 'string', nullable: false },
         name: { type: 'string', nullable: false },
         first_name: { type: 'string', nullable: false },
         last_name: { type: 'string', nullable: false },
-        avatar_url: { type: 'string', nullable: false, defaultsTo: './avatar.png' },
-        enabled: { type: 'boolean', nullable: false, defaultsTo: true, comment: 'Is the account still active?' },
-        scope: { type: 'string', nullable: false, defaultsTo: 'user' },
+        avatar_url: { type: 'string', nullable: false, defaultTo: './avatar.png' },
+        enabled: { type: 'boolean', nullable: false, defaultTo: true, comment: 'Is the account still active?' },
+        scope: { type: 'string', nullable: false, defaultTo: 'user' },
         created_at: { type: 'dateTime', nullable: false },
         updated_at: { type: 'dateTime', nullable: true }
     },
 
     user_session: {
         id: { type: 'increments', nullable: false, primary: true },
-        token: { type: 'string', nullable: false },
+        token: { type: 'string', unique: true, nullable: false },
         ip: { type: 'string', nullable: true },
         user: { referneces: 'user', type: 'integer', unsigend: true, nullable: false },
         user_agent: { type: 'text', nullable: true },
@@ -52,7 +52,7 @@ var Schema = {
         organisation: { type: 'integer', nullable: false },
         created_by: { references: 'id', inTable: 'user', type: 'integer', unsigned: true, nullable: false },
         owner: { references: 'id', inTable: 'user', type: 'integer', unsigned: true, nullable: false },
-        archived: { type: 'boolean', nullable: false, defaultsTo: false },
+        archived: { type: 'boolean', nullable: false, defaultTo: false },
         created_at: { type: 'string', nullable: false },
         updated_at: { type: 'string', nullable: true }
     },
@@ -107,9 +107,9 @@ var Schema = {
         id: { type: 'increments', nullable: false, primary: true },
         project_id: { references: 'id', inTable: 'project', type: 'integer', nullable: false, unsigned: true },
         user_id: { references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true },
-        is_manager: { type: 'boolean', nullable: false, defaultsTo: false, comment: 'Defines if the user is a manager of the current project' },
-        is_installed: { type: 'boolean', nullable: false, defaultsTo: false, comment: 'Is the project installed?' },
-        is_running: { type: 'boolean', nullable: false, defaultsTo: false, comment: 'Is the project running?' },
+        is_manager: { type: 'boolean', nullable: false, defaultTo: false, comment: 'Defines if the user is a manager of the current project' },
+        is_installed: { type: 'boolean', nullable: false, defaultTo: false, comment: 'Is the project installed?' },
+        is_running: { type: 'boolean', nullable: false, defaultTo: false, comment: 'Is the project running?' },
     }
 }
 

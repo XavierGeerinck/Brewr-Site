@@ -1,4 +1,4 @@
-var Bookshelf = require('bookshelf');
+var Bookshelf = require('../');
 var Project = require('./Project');
 var ProjectFile = require('./ProjectFile');
 var ProjectUser = require('./ProjectUser');
@@ -15,4 +15,6 @@ var ProjectRevision = Bookshelf.Model.extend({
     users: function () {
         return this.belongsToMany(ProjectUser);
     }
-})
+});
+
+module.exports = ProjectRevision;

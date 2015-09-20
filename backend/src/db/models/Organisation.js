@@ -1,4 +1,4 @@
-var Bookshelf = require('bookshelf');
+var Bookshelf = require('../');
 var User = require('./User');
 
 var Organisation = Bookshelf.Model.extend({
@@ -13,4 +13,6 @@ var Organisation = Bookshelf.Model.extend({
     users: function () {
         return this.belongsToMany(User);
     }
-})
+});
+
+module.exports = Organisation;

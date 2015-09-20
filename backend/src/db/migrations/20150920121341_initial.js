@@ -34,7 +34,8 @@ exports.down = function(knex, Promise) {
     return new Promise(function (resolve, reject) {
         var tables = Object.keys(Schema);
 
-        async.forEach(tables, function (tableName, callback) {
+        // We run drop on reverse to cheat the FK's
+        async.forEach(tables.reverse(), function (tableName, callback) {
             initDB.dropTable(tableName, knex)
             .then(function (result) {
                 callback(null, result);

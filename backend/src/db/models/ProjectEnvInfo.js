@@ -1,4 +1,4 @@
-var Bookshelf = require('bookshelf');
+var Bookshelf = require('../');
 var ProjectRevision = require('./ProjectRevision');
 
 var ProjectEnvInfo = Bookshelf.Model.extend({
@@ -6,4 +6,6 @@ var ProjectEnvInfo = Bookshelf.Model.extend({
     project_revision: function () {
         return this.belongsTo(ProjectRevision);
     }
-})
+});
+
+module.exports = ProjectEnvInfo;

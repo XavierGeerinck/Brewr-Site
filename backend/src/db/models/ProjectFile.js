@@ -1,4 +1,4 @@
-var Bookshelf = require('bookshelf');
+var Bookshelf = require('../');
 var User = require('./User');
 var ProjectRevision = require('./ProjectRevision');
 
@@ -10,4 +10,6 @@ var ProjectFile = Bookshelf.Model.extend({
     added_by: function () {
         return this.belongsTo(User);
     }
-})
+});
+
+module.exports = ProjectFile;
