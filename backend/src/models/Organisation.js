@@ -1,9 +1,13 @@
-/**
-* Organisation.js
-*
-* @description :: Represents the organisation
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+var bookshelf = require('./index.js');
+
+var Organisation = bookshelf.Model.extend({
+    tableName: 'organisation',
+    hasTimestamps: true // Sets dates automatically for updated_at and created_at
+});
+
+module.exports = {
+    Organisation: Organisation
+};
 
 module.exports = {
     identity: 'organisation',
@@ -62,5 +66,15 @@ module.exports = {
     beforeUpdate: function(values, next) {
         values.updatedOn = new Date();
         next();
-    }
+    },
+
+    getOrganisationsByUser: function(user) {
+        console.log(this);
+        console.log(user);
+        console.log(Organisation);
+
+        return new Promise(function (resolve, reject) {
+            return resolve();
+        });
+    };
 };

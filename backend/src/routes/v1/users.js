@@ -65,5 +65,16 @@ module.exports = [
                 }
             }
         }
+    },
+    {
+        method: 'GET',
+        path: '/user/organisation',
+        config: {
+            handler: UserController.getOrganisationsByUser,
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'user' ]
+            }
+        }
     }
 ];
