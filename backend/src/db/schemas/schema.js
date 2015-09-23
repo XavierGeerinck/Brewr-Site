@@ -7,7 +7,6 @@ var Schema = {
         id: { type: 'increments', nullable: false, primary: true },
         email: { type: 'string', unique: true, nullable: false },
         password: { type: 'string', nullable: false },
-        name: { type: 'string', nullable: false },
         first_name: { type: 'string', nullable: false },
         last_name: { type: 'string', nullable: false },
         avatar_url: { type: 'string', nullable: false, defaultTo: './avatar.png' },
@@ -38,7 +37,7 @@ var Schema = {
         created_by: { references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true, comment: 'Who created the organisation originally?' },
         user_limit: { type: 'integer', nullable: false, defaultTo: 10, comment: 'Maximum users in the organisation' },
         project_limit: { type: 'integer', nullable: false, defaultTo: 10, comment: 'Maximum amount of projects for the organisation' },
-        expiry_time: { type: 'integer', nullable: false, comment: 'When do does the plan expire?' },
+        expiry_time: { type: 'datetime', nullable: false, comment: 'When do does the plan expire?' },
         created_at: { type: 'dateTime', nullable: false },
         updated_at: { type: 'dateTime', nullable: true },
         deleted_at: { type: 'dateTime', nullable: true },
@@ -110,6 +109,7 @@ var Schema = {
         is_manager: { type: 'boolean', nullable: false, defaultTo: false, comment: 'Defines if the user is a manager of the current project' },
         is_installed: { type: 'boolean', nullable: false, defaultTo: false, comment: 'Is the project installed?' },
         is_running: { type: 'boolean', nullable: false, defaultTo: false, comment: 'Is the project running?' },
+        added_on: {type: 'datetime', nullable: false}
     }
 }
 

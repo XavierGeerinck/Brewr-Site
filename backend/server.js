@@ -26,9 +26,6 @@ server.connection({
     }
 });
 
-// Register plugins
-var fixtures = require('require-all')(__dirname + '/test/fixtures');
-
 function start () {
     var self = this;
     return new Promise(function (resolve, reject) {
@@ -60,25 +57,52 @@ function registerPlugins() {
             {
                 register: require('hapi-auth-bearer-simple'),
                 options: {}
-            },
-            //,
-            // {
-            //     register: require('hapi-auth-bearer-simple'),
-            //     options: {}
-            // }
+            }
         ], function (err) {
             if (err) {
                 return reject(err);
             }
 
+            // register fixtures
+            loadFixtures();
             registerStrategy(server);
             registerRoutes(server);
 
             return resolve();
+
         });
     });
 }
 
+function loadFixtures() {
+
+    var knex = require('knex')({client: 'postgresql', connection: {
+        host: config.database.connection.host,
+        user: config.database.connection.user,
+        password: config.database.connection.password,
+        database: "postgres"
+    }});
+
+    knex.raw("DROP DATABASE brewr")
+        .then(function(){
+            return knex.raw("CREATE DATABASE brewr");
+        })
+        .finally(function(){
+            knex.destroy();
+
+            var sqlFixtures  = require('sql-fixtures');
+            var fixturesSpec = require('./test/fixtures/fixtures.json');
+
+            var dbConfig = {
+                client: 'pg',
+                connection: config.database.connection
+            };
+            sqlFixtures.create(dbConfig, fixturesSpec, function(err, result){
+                if(err) console.log(err);
+                console.log("Seed complete!");
+            });
+        });
+}
 // Register the authentication strategies
 function registerStrategy(server) {
     var AuthService = require('./src/services/AuthService.js');
