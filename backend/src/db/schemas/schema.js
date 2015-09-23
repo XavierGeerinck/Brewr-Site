@@ -38,7 +38,7 @@ var Schema = {
         created_by: { references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true, comment: 'Who created the organisation originally?' },
         user_limit: { type: 'integer', nullable: false, defaultTo: 10, comment: 'Maximum users in the organisation' },
         project_limit: { type: 'integer', nullable: false, defaultTo: 10, comment: 'Maximum amount of projects for the organisation' },
-        expiry_time: { type: 'integer', nullable: false, comment: 'When do does the plan expire?' },
+        expiry_time: { type: 'dateTime', nullable: false, defaultTo: 'NOW()', comment: 'When do does the plan expire?' },
         created_at: { type: 'dateTime', nullable: false },
         updated_at: { type: 'dateTime', nullable: true },
         deleted_at: { type: 'dateTime', nullable: true },
