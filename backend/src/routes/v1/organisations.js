@@ -6,19 +6,37 @@ var Joi = require('joi');
 
 module.exports = [
     {
-        method: 'GET',
-        path: '/organisations/{organisation}/members',
+        method: 'POST',
+        path: '/organisation',
         config: {
-            handler: OrganisationController.members,
+            handler: OrganisationController.create,
             auth: {
                 strategy: 'bearer',
                 scope: [ 'user' ]
             },
             validate: {
-                params: {
-                    organisation: Joi.number().integer()
+                payload: {
+                    name: Joi.string().required(),
+                    description: Joi.string().allow([ null, '' ]),
+                    logo: Joi.string().allow([ null, '' ])
                 }
             }
         }
-    }
+    }//,
+    // {
+    //     method: 'GET',
+    //     path: '/organisations/{organisation}/members',
+    //     config: {
+    //         handler: OrganisationController.members,
+    //         auth: {
+    //             strategy: 'bearer',
+    //             scope: [ 'user' ]
+    //         },
+    //         validate: {
+    //             params: {
+    //                 organisation: Joi.number().integer()
+    //             }
+    //         }
+    //     }
+    // }
 ];

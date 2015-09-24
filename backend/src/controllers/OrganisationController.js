@@ -6,22 +6,16 @@
  */
 
 var Boom = require('boom');
+var organisationService = require('../services/OrganisationService');
 
-module.exports = {
+exports.create = function (request, reply) {
+    var user = request.auth.credentials;
 
-    members: function(request, reply) {
-
-        var organisationId = request.params.organisation;
-        var OrganisationUser = request.collections.organisationuser;
-
-        OrganisationUser
-            .find({"organisation": organisationId})
-            .populate("user")
-            .then(function(organisationUsers){
-                reply(organisationUsers);
-            })
-            .catch(function(err){
-                reply(Boom.badRequest("ERR_NOT_FOUND"));
-            });
-    }
-};
+    organisationService.createOrganisation(user, request.payload.name, request.payload.description, request.payload.name)
+    .then(function (organisation) {
+        return reply(organisation);
+    })
+    .catch(function (err) {
+        return reply(err);
+    });
+}

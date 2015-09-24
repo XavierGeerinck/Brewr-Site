@@ -27,7 +27,7 @@ server.connection({
 });
 
 // Register plugins
-var fixtures = require('require-all')(__dirname + '/test/fixtures');
+//var fixtures = require('require-all')(__dirname + '/test/fixtures');
 
 function start () {
     var self = this;

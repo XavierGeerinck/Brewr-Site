@@ -5,7 +5,18 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-module.exports = {
-	
+exports.getCurrent = function (request, reply) {
+	// TODO
 };
 
+exports.getAll = function (request, reply) {
+	// TODO
+};
+
+exports.removeByToken = function (request, reply) {
+	// TODO
+};
+
+exports.removeAll = function (request, reply) {
+	// TODO
+};
