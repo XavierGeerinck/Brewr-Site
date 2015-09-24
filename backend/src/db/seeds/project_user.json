@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "added_on": "NOW()",
+    "deadline": "NOW()",
+    "is_manager": true,
+    "user_id": 2,
+    "project_id": 1
+  },
+  {
+    "id": 2,
+    "added_on": "NOW()",
+    "deadline": "NOW()",
+    "user_id": 3,
+    "project_id": 1
+  },
+  {
+    "id": 3,
+    "added_on": "NOW()",
+    "deadline": "NOW()",
+    "is_manager": true,
+    "user_id": 4,
+    "project_id": 2
+  },
+  {
+    "id": 4,
+    "added_on": "NOW()",
+    "deadline": "NOW()",
+    "is_manager": true,
+    "user_id": 1,
+    "project_id": 2
+  }
+]

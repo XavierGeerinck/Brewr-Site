@@ -48,7 +48,7 @@ var Schema = {
         name: { type: 'string', nullable: false },
         description: { type: 'string', nullable: true },
         image_url: { type: 'string', nullable: true },
-        organisation: { type: 'integer', nullable: false },
+        organisation_id: { type: 'integer', nullable: false },
         created_by: { references: 'id', inTable: 'user', type: 'integer', unsigned: true, nullable: false },
         owner: { references: 'id', inTable: 'user', type: 'integer', unsigned: true, nullable: false },
         archived: { type: 'boolean', nullable: false, defaultTo: false },
@@ -99,7 +99,8 @@ var Schema = {
     organisation_user: {
         id: { type: 'increments', nullable: false, primary: true },
         organisation_id: { references: 'id', inTable: 'organisation', type: 'integer', nullable: false, unsigned: true },
-        user_id: { references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true }
+        user_id: { references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true },
+        added_on : { type: 'datetime', nullable: false }
     },
 
     project_user: {
@@ -109,7 +110,8 @@ var Schema = {
         is_manager: { type: 'boolean', nullable: false, defaultTo: false, comment: 'Defines if the user is a manager of the current project' },
         is_installed: { type: 'boolean', nullable: false, defaultTo: false, comment: 'Is the project installed?' },
         is_running: { type: 'boolean', nullable: false, defaultTo: false, comment: 'Is the project running?' },
-        added_on: {type: 'datetime', nullable: false}
+        added_on: {type: 'datetime', nullable: false},
+        deadline: {type: 'datetime', nullable: false}
     }
 }
 

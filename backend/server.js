@@ -64,7 +64,7 @@ function registerPlugins() {
             }
 
             // register fixtures
-            loadFixtures();
+            //loadFixtures();
             registerStrategy(server);
             registerRoutes(server);
 

@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Brewr",
+    "description": "A project to create brewr, placeholder",
+    "organisation_id": "1",
+    "created_by": "1",
+    "created_at": "NOW()",
+    "owner": "1"
+  },
+  {
+    "id": 2,
+    "name": "What to eat",
+    "description": "A project to share what to eat",
+    "organisation_id": "1",
+    "created_by": "1",
+    "created_at": "NOW()",
+    "owner": "1"
+  }
+]

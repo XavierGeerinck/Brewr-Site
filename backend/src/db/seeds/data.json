@@ -1,0 +1,140 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "email": "maximgeerinck@hotmail.com",
+      "password": "test",
+      "enabled": true,
+      "scope": "user_id",
+      "first_name": "Maxim",
+      "last_name": "Geerinck",
+      "created_at": "NOW()"
+    },
+    {
+      "id": 2,
+      "email": "NicholasTCoakley@brewr.com",
+      "password": "test",
+      "enabled": true,
+      "scope": "user_id",
+      "first_name": "Nicholas",
+      "last_name": "Coakley",
+      "created_at": "NOW()"
+
+    },
+    {
+      "id": 3,
+      "email": "AdelineNPedraza@brewr.com",
+      "password": "test",
+      "enabled": true,
+      "scope": "user_id",
+      "first_name": "Adeline",
+      "last_name": "Pedraz",
+      "created_at": "NOW()"
+    },
+    {
+      "id": 4,
+      "email": "SeanAMurphy@brewr.com",
+      "password": "test",
+      "enabled": true,
+      "scope": "user_id",
+      "first_name": "Sean",
+      "last_name": "Murphy",
+      "created_at": "NOW()"
+    },
+    {
+      "id": 5,
+      "email": "thebillkidy@gmail.com",
+      "password": "test",
+      "enabled": true,
+      "scope": "user_id",
+      "first_name": "Xavier",
+      "last_name": "Geerinck",
+      "created_at": "NOW()"
+    }
+  ],
+  "organisation": [
+    {
+      "id": 1,
+      "name": "Test organisation",
+      "description": "an organization which focus on lipsum...",
+      "subdomain": "test.organisation.com",
+      "owner": "user:0",
+      "user_limit": 25,
+      "project_limit": 5,
+      "created_by": "user:0",
+      "created_at": "NOW()",
+      "expiry_time": "NOW()"
+    }
+  ],
+  "project": [
+    {
+      "id": 1,
+      "name": "Brewr",
+      "description": "A project to create brewr, placeholder",
+      "organisation": "organisation:0",
+      "created_by": "user:0",
+      "created_at": "NOW()"
+    },
+    {
+      "id": 2,
+      "name": "What to eat",
+      "description": "A project to share what to eat",
+      "organisation": "organisation:0",
+      "created_by": "user:0",
+      "created_at": "NOW()"
+    }
+  ],
+  "project_user": [
+    {
+      "id": 1,
+      "added_on": "NOW()",
+      "deadline": "NOW()",
+      "is_manager": true,
+      "user_id": "user:1",
+      "project": "project:0"
+    },
+    {
+      "id": 2,
+      "added_on": "NOW()",
+      "deadline": "NOW()",
+      "user_id": "user:2",
+      "project": "project:0"
+    },
+    {
+      "id": 3,
+      "added_on": "NOW()",
+      "deadline": "NOW()",
+      "is_manager": true,
+      "user_id": "user:3",
+      "project": "project:1"
+    },
+    {
+      "id": 4,
+      "added_on": "NOW()",
+      "deadline": "NOW()",
+      "is_manager": true,
+      "user_id": "user:0",
+      "project": "project:1"
+    }
+  ],
+  "organisation_user": [
+    {
+      "id": 1,
+      "added_on": "NOW()",
+      "user_id": "user:1",
+      "organisation_id": "organisation:0"
+    },
+    {
+      "id": 2,
+      "added_on": "NOW()",
+      "user_id": "user:2",
+      "organisation_id": "organisation:0"
+    },
+    {
+      "id": 3,
+      "added_on": "NOW()",
+      "user_id": "user:3",
+      "organisation_id": "organisation:0"
+    }
+  ]
+}
