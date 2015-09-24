@@ -1,17 +1,41 @@
 var Promise = require('bluebird');
 var OrganisationModel = require('../db/models/Organisation');
+var OrganisationUserModel = require('../db/models/OrganisationUser');
 
-exports.getOrganisationsByUser = function(user) {
-    console.log(user);
-    console.log(OrganisationModel);
-
+/**
+ * Gets the organisations where a user belongs to or has created
+ * @param  {Integer} userId
+ * @return {Promise}
+ */
+exports.getOrganisationsByUser = function(userId) {
     return new Promise(function (resolve, reject) {
-        OrganisationModel.forge({
-            // JOIN organisation user?
-        })
-        .fetchAll()
-        .then(function (organisations) {
-            return resolve(organisations);
+        Promise.all([
+            // Get the organisations where we belong to
+            OrganisationUserModel.where({
+                user_id: userId
+            })
+            .fetchAll({ withRelated: ['organisation'] })
+            .then(function (organisations) {
+                return organisations;
+            })
+            .catch(function (err) {
+                throw err;
+            }),
+
+            // Get the organisations we created or own
+            OrganisationModel
+            .query({ where: { created_by: userId }, orWhere: { owner: userId }})
+            .fetchAll()
+            .then(function (organisations) {
+                return organisations;
+            })
+            .catch(function (err) {
+                throw err;
+            })
+        ])
+        .then(function (allOrganisations) {
+            var merged = allOrganisations[0].models.concat(allOrganisations[1].models);
+            return resolve(merged);
         })
         .catch(function (err) {
             return reject(err);
@@ -19,7 +43,10 @@ exports.getOrganisationsByUser = function(user) {
     });
 };
 
-exports.createOrganisation = function (creator, name, description, logo) {
+exports.createOrganisation = function (creatorId, name, description, logo) {
+    var expiryTime = new Date();
+    expiryTime.setDate(expiryTime.getDate() + parseInt(30));
+
     return new Promise(function (resolve, reject) {
         OrganisationModel.forge({
             name: name,
@@ -27,13 +54,13 @@ exports.createOrganisation = function (creator, name, description, logo) {
             logo: logo,
             subdomain: name.toLowerCase(),
             active: true,
-            owner: creator,
-            created_by: creator,
+            owner: creatorId,
+            created_by: creatorId,
             user_limit: 10,
             project_limit: 10,
-            expiry_time: new Date() + 30
+            expiry_time: expiryTime.toISOString()
         })
-        //. // Create thing
+        .save()
         .then(function (organisation) {
             return resolve(organisation);
         })

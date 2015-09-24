@@ -11,7 +11,8 @@ var organisationService = require('../services/OrganisationService');
 exports.create = function (request, reply) {
     var user = request.auth.credentials;
 
-    organisationService.createOrganisation(user, request.payload.name, request.payload.description, request.payload.name)
+    organisationService
+    .createOrganisation(user.get('id'), request.payload.name, request.payload.description, request.payload.name)
     .then(function (organisation) {
         return reply(organisation);
     })

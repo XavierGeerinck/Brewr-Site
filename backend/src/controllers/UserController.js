@@ -15,10 +15,8 @@ exports.get = function (request, reply) {
 exports.getOrganisationsByUser = function (request, reply) {
     var user = request.auth.credentials;
 
-    console.log(user);
-
     organisationService
-    .getOrganisationsByUser(user)
+    .getOrganisationsByUser(user.get('id'))
     .then(function (organisations) {
         return reply(organisations);
     })

@@ -18,7 +18,7 @@ module.exports = [
                 payload: {
                     name: Joi.string().required(),
                     description: Joi.string().allow([ null, '' ]),
-                    logo: Joi.string().allow([ null, '' ])
+                    logo: Joi.string().uri()
                 }
             }
         }

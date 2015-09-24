@@ -4,10 +4,10 @@ var Organisation = require('./Organisation');
 
 var OrganisationUser = Bookshelf.Model.extend({
     tableName: 'organisation_user',
-    organisation_id: function () {
+    organisation: function () {
         return this.belongsTo(Organisation);
     },
-    user_id: function() {
+    user: function() {
         return this.belongsTo(User);
     }
 });
