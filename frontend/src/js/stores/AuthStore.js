@@ -1,6 +1,7 @@
 import BaseStore from './BaseStore';
 import jwt_decode from 'jwt-decode';
 import * as actionTypes from '../constants/ActionTypes';
+import * as AuthAPIUtils from '../utils/AuthAPIUtils';
 
 class AuthStore extends BaseStore {
     constructor() {
@@ -8,6 +9,7 @@ class AuthStore extends BaseStore {
 
         this.subscribe(() => this._registerToActions.bind(this));
         this._user = null; // Not logged in by default
+        this._organisations = []; // Organisations a user belongs to
         this._token = localStorage.getItem('bearer'); // Stored in the JWT var (can be null) so rely on user
     }
 
@@ -24,18 +26,21 @@ class AuthStore extends BaseStore {
             case actionTypes.RESPONSE_LOGIN:
                 localStorage.setItem('bearer', source.action.response.token);
                 this._token = source.action.response.token;
-                this._user = source.action.response.user;
+
+                // Get the user meanwhile, no action triggered here
+                AuthAPIUtils.getUser(source.action.response.token);
+
                 this.emitChange();
                 break;
             case actionTypes.RESPONSE_REGISTER:
                 // The response returns the token and user:
                 // { token: "", user: {} } set our store to this
                 this._token = source.action.response.token;
-                this._user = source.action.response.user;
                 this.emitChange();
                 break;
             case actionTypes.RESPONSE_USER:
                 this._user = source.action.response;
+                this._organisations = source.action.response.organisations;
                 this.emitChange();
                 break;
             case actionTypes.RESPONSE_LOGOUT:

@@ -54,7 +54,6 @@ function startServer() {
 }
 
 function registerPlugins() {
-
     return new Promise(function (resolve, reject) {
         server.register([
             {
@@ -108,25 +107,20 @@ function validateFunction (token, callback) {
     var User = require('./src/db/models/User');
 
     UserSession
-    .forge({ token: token })
-    .fetch()
-    .then(function (userSession) {
-        if (!userSession) {
+    .where({ token: token })
+    .fetch({ withRelated: ['user'] })
+    .then(function (session) {
+        console.log(session.user());
+        if (!session) {
             return Promise.reject('E_INVALID_TOKEN');
         }
 
-        return User.forge({ id: userSession.get('id') }).fetch();
-    })
-    .then(function (user) {
-        if (!user) {
-            return Promise.reject('E_INVALID_TOKEN');
-        }
-
+        var userObj = session.relations.user;
         // Set scope object for hapi authenticator,
         // needed since we can not access attributes instantly
-        user.scope = user.get('scope');
+        userObj.scope = userObj.scope;
 
-        return callback(null, true, user);
+        return callback(null, true, userObj)
     })
     .catch(function (err) {
         return callback(err);

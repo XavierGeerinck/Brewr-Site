@@ -35,7 +35,7 @@ exports.authorize = function (email, password, ip, userAgent) {
 
     return new Promise(function (resolve, reject) {
         User
-        .forge({
+        .where({
             email: email
         })
         .fetch()
@@ -59,10 +59,7 @@ exports.authorize = function (email, password, ip, userAgent) {
             return self.createSession(userObject, ip, userAgent);
         })
         .then(function (userSession) {
-            return resolve({
-                user: userObject,
-                token: userSession.get('token')
-            });
+            return resolve(userSession);
         })
         .catch(function (err) {
             return reject(Boom.badRequest(null, err));
@@ -111,7 +108,7 @@ exports.createSession = function (user, ip, userAgent) {
     return new Promise(function (resolve, reject) {
         UserSession
         .forge({
-            user: user.get('id'),
+            user_id: user.get('id'),
             token: token,
             user_agent: userAgent,
             ip: ip

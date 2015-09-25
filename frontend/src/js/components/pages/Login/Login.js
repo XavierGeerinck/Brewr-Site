@@ -17,7 +17,7 @@ class LoginPage extends React.Component {
 
     _getAuthState() {
         return {
-            isLoggedIn: AuthStore.user != undefined
+            isLoggedIn: AuthStore.token != ''
         }
     }
 

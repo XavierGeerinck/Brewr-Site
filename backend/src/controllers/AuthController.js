@@ -24,7 +24,9 @@ exports.login = function (request, reply) {
     AuthService
     .authorize(request.payload.email, request.payload.password, ip, userAgent)
     .then(function (session) {
-        return reply(session);
+        return reply({
+            token: session.get('token')
+        });
     })
     .catch(function (err) {
         return reply(err);

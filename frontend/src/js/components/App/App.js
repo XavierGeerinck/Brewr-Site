@@ -14,10 +14,8 @@ class App extends React.Component {
 
     componentDidMount() {
         // Automatically login if possible
-        let token = localStorage.getItem('bearer');
-
-        if (!AuthStore.user && token) {
-            AuthActions.getUser(token);
+        if (!AuthStore.user && AuthStore.token) {
+            AuthActions.getUser(AuthStore.token);
         }
     }
 
