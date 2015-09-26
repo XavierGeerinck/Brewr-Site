@@ -74,35 +74,6 @@ function registerPlugins() {
     });
 }
 
-function loadFixtures() {
-
-    var knex = require('knex')({client: 'postgresql', connection: {
-        host: config.database.connection.host,
-        user: config.database.connection.user,
-        password: config.database.connection.password,
-        database: "postgres"
-    }});
-
-    knex.raw("DROP DATABASE brewr")
-        .then(function(){
-            return knex.raw("CREATE DATABASE brewr");
-        })
-        .finally(function(){
-            knex.destroy();
-
-            var sqlFixtures  = require('sql-fixtures');
-            var fixturesSpec = require('./test/fixtures/fixtures.json');
-
-            var dbConfig = {
-                client: 'pg',
-                connection: config.database.connection
-            };
-            sqlFixtures.create(dbConfig, fixturesSpec, function(err, result){
-                if(err) console.log(err);
-                console.log("Seed complete!");
-            });
-        });
-}
 // Register the authentication strategies
 function registerStrategy(server) {
     var AuthService = require('./src/services/AuthService.js');
