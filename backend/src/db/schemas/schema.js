@@ -21,7 +21,7 @@ var Schema = {
         id: { type: 'increments', nullable: false, primary: true },
         token: { type: 'string', unique: true, nullable: false },
         ip: { type: 'string', nullable: true },
-        user_id: { references: 'user', inTable: 'user', type: 'integer', unsigend: true, nullable: false },
+        user_id: { references: 'id', inTable: 'user', type: 'integer', unsigend: true, nullable: false },
         user_agent: { type: 'text', nullable: true },
         created_at: { type: 'dateTime', nullable: false },
         updated_at: { type: 'dateTime', nullable: true }

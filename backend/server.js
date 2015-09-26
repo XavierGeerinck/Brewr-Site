@@ -108,17 +108,17 @@ function validateFunction (token, callback) {
 
     UserSession
     .where({ token: token })
-    .fetch({ withRelated: ['user'] })
+    .fetch({ withRelated: [ 'user' ] })
     .then(function (session) {
-        console.log(session.user());
         if (!session) {
             return Promise.reject('E_INVALID_TOKEN');
         }
 
-        var userObj = session.relations.user;
+        var userObj = session.related('user');
+        
         // Set scope object for hapi authenticator,
         // needed since we can not access attributes instantly
-        userObj.scope = userObj.scope;
+        userObj.scope = userObj.get('scope');
 
         return callback(null, true, userObj)
     })

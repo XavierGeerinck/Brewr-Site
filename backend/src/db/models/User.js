@@ -15,7 +15,7 @@ var User = Bookshelf.model('User', {
         return this.belongsToMany('Organisation');
     },
     sessions: function () {
-        return this.hasMany('UserSession', 'user_id');
+        return this.hasMany('UserSession');
     }
 });
 

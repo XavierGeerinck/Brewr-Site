@@ -26,10 +26,6 @@ class AuthStore extends BaseStore {
             case actionTypes.RESPONSE_LOGIN:
                 localStorage.setItem('bearer', source.action.response.token);
                 this._token = source.action.response.token;
-
-                // Get the user meanwhile, no action triggered here
-                AuthAPIUtils.getUser(source.action.response.token);
-
                 this.emitChange();
                 break;
             case actionTypes.RESPONSE_REGISTER:

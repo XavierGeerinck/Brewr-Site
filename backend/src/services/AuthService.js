@@ -32,7 +32,7 @@ exports.createAccount = function (email, password, firstName, lastName) {
 exports.authorize = function (email, password, ip, userAgent) {
     var self = this;
     var userObject;
-
+    
     return new Promise(function (resolve, reject) {
         User
         .where({
