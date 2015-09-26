@@ -16,7 +16,9 @@ class DashboardLayout extends React.Component {
 
     _getAuthState() {
         return {
-            user: AuthStore.user
+            user: AuthStore.user,
+            organisations: AuthStore.organisations || [],
+            selected_organisation: AuthStore.selected_organisation
         }
     }
 
@@ -39,7 +41,9 @@ class DashboardLayout extends React.Component {
 
     render() {
         const { title, isBoxed, history } = this.props;
-        const { user } = this.state;
+        const { user, organisations, selected_organisation } = this.state;
+
+        console.log(user);
 
         return (
             <div className="DashboardLayout-Container">
@@ -61,9 +65,12 @@ class DashboardLayout extends React.Component {
                 <div className="DashboardLayout-Content">
                     <div className="DashboardLayout-Page-Header">
                         <div className="DashboardLayout-CompanyPicker">
-                            <DropdownMenu title="google.com">
-                                <DropdownMenuItem>brewr.io</DropdownMenuItem>
-                                <DropdownMenuItem>facebook.com</DropdownMenuItem>
+                            <DropdownMenu title={selected_organisation.name}>
+                            {
+                                organisations.map(i => {
+                                    return <DropdownMenuItem key={i.name}>{i.name}</DropdownMenuItem>
+                                })
+                            }
                             </DropdownMenu>
                         </div>
 

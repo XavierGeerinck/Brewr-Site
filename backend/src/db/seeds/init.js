@@ -25,8 +25,6 @@ exports.seed = function(knex, Promise) {
                     if (key.indexOf('_raw') > -1) {
                         record[key.substring(0, key.length - '_raw'.length)] = bcrypt.hashSync(record[key], ITERATIONS);
                         delete record[key];
-
-                        console.log(record);
                     }
                 });
 

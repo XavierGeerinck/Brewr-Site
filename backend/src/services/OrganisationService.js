@@ -34,6 +34,10 @@ exports.getOrganisationsByUser = function(userId) {
             })
         ])
         .then(function (allOrganisations) {
+            allOrganisations[0].models = allOrganisations[0].models.map(function (org) {
+                return org.related('organisation');
+            });
+            
             var merged = allOrganisations[0].models.concat(allOrganisations[1].models);
             return resolve(merged);
         })

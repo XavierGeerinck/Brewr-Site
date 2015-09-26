@@ -10,6 +10,7 @@ class AuthStore extends BaseStore {
         this.subscribe(() => this._registerToActions.bind(this));
         this._user = null; // Not logged in by default
         this._organisations = []; // Organisations a user belongs to
+        this._selected_organisation = null;
         this._token = localStorage.getItem('bearer'); // Stored in the JWT var (can be null) so rely on user
     }
 
@@ -35,8 +36,9 @@ class AuthStore extends BaseStore {
                 this.emitChange();
                 break;
             case actionTypes.RESPONSE_USER:
-                this._user = source.action.response;
+                this._user = source.action.response.user;
                 this._organisations = source.action.response.organisations;
+                this._selected_organisation = source.action.response.organisations[0];
                 this.emitChange();
                 break;
             case actionTypes.RESPONSE_LOGOUT:
@@ -60,6 +62,14 @@ class AuthStore extends BaseStore {
 
     get user() {
         return this._user;
+    }
+
+    get organisations() {
+        return this._organisations;
+    }
+
+    get selected_organisation() {
+        return this._selected_organisation;
     }
 
     get isLoggedIn() {

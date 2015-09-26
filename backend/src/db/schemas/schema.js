@@ -47,7 +47,7 @@ var Schema = {
     project: {
         id: { type: 'increments', nullable: false, primary: true },
         name: { type: 'string', nullable: false },
-        description: { type: 'string', nullable: true },
+        description: { type: 'text', nullable: true },
         image_url: { type: 'string', nullable: true },
         organisation: { type: 'integer', nullable: false },
         created_by: { references: 'id', inTable: 'user', type: 'integer', unsigned: true, nullable: false },
