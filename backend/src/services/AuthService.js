@@ -32,7 +32,7 @@ exports.createAccount = function (email, password, firstName, lastName) {
 exports.authorize = function (email, password, ip, userAgent) {
     var self = this;
     var userObject;
-    
+
     return new Promise(function (resolve, reject) {
         User
         .where({
@@ -66,20 +66,6 @@ exports.authorize = function (email, password, ip, userAgent) {
         })
     });
 };
-
-exports.hashPassword = function (password) {
-    var ITERATIONS = 10;
-
-    return new Promise(function (resolve, reject) {
-        bcrypt.hash(password, ITERATIONS, function (err, hash) {
-            if (err) {
-                return reject(err);
-            }
-
-            return resolve(hash);
-        });
-    });
-}
 
 /**
  * Note: Returns isMatch (so true or false)!

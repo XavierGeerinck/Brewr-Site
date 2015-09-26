@@ -1,5 +1,7 @@
 var data = require('./data.json');
 var async = require('async');
+var bcrypt = require('bcrypt');
+var ITERATIONS = 10;
 
 exports.seed = function(knex, Promise) {
     var tables = data.map(function (item) {
@@ -18,6 +20,16 @@ exports.seed = function(knex, Promise) {
         .then(function () {
             // Insert the data
             return Promise.all(records.map(function (record) {
+                // If _raw at the end, hash
+                Object.keys(record).forEach(function (key) {
+                    if (key.indexOf('_raw') > -1) {
+                        record[key.substring(0, key.length - '_raw'.length)] = bcrypt.hashSync(record[key], ITERATIONS);
+                        delete record[key];
+
+                        console.log(record);
+                    }
+                });
+
                 return knex(table).insert(record);
             }));
         });
