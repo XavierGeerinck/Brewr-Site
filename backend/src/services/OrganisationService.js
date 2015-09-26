@@ -14,7 +14,7 @@ exports.getOrganisationsByUser = function(userId) {
             OrganisationUserModel.where({
                 user_id: userId
             })
-            .fetchAll({ withRelated: ['organisation'] })
+            .fetchAll({ withRelated: ['organisation', 'organisation.projects'] })
             .then(function (organisations) {
                 return organisations;
             })
@@ -37,7 +37,7 @@ exports.getOrganisationsByUser = function(userId) {
             allOrganisations[0].models = allOrganisations[0].models.map(function (org) {
                 return org.related('organisation');
             });
-            
+
             var merged = allOrganisations[0].models.concat(allOrganisations[1].models);
             return resolve(merged);
         })

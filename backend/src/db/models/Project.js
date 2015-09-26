@@ -1,8 +1,9 @@
 var Bookshelf = require('../');
 var User = require('./User');
 var ProjectRevision = require('./ProjectRevision');
+var Organisation = require('./Organisation');
 
-var Project = Bookshelf.Model.extend({
+var Project = Bookshelf.model('Project', {
     tableName: 'project',
     hasTimestamps: true, // Define that we update the created_at and updated_at on change
     owner: function () {
@@ -16,6 +17,9 @@ var Project = Bookshelf.Model.extend({
     },
     revision: function () {
         return this.belongsToMany(ProjectRevision);
+    },
+    organisation: function () {
+        return this.belongsTo('Organisation');
     }
 });
 

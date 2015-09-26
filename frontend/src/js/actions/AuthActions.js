@@ -9,6 +9,13 @@ import * as actionTypes from '../constants/ActionTypes';
  * a server side event. These are then forwarded to the ServerActionCreators
  */
 module.exports = {
+    changeSelectedCompany: function (selectedCompanyName) {
+        AppDispatcher.handleViewAction({
+            type: actionTypes.CHANGE_SELECTED_COMPANY,
+            name: selectedCompanyName
+        });
+    },
+
     login: function (email, password) {
         // Dispatch the login event on the view
         AppDispatcher.handleViewAction({

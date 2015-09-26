@@ -47,6 +47,13 @@ class AuthStore extends BaseStore {
                 localStorage.removeItem('bearer');
                 this.emitChange();
                 break;
+            case actionTypes.CHANGE_SELECTED_COMPANY:
+                this._selected_organisation = this._organisations.filter(o => {
+                    return o.name === source.action.name
+                })[0];
+                
+                this.emitChange();
+                break;
             case actionTypes.RESPONSE_LOGIN_ERROR:
             case actionTypes.RESPONSE_REGISTER_ERROR:
             case actionTypes.RESPONSE_USER_ERROR:

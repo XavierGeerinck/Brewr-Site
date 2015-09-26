@@ -40,6 +40,12 @@ class DropdownMenu extends React.Component {
         e.nativeEvent.stopImmediatePropagation();
     }
 
+    closeContainer() {
+        this.setState({
+            isOpen: false
+        });
+    }
+
     render() {
         const { isOpen } = this.state;
         const { title, children } = this.props;
@@ -50,6 +56,8 @@ class DropdownMenu extends React.Component {
             'DropdownMenu-Items': true,
             'DropdownMenu-Items-Visible': isOpen
         });
+
+        var self = this;
 
         return (
             <div className="DropdownMenu">

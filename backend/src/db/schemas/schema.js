@@ -49,7 +49,7 @@ var Schema = {
         name: { type: 'string', nullable: false },
         description: { type: 'text', nullable: true },
         image_url: { type: 'string', nullable: true },
-        organisation: { type: 'integer', nullable: false },
+        organisation_id: { references: 'id', inTable: 'organisation', type: 'integer', nullable: false },
         created_by: { references: 'id', inTable: 'user', type: 'integer', unsigned: true, nullable: false },
         owner: { references: 'id', inTable: 'user', type: 'integer', unsigned: true, nullable: false },
         archived: { type: 'boolean', nullable: false, defaultTo: false },

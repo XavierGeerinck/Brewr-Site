@@ -2,7 +2,7 @@ var Bookshelf = require('../');
 var User = require('./User');
 var Project = require('./Project');
 
-var ProjectUser = Bookshelf.Model.extend({
+var ProjectUser = Bookshelf.model('ProjectUser', {
     tableName: 'project_user',
     project_id: function () {
         return this.belongsTo(Project);

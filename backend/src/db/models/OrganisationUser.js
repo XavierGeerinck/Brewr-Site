@@ -2,7 +2,7 @@ var Bookshelf = require('../');
 var User = require('./User');
 var Organisation = require('./Organisation');
 
-var OrganisationUser = Bookshelf.Model.extend({
+var OrganisationUser = Bookshelf.model('OrganisationUser', {
     tableName: 'organisation_user',
     organisation: function () {
         return this.belongsTo(Organisation);
