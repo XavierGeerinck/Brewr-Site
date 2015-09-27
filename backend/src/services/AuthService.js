@@ -5,6 +5,18 @@ var User = require('../db/models/User');
 var UserSession = require('../db/models/UserSession');
 var Boom = require('boom');
 
+exports.removeSessionByUserIdExpectToken = function (userId, token) {
+    return UserSession.query({ where: { user_id: userId }, whereNot: { token: token }}).destroy();
+};
+
+exports.removeSessionByToken = function (token) {
+    return UserSession.where({ token: token }).destroy();
+};
+
+exports.getSessionsByUserId = function (userId) {
+    return UserSession.where({ user_id: userId }).fetchAll();
+};
+
 exports.createAccount = function (email, password, firstName, lastName) {
     var self = this;
 

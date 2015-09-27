@@ -24,18 +24,6 @@ lab.experiment('[Controller] User', function() {
         return dbUtil.truncate().then(function() { done(); });
     });
 
-    it('[POST] /auth/signup should return an error if no parameters', function (done) {
-        var request = {
-            method: 'POST',
-            url: '/auth/signup'
-        };
-
-        server.inject(request, function (res) {
-            expect(JSON.parse(res.payload).error).to.equal('Bad Request');
-            done();
-        });
-    });
-
     it('[POST] /user should return succes on creation', function (done) {
         var request = {
             method: 'POST',
@@ -97,41 +85,6 @@ lab.experiment('[Controller] User', function() {
 
         server.inject(request, function (res) {
             expect(res.statusCode).to.equal(401);
-            expect(JSON.parse(res.payload).error).to.equal('Unauthorized');
-
-            done();
-        });
-    });
-
-    it('[POST] /auth/signin should return a token upon succesfull login', function (done) {
-        var request = {
-            method: 'POST',
-            url: '/auth/signin',
-            payload: {
-                email: fixtures['user'][0].email,
-                password: fixtures['user'][0].password_raw
-            }
-        };
-
-        server.inject(request, function (res) {
-            expect(JSON.parse(res.payload).token).to.exist();
-            expect(JSON.parse(res.payload).token).to.be.a.string();
-
-            done();
-        });
-    });
-
-    it('[POST] /auth/signin should return an error if invalid credentials', function (done) {
-        var request = {
-            method: 'POST',
-            url: '/auth/signin',
-            payload: {
-                email: fixtures['user'][0].email,
-                password: 'Somewrongpassword'
-            }
-        };
-
-        server.inject(request, function (res) {
             expect(JSON.parse(res.payload).error).to.equal('Unauthorized');
 
             done();

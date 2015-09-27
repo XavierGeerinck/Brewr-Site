@@ -22,7 +22,7 @@
     "uuid": "^2.0.1"
   },
   "scripts": {
-    "test": "lab -a code -v -t 90"
+    "test": "lab -a code -v -t 90 -m 4000"
   },
   "devDependencies": {
     "code": "^1.5.0",

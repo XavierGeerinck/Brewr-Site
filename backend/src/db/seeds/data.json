@@ -85,6 +85,15 @@
             "user_agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36",
             "created_at": "NOW()",
             "updated_at": "NOW()"
+        },
+        {
+            "id": 2,
+            "token": "47e72cc852a24e279d59a70f5dbff361",
+            "ip": "127.0.0.1",
+            "user_id": 1,
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36",
+            "created_at": "NOW()",
+            "updated_at": "NOW()"
         }
     ],
     "organisation": [

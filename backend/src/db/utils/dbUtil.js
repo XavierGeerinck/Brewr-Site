@@ -36,35 +36,48 @@ exports.seed = function () {
     var dbData = JSON.parse(JSON.stringify(data));
     var tables = Object.keys(data);
 
-    // Go through all the tables
-    return Promise.each(tables, function (table) {
-        var records = dbData[table];
+    return new Promise(function (resolve, reject) {
+        async.eachSeries(tables, function (table, tableCallback) {
+            async.eachSeries(dbData[table], function (record, recordCallback) {
+                // If _raw at the end, hash
+                Object.keys(record).forEach(function (key) {
+                   if (key.indexOf('_raw') > -1) {
+                       record[key.substring(0, key.length - '_raw'.length)] = bcrypt.hashSync(record[key], ITERATIONS);
+                       delete record[key];
+                   }
+                });
 
-        // Go through all the records
-        return Promise.each(records, function (record) {
-            // If _raw at the end, hash
-            Object.keys(record).forEach(function (key) {
-                if (key.indexOf('_raw') > -1) {
-                    record[key.substring(0, key.length - '_raw'.length)] = bcrypt.hashSync(record[key], ITERATIONS);
-                    delete record[key];
-                }
-            });
+                // Insert
+                return knex(table)
+                .insert(record)
+                .then(function () {
+                    recordCallback();
+                });
+            }, tableCallback);
+        }, function (err) {
+            if (err) {
+                return reject(err);
+            }
 
-            // Insert
-            return knex(table).insert(record);
+            return resolve();
         });
     });
 }
 
 exports.truncate = function () {
-
     // Get our tables reverse, that we we do not get foreign key problems
-    var tables = Object.keys(Schema);
+    var tables = Object.keys(Schema).reverse();
 
-    return Promise.each(tables, function (table) {
-        // We truncate every table with CASCADE for security
-        // See: http://www.postgresql.org/docs/9.1/static/sql-truncate.html
-        return knex.raw('TRUNCATE TABLE "' + table + '" CASCADE');
+    return new Promise(function (resolve, reject) {
+        async.eachSeries(tables, function (table, tableCallback) {
+            knex.raw('TRUNCATE TABLE "' + table + '" CASCADE;').then(function() { tableCallback(); });
+        }, function (err) {
+            if (err) {
+                return reject(err);
+            }
+
+            return resolve();
+        })
     });
 };
 

@@ -40,5 +40,38 @@ module.exports = [
                 scope: [ 'user' ]
             }
         }
+    },
+    {
+        method: 'DELETE',
+        path: '/auth/session',
+        config: {
+            handler: AuthController.removeAllSessions,
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'user' ]
+            }
+        }
+    },
+    {
+        method: 'DELETE',
+        path: '/auth/session/{token}',
+        config: {
+            handler: AuthController.removeSessionByToken,
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'user' ]
+            }
+        }
+    },
+    {
+        method: 'GET',
+        path: '/auth/session',
+        config: {
+            handler: AuthController.getSessionsByUserId,
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'user' ]
+            }
+        }
     }
 ];
