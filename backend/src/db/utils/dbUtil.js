@@ -32,11 +32,13 @@ exports.dropTable = function (tableName, knex) {
 };
 
 exports.seed = function () {
+    // Deep copy since we will perform delete!
+    var dbData = JSON.parse(JSON.stringify(data));
     var tables = Object.keys(data);
 
     // Go through all the tables
     return Promise.each(tables, function (table) {
-        var records = data[table];
+        var records = dbData[table];
 
         // Go through all the records
         return Promise.each(records, function (record) {

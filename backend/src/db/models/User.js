@@ -5,10 +5,10 @@ var Organisation = require('./Organisation');
 var UserSession = require('./UserSession');
 var ITERATIONS = 10;
 
-var User = Bookshelf.model('User', {
+var User = Bookshelf.Model.extend({
     tableName: 'user',
     hasTimestamps: true, // Define that we update the created_at and updated_at on change
-    hidden: [ 'password '], // Hide the password from view
+    hidden: [ 'password'], // Hide the password from view
 
     // On creation, hash the password
     initialize: function() {
@@ -40,4 +40,4 @@ var User = Bookshelf.model('User', {
     }
 });
 
-module.exports = User;
+module.exports = Bookshelf.model('User', User);

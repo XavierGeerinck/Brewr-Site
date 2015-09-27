@@ -76,6 +76,17 @@
             "updated_at": "2015-08-08T08:58:47.000Z"
         }
     ],
+    "user_session": [
+        {
+            "id": 1,
+            "token": "b83c8f2cac5698b4e92b876d9a2798a57ab97a247f426f84bdca2f9b807d140e",
+            "ip": "127.0.0.1",
+            "user_id": 1,
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36",
+            "created_at": "NOW()",
+            "updated_at": "NOW()"
+        }
+    ],
     "organisation": [
         {
             "id": 1,

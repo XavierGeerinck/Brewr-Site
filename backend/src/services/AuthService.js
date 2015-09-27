@@ -9,21 +9,19 @@ exports.createAccount = function (email, password, firstName, lastName) {
     var self = this;
 
     return new Promise(function (resolve, reject) {
-        self.hashPassword(password)
-        .then(function (hashedPassword) {
-            return User.forge({
-                email: email,
-                password: hashedPassword,
-                first_name: firstName,
-                last_name: lastName,
-                name: firstName + ' ' + lastName
-            })
-            .save();
+        User.forge({
+            email: email,
+            password: password,
+            first_name: firstName,
+            last_name: lastName,
+            name: firstName + ' ' + lastName
         })
+        .save()
         .then(function (user) {
             return resolve(user);
         })
         .catch(function (err) {
+            console.log(err);
             return reject(Boom.badRequest(err));
         });
     });

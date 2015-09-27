@@ -1,7 +1,7 @@
 var Bookshelf = require('../');
 var User = require('./User');
 
-var UserSession = Bookshelf.model('UserSession', {
+var UserSession = Bookshelf.Model.extend({
     tableName: 'user_session',
     hasTimestamps: true, // Define that we update the created_at and updated_at on change
     user: function () {
@@ -9,4 +9,4 @@ var UserSession = Bookshelf.model('UserSession', {
     }
 });
 
-module.exports = UserSession;
+module.exports = Bookshelf.model('UserSession', UserSession);
