@@ -2,9 +2,16 @@
 * This file will initialize the database and it's tables
 */
 var Schema = require('../schemas/schema.js');
+var data = require('../seeds/data.json');
 var Promise = require('bluebird');
+var async = require('async');
+var bcrypt = require('bcrypt');
+var ITERATIONS = 10;
+var knex = require('../').knex;
 
 exports.dropTable = function (tableName, knex) {
+    knex = knex || require('../');
+
     return new Promise(function (resolve, reject) {
         knex.schema.hasTable(tableName)
         .then(function (exists) {
@@ -22,6 +29,41 @@ exports.dropTable = function (tableName, knex) {
             return reject(err);
         });
     })
+};
+
+exports.seed = function () {
+    var tables = Object.keys(data);
+
+    // Go through all the tables
+    return Promise.each(tables, function (table) {
+        var records = data[table];
+
+        // Go through all the records
+        return Promise.each(records, function (record) {
+            // If _raw at the end, hash
+            Object.keys(record).forEach(function (key) {
+                if (key.indexOf('_raw') > -1) {
+                    record[key.substring(0, key.length - '_raw'.length)] = bcrypt.hashSync(record[key], ITERATIONS);
+                    delete record[key];
+                }
+            });
+
+            // Insert
+            return knex(table).insert(record);
+        });
+    });
+}
+
+exports.truncate = function () {
+
+    // Get our tables reverse, that we we do not get foreign key problems
+    var tables = Object.keys(Schema);
+
+    return Promise.each(tables, function (table) {
+        // We truncate every table with CASCADE for security
+        // See: http://www.postgresql.org/docs/9.1/static/sql-truncate.html
+        return knex.raw('TRUNCATE TABLE "' + table + '" CASCADE');
+    });
 };
 
 exports.createTable = function (tableName, knex) {

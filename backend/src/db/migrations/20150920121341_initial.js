@@ -4,7 +4,7 @@
 var Schema = require('../schemas/schema.js');
 var async = require('async');
 var Promise = require('bluebird');
-var initDB = require('../utils/initDb');
+var initDB = require('../utils/dbUtil');
 
 exports.up = function(knex, Promise) {
     return new Promise(function (resolve, reject) {

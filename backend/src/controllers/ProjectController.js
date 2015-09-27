@@ -7,7 +7,6 @@
 var uuid = require('uuid');
 var async = require('async');
 var Promise = require('bluebird');
-var server = require('../../index.js');
 var Boom = require('boom');
 
 module.exports = {

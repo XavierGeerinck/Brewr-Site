@@ -20,5 +20,12 @@
     "sails-postgresql": "^0.10.16",
     "underscore": "^1.8.3",
     "uuid": "^2.0.1"
+  },
+  "scripts": {
+    "test": "lab -a code -v -t 90"
+  },
+  "devDependencies": {
+    "code": "^1.5.0",
+    "lab": "^5.18.1"
   }
 }

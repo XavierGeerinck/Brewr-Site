@@ -1,0 +1,32 @@
+{
+    "database": {
+        "client": "postgresql",
+        "connection": {
+            "database": "brewr",
+            "user": "postgres",
+            "password": "root",
+            "port": 5432,
+            "host": "localhost"
+        },
+        "pool": {
+            "min": 2,
+            "max": 10
+        },
+        "migrations": {
+            "tableName": "knex_migrations",
+            "directory": "./src/db/migrations"
+        },
+        "seeds": {
+            "directory": "./src/db/seeds"
+        }
+    },
+    "server": {
+        "ip": "0.0.0.0",
+        "port": 8000,
+        "cors_client_origins": [ "*" ],
+        "cors_headers": [ "Authorization", "Content-Type", "If-None-Match", "Bearer", "x-http-method-override" ],
+        "cors_methods": [ "GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS" ],
+        "cors_credentials": true,
+        "is_debug": false
+    }
+}
