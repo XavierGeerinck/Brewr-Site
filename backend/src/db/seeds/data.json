@@ -211,31 +211,31 @@
     ],
     "project_user": [
         {
-            "id": 1,
             "is_manager": true,
             "user_id": 1,
             "project_id": 3
         },
         {
-            "id": 2,
             "is_manager": false,
             "user_id": 1,
             "project_id": 5
+        },
+        {
+            "is_manager": true,
+            "user_id": 1,
+            "project_id": 6
         }
     ],
     "organisation_user": [
         {
-            "id": 1,
             "user_id": 1,
             "organisation_id": 2
         },
         {
-            "id": 2,
             "user_id": 1,
             "organisation_id": 3
         },
         {
-            "id": 3,
             "user_id": 6,
             "organisation_id": 1
         }

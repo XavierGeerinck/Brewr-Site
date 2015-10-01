@@ -87,6 +87,7 @@ exports.createTable = function (tableName, knex) {
         // Init vars for the columnkeys
         var column;
         var columnKeys = Object.keys(Schema[tableName]);
+        var compoundKeys = [];
 
         // For each columnkey, add it to the column definition
         columnKeys.forEach(function (key) {
@@ -140,6 +141,16 @@ exports.createTable = function (tableName, knex) {
             if (currentKey.hasOwnProperty('comment')) {
                 column.comment(currentKey.comment);
             }
+
+            // Add compound key
+            if (currentKey.hasOwnProperty('compoundPrimaryKey')) {
+                compoundKeys.push(key);
+            }
         });
+
+        // Add compound key
+        if (compoundKeys.length > 0) {
+            table.primary(compoundKeys);
+        }
     });
 };

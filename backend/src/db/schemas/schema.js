@@ -98,15 +98,13 @@ var Schema = {
 
     // Join tables
     organisation_user: {
-        id: { type: 'increments', nullable: false, primary: true },
-        organisation_id: { references: 'id', inTable: 'organisation', type: 'integer', nullable: false, unsigned: true },
-        user_id: { references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true }
+        organisation_id: { compoundPrimaryKey: true, references: 'id', inTable: 'organisation', type: 'integer', nullable: false, unsigned: true },
+        user_id: { compoundPrimaryKey: true, references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true }
     },
 
     project_user: {
-        id: { type: 'increments', nullable: false, primary: true },
-        project_id: { references: 'id', inTable: 'project', type: 'integer', nullable: false, unsigned: true },
-        user_id: { references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true },
+        project_id: { compoundPrimaryKey: true, references: 'id', inTable: 'project', type: 'integer', nullable: false, unsigned: true },
+        user_id: { compoundPrimaryKey: true, references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true },
         is_manager: { type: 'boolean', nullable: false, defaultTo: false, comment: 'Defines if the user is a manager of the current project' },
         is_installed: { type: 'boolean', nullable: false, defaultTo: false, comment: 'Is the project installed?' },
         is_running: { type: 'boolean', nullable: false, defaultTo: false, comment: 'Is the project running?' },
