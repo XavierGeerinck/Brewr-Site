@@ -13,18 +13,11 @@ var Organisation = Bookshelf.model('Organisation', {
     created_by: function() {
         return this.belongsTo('User');
     },
-    users: function () {
-        return this.belongsToMany('User');
-    },
     projects: function () {
         return this.hasMany('Project');
     },
-    // Sometimes used to get the is_manager relation
-    organisation_users: function () {
-        return this.hasMany('OrganisationUser');
-    },
-    project_users: function () {
-        return this.hasMany('ProjectUser');
+    users: function () {
+        return this.belongsToMany('User', 'organisation_user', 'user_id');
     }
 });
 

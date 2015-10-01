@@ -37,6 +37,7 @@ class DashboardLayout extends React.Component {
 
     _handleChangeCompany(name) {
         AuthActions.changeSelectedCompany(name);
+        window.location = '/#/dashboard';
     }
 
     handleSideMenuChange(active) {

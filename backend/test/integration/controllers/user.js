@@ -90,4 +90,12 @@ lab.experiment('[Controller] User', function() {
             done();
         });
     });
+
+    it('[GET] /user should return the organisations I have access to', function (done) {
+
+    });
+
+    it('[GET] /user should return the projects I have access to', function (done) {
+
+    });
 });

@@ -30,23 +30,26 @@ var User = Bookshelf.Model.extend({
             });
         });
     },
-
-    projects: function () {
-        return this.belongsToMany('Project');
-    },
-    organisations: function () {
-        return this.belongsToMany('Organisation');
-    },
     sessions: function () {
         return this.hasMany('UserSession');
     },
-    // Sometimes used to get the is_manager relation
-    organisation_users: function () {
-        return this.hasMany('OrganisationUser');
+    // The projects we got access too
+    projects_access: function () {
+        return this.belongsToMany('Project', 'project_user', 'user_id', 'project_id');
     },
-    project_users: function () {
-        return this.hasMany('ProjectUser');
-    }
+    // Projects owned are the ones by the created_by field
+    projects_owned: function () {
+        return this.hasMany('Project', 'created_by');
+    },
+    // The organisations we got access too
+    organisations_access: function () {
+        return this.belongsToMany('Organisation', 'organisation_user', 'user_id', 'organisation_id');
+    },
+    // Organisations owned are the ones by the created_by field
+    organisations_owned: function () {
+        return this.hasMany('Organisation', 'created_by');
+    },
+
 });
 
 module.exports = Bookshelf.model('User', User);

@@ -13,7 +13,7 @@ var Project = Bookshelf.model('Project', {
         return this.belongsTo('User');
     },
     users: function () {
-        return this.belongsToMany('User');
+        return this.belongsToMany('User', 'project_user', 'user_id');
     },
     revision: function () {
         return this.belongsToMany('ProjectRevision');

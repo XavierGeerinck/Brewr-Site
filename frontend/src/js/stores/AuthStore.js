@@ -36,6 +36,7 @@ class AuthStore extends BaseStore {
                 this.emitChange();
                 break;
             case actionTypes.RESPONSE_USER:
+            console.log(source.action.response);
                 this._user = source.action.response.user;
                 this._organisations = source.action.response.organisations;
                 this._selected_organisation = source.action.response.organisations[0];
@@ -51,7 +52,7 @@ class AuthStore extends BaseStore {
                 this._selected_organisation = this._organisations.filter(o => {
                     return o.name === source.action.name
                 })[0];
-                
+
                 this.emitChange();
                 break;
             case actionTypes.RESPONSE_LOGIN_ERROR:

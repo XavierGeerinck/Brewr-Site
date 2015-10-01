@@ -8,10 +8,19 @@ var uuid = require('uuid');
 var async = require('async');
 var Promise = require('bluebird');
 var Boom = require('boom');
+var Project = require('../db/models/Project');
+var ProjectService = require('../services/ProjectService');
 
 module.exports = {
     getProjectByIdAndOrganisation: function (request, reply) {
-        return reply();
+        ProjectService
+        .getProjectByIdAndOrganisation(request.params.project)
+        .then(function (project) {
+            return reply(project);
+        })
+        .catch(function (err) {
+            return reply(err);
+        });
     },
 
     /**

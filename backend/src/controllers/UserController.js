@@ -9,18 +9,19 @@ var organisationService = require('../services/OrganisationService');
 
 exports.get = function (request, reply) {
     var user = request.auth.credentials;
-
-    organisationService
-    .getOrganisationsByUser(user.get('id'))
-    .then(function (organisations) {
-        return reply({
-            user: user,
-            organisations: organisations
-        })
-    })
-    .catch(function (err) {
-        return reply({ user: user, organisations: [] });
-    });
+    return reply(user);
+    //
+    // organisationService
+    // .getOrganisationsByUser(user.get('id'))
+    // .then(function (organisations) {
+    //     return reply({
+    //         user: user,
+    //         organisations: organisations
+    //     })
+    // })
+    // .catch(function (err) {
+    //     return reply({ user: user, organisations: [] });
+    // });
 };
 
 exports.getOrganisationsByUser = function (request, reply) {

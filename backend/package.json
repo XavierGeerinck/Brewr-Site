@@ -14,6 +14,7 @@
     "hapi-auth-bearer-simple": "^1.2.3",
     "joi": "^6.7.0",
     "knex": "^0.8.6",
+    "lab": "^6.1.0",
     "lodash": "^3.10.1",
     "pg": "^4.4.1",
     "require-all": "^1.1.0",

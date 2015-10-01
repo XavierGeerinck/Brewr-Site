@@ -38,6 +38,10 @@ function validateFunction (token, callback) {
 
     var userObj = null;
 
+    // Arrays with objects I have access too
+    var projectsAccess = [];
+    var organisationsAccess = [];
+
     UserSession
     .where({ token: token })
     .fetch()
@@ -48,55 +52,27 @@ function validateFunction (token, callback) {
 
         return User
         .where({ id: session.get('user_id') })
-        .fetch({ withRelated: [ 'project_users', 'project_users.project', 'organisation_users' ] });
+        .fetch({ withRelated: [ 'projects_access', 'organisations_access', 'projects_owned', 'organisations_owned' ] });
     })
     .then(function (user) {
         userObj = user;
+        //
+        console.log('OWNED');
+        console.log(JSON.stringify(user.related('organisations_owned')));
+
+        console.log('ACCESS');
+        console.log(JSON.stringify(user.related('organisations_access')));
+
+        console.log('PROJECTS OWNED');
+        console.log(JSON.stringify(user.related('projects_owned')));
+
+        console.log('PROJECTS ACCESS');
+        console.log(JSON.stringify(user.related('projects_access')));
 
         // Set scope object for hapi authenticator,
         // needed since we can not access attributes instantly
         userObj.scope = [ user.get('scope') ];
 
-        // Add organisations where we have user access to
-        var organisations = user.related('organisation_users');
-        organisations.forEach(function (organisation) {
-            userObj.scope.push('belongs-to-organisation-' + organisation.get('organisation_id') + '-user');
-        });
-
-        // Add projects
-        var projects = user.related('project_users');
-        projects.forEach(function (project) {
-            var projectId = project.get('project_id');
-            var orgId = project.related('project').get('organisation_id');
-
-            // Add manager role if manager
-            if (project.get('is_manager')) {
-                userObj.scope.push('belongs-to-organisation-' + orgId + '-project-' + projectId + '-manager');
-            }
-
-            // Add user role
-            userObj.scope.push('belongs-to-organisation-' + orgId + '-project-' + projectId + '-user');
-        });
-
-        // Now get the organisations we created
-        return Organisation.where({ created_by: userObj.get('id') }).fetchAll();
-    })
-    .then(function (organisations) {
-        organisations.forEach(function (organisation) {
-            userObj.scope.push('belongs-to-organisation-' + organisation.get('id') + '-creator');
-            userObj.scope.push('belongs-to-organisation-' + organisation.get('id') + '-manager');
-            userObj.scope.push('belongs-to-organisation-' + organisation.get('id') + '-user');
-        });
-
-        // Now get the projects that we created
-        return Project.where({ created_by: userObj.get('id') }).fetchAll();
-    })
-    .then(function (projects) {
-        projects.forEach(function (project) {
-            userObj.scope.push('belongs-to-organisation-' + project.get('organisation_id') + '-project-' + project.get('id') + '-creator');
-            userObj.scope.push('belongs-to-organisation-' + project.get('organisation_id') + '-project-' + project.get('id') + '-manager');
-            userObj.scope.push('belongs-to-organisation-' + project.get('organisation_id') + '-project-' + project.get('id') + '-user');
-        });
 
         return callback(null, true, userObj);
     })
@@ -104,6 +80,100 @@ function validateFunction (token, callback) {
         return callback(err);
     })
 }
+
+// // For now we do validate here until I got a good way to use the models everywhere
+// function validateFunction (token, callback) {
+//     if (!token) {
+//         return callback('E_NO_TOKEN');
+//     }
+//
+//     var UserSession = require('./src/db/models/UserSession');
+//     var User = require('./src/db/models/User');
+//     var Organisation = require('./src/db/models/Organisation');
+//     var Project = require('./src/db/models/Project');
+//
+//     var userObj = null;
+//
+//     // Arrays with objects I have access too
+//     var projectsAccess = [];
+//     var organisationsAccess = [];
+//
+//     UserSession
+//     .where({ token: token })
+//     .fetch()
+//     .then(function (session) {
+//         if (!session) {
+//             return Promise.reject('E_INVALID_TOKEN');
+//         }
+//
+//         return User
+//         .where({ id: session.get('user_id') })
+//         .fetch({ withRelated: [ 'project_users', 'project_users.project', 'organisation_users' ] });
+//     })
+//     .then(function (user) {
+//         userObj = user;
+//
+//         // Set scope object for hapi authenticator,
+//         // needed since we can not access attributes instantly
+//         userObj.scope = [ user.get('scope') ];
+//
+//         // Add organisations where we have user access to
+//         var organisations = user.related('organisation_users');
+//         organisations.forEach(function (organisation) {
+//             userObj.scope.push('belongs-to-organisation-' + organisation.get('organisation_id') + '-user');
+//             organisationsAccess.push(organisation);
+//         });
+//
+//         // Add projects
+//         var projects = user.related('project_users');
+//         projects.forEach(function (project) {
+//             var projectId = project.get('project_id');
+//             var orgId = project.related('project').get('organisation_id');
+//
+//             // Add manager role if manager
+//             if (project.get('is_manager')) {
+//                 userObj.scope.push('belongs-to-organisation-' + orgId + '-project-' + projectId + '-manager');
+//             }
+//
+//             // Add user role
+//             userObj.scope.push('belongs-to-organisation-' + orgId + '-project-' + projectId + '-user');
+//
+//             projectsAccess.push(project);
+//         });
+//
+//         // Now get the organisations we created
+//         return Organisation.where({ created_by: userObj.get('id') }).fetchAll();
+//     })
+//     .then(function (organisations) {
+//         organisations.forEach(function (organisation) {
+//             userObj.scope.push('belongs-to-organisation-' + organisation.get('id') + '-creator');
+//             userObj.scope.push('belongs-to-organisation-' + organisation.get('id') + '-manager');
+//             userObj.scope.push('belongs-to-organisation-' + organisation.get('id') + '-user');
+//             organisationsAccess.push(organisation);
+//         });
+//
+//         // Now get the projects that we created
+//         return Project.where({ created_by: userObj.get('id') }).fetchAll();
+//     })
+//     .then(function (projects) {
+//         projects.forEach(function (project) {
+//             userObj.scope.push('belongs-to-organisation-' + project.get('organisation_id') + '-project-' + project.get('id') + '-creator');
+//             userObj.scope.push('belongs-to-organisation-' + project.get('organisation_id') + '-project-' + project.get('id') + '-manager');
+//             userObj.scope.push('belongs-to-organisation-' + project.get('organisation_id') + '-project-' + project.get('id') + '-user');
+//             projectsAccess.push(project);
+//         });
+//
+//         // userObj.organisations = organisationsAccess;
+//         // userObj.projects = projectsAccess;
+//
+//         console.log(userObj);
+//
+//         return callback(null, true, userObj);
+//     })
+//     .catch(function (err) {
+//         return callback(err);
+//     })
+// }
 
 // Register the authentication strategies
 function registerStrategy() {
