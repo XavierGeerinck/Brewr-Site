@@ -1,4 +1,19 @@
 # Backend code
+## Validate roles
+the validation function is going to assign roles dynamically based on the organisation and the project a user has access too.
+We do this because this makes it easier to protect the routes.
+
+Here are the roles that we can use:
+* belongs-to-organisation-{organisation_id}-user
+* belongs-to-organisation-{organisation_id}-creator
+* belongs-to-organisation-{organisation_id}-project-{project_id}-user
+* belongs-to-organisation-{organisation_id}-project-{project_id}-manager
+* belongs-to-organisation-{organisation_id}-project-{project_id}-creator
+
+All the underlying roles will be assigned, so for example if you are a creator of an organisation, then you will get the user, manager and creator role.
+
+> The manager role for an organisation does not exist, this however would be a good idea for further implementations. Bigger companies tend to have people that get access to all the projects and can also manage those.
+
 ## Running the seeds
 1. Install knex globally: `npm install knex -g`
 2. Run: `knex migrate:rollback; knex migrate:latest; knex seed:run`

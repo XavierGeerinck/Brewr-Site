@@ -47,7 +47,7 @@ class DashboardLayout extends React.Component {
         var self = this;
         const { title, isBoxed, history } = this.props;
         const { user, organisations, selected_organisation } = this.state;
-        const projects = selected_organisation.projects || [];
+        const projects = selected_organisation ? selected_organisation.projects : [];
 
         return (
             <div className="DashboardLayout-Container">
@@ -57,10 +57,12 @@ class DashboardLayout extends React.Component {
                     <SideMenuItem link="/organisation/1/teams"><i className="fa fa-group"></i>Teams</SideMenuItem>
                     <SideMenuContainer title={<span><i className="fa fa-folder"></i><span>Projects</span></span>}>
                         {
+                            projects ?
                             projects.map(p => {
                                 let url = "/organisation/" + p.organisation_id + "/project/" + p.id;
                                 return <SideMenuItem key={p.name} link={url}>{p.name}</SideMenuItem>
                             })
+                            : null
                         }
                     </SideMenuContainer>
                     <SideMenuItem link="/builder"><i className="fa fa-gears"></i>Image Creator</SideMenuItem>
@@ -71,15 +73,18 @@ class DashboardLayout extends React.Component {
                 {/* CONTENT */}
                 <div className="DashboardLayout-Content">
                     <div className="DashboardLayout-Page-Header">
-                        <div className="DashboardLayout-CompanyPicker">
-                            <DropdownMenu title={selected_organisation.name}>
-                            {
-                                organisations.map(i => {
-                                    return <DropdownMenuItem onClick={this._handleChangeCompany.bind(this)} key={i.name}>{i.name}</DropdownMenuItem>
-                                })
-                            }
-                            </DropdownMenu>
-                        </div>
+                        {
+                            selected_organisation ?
+                            <div className="DashboardLayout-CompanyPicker">
+                                <DropdownMenu title={ selected_organisation.name }>
+                                {
+                                    organisations.map(i => {
+                                        return <DropdownMenuItem onClick={this._handleChangeCompany.bind(this)} key={i.name}>{i.name}</DropdownMenuItem>
+                                    })
+                                }
+                                </DropdownMenu>
+                            </div> : null
+                        }
 
                         <Divider align="vertical" />
 

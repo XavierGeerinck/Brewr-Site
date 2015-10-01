@@ -10,21 +10,8 @@ var Promise = require('bluebird');
 var Boom = require('boom');
 
 module.exports = {
-    /**
-     * Find a user's assigned projects
-     * @param req
-     * @param res
-     */
-    assigned: function (request, reply) {
-        var ProjectUser = request.collections.projectuser;
-        var user = request.auth.credentials;
-
-        ProjectUser
-            .find({"user": user.id})
-            .populate("project")
-            .exec(function (err, assigned) {
-                return reply(assigned);
-            });
+    getProjectByIdAndOrganisation: function (request, reply) {
+        return reply();
     },
 
     /**

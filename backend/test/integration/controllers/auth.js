@@ -193,5 +193,41 @@ lab.experiment('[Controller] Auth', function() {
             expect(JSON.parse(res.payload).length).to.equal(fixtures['user_session'].length);
             done();
         });
-    })
+    });
+
+    it('[POST] /auth/signin for a user that belongs to organisation and is not a manager or creator has scope "belongs-to-organisation-{params.organisation}-user"', function (done) {
+        var request = {
+            method: 'POST',
+            url: '/auth/signin',
+            payload: {
+                email: fixtures['user'][0].email,
+                password: fixtures['user'][0].password_raw
+            }
+        };
+
+        server.inject(request, function (res) {
+            console.log(res);
+            done();
+        });
+    });
+
+    it('[POST] /auth/signin for a user that belongs to organisation and is a manager but not a creator has scope "belongs-to-organisation-{params.organisation}-user and manager"', function (done) {
+        done();
+    });
+
+    it('[POST] /auth/signin for a user that is the creator of an organisation has scope "belongs-to-organisation-{params.organisation}-creator, manager and user"', function (done) {
+        done();
+    });
+
+    it('[POST] /auth/signin for a maanger that has acces to a project of an organisation has scope belongs-to-organisation-<orgid>-project-<projectid>-user', function (done) {
+        done();
+    });
+
+    it('[POST] /auth/signin for a user that has acces to a project of an organisation has scope belongs-to-organisation-<orgid>-project-<projectid>-manager and user', function (done) {
+        done();
+    });
+
+    it('[POST] /auth/signin for a creator that has acces to a project of an organisation has scope belongs-to-organisation-<orgid>-project-<projectid>-creator, manager and user', function (done) {
+        done();
+    });
 });

@@ -7,16 +7,16 @@ var Project = Bookshelf.model('Project', {
     tableName: 'project',
     hasTimestamps: true, // Define that we update the created_at and updated_at on change
     owner: function () {
-        return this.belongsTo(User);
+        return this.belongsTo('User');
     },
     created_by: function() {
-        return this.belongsTo(User);
+        return this.belongsTo('User');
     },
     users: function () {
-        return this.belongsToMany(User);
+        return this.belongsToMany('User');
     },
     revision: function () {
-        return this.belongsToMany(ProjectRevision);
+        return this.belongsToMany('ProjectRevision');
     },
     organisation: function () {
         return this.belongsTo('Organisation');

@@ -4,7 +4,7 @@ var ProjectRevision = require('./ProjectRevision');
 var ProjectEnvInfo = Bookshelf.model('ProjectEnvInfo', {
     tableName: 'project_env_info',
     project_revision: function () {
-        return this.belongsTo(ProjectRevision);
+        return this.belongsTo('ProjectRevision');
     }
 });
 

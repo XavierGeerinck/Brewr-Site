@@ -33,22 +33,72 @@ function validateFunction (token, callback) {
 
     var UserSession = require('./src/db/models/UserSession');
     var User = require('./src/db/models/User');
+    var Organisation = require('./src/db/models/Organisation');
+    var Project = require('./src/db/models/Project');
+
+    var userObj = null;
 
     UserSession
     .where({ token: token })
-    .fetch({ withRelated: [ 'user' ] })
+    .fetch()
     .then(function (session) {
         if (!session) {
             return Promise.reject('E_INVALID_TOKEN');
         }
 
-        var userObj = session.related('user');
+        return User
+        .where({ id: session.get('user_id') })
+        .fetch({ withRelated: [ 'project_users', 'project_users.project', 'organisation_users' ] });
+    })
+    .then(function (user) {
+        userObj = user;
 
         // Set scope object for hapi authenticator,
         // needed since we can not access attributes instantly
-        userObj.scope = userObj.get('scope');
+        userObj.scope = [ user.get('scope') ];
 
-        return callback(null, true, userObj)
+        // Add organisations where we have user access to
+        var organisations = user.related('organisation_users');
+        organisations.forEach(function (organisation) {
+            userObj.scope.push('belongs-to-organisation-' + organisation.get('organisation_id') + '-user');
+        });
+
+        // Add projects
+        var projects = user.related('project_users');
+        projects.forEach(function (project) {
+            var projectId = project.get('project_id');
+            var orgId = project.related('project').get('organisation_id');
+
+            // Add manager role if manager
+            if (project.get('is_manager')) {
+                userObj.scope.push('belongs-to-organisation-' + orgId + '-project-' + projectId + '-manager');
+            }
+
+            // Add user role
+            userObj.scope.push('belongs-to-organisation-' + orgId + '-project-' + projectId + '-user');
+        });
+
+        // Now get the organisations we created
+        return Organisation.where({ created_by: userObj.get('id') }).fetchAll();
+    })
+    .then(function (organisations) {
+        organisations.forEach(function (organisation) {
+            userObj.scope.push('belongs-to-organisation-' + organisation.get('id') + '-creator');
+            userObj.scope.push('belongs-to-organisation-' + organisation.get('id') + '-manager');
+            userObj.scope.push('belongs-to-organisation-' + organisation.get('id') + '-user');
+        });
+
+        // Now get the projects that we created
+        return Project.where({ created_by: userObj.get('id') }).fetchAll();
+    })
+    .then(function (projects) {
+        projects.forEach(function (project) {
+            userObj.scope.push('belongs-to-organisation-' + project.get('organisation_id') + '-project-' + project.get('id') + '-creator');
+            userObj.scope.push('belongs-to-organisation-' + project.get('organisation_id') + '-project-' + project.get('id') + '-manager');
+            userObj.scope.push('belongs-to-organisation-' + project.get('organisation_id') + '-project-' + project.get('id') + '-user');
+        });
+
+        return callback(null, true, userObj);
     })
     .catch(function (err) {
         return callback(err);

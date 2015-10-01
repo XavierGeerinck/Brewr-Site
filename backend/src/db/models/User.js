@@ -2,6 +2,8 @@ var bcrypt = require('bcrypt');
 var Bookshelf = require('../');
 var Project = require('./Project');
 var Organisation = require('./Organisation');
+var OrganisationUser = require('./OrganisationUser');
+var ProjectUser = require('./ProjectUser');
 var UserSession = require('./UserSession');
 var ITERATIONS = 10;
 
@@ -37,6 +39,13 @@ var User = Bookshelf.Model.extend({
     },
     sessions: function () {
         return this.hasMany('UserSession');
+    },
+    // Sometimes used to get the is_manager relation
+    organisation_users: function () {
+        return this.hasMany('OrganisationUser');
+    },
+    project_users: function () {
+        return this.hasMany('ProjectUser');
     }
 });
 

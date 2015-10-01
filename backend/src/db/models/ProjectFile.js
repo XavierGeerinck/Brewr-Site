@@ -5,10 +5,10 @@ var ProjectRevision = require('./ProjectRevision');
 var ProjectFile = Bookshelf.model('ProjectFile', {
     tableName: 'project_file',
     project_revision: function () {
-        return this.belongsTo(ProjectRevision);
+        return this.belongsTo('ProjectRevision');
     },
     added_by: function () {
-        return this.belongsTo(User);
+        return this.belongsTo('User');
     }
 });
 

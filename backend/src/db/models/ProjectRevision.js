@@ -7,13 +7,13 @@ var ProjectRevision = Bookshelf.model('ProjectRevision', {
     tableName: 'project_revision',
     hasTimestamps: true, // Define that we update the created_at and updated_at on change
     project: function () {
-        return this.belongsTo(Project);
+        return this.belongsTo('Project');
     },
     files: function () {
-        return this.belongsToMany(ProjectFile);
+        return this.belongsToMany('ProjectFile');
     },
     users: function () {
-        return this.belongsToMany(ProjectUser);
+        return this.belongsToMany('ProjectUser');
     }
 });
 

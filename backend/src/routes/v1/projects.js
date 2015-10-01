@@ -7,75 +7,28 @@ var Joi = require('joi');
 module.exports = [
     {
         method: 'GET',
-        path: '/organisations/{organisation}/projects',
+        path: '/organisation/{organisation}/project/{project}',
         config: {
-            handler: ProjectController.index,
+            handler: ProjectController.getProjectByIdAndOrganisation ,
             auth: {
                 strategy: 'bearer',
-                scope: ['member-{params.organisation}']
+                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-user' ]
             },
             validate: {
                 params: {
-                    organisation: Joi.number().integer()
-                }
-            }
-        }
-    },
-    {
-        method: 'GET',
-        path: '/organisations/{organisation}/projects/{project}',
-        config: {
-            handler: ProjectController.show ,
-            auth: {
-                strategy: 'bearer',
-                scope: ['member-{params.organisation}']
-            },
-            validate: {
-                params: {
-                    organisation: Joi.number().integer(),
-                    project: Joi.number().integer()
-                }
-            }
-        }
-    },
-    {
-        method: 'GET',
-        path: '/organisations/{organisation}/projects/assigned',
-        config: {
-            handler: ProjectController.assigned,
-            auth: {
-                strategy: 'bearer',
-                scope: ['member-{params.organisation}']
-            },
-        }
-    },
-    {
-        method: 'POST',
-        path: '/organisations/{organisation}/projects/{project}/assign',
-        config: {
-            handler: ProjectController.assign,
-            auth: {
-                strategy: 'bearer',
-                scope: ['member-{params.organisation}']
-            },
-            validate: {
-                params: {
-                    project: Joi.number().integer(),
-                    organisation: Joi.number().integer()
-                },
-                payload: {
-                    user: Joi.number().integer()
+                    organisation: Joi.number().integer().required(),
+                    project: Joi.number().integer().required()
                 }
             }
         }
     },
     {
         method: 'POST',
-        path: '/projects',
+        path: '/projects/{organisation}',
         config: {
             auth: {
                 strategy: 'bearer',
-                scope: ['member-{params.organisation}']
+                scope: [ 'belongs-to-organisation-{params.organisation}-user' ]
             },
             handler: ProjectController.create,
             validate: {
