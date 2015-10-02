@@ -206,7 +206,7 @@ lab.experiment('[Controller] Auth', function() {
         };
 
         server.inject(request, function (res) {
-            console.log(res);
+            // console.log(res);
             done();
         });
     });

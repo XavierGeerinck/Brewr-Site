@@ -61,7 +61,7 @@ function validateFunction (token, callback) {
         // needed since we can not access attributes instantly
         userObj.scope = [ user.get('scope') ];
 
-        user.get('allOrganisations').forEach(function (org) {
+        user.get('organisations').forEach(function (org) {
             // If we created it, add creator role
             if (org.get('created_by') === user.get('id')) {
                 user.scope.push('belongs-to-organisation-' + org.get('id') + '-creator');
@@ -72,7 +72,7 @@ function validateFunction (token, callback) {
 
         });
 
-        user.get('allProjects').forEach(function (proj) {
+        user.get('projects').forEach(function (proj) {
             // If we created the project, add creator role
             if (proj.get('created_by') === user.get('id')) {
                 user.scope.push('belongs-to-organisation-' + proj.get('organisation_id') + '-project-' + proj.get('id') + '-creator');
@@ -85,8 +85,6 @@ function validateFunction (token, callback) {
             // Default role
             user.scope.push('belongs-to-organisation-' + proj.get('organisation_id') + '-project-' + proj.get('id') + '-user');
         });
-
-        console.log(userObj.scope);
 
         return callback(null, true, userObj);
     })

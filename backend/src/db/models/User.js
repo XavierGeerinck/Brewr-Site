@@ -12,7 +12,7 @@ var User = Bookshelf.Model.extend({
     hasTimestamps: true, // Define that we update the created_at and updated_at on change
     hidden: [ 'password', 'projects_access', 'projects_owned', 'organisations_access', 'organisations_owned' ], // Hide the password from view
     virtuals: {
-        allOrganisations: function () {
+        organisations: function () {
             var organisations = this.related('organisations_owned');
             this.related('organisations_access').forEach(function (organisation) {
                 organisations.push(organisation);
@@ -21,7 +21,7 @@ var User = Bookshelf.Model.extend({
             return organisations;
         },
 
-        allProjects: function () {
+        projects: function () {
             var projects = this.related('projects_owned');
             this.related('projects_access').forEach(function (project) {
                 projects.push(project);

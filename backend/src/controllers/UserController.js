@@ -9,7 +9,7 @@ var organisationService = require('../services/OrganisationService');
 
 exports.get = function (request, reply) {
     var user = request.auth.credentials;
-    return reply(user);
+    return reply({ user: user });
     //
     // organisationService
     // .getOrganisationsByUser(user.get('id'))

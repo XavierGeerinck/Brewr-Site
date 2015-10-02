@@ -92,14 +92,72 @@ lab.experiment('[Controller] User', function() {
     });
 
     it('[GET] /user should return the organisations I have access to', function (done) {
+        var request = {
+            method: 'GET',
+            url: '/user',
+            headers: {
+                Authorization: 'Bearer ' + fixtures['user_session'][0].token
+            }
+        };
 
+        server.inject(request, function (res) {
+            expect(res.payload).to.exist();
+
+            expect(JSON.parse(res.payload).user.organisations).to.exist;
+
+            done();
+        });
     });
 
     it('[GET] /user should return the projects I have access to', function (done) {
+        var request = {
+            method: 'GET',
+            url: '/user',
+            headers: {
+                Authorization: 'Bearer ' + fixtures['user_session'][0].token
+            }
+        };
 
+        server.inject(request, function (res) {
+            expect(res.payload).to.exist();
+
+            expect(JSON.parse(res.payload).user.projects).to.exist;
+
+            done();
+        });
     });
 
     it('[GET] /user should be able to be the creator of multiple organisations', function (done) {
+        var request = {
+            method: 'GET',
+            url: '/user',
+            headers: {
+                Authorization: 'Bearer ' + fixtures['user_session'][0].token
+            }
+        };
 
+        server.inject(request, function (res) {
+            expect(res.payload).to.exist();
+
+            var organisationsCreated = 0;
+
+            JSON.parse(res.payload).user.organisations.forEach(function (org) {
+                if (org.created_by === fixtures['user_session'][0].user_id) {
+                    organisationsCreated++;
+                }
+            });
+
+            var organisationsCreatedFromSeed = 0;
+
+            fixtures['organisation'].forEach(function (org) {
+                if (org.created_by === fixtures['user_session'][0].user_id) {
+                    organisationsCreatedFromSeed++;
+                }
+            });
+
+            expect(organisationsCreated).to.equal(organisationsCreatedFromSeed);
+
+            done();
+        });
     });
 });

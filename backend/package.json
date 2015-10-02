@@ -9,6 +9,7 @@
     "bluebird": "^2.10.0",
     "bookshelf": "^0.8.2",
     "boom": "^2.8.0",
+    "code": "^1.5.0",
     "dogwater": "^1.0.1",
     "hapi": "^10.0.0",
     "hapi-auth-bearer-simple": "^1.2.3",
