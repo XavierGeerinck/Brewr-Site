@@ -8,4 +8,6 @@ bookshelf.plugin('visibility');
 // Load the registry plugin so that we register the models first
 bookshelf.plugin('registry');
 
+bookshelf.plugin('virtuals');
+
 module.exports = bookshelf;

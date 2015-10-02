@@ -98,4 +98,8 @@ lab.experiment('[Controller] User', function() {
     it('[GET] /user should return the projects I have access to', function (done) {
 
     });
+
+    it('[GET] /user should be able to be the creator of multiple organisations', function (done) {
+
+    });
 });

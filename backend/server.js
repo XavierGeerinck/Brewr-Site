@@ -56,23 +56,37 @@ function validateFunction (token, callback) {
     })
     .then(function (user) {
         userObj = user;
-        //
-        console.log('OWNED');
-        console.log(JSON.stringify(user.related('organisations_owned')));
-
-        console.log('ACCESS');
-        console.log(JSON.stringify(user.related('organisations_access')));
-
-        console.log('PROJECTS OWNED');
-        console.log(JSON.stringify(user.related('projects_owned')));
-
-        console.log('PROJECTS ACCESS');
-        console.log(JSON.stringify(user.related('projects_access')));
 
         // Set scope object for hapi authenticator,
         // needed since we can not access attributes instantly
         userObj.scope = [ user.get('scope') ];
 
+        user.get('allOrganisations').forEach(function (org) {
+            // If we created it, add creator role
+            if (org.get('created_by') === user.get('id')) {
+                user.scope.push('belongs-to-organisation-' + org.get('id') + '-creator');
+            }
+
+            // Default role
+            user.scope.push('belongs-to-organisation-' + org.get('id') + '-user');
+
+        });
+
+        user.get('allProjects').forEach(function (proj) {
+            // If we created the project, add creator role
+            if (proj.get('created_by') === user.get('id')) {
+                user.scope.push('belongs-to-organisation-' + proj.get('organisation_id') + '-project-' + proj.get('id') + '-creator');
+            }
+
+            if (proj.pivot && proj.pivot.get('is_manager')) {
+                user.scope.push('belongs-to-organisation-' + proj.get('organisation_id') + '-project-' + proj.get('id') + '-manager');
+            }
+
+            // Default role
+            user.scope.push('belongs-to-organisation-' + proj.get('organisation_id') + '-project-' + proj.get('id') + '-user');
+        });
+
+        console.log(userObj.scope);
 
         return callback(null, true, userObj);
     })

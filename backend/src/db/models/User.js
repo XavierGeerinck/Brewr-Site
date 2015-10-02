@@ -10,7 +10,26 @@ var ITERATIONS = 10;
 var User = Bookshelf.Model.extend({
     tableName: 'user',
     hasTimestamps: true, // Define that we update the created_at and updated_at on change
-    hidden: [ 'password'], // Hide the password from view
+    hidden: [ 'password', 'projects_access', 'projects_owned', 'organisations_access', 'organisations_owned' ], // Hide the password from view
+    virtuals: {
+        allOrganisations: function () {
+            var organisations = this.related('organisations_owned');
+            this.related('organisations_access').forEach(function (organisation) {
+                organisations.push(organisation);
+            });
+
+            return organisations;
+        },
+
+        allProjects: function () {
+            var projects = this.related('projects_owned');
+            this.related('projects_access').forEach(function (project) {
+                projects.push(project);
+            });
+
+            return projects;
+        }
+    },
 
     // On creation, hash the password
     initialize: function() {
@@ -35,7 +54,8 @@ var User = Bookshelf.Model.extend({
     },
     // The projects we got access too
     projects_access: function () {
-        return this.belongsToMany('Project', 'project_user', 'user_id', 'project_id');
+        // We get the is_manager through the isPivot method, this fetches columns from the pivot table
+        return this.belongsToMany('Project', 'project_user', 'user_id', 'project_id').withPivot('is_manager');
     },
     // Projects owned are the ones by the created_by field
     projects_owned: function () {
@@ -49,7 +69,6 @@ var User = Bookshelf.Model.extend({
     organisations_owned: function () {
         return this.hasMany('Organisation', 'created_by');
     },
-
 });
 
 module.exports = Bookshelf.model('User', User);
