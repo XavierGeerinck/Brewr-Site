@@ -160,4 +160,45 @@ lab.experiment('[Controller] User', function() {
             done();
         });
     });
+
+
+
+    it('[GET] /user for a user that belongs to organisation and is not a manager or creator has scope "belongs-to-organisation-{params.organisation}-user"', function (done) {
+        // Test data: User 1 belongs to organisations 2 as normal user
+        // We expect: "belongs-to-organisation-2-user"
+
+        var request = {
+            method: 'GET',
+            url: '/user',
+            headers: {
+                Authorization: 'Bearer ' + fixtures['user_session'][0].token
+            }
+        };
+
+        server.inject(request, function (res) {
+            console.log(res.request.auth.credentials.scope);
+            Code.expect(res.request.auth.credentials.scope.to.have('belongs-to-organisation-2-user'));
+            done();
+        });
+    });
+
+    it('[GET] /user for a user that belongs to organisation and is a manager but not a creator has scope "belongs-to-organisation-{params.organisation}-user and manager"', function (done) {
+        done();
+    });
+
+    it('[GET] /user for a user that is the creator of an organisation has scope "belongs-to-organisation-{params.organisation}-creator, manager and user"', function (done) {
+        done();
+    });
+
+    it('[GET] /user for a manager that has acces to a project of an organisation has scope belongs-to-organisation-<orgid>-project-<projectid>-user', function (done) {
+        done();
+    });
+
+    it('[GET] /user for a user that has acces to a project of an organisation has scope belongs-to-organisation-<orgid>-project-<projectid>-manager and user', function (done) {
+        done();
+    });
+
+    it('[GET] /user for a creator that has acces to a project of an organisation has scope belongs-to-organisation-<orgid>-project-<projectid>-creator, manager and user', function (done) {
+        done();
+    });
 });
