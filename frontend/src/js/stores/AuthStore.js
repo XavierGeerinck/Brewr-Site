@@ -36,10 +36,9 @@ class AuthStore extends BaseStore {
                 this.emitChange();
                 break;
             case actionTypes.RESPONSE_USER:
-            console.log(source.action.response);
                 this._user = source.action.response.user;
-                this._organisations = source.action.response.organisations;
-                this._selected_organisation = source.action.response.organisations[0];
+                this._organisations = source.action.response.user.organisations;
+                this._selected_organisation = source.action.response.user.organisations[0] || [];
                 this.emitChange();
                 break;
             case actionTypes.RESPONSE_LOGOUT:
