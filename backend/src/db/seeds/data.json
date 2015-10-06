@@ -155,7 +155,7 @@
         {
             "id": 6,
             "name": "Brewr Test Multiple Orgs",
-            "description": "Apple Inc. is an American multinational technology company headquartered in Cupertino, California, that designs, develops, and sells consumer electronics, computer software, and online services. ",
+            "description": "We have no access to any of the projects in this organisation. This tests if we are able to assign projects to a user",
             "subdomain": "apple.brewr.io",
             "owner": 1,
             "user_limit": 25,
@@ -215,6 +215,15 @@
             "name": "Google Website",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "organisation_id": 3,
+            "created_by": 3,
+            "owner": 3,
+            "created_at": "NOW()"
+        },
+        {
+            "id": 7,
+            "name": "Test project",
+            "description": "This is a project assigned to nobody!",
+            "organisation_id": 6,
             "created_by": 3,
             "owner": 3,
             "created_at": "NOW()"

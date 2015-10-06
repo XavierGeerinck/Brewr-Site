@@ -7,9 +7,20 @@
 var Boom = require('boom');
 var organisationService = require('../services/OrganisationService');
 
+/**
+ * Return the user object as a JSON, we rework it here a bit to return the
+ * projects in the organisations
+ */
 exports.get = function (request, reply) {
-    var user = request.auth.credentials;
-    return reply({ user: user });
+    var userObj = JSON.parse(JSON.stringify(request.auth.credentials));
+
+    userObj.organisations.forEach(function (org) {
+        org.projects = userObj.projects.filter(function (proj) {
+            return proj.organisation_id === org.id;
+        });
+    });
+
+    return reply({ user: userObj });
     //
     // organisationService
     // .getOrganisationsByUser(user.get('id'))
