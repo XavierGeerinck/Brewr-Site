@@ -23,6 +23,26 @@ module.exports = [
         }
     },
     {
+        method: 'DELETE',
+        path: '/organisation/{organisation}/project/{project}',
+        config: {
+            handler: ProjectController.deleteProjectByIdAndOrganisation ,
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-manager' ]
+            },
+            validate: {
+                params: {
+                    organisation: Joi.number().integer().required(),
+                    project: Joi.number().integer().required()
+                },
+                payload: {
+                    password: Joi.string().required()
+                }
+            }
+        }
+    },
+    {
         method: 'POST',
         path: '/projects/{organisation}',
         config: {

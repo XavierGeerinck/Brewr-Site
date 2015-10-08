@@ -96,17 +96,106 @@ lab.experiment('[Controller] User', function() {
 			done();
 		});
 	});
+
+	it('[DELETE] /organisation/:org_id/project/:id can only be executed with the correct manager rights', function (done) {
+		var request = {
+			method: 'DELETE',
+			url: '/organisation/3/project/5',
+			headers: {
+				Authorization: 'Bearer ' + fixtures['user_session'][0].token
+			}
+		};
+
+		server.inject(request, function (res) {
+			expect(res.payload).to.exist();
+
+			expect(JSON.parse(res.payload).message).to.equal('Insufficient scope, expected any of: belongs-to-organisation-3-project-5-manager');
+
+			done();
+		});
+	});
+
+	it('[DELETE] /organisation/:org_id/project/:id without a correct id should return an error about scope', function (done) {
+		var request = {
+			method: 'DELETE',
+			url: '/organisation/2/project/30000',
+			headers: {
+				Authorization: 'Bearer ' + fixtures['user_session'][0].token
+			}
+		};
+
+		server.inject(request, function (res) {
+			expect(res.payload).to.exist();
+
+			expect(JSON.parse(res.payload).message).to.equal('Insufficient scope, expected any of: belongs-to-organisation-2-project-30000-manager');
+
+			done();
+		});
+	});
+
+	it('[DELETE] /organisation/:org_id/project/:id should require the password of the logged in user', function (done) {
+		var request = {
+			method: 'DELETE',
+			url: '/organisation/2/project/3',
+			payload: {
+				password: fixtures['user'][0].raw_password
+			},
+			headers: {
+				Authorization: 'Bearer ' + fixtures['user_session'][0].token
+			}
+		};
+
+		server.inject(request, function (res) {
+			expect(res.payload).to.exist();
+
+			expect(JSON.parse(res.payload).message).to.equal('child \"password\" fails because [\"password\" is required]');
+
+			done();
+		});
+	});
+
+	it('[DELETE] /organisation/:org_id/project/:id should throw an error if the password is wrong', function (done) {
+		var request = {
+			method: 'DELETE',
+			url: '/organisation/2/project/3',
+			payload: {
+				password: 'WRONGPASSWORD'
+			},
+			headers: {
+				Authorization: 'Bearer ' + fixtures['user_session'][0].token
+			}
+		};
+
+		server.inject(request, function (res) {
+			expect(res.payload).to.exist();
+
+			expect(JSON.parse(res.payload).message).to.equal('WRONG_PASSWORD');
+
+			done();
+		});
+	});
 	//
-	// it('[DELETE] /organisation/:org_id/project/:id can only be executed with the correct rights', function (done) {
+	// it('[DELETE] /organisation/:org_id/project/:id should delete the project if the password and scope are correct', function (done) {
+	// 	var request = {
+	// 		method: 'DELETE',
+	// 		url: '/organisation/2/project/3',
+	// 		payload: {
+	// 			password: fixtures['user'][0].raw_password
+	// 		},
+	// 		headers: {
+	// 			Authorization: 'Bearer ' + fixtures['user_session'][0].token
+	// 		}
+	// 	};
 	//
-	// });
+	// 	server.inject(request, function (res) {
+	// 		expect(res.payload).to.exist();
 	//
-	// it('[DELETE] /organisation/:org_id/project/:id without a correct id should return an error', function (done) {
+	// 		console.log(res.payload);
 	//
-	// });
+	// 		expect(JSON.parse(res.payload).message).to.equal('Insufficient scope, expected any of: belongs-to-organisation-3-project-7-manager');
 	//
-	// it('[DELETE] /organisation/:org_id/project/:id should require the password of the logged in user', function (done) {
-	//
+	// 		done();
+	// 	});
 	// });
 
     // it('[DELETE] /project/:id should return success on deletion of the project', function (done) {

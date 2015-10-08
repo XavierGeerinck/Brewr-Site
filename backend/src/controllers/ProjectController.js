@@ -23,6 +23,18 @@ module.exports = {
         });
     },
 
+    deleteProjectByIdAndOrganisation: function (request, reply) {
+        // First check request.payload.password for the correct password of the logged in user
+        ProjectService
+        .deleteProjectByIdAndOrganisation(request.params.organisation, request.params.project)
+        .then(function () {
+            return reply({ success: true });
+        })
+        .catch(function (err) {
+            return reply(err);
+        });
+    },
+
     /**
      * Creates a project, it accepts the following parameters:
      * - startup_file_content (app.sh)
