@@ -29,6 +29,7 @@ var Schema = {
 
     organisation: {
         id: { type: 'increments', nullable: false, primary: true },
+        uuid: { type: 'uuid', unique: true, nullable: false, comment: 'Unique identifier for the organisation, will be used client side' },
         name: { type: 'string', nullable: false },
         description: { type: 'string', nullable: true },
         logo: { type: 'string', nullable: true },

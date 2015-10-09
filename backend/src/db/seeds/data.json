@@ -99,6 +99,7 @@
     "organisation": [
         {
             "id": 1,
+            "uuid": "61a7f15a-5f6e-4429-a213-bd077551a20c",
             "name": "Brewr",
             "description": "Brewr is an app where organisations can create development environments for their projects.",
             "subdomain": "brewr.brewr.io",
@@ -110,6 +111,7 @@
         },
         {
             "id": 2,
+            "uuid": "ec43bdbb-bfc9-4f5c-a755-d8e04d834fc6",
             "name": "Facebook",
             "description": "Facebook is an online social networking service headquartered in Menlo Park, California.",
             "subdomain": "facebook.brewr.io",
@@ -121,6 +123,7 @@
         },
         {
             "id": 3,
+            "uuid": "e65acd0d-67f2-4532-858f-b2e44a366afe",
             "name": "Google",
             "description": "Google Inc. is an American multinational technology company specializing in Internet-related services and products.",
             "subdomain": "google.brewr.io",
@@ -132,6 +135,7 @@
         },
         {
             "id": 4,
+            "uuid": "5035768c-70fc-42e4-82a8-20173897abee",
             "name": "Microsoft",
             "description": "Microsoft Corporation /ˈmaɪkrɵsɒːft/ is an American multinational technology company headquartered in Redmond, Washington, that develops, manufactures, licenses, supports and sells computer software",
             "subdomain": "microsoft.brewr.io",
@@ -143,6 +147,7 @@
         },
         {
             "id": 5,
+            "uuid": "bee4d655-3b07-4da7-bca8-130bb0c44722",
             "name": "Apple",
             "description": "Apple Inc. is an American multinational technology company headquartered in Cupertino, California, that designs, develops, and sells consumer electronics, computer software, and online services. ",
             "subdomain": "apple.brewr.io",
@@ -154,6 +159,7 @@
         },
         {
             "id": 6,
+            "uuid": "160b8e27-fa5a-42dc-8bf6-ddef949c9bbb",
             "name": "Brewr Test Multiple Orgs",
             "description": "We have no access to any of the projects in this organisation. This tests if we are able to assign projects to a user",
             "subdomain": "apple.brewr.io",

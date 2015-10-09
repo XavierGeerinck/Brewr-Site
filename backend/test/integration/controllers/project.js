@@ -24,6 +24,7 @@ lab.experiment('[Controller] User', function() {
         return dbUtil.truncate().then(function() { done(); });
     });
 
+
 	// =====================
 	// ADD USERS TO PROJECT
 	// =====================
@@ -174,53 +175,24 @@ lab.experiment('[Controller] User', function() {
 			done();
 		});
 	});
-	//
-	// it('[DELETE] /organisation/:org_id/project/:id should delete the project if the password and scope are correct', function (done) {
-	// 	var request = {
-	// 		method: 'DELETE',
-	// 		url: '/organisation/2/project/3',
-	// 		payload: {
-	// 			password: fixtures['user'][0].raw_password
-	// 		},
-	// 		headers: {
-	// 			Authorization: 'Bearer ' + fixtures['user_session'][0].token
-	// 		}
-	// 	};
-	//
-	// 	server.inject(request, function (res) {
-	// 		expect(res.payload).to.exist();
-	//
-	// 		console.log(res.payload);
-	//
-	// 		expect(JSON.parse(res.payload).message).to.equal('Insufficient scope, expected any of: belongs-to-organisation-3-project-7-manager');
-	//
-	// 		done();
-	// 	});
-	// });
 
-    // it('[DELETE] /project/:id should return success on deletion of the project', function (done) {
-    //     var request = {
-    //         method: 'POST',
-    //         url: '/auth/signup',
-    //         payload: {
-    //             email: '1@1.be',
-    //             password: 'somepassword',
-    //             firstName: 'John',
-    //             lastName: 'Doe'
-    //         }
-    //     };
-	//
-    //     server.inject(request, function (res) {
-    //         expect(res.payload).to.exist();
-    //         expect(JSON.parse(res.payload).email).to.equal(request.payload.email);
-	//
-    //         // Make sure the pass gets hashed!
-    //         expect(JSON.parse(res.payload).password).to.not.equal(request.payload.password);
-	//
-    //         expect(JSON.parse(res.payload).first_name).to.equal(request.payload.firstName);
-    //         expect(JSON.parse(res.payload).last_name).to.equal(request.payload.lastName);
-	//
-    //         done();
-    //     });
-    // });
+	it('[DELETE] /organisation/:org_id/project/:id should delete the project if the password and scope are correct', function (done) {
+		var request = {
+			method: 'DELETE',
+			url: '/organisation/2/project/3',
+			payload: {
+				password: fixtures['user'][0].password_raw
+			},
+			headers: {
+				Authorization: 'Bearer ' + fixtures['user_session'][0].token
+			}
+		};
+
+		server.inject(request, function (res) {
+			expect(res.payload).to.exist();
+            expect(JSON.parse(res.payload).success).to.equal(true);
+
+			done();
+		});
+	});
 });

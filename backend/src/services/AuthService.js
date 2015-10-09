@@ -20,23 +20,15 @@ exports.getSessionsByUserId = function (userId) {
 exports.createAccount = function (email, password, firstName, lastName) {
     var self = this;
 
-    return new Promise(function (resolve, reject) {
-        User.forge({
-            email: email,
-            password: password,
-            first_name: firstName,
-            last_name: lastName,
-            name: firstName + ' ' + lastName
-        })
-        .save()
-        .then(function (user) {
-            return resolve(user);
-        })
-        .catch(function (err) {
-            console.log(err);
-            return reject(Boom.badRequest(err));
-        });
-    });
+    return User
+    .forge({
+        email: email,
+        password: password,
+        first_name: firstName,
+        last_name: lastName,
+        name: firstName + ' ' + lastName
+    })
+    .save();
 };
 
 exports.authorize = function (email, password, ip, userAgent) {

@@ -51,25 +51,18 @@ exports.createOrganisation = function (creatorId, name, description, logo) {
     var expiryTime = new Date();
     expiryTime.setDate(expiryTime.getDate() + parseInt(30));
 
-    return new Promise(function (resolve, reject) {
-        OrganisationModel.forge({
-            name: name,
-            description: description,
-            logo: logo,
-            subdomain: name.toLowerCase(),
-            active: true,
-            owner: creatorId,
-            created_by: creatorId,
-            user_limit: 10,
-            project_limit: 10,
-            expiry_time: expiryTime.toISOString()
-        })
-        .save()
-        .then(function (organisation) {
-            return resolve(organisation);
-        })
-        .catch(function (err) {
-            return reject(err);
-        });
-    });
+    return OrganisationModel
+    .forge({
+        name: name,
+        description: description,
+        logo: logo,
+        subdomain: name.toLowerCase(),
+        active: true,
+        owner: creatorId,
+        created_by: creatorId,
+        user_limit: 10,
+        project_limit: 10,
+        expiry_time: expiryTime.toISOString()
+    })
+    .save();
 }

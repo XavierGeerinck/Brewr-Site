@@ -10,6 +10,7 @@ var Promise = require('bluebird');
 var Boom = require('boom');
 var Project = require('../db/models/Project');
 var ProjectService = require('../services/ProjectService');
+var AuthService = require('../services/AuthService');
 
 module.exports = {
     getProjectByIdAndOrganisation: function (request, reply) {
@@ -25,8 +26,16 @@ module.exports = {
 
     deleteProjectByIdAndOrganisation: function (request, reply) {
         // First check request.payload.password for the correct password of the logged in user
-        ProjectService
-        .deleteProjectByIdAndOrganisation(request.params.organisation, request.params.project)
+        var user = request.auth.credentials;
+        AuthService.comparePassword(user.get('password'), request.payload.password)
+        .then(function (isMatch) {
+            if (!isMatch) {
+                return Promise.reject(Boom.unauthorized('WRONG_PASSWORD'));
+            }
+
+            return ProjectService
+            .deleteProjectByIdAndOrganisation(request.params.organisation, request.params.project);
+        })
         .then(function () {
             return reply({ success: true });
         })
