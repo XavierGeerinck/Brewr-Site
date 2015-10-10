@@ -8,11 +8,8 @@ var Project = require('./Project');
 var Organisation = Bookshelf.model('Organisation', {
     tableName: 'organisation',
     hasTimestamps: true, // Define that we update the created_at and updated_at on change
-    hidden: [ 'id' ], //  Internally this will use id for merging purposes, but only the uuid will be shown to the client
+    hidden: [ ],
     virtuals: {
-        id: function () {
-            return this.get('uuid')
-        }
     },
 
     // On creation, set uuid

@@ -25,3 +25,5 @@ All the underlying roles will be assigned, so for example if you are a creator o
 ## FAQ
 1. The tests keep failing because of some FK or PK constraints
 - Try to increase the timeout (it is on 4000ms now)
+2. Run tests on a specified directory?
+- Execute: `npm test -- <DIR>` with <DIR> being the dir from the root to the test, so for example: `npm test -- ./test/unit/services/project.js`

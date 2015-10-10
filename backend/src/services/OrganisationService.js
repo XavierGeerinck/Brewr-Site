@@ -50,7 +50,7 @@ exports.getOrganisationsByUser = function(userId) {
 exports.createOrganisation = function (creatorId, name, description, logo) {
     var expiryTime = new Date();
     expiryTime.setDate(expiryTime.getDate() + parseInt(30));
-
+    
     return OrganisationModel
     .forge({
         name: name,

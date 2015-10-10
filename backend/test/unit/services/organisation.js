@@ -31,14 +31,15 @@ lab.experiment('[Services] Organisation', function() {
 	// =====================
 	// BASIC ORGANISATION
 	// =====================
-	it('A new organisation should be created with a uuid', function (done) {
+	it('A new organisation should be created with a uuid, this should be a new field', function (done) {
 		OrganisationService.createOrganisation(fixtures['user'][0].id, 'random name', 'some description')
 		.then(function (org) {
+            Code.expect(org.get('id')).to.not.equal(org.get('uuid'));
 
 			var schema = Joi.string().guid();
-			Joi.validate(org.get('id'), schema, function (err, value) {
+			Joi.validate(org.get('uuid'), schema, function (err, value) {
 				Code.expect(err).to.not.exist();
-				Code.expect(value).to.equal(org.get('id'));
+				Code.expect(value).to.equal(org.get('uuid'));
 
 				done();
 			});
@@ -53,9 +54,9 @@ lab.experiment('[Services] Organisation', function() {
 		.then(function (orgs) {
 			orgs.forEach(function (org) {
 				var schema = Joi.string().guid();
-				Joi.validate(org.get('id'), schema, function (err, value) {
+				Joi.validate(org.get('uuid'), schema, function (err, value) {
 					Code.expect(err).to.not.exist();
-					Code.expect(value).to.equal(org.get('id'));
+					Code.expect(value).to.equal(org.get('uuid'));
 				});
 			});
 
