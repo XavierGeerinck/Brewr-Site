@@ -13,16 +13,19 @@
     "dogwater": "^1.0.1",
     "hapi": "^10.0.0",
     "hapi-auth-bearer-simple": "^1.2.3",
+    "inert": "^3.1.0",
     "joi": "^6.7.0",
     "knex": "^0.8.6",
     "lab": "^6.1.0",
     "lodash": "^3.10.1",
+    "lout": "^7.2.0",
     "node-uuid": "^1.4.3",
     "pg": "^4.4.1",
     "require-all": "^1.1.0",
     "sails-postgresql": "^0.10.16",
     "underscore": "^1.8.3",
-    "uuid": "^2.0.1"
+    "uuid": "^2.0.1",
+    "vision": "^3.0.0"
   },
   "scripts": {
     "test": "lab -a code -v -t 90 -m 4000"

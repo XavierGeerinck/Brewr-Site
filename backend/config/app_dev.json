@@ -27,6 +27,7 @@
         "cors_headers": [ "Authorization", "Content-Type", "If-None-Match", "Bearer", "x-http-method-override" ],
         "cors_methods": [ "GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS" ],
         "cors_credentials": true,
-        "is_debug": true
+        "is_debug": true,
+        "enable_docs": true
     }
 }

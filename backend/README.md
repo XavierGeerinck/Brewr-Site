@@ -27,3 +27,5 @@ All the underlying roles will be assigned, so for example if you are a creator o
 - Try to increase the timeout (it is on 4000ms now)
 2. Run tests on a specified directory?
 - Execute: `npm test -- <DIR>` with <DIR> being the dir from the root to the test, so for example: `npm test -- ./test/unit/services/project.js`
+3. Can I view the routes somewhere?
+- Go to http://127.0.0.1/docs to view them, this will only work on development

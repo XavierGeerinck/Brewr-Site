@@ -117,13 +117,33 @@ function registerRoutes() {
     });
 }
 
+// ==================================================================
 // Register the plugins, routes and authentication strategy
-server.register([
-    {
-        register: require('hapi-auth-bearer-simple'),
-        options: {}
-    }
-], function (err) {
+// ==================================================================
+var plugins = [];
+plugins.push({
+    register: require('hapi-auth-bearer-simple'),
+    options: {}
+});
+
+if (config.server.enable_docs) {
+    plugins.push(
+        {
+            register: require('vision'),
+            options: {}
+        },
+        {
+            register: require('inert') ,
+            options: {}
+        },
+        {
+            register: require('lout'),
+            options: {}
+        }
+    );
+}
+
+server.register(plugins, function (err) {
     if (err) {
         throw err;
     }
