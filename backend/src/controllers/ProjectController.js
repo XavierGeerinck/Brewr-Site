@@ -13,7 +13,7 @@ var ProjectService = require('../services/ProjectService');
 var AuthService = require('../services/AuthService');
 
 module.exports = {
-    getProjectByIdAndOrganisation: function (request, reply) {
+    getProjectByUUIDAndOrganisation: function (request, reply) {
         ProjectService
         .getProjectByIdAndOrganisation(request.params.project)
         .then(function (project) {
@@ -24,7 +24,7 @@ module.exports = {
         });
     },
 
-    deleteProjectByIdAndOrganisation: function (request, reply) {
+    deleteProjectByUUIDAndOrganisation: function (request, reply) {
         // First check request.payload.password for the correct password of the logged in user
         var user = request.auth.credentials;
         AuthService.comparePassword(user.get('password'), request.payload.password)
@@ -34,7 +34,7 @@ module.exports = {
             }
 
             return ProjectService
-            .deleteProjectByIdAndOrganisation(request.params.organisation, request.params.project);
+            .deleteProjectByUUIDAndOrganisation(request.params.organisation, request.params.project);
         })
         .then(function () {
             return reply({ success: true });

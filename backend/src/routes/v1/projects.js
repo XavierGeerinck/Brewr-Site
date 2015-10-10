@@ -9,14 +9,14 @@ module.exports = [
         method: 'GET',
         path: '/organisation/{organisation}/project/{project}',
         config: {
-            handler: ProjectController.getProjectByIdAndOrganisation ,
+            handler: ProjectController.getProjectByUUIDAndOrganisation ,
             auth: {
                 strategy: 'bearer',
                 scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-user' ]
             },
             validate: {
                 params: {
-                    organisation: Joi.number().integer().required(),
+                    organisation: Joi.string().guid().required(),
                     project: Joi.number().integer().required()
                 }
             }
@@ -26,14 +26,14 @@ module.exports = [
         method: 'DELETE',
         path: '/organisation/{organisation}/project/{project}',
         config: {
-            handler: ProjectController.deleteProjectByIdAndOrganisation ,
+            handler: ProjectController.deleteProjectByUUIDAndOrganisation ,
             auth: {
                 strategy: 'bearer',
                 scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-manager' ]
             },
             validate: {
                 params: {
-                    organisation: Joi.number().integer().required(),
+                    organisation: Joi.string().guid().required(),
                     project: Joi.number().integer().required()
                 },
                 payload: {
@@ -52,6 +52,9 @@ module.exports = [
             },
             handler: ProjectController.create,
             validate: {
+                params: {
+                    organisation: Joi.string().guid().required(),
+                },
                 payload: {
                     // Meta information about the project
                     meta: Joi.object({

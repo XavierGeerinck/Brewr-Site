@@ -15,7 +15,7 @@ var dbUtil   = require(process.cwd() + '/src/db/utils/dbUtil.js');
 var server   = require(process.cwd() + '/server');
 var fixtures = require(process.cwd() + '/src/db/seeds/data.json');
 
-lab.experiment('[Controller] User', function() {
+lab.experiment('[Controller] Project', function() {
     lab.beforeEach(function (done) {
         return dbUtil.truncate().then(dbUtil.seed).then(function() { done(); });
     });
@@ -59,10 +59,12 @@ lab.experiment('[Controller] User', function() {
 	// ==============
 	// PROJECT CRUD
 	// ==============
-	it('[GET] /organisation/:org_id/project/:id should return an error if I do not have sufficient rights for it', function (done) {
+	it('[GET] /organisation/:org_uuid/project/:id should return an error if I do not have sufficient rights for it', function (done) {
+        var orgUUID = fixtures['organisation'][2].uuid;
+
 		var request = {
 			method: 'GET',
-			url: '/organisation/3/project/7',
+			url: '/organisation/' + orgUUID + '/project/7',
             headers: {
                 Authorization: 'Bearer ' + fixtures['user_session'][0].token
             }
@@ -71,16 +73,18 @@ lab.experiment('[Controller] User', function() {
 		server.inject(request, function (res) {
 			expect(res.payload).to.exist();
 
-			expect(JSON.parse(res.payload).message).to.equal('Insufficient scope, expected any of: belongs-to-organisation-3-project-7-user');
+			expect(JSON.parse(res.payload).message).to.equal('Insufficient scope, expected any of: belongs-to-organisation-' + orgUUID + '-project-7-user');
 
 			done();
 		});
 	});
 
-	it('[GET] /organisation/:org_id/project/:id should return detailed information about the project such as team members', function (done) {
+	it('[GET] /organisation/:org_uuid/project/:id should return detailed information about the project such as team members', function (done) {
+        var orgUUID = fixtures['organisation'][1].uuid;
+
 		var request = {
 			method: 'GET',
-			url: '/organisation/2/project/3',
+			url: '/organisation/' + orgUUID + '/project/3',
 			headers: {
 				Authorization: 'Bearer ' + fixtures['user_session'][0].token
 			}
@@ -98,10 +102,12 @@ lab.experiment('[Controller] User', function() {
 		});
 	});
 
-	it('[DELETE] /organisation/:org_id/project/:id can only be executed with the correct manager rights', function (done) {
+	it('[DELETE] /organisation/:org_uuid/project/:id can only be executed with the correct manager rights', function (done) {
+        var orgUUID = fixtures['organisation'][2].uuid;
+
 		var request = {
 			method: 'DELETE',
-			url: '/organisation/3/project/5',
+			url: '/organisation/' + orgUUID + '/project/5',
 			headers: {
 				Authorization: 'Bearer ' + fixtures['user_session'][0].token
 			}
@@ -110,16 +116,18 @@ lab.experiment('[Controller] User', function() {
 		server.inject(request, function (res) {
 			expect(res.payload).to.exist();
 
-			expect(JSON.parse(res.payload).message).to.equal('Insufficient scope, expected any of: belongs-to-organisation-3-project-5-manager');
+			expect(JSON.parse(res.payload).message).to.equal('Insufficient scope, expected any of: belongs-to-organisation-' + orgUUID + '-project-5-manager');
 
 			done();
 		});
 	});
 
-	it('[DELETE] /organisation/:org_id/project/:id without a correct id should return an error about scope', function (done) {
+	it('[DELETE] /organisation/:org_uuid/project/:id without a correct id should return an error about scope', function (done) {
+        var orgUUID = fixtures['organisation'][1].uuid;
+
 		var request = {
 			method: 'DELETE',
-			url: '/organisation/2/project/30000',
+			url: '/organisation/' + orgUUID + '/project/30000',
 			headers: {
 				Authorization: 'Bearer ' + fixtures['user_session'][0].token
 			}
@@ -128,16 +136,18 @@ lab.experiment('[Controller] User', function() {
 		server.inject(request, function (res) {
 			expect(res.payload).to.exist();
 
-			expect(JSON.parse(res.payload).message).to.equal('Insufficient scope, expected any of: belongs-to-organisation-2-project-30000-manager');
+			expect(JSON.parse(res.payload).message).to.equal('Insufficient scope, expected any of: belongs-to-organisation-' + orgUUID + '-project-30000-manager');
 
 			done();
 		});
 	});
 
-	it('[DELETE] /organisation/:org_id/project/:id should require the password of the logged in user', function (done) {
+	it('[DELETE] /organisation/:org_uuid/project/:id should require the password of the logged in user', function (done) {
+        var orgUUID = fixtures['organisation'][1].uuid;
+
 		var request = {
 			method: 'DELETE',
-			url: '/organisation/2/project/3',
+			url: '/organisation/' + orgUUID + '/project/3',
 			payload: {
 				password: fixtures['user'][0].raw_password
 			},
@@ -155,10 +165,12 @@ lab.experiment('[Controller] User', function() {
 		});
 	});
 
-	it('[DELETE] /organisation/:org_id/project/:id should throw an error if the password is wrong', function (done) {
+	it('[DELETE] /organisation/:org_uuid/project/:id should throw an error if the password is wrong', function (done) {
+        var orgUUID = fixtures['organisation'][1].uuid;
+
 		var request = {
 			method: 'DELETE',
-			url: '/organisation/2/project/3',
+			url: '/organisation/' + orgUUID + '/project/3',
 			payload: {
 				password: 'WRONGPASSWORD'
 			},
@@ -176,10 +188,12 @@ lab.experiment('[Controller] User', function() {
 		});
 	});
 
-	it('[DELETE] /organisation/:org_id/project/:id should delete the project if the password and scope are correct', function (done) {
+	it('[DELETE] /organisation/:org_uuid/project/:id should delete the project if the password and scope are correct', function (done) {
+        var orgUUID = fixtures['organisation'][1].uuid;
+
 		var request = {
 			method: 'DELETE',
-			url: '/organisation/2/project/3',
+			url: '/organisation/' + orgUUID + '/project/3',
 			payload: {
 				password: fixtures['user'][0].password_raw
 			},

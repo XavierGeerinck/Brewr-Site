@@ -154,6 +154,7 @@ lab.experiment('[Controller] User', function() {
     it('[GET] /user for a user that belongs to organisation and is not a manager or creator has scope "belongs-to-organisation-{params.organisation}-user"', function (done) {
         // Test data: User 1 belongs to organisations 2 as normal user
         // We expect: "belongs-to-organisation-2-user"
+        var org = fixtures['organisation'][1];
 
         var request = {
             method: 'GET',
@@ -164,9 +165,9 @@ lab.experiment('[Controller] User', function() {
         };
 
         server.inject(request, function (res) {
-            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-2-user');
-            Code.expect(res.request.auth.credentials.scope).to.not.contain('belongs-to-organisation-2-manager');
-            Code.expect(res.request.auth.credentials.scope).to.not.contain('belongs-to-organisation-2-creator');
+            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-' + org.uuid + '-user');
+            Code.expect(res.request.auth.credentials.scope).to.not.contain('belongs-to-organisation-' + org.uuid + '-manager');
+            Code.expect(res.request.auth.credentials.scope).to.not.contain('belongs-to-organisation-' + org.uuid + '-creator');
             done();
         });
     });
@@ -192,6 +193,7 @@ lab.experiment('[Controller] User', function() {
 
     it('[GET] /user for a user that is the creator of an organisation has scope "belongs-to-organisation-{params.organisation}-creator, manager and user"', function (done) {
         // We expect: "belongs-to-organisation-1-creator and belongs-to-organisation-1-manager"
+        var org = fixtures['organisation'][0];
 
         var request = {
             method: 'GET',
@@ -202,14 +204,16 @@ lab.experiment('[Controller] User', function() {
         };
 
         server.inject(request, function (res) {
-            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-1-user');
-            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-1-creator');
+            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-' + org.uuid + '-user');
+            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-' + org.uuid + '-creator');
 
             done();
         });
     });
 
-    it('[GET] /user for a user that has acces to a project of an organisation has scope belongs-to-organisation-<orgid>-project-<projectid>-user', function (done) {
+    it('[GET] /user for a user that has acces to a project of an organisation has scope belongs-to-organisation-<orguuid>-project-<projectid>-user', function (done) {
+        var org = fixtures['organisation'][2];
+
         var request = {
             method: 'GET',
             url: '/user',
@@ -219,15 +223,17 @@ lab.experiment('[Controller] User', function() {
         };
 
         server.inject(request, function (res) {
-            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-3-project-5-user');
-            Code.expect(res.request.auth.credentials.scope).to.not.contain('belongs-to-organisation-3-project-5-manager');
-            Code.expect(res.request.auth.credentials.scope).to.not.contain('belongs-to-organisation-3-project-5-creator');
+            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-' + org.uuid + '-project-5-user');
+            Code.expect(res.request.auth.credentials.scope).to.not.contain('belongs-to-organisation-' + org.uuid + '-project-5-manager');
+            Code.expect(res.request.auth.credentials.scope).to.not.contain('belongs-to-organisation-' + org.uuid + '-project-5-creator');
 
             done();
         });
     });
 
-    it('[GET] /user for a manager that has acces to a project of an organisation has scope belongs-to-organisation-<orgid>-project-<projectid>-manager and user', function (done) {
+    it('[GET] /user for a manager that has acces to a project of an organisation has scope belongs-to-organisation-<orguuid>-project-<projectid>-manager and user', function (done) {
+        var org = fixtures['organisation'][1];
+
         var request = {
             method: 'GET',
             url: '/user',
@@ -237,15 +243,17 @@ lab.experiment('[Controller] User', function() {
         };
 
         server.inject(request, function (res) {
-            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-2-project-3-user');
-            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-2-project-3-manager');
-            Code.expect(res.request.auth.credentials.scope).to.not.contain('belongs-to-organisation-2-project-3-creator');
+            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-' + org.uuid + '-project-3-user');
+            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-' + org.uuid + '-project-3-manager');
+            Code.expect(res.request.auth.credentials.scope).to.not.contain('belongs-to-organisation-' + org.uuid + '-project-3-creator');
 
             done();
         });
     });
 
-    it('[GET] /user for a creator that has acces to a project of an organisation has scope belongs-to-organisation-<orgid>-project-<projectid>-creator, manager and user', function (done) {
+    it('[GET] /user for a creator that has acces to a project of an organisation has scope belongs-to-organisation-<orguuid>-project-<projectid>-creator, manager and user', function (done) {
+        var org = fixtures['organisation'][0];
+
         var request = {
             method: 'GET',
             url: '/user',
@@ -255,9 +263,9 @@ lab.experiment('[Controller] User', function() {
         };
 
         server.inject(request, function (res) {
-            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-1-project-1-user');
-            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-1-project-1-manager');
-            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-1-project-1-creator');
+            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-' + org.uuid + '-project-1-user');
+            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-' + org.uuid + '-project-1-manager');
+            Code.expect(res.request.auth.credentials.scope).to.contain('belongs-to-organisation-' + org.uuid + '-project-1-creator');
 
             done();
         });
