@@ -28,31 +28,47 @@ lab.experiment('[Controller] Project', function() {
 	// =====================
 	// ADD USERS TO PROJECT
 	// =====================
-	// it('[POST] /project/:id/members/:member_id should require that the member_id is a member of the organisation', function (done) {
+	// it('[POST] /organisation/:org_uuid/project/:id/members/:member_id should require that the member_id is a member of the organisation', function (done) {
+    //     done();
+	// });
+    //
+	// it('[POST] /organisation/:org_uuid/project/:id/members/:member_id should assign the member to a project of the organisation', function (done) {
+    //     var orgUUID = fixtures['organisation'][5].uuid;
+    //
+    //     var request = {
+    //         method: 'GET',
+    //         url: '/organisation/' + orgUUID + '/project/7/members/1',
+    //         headers: {
+    //             Authorization: 'Bearer ' + fixtures['user_session'][0].token
+    //         }
+    //     };
+    //
+    //     server.inject(request, function (res) {
+    //         expect(res.payload).to.exist();
+    //
+    //         expect(JSON.parse(res.payload).message).to.equal('Insufficient scope, expected any of: belongs-to-organisation-' + orgUUID + '-project-7-user');
+    //
+    //         done();
+    //     });
+	// });
+	//
+	// it('[POST] /organisation/:org_uuid/project/:id/members/:member_id should be able to add managers through a payload parameter', function (done) {
 	//
 	// });
 	//
-	// it('[POST] /project/:id/members/:member_id should assign the member to a project of the organisation', function (done) {
+	// it('[POST] /organisation/:org_uuid/project/:id/members/:member_id should only allow belongs-to-organisation-<orgid>-creator or manager to add managers to a project', function (done) {
 	//
 	// });
 	//
-	// it('[POST] /project/:id/members/:member_id should be able to add managers through a payload parameter', function (done) {
+	// it('[POST] /organisation/:org_uuid/project/:id/members/:member_id requires belongs-to-organisation-<orgid>-project-<projectid>-manager or creator scope', function (done) {
 	//
 	// });
 	//
-	// it('[POST] /project/:id/members/:member_id should only allow belongs-to-organisation-<orgid>-creator or manager to add managers to a project', function (done) {
+	// it('[DELETE] /organisation/:org_uuid/project/:id/members/:member_id should remove the member of a project of an organisation', function (done) {
 	//
 	// });
 	//
-	// it('[POST] /project/:id/members/:member_id requires belongs-to-organisation-<orgid>-project-<projectid>-manager or creator scope', function (done) {
-	//
-	// });
-	//
-	// it('[DELETE] /project/:id/members/:member_id should remove the member of a project of an organisation', function (done) {
-	//
-	// });
-	//
-	// it('[DELETE] /project/:id/members/:member_id requires belongs-to-organisation-<orgid>-project-<projectid>-manager or creator scope', function (done) {
+	// it('[DELETE] /organisation/:org_uuid/project/:id/members/:member_id requires belongs-to-organisation-<orgid>-project-<projectid>-manager or creator scope', function (done) {
 	//
 	// });
 

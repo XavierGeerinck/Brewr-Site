@@ -19,4 +19,45 @@ exports.create = function (request, reply) {
     .catch(function (err) {
         return reply(err);
     });
+};
+
+exports.addMember = function (request, reply) {
+    var memberId = request.params.memberId;
+    var organisationUUID = request.params.organisation;
+    
+    organisationService
+    .addMemberByOrganisationUUID(organisationUUID, memberId)
+    .then(function (success) {
+        return reply(success)
+    })
+    .catch(function (err) {
+        return reply(err);
+    });
 }
+
+exports.removeMember = function (request, reply) {
+    var memberId = request.params.memberId;
+    var organisationUUID = request.params.organisation;
+
+    organisationService
+    .removeMemberByOrganisationUUID(organisationUUID, memberId)
+    .then(function (success) {
+        return reply(success)
+    })
+    .catch(function (err) {
+        return reply(err);
+    });
+};
+
+exports.getMembers = function (request, reply) {
+    var organisationUUID = request.params.organisation;
+
+    organisationService
+    .getMembersByOrganisationUUID(organisationUUID)
+    .then(function (success) {
+        return reply(success)
+    })
+    .catch(function (err) {
+        return reply(err);
+    });
+};
