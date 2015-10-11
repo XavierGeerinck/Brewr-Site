@@ -63,7 +63,7 @@ var User = Bookshelf.Model.extend({
     },
     // The organisations we got access too
     organisations_access: function () {
-        return this.belongsToMany('Organisation', 'organisation_user', 'user_id', 'organisation_id');
+        return this.belongsToMany('Organisation', 'organisation_user', 'user_id', 'organisation_id').withPivot('is_manager');
     },
     // Organisations owned are the ones by the created_by field
     organisations_owned: function () {

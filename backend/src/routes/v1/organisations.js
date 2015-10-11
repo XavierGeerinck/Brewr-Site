@@ -52,6 +52,9 @@ module.exports = [
                 params: {
                     organisation: Joi.string().guid().required(),
                     memberId: Joi.number().required()
+                },
+                query: {
+                    is_manager: Joi.boolean().default(false, 'Specifies if the user is a organisation manager or not').optional()
                 }
             }
         }

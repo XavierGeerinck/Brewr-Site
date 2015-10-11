@@ -49,7 +49,7 @@ exports.getOrganisationsByUser = function(userId) {
     });
 };
 
-exports.addMemberByOrganisationUUID = function (organisationUUID, memberId) {
+exports.addMemberByOrganisationUUID = function (organisationUUID, memberId, isManager) {
     var organisation = null;
 
     return new Promise(function (resolve, reject) {
@@ -69,7 +69,8 @@ exports.addMemberByOrganisationUUID = function (organisationUUID, memberId) {
             return OrganisationUserModel
             .forge({
                 user_id: memberId,
-                organisation_id: organisation.get('id')
+                organisation_id: organisation.get('id'),
+                is_manager: isManager
             })
             .save();
         })
@@ -112,7 +113,15 @@ exports.getMembersByOrganisationUUID = function (organisationUUID, memberId) {
         .then(function (org) {
             var members = org.related('users');
             members.push(org.related('created_by'));
-            
+
+            // From here one we do not have the bookshelf objects!
+            members = members.toJSON();
+
+            members.forEach(function (member, index) {
+                members[index].is_manager = (member._pivot_is_manager ||  org.related('created_by').get('id') === member.id) ? true : false;
+                members[index].is_owner = org.related('created_by').get('id') === member.id;
+            });
+
             return resolve(members);
         })
         .catch(function (err) {

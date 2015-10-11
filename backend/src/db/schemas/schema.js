@@ -100,7 +100,8 @@ var Schema = {
     // Join tables
     organisation_user: {
         organisation_id: { compoundPrimaryKey: true, references: 'id', inTable: 'organisation', type: 'integer', nullable: false, unsigned: true },
-        user_id: { compoundPrimaryKey: true, references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true }
+        user_id: { compoundPrimaryKey: true, references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true },
+        is_manager: { type: 'boolean', nullable: false, defaultTo: false, comment: 'Defines if the user is a manager of the organisation and if he/she can add people to projects, including managers' }
     },
 
     project_user: {

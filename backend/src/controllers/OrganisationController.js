@@ -24,9 +24,10 @@ exports.create = function (request, reply) {
 exports.addMember = function (request, reply) {
     var memberId = request.params.memberId;
     var organisationUUID = request.params.organisation;
+    var isManager = request.query.is_manager;
 
     organisationService
-    .addMemberByOrganisationUUID(organisationUUID, memberId)
+    .addMemberByOrganisationUUID(organisationUUID, memberId, isManager)
     .then(function (success) {
         return reply({ success: true });
     })

@@ -48,6 +48,57 @@ lab.experiment('[Controller] Organisation', function() {
         });
 	});
 
+    it('[GET] /organisation/:org_uuid/members should return the members of an organisation and show if they are a manager or not', function (done) {
+        var orgUUID = fixtures['organisation'][0].uuid;
+
+        var request = {
+            method: 'GET',
+            url: '/organisation/' + orgUUID + '/members',
+            headers: {
+                Authorization: 'Bearer ' + fixtures['user_session'][0].token
+            }
+        };
+
+        server.inject(request, function (res) {
+            expect(res.payload).to.exist();
+
+            JSON.parse(res.payload).forEach(function (user) {
+                expect(user.is_manager).to.exist();
+            });
+
+            done();
+        });
+    });
+
+    it('[GET] /organisation/:org_uuid/members creator has a is_owner: true flag and is_manager: true', function (done) {
+        var orgUUID = fixtures['organisation'][0].uuid;
+
+        var request = {
+            method: 'GET',
+            url: '/organisation/' + orgUUID + '/members',
+            headers: {
+                Authorization: 'Bearer ' + fixtures['user_session'][0].token
+            }
+        };
+
+        server.inject(request, function (res) {
+            expect(res.payload).to.exist();
+
+            JSON.parse(res.payload).forEach(function (user) {
+                expect(user.is_owner).to.exist();
+            });
+
+            var user = JSON.parse(res.payload).filter(function(item) {
+                return item.id === fixtures['user'][0].id;
+            })[0];
+
+            expect(user.is_manager).to.equal(true);
+            expect(user.is_owner).to.equal(true);
+
+            done();
+        });
+    });
+
     it('[GET] /organisation/:org_uuid/members should return the members of an organisation, including the creator', function (done) {
         var orgUUID = fixtures['organisation'][0].uuid;
 
@@ -88,12 +139,12 @@ lab.experiment('[Controller] Organisation', function() {
         });
     });
 
-	it('[POST] /organisation/:org_uuid/members/:member_id should assign the member to this organisation', function (done) {
+    it('[POST] /organisation/:org_uuid/members/:member_id can specify if the user is a manager or not', function (done) {
         var orgUUID = fixtures['organisation'][5].uuid;
 
         var request = {
             method: 'POST',
-            url: '/organisation/' + orgUUID + '/members/2',
+            url: '/organisation/' + orgUUID + '/members/2?is_manager=true',
             headers: {
                 Authorization: 'Bearer ' + fixtures['user_session'][0].token
             }
@@ -115,7 +166,53 @@ lab.experiment('[Controller] Organisation', function() {
             server.inject(request, function (res) {
                 expect(res.payload).to.exist();
 
+                var user = JSON.parse(res.payload).filter(function(item) {
+                    return item.id === fixtures['user'][1].id;
+                })[0];
+
+                expect(user.is_manager).to.equal(true);
+
+                done();
+            });
+        });
+	});
+
+	it('[POST] /organisation/:org_uuid/members/:member_id should assign the member to this organisation', function (done) {
+        var orgUUID = fixtures['organisation'][5].uuid;
+
+        var request = {
+            method: 'POST',
+            url: '/organisation/' + orgUUID + '/members/2',
+            headers: {
+                Authorization: 'Bearer ' + fixtures['user_session'][0].token
+            }
+        };
+
+        server.inject(request, function (res) {
+            expect(res.payload).to.exist();
+
+            expect(JSON.parse(res.payload).success).to.equal(true);
+
+            // Now check if included
+            var request = {
+                method: 'GET',
+                url: '/organisation/' + orgUUID + '/members',
+                headers: {
+                    Authorization: 'Bearer ' + fixtures['user_session'][0].token
+                }
+            };
+
+            server.inject(request, function (res) {
+                expect(res.payload).to.exist();
+
                 expect(JSON.parse(res.payload)).to.deep.include({ email: fixtures['user'][1].email });
+
+                // Make sure the added user is not a manager
+                var user = JSON.parse(res.payload).filter(function(item) {
+                    return item.id === fixtures['user'][1].id;
+                })[0];
+
+                expect(user.is_manager).to.equal(false);
 
                 done();
             });

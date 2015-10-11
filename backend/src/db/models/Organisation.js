@@ -31,7 +31,7 @@ var Organisation = Bookshelf.model('Organisation', {
         return this.hasMany('Project');
     },
     users: function () {
-        return this.belongsToMany('User', 'organisation_user', 'organisation_id', 'user_id');
+        return this.belongsToMany('User', 'organisation_user', 'organisation_id', 'user_id').withPivot('is_manager');;
     }
 });
 
