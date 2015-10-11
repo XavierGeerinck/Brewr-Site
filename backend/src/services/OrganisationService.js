@@ -50,7 +50,6 @@ exports.getOrganisationsByUser = function(userId) {
 };
 
 exports.addMemberByOrganisationUUID = function (organisationUUID, memberId) {
-    console.log('adding');
     var organisation = null;
 
     return new Promise(function (resolve, reject) {
@@ -63,13 +62,21 @@ exports.addMemberByOrganisationUUID = function (organisationUUID, memberId) {
             return UserModel.where({ id: memberId }).fetch();
         })
         .then(function (user) {
-            return new OrganisationModel({ id: organisation.get('id') }).users().attach(user);
+            if (!user) {
+                return Promise.reject('USER_DOES_NOT_EXIST');
+            }
+
+            return OrganisationUserModel
+            .forge({
+                user_id: memberId,
+                organisation_id: organisation.get('id')
+            })
+            .save();
         })
         .then(function () {
             return resolve();
         })
         .catch(function (err) {
-            console.log(err);
             return reject(err);
         });
     });
@@ -101,11 +108,14 @@ exports.getMembersByOrganisationUUID = function (organisationUUID, memberId) {
     return new Promise(function (resolve, reject) {
         OrganisationModel
         .where({ uuid: organisationUUID })
-        .fetch()
+        .fetch({ withRelated: [ 'users', 'created_by' ] })
         .then(function (org) {
-            return resolve(org.get('users'));
+            var members = org.related('users');
+            members.push(org.related('created_by'));
+            
+            return resolve(members);
         })
-        .catcH(function (err) {
+        .catch(function (err) {
             return reject(err);
         });
     });

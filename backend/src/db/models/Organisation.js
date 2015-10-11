@@ -9,7 +9,7 @@ var Organisation = Bookshelf.model('Organisation', {
     tableName: 'organisation',
     hasTimestamps: true, // Define that we update the created_at and updated_at on change
     hidden: [ ],
-    
+
     // On creation, set uuid
     initialize: function(params) {
         this.on('saving', this._generateUUID);
@@ -25,13 +25,13 @@ var Organisation = Bookshelf.model('Organisation', {
         return this.belongsTo('User');
     },
     created_by: function() {
-        return this.belongsTo('User');
+        return this.belongsTo('User', 'created_by');
     },
     projects: function () {
         return this.hasMany('Project');
     },
     users: function () {
-        return this.belongsToMany('User', 'organisation_user', 'user_id');
+        return this.belongsToMany('User', 'organisation_user', 'organisation_id', 'user_id');
     }
 });
 

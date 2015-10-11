@@ -25,7 +25,7 @@ module.exports = [
     },
     {
         method: 'GET',
-        path: '/organisation/{organisation}/members/',
+        path: '/organisation/{organisation}/members',
         config: {
             handler: OrganisationController.getMembers,
             auth: {
@@ -73,20 +73,4 @@ module.exports = [
             }
         }
     }
-    // {
-    //     method: 'GET',
-    //     path: '/organisations/{organisation}/members',
-    //     config: {
-    //         handler: OrganisationController.members,
-    //         auth: {
-    //             strategy: 'bearer',
-    //             scope: [ 'user' ]
-    //         },
-    //         validate: {
-    //             params: {
-    //                 organisation: Joi.number().integer()
-    //             }
-    //         }
-    //     }
-    // }
 ];
