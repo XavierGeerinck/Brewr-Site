@@ -53,7 +53,22 @@ exports.seed = function () {
                 .then(function () {
                     recordCallback();
                 });
-            }, tableCallback);
+            }, function (err) {
+                // Callback for the table insert
+                // We will reset the increments factor, this is because the
+                // sequence does not get set properly in postgres if we do it manually
+                if (dbData[table ] && dbData[table][0].id) {
+                    knex.schema.raw("select setval('" + table + "_id_seq'," +  dbData[table].length + ")")
+                    .then(function () {
+                        tableCallback();
+                    })
+                    .catch(function (err) {
+                        tableCallback(err);
+                    });
+                } else {
+                    tableCallback();
+                }
+            });
         }, function (err) {
             if (err) {
                 return reject(err);
