@@ -32,25 +32,27 @@ lab.experiment('[Controller] Project', function() {
     //     done();
 	// });
     //
-	// it('[POST] /organisation/:org_uuid/project/:id/members/:member_id should assign the member to a project of the organisation', function (done) {
-    //     var orgUUID = fixtures['organisation'][5].uuid;
-    //
-    //     var request = {
-    //         method: 'GET',
-    //         url: '/organisation/' + orgUUID + '/project/7/members/1',
-    //         headers: {
-    //             Authorization: 'Bearer ' + fixtures['user_session'][0].token
-    //         }
-    //     };
-    //
-    //     server.inject(request, function (res) {
-    //         expect(res.payload).to.exist();
-    //
-    //         expect(JSON.parse(res.payload).message).to.equal('Insufficient scope, expected any of: belongs-to-organisation-' + orgUUID + '-project-7-user');
-    //
-    //         done();
-    //     });
-	// });
+	it('[GET] /organisation/:org_uuid/project/:id/members/:member_id should return the members of a project', function (done) {
+        var orgUUID = fixtures['organisation'][1].uuid;
+        var projectId = fixtures['project'][2].id;
+
+        console.log(projectId);
+
+        var request = {
+            method: 'GET',
+            url: '/organisation/' + orgUUID + '/project/' + projectId + '/members',
+            headers: {
+                Authorization: 'Bearer ' + fixtures['user_session'][0].token
+            }
+        };
+
+        server.inject(request, function (res) {
+            expect(res.payload).to.exist();
+console.log(JSON.parse(res.payload));
+
+            done();
+        });
+	});
 	//
 	// it('[POST] /organisation/:org_uuid/project/:id/members/:member_id should be able to add managers through a payload parameter', function (done) {
 	//

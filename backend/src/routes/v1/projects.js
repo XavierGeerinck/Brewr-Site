@@ -7,6 +7,62 @@ var Joi = require('joi');
 module.exports = [
     {
         method: 'GET',
+        path: '/organisation/{organisation}/project/{project}/members',
+        config: {
+            handler: ProjectController.getMembers,
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-user' ]
+            },
+            validate: {
+                params: {
+                    organisation: Joi.string().guid().required(),
+                    project: Joi.number().required()
+                }
+            }
+        }
+    },
+    {
+        method: 'POST',
+        path: '/organisation/{organisation}/project/{project}/members/{memberId}',
+        config: {
+            handler: ProjectController.addMember,
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-manager' ]
+            },
+            validate: {
+                params: {
+                    organisation: Joi.string().guid().required(),
+                    memberId: Joi.number().required(),
+                    project: Joi.number().required()
+                },
+                query: {
+                    is_manager: Joi.boolean().default(false, 'Specifies if the user is a organisation manager or not').optional()
+                }
+            }
+        }
+    },
+    {
+        method: 'DELETE',
+        path: '/organisation/{organisation}/project/{project}/members/{memberId}',
+        config: {
+            handler: ProjectController.removeMember,
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-manager' ]
+            },
+            validate: {
+                params: {
+                    organisation: Joi.string().guid().required(),
+                    memberId: Joi.number().required(),
+                    project: Joi.number().required()
+                }
+            }
+        }
+    },
+    {
+        method: 'GET',
         path: '/organisation/{organisation}/project/{project}',
         config: {
             handler: ProjectController.getProjectByUUIDAndOrganisation ,
