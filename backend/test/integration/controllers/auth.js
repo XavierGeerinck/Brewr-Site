@@ -190,7 +190,11 @@ lab.experiment('[Controller] Auth', function() {
             expect(JSON.parse(res.payload)[1].user_agent).to.equal(fixtures['user_session'][1].user_agent);
             expect(JSON.parse(res.payload)[1].user_id).to.equal(fixtures['user_session'][1].user_id);
 
-            expect(JSON.parse(res.payload).length).to.equal(fixtures['user_session'].length);
+            var sessions = fixtures['user_session'].filter(function (us) {
+                return us.user_id === JSON.parse(res.payload)[0].user_id;
+            });
+
+            expect(JSON.parse(res.payload).length).to.equal(sessions.length);
             done();
         });
     });
