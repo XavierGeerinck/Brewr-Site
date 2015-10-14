@@ -49,7 +49,7 @@ exports.addMember = function (request, reply) {
     var projectId = request.params.project;
     var isManager = request.query.is_manager;
 
-    projectService
+    ProjectService
     .addMemberByOrganisationUUIDAndProjectId(organisationUUID, projectId, memberId, isManager)
     .then(function (success) {
         return reply({ success: true });
@@ -64,7 +64,7 @@ exports.removeMember = function (request, reply) {
     var organisationUUID = request.params.organisation;
     var projectId = request.params.project;
 
-    projectService
+    ProjectService
     .removeMemberByOrganisationUUIDAndProjectId(organisationUUID, projectId, memberId)
     .then(function (success) {
         return reply({ success: true });
@@ -78,7 +78,7 @@ exports.getMembers = function (request, reply) {
     var organisationUUID = request.params.organisation;
     var projectId = request.params.project;
 
-    projectService
+    ProjectService
     .getMembersByOrganisationUUIDAndProjectId(organisationUUID, projectId)
     .then(function (members) {
         return reply(members);
