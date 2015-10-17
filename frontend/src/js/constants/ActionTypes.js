@@ -3,6 +3,10 @@
  **************************/
 export const DOCKER_HUB_SEARCH_INPUT_CHANGED = 'DOCKER_HUB_SEARCH_INPUT_CHANGED';
 
+export const RESPONSE_ORGANISATION_MEMBERS = 'RESPONSE_ORGANISATION_MEMBERS';
+export const REQUEST_ORGANISATION_MEMBERS = 'REQUEST_ORGANISATION_MEMBERS';
+export const RESPONSE_ORGANISATION_MEMBERS_ERROR = 'RESPONSE_ORGANISATION_MEMBERS_ERROR';
+
 /**************************
  * BuilderStore Events
  **************************/

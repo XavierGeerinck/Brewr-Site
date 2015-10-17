@@ -8,13 +8,13 @@ import ProjectStore from '../../../stores/ProjectStore';
 export default class Project extends BaseComponent {
     constructor(props) {
         super(props);
-
         this._getState();
     }
 
     componentDidMount() {
         this.changeListener = this._onChange.bind(this);
         ProjectStore.addChangeListener(this.changeListener);
+        ProjectActions.getProject(AuthStore.token, this.props.params.organisationId, this.props.params.projectId);
     }
 
     componentWillUnmount() {
@@ -22,7 +22,6 @@ export default class Project extends BaseComponent {
     }
 
     componentWillMount() {
-        ProjectActions.getProject(AuthStore.token, this.props.params.organisationId, this.props.params.projectId);
     }
 
     _getState() {

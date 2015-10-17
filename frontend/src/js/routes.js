@@ -33,7 +33,7 @@ var routes = (
             <Route path="register"  component={RegisterPage} />
             <Route path="logout"    component={LogoutPage} onEnter={requireAuth} />
             <Route path="dashboard" component={DashboardPage} onEnter={requireAuth} />
-            <Route path="teams"     component={TeamPage} onEnter={requireAuth} />
+            <Route path="organisation/:organisationUUID/teams"     component={TeamPage} onEnter={requireAuth} />
             <Route path="organisation/:organisationId/project/:projectId"  component={ProjectPage} onEnter={requireAuth} />
             <Route path="*"         component={NotFoundPage} />
         </Route>

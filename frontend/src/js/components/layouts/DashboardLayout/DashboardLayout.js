@@ -48,6 +48,7 @@ class DashboardLayout extends React.Component {
         var self = this;
         const { title, isBoxed, history } = this.props;
         const { user, organisations, selected_organisation } = this.state;
+        const teamLink = "/organisation/" + selected_organisation.uuid + "/teams";
         const projects = selected_organisation ? selected_organisation.projects : [];
 
         return (
@@ -55,12 +56,12 @@ class DashboardLayout extends React.Component {
                 {/* SIDEMENU */}
                 <SideMenu title="brewr">
                     <SideMenuItem link="/dashboard"><i className="fa fa-home"></i>Dashboard</SideMenuItem>
-                    <SideMenuItem link="/organisation/1/teams"><i className="fa fa-group"></i>Teams</SideMenuItem>
+                    <SideMenuItem link={teamLink}><i className="fa fa-group"></i>Teams</SideMenuItem>
                     <SideMenuContainer title={<span><i className="fa fa-folder"></i><span>Projects</span></span>}>
                         {
                             projects ?
                             projects.map(p => {
-                                let url = "/organisation/" + p.organisation_id + "/project/" + p.id;
+                                let url = "/organisation/" + selected_organisation.uuid + "/project/" + p.id;
                                 return <SideMenuItem key={p.name} link={url}>{p.name}</SideMenuItem>
                             })
                             : null

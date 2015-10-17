@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import update from 'react/lib/update';
 import List from '../List';
-import ListItem from '../ListItem';
+import ListItem from '../ListItemMove';
 import Input from '../Input';
 import Button from '../Button';
 import TabContainer from '../TabContainer';
@@ -159,34 +159,34 @@ class CRUDList extends React.Component {
                             })}
                         </List>
                     </div>
-                    : null }
-                </div>
-            );
-        }
-    };
+                : null }
+            </div>
+        );
+    }
+};
 
-    CRUDList.propTypes = {
-        items: PropTypes.array,
-        canMove: PropTypes.bool,
-        canRemove: PropTypes.bool,
-        canEdit: PropTypes.bool,
-        canAdd: PropTypes.bool,
-        canUploadFile: PropTypes.bool, // Allows for file uploading
-        withFileUploadDestination: PropTypes.bool, // Allows us to set a destination for the uploaded file
-        addItemText: PropTypes.string, // Allow for changing the add item header
-        textAddValue: PropTypes.string, // Change the first textbox
-    };
+CRUDList.propTypes = {
+    items: PropTypes.array,
+    canMove: PropTypes.bool,
+    canRemove: PropTypes.bool,
+    canEdit: PropTypes.bool,
+    canAdd: PropTypes.bool,
+    canUploadFile: PropTypes.bool, // Allows for file uploading
+    withFileUploadDestination: PropTypes.bool, // Allows us to set a destination for the uploaded file
+    addItemText: PropTypes.string, // Allow for changing the add item header
+    textAddValue: PropTypes.string, // Change the first textbox
+};
 
-    CRUDList.defaultProps = {
-        items: [],
-        canMove: true,
-        canRemove: true,
-        canAdd: true,
-        canEdit: false,
-        canUploadFile: false,
-        withFileUploadDestination: false,
-        addItemText: "",
-        textAddValue: "Enter Value"
-    };
+CRUDList.defaultProps = {
+    items: [],
+    canMove: true,
+    canRemove: true,
+    canAdd: true,
+    canEdit: false,
+    canUploadFile: false,
+    withFileUploadDestination: false,
+    addItemText: "",
+    textAddValue: "Enter Value"
+};
 
-    export default DragDropContext(HTML5Backend)(CRUDList);
+export default DragDropContext(HTML5Backend)(CRUDList);
