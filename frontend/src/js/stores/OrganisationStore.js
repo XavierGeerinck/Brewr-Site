@@ -22,6 +22,26 @@ class OrganisationStore extends BaseStore {
                 break;
             case actionTypes.RESPONSE_ORGANISATION_MEMBERS:
                 this._members = source.action.response;
+
+                // Add role + priority id (high --> low)
+                this._members.map(m => {
+                    if (m.is_creator) {
+                        m.role = "creator";
+                        m.role_id = 3;
+                    } else if (m.is_manager) {
+                        m.role = "manager";
+                        m.role_id = 2;
+                    } else {
+                        m.role = "user";
+                        m.role_id = 1;
+                    }
+                });
+
+                // Sort by role_id
+                this._members.sort((a, b) => {
+                    return (a.role_id < b.role_id);
+                });
+
                 this.emitChange();
                 break;
             default:

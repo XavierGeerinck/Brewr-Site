@@ -5,6 +5,8 @@ import ProjectActions from '../../../actions/ProjectActions';
 import AuthStore from '../../../stores/AuthStore';
 import ProjectStore from '../../../stores/ProjectStore';
 
+import { Card, CardHeader, CardTitle, CardText, CardActions, FlatButton, Avatar } from 'material-ui';
+
 export default class Project extends BaseComponent {
     constructor(props) {
         super(props);
@@ -43,8 +45,14 @@ export default class Project extends BaseComponent {
 
         return (
             <DashboardLayout>
-                <h1>{selectedProject.name}</h1>
-                {selectedProject.description}
+                <Card>
+                    <CardTitle title={selectedProject.name} />
+                    <CardText>{selectedProject.description}</CardText>
+                    <CardActions>
+                        <FlatButton label="Edit"/>
+                        <FlatButton label="Delete"/>
+                    </CardActions>
+                </Card>
             </DashboardLayout>
         )
     }

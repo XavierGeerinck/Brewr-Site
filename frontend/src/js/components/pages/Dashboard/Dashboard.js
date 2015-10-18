@@ -3,6 +3,8 @@ import React, { PropTypes } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import AuthStore from '../../../stores/AuthStore';
 
+import { List, ListItem } from 'material-ui';
+
 /**
  * The dashboard gives a quick overview of the projects that belong to a organisation
  * The detailed information about projects can be found under the projects tab.
@@ -43,11 +45,13 @@ class Dashboard extends React.Component {
 
         return (
             <DashboardLayout>
-                {
-                    projects.map(p => {
-                        return <div>{p.name}<br />{p.description}</div>
-                    })
-                }
+                <List subheader="Projects">
+                    {
+                        projects.map(p => {
+                            return <ListItem primaryText={p.name} secondaryText={p.description} />;
+                        })
+                    }
+                </List>
             </DashboardLayout>
         );
     }

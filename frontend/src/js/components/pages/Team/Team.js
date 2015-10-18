@@ -4,9 +4,10 @@ import BaseComponent from '../../BaseComponent';
 import AuthStore from '../../../stores/AuthStore';
 import OrganisationStore from '../../../stores/OrganisationStore';
 import OrganisationActions from '../../../actions/OrganisationActions';
-import List from '../../elements/List';
-import ListItem from '../../elements/ListItem';
+// import List from '../../elements/List';
+// import ListItem from '../../elements/ListItem';
 import Button from '../../elements/Button';
+import { List, ListItem, Table, TableRow, TableHeader, TableHeaderColumn, TableBody, TableRowColumn, Avatar } from 'material-ui';
 
 export default class Team extends BaseComponent {
     constructor(props) {
@@ -18,7 +19,8 @@ export default class Team extends BaseComponent {
         return {
             members: OrganisationStore.members,
             managers: OrganisationStore.managers,
-            creator: OrganisationStore.creator
+            creator: OrganisationStore.creator,
+            allMembers: OrganisationStore.allMembers
         }
     }
 
@@ -37,33 +39,47 @@ export default class Team extends BaseComponent {
     }
 
     render() {
-        const { members, managers, creator } = this.state;
+        const { members, managers, creator, allMembers } = this.state;
 
         return (
             <DashboardLayout>
-                <h1>Creator</h1>
-                <List>
-                     {creator.map((member) => {
-                        return <ListItem key={member.id} value={member.name} />;
-                    })}
-                </List>
+                <Table
+                    height={this.state.height}
+                    fixedHeader={this.state.fixedHeader}
+                    fixedFooter={this.state.fixedFooter}
+                    selectable={this.state.selectable}
+                    multiSelectable={this.state.multiSelectable}
+                    onRowSelection={this._onRowSelection}>
+                    <TableHeader enableSelectAll={this.state.enableSelectAll}>
+                        <TableRow>
+                            <TableHeaderColumn>Avatar</TableHeaderColumn>
+                            <TableHeaderColumn>Name</TableHeaderColumn>
+                            <TableHeaderColumn>Email</TableHeaderColumn>
+                            <TableHeaderColumn>Role</TableHeaderColumn>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody
+                        deselectOnClickaway={this.state.deselectOnClickaway}
+                        showRowHover={this.state.showRowHover}
+                        stripedRows={this.state.stripedRows}>
 
-                { managers.length > 0 ? <h1>Managers</h1> : null }
-                <List>
-                     {managers.map((member) => {
-                        return <ListItem key={member.id} value={member.name}><Button href="#" text="Remove Manager" /></ListItem>;
-                    })}
-                </List>
+                        {
+                            allMembers.map((member) => {
+                                return (
+                                    <TableRow selected={true}>
+                                        <TableRowColumn><Avatar src={member.avatar_url} /></TableRowColumn>
+                                        <TableRowColumn>{member.name}</TableRowColumn>
+                                        <TableRowColumn>{member.email}</TableRowColumn>
+                                        <TableRowColumn>{member.role}</TableRowColumn>
+                                    </TableRow>
+                                )
+                            })
+                        }
+                    </TableBody>
+                </Table>
 
 
-                { members.length > 0 ? <h1>Members</h1> : null }
-                <List>
-                     {members.map((member) => {
-                        return <ListItem key={member.id} value={member.name}><Button href="#" text="Assign Manager" /></ListItem>;
-                    })}
-                </List>
             </DashboardLayout>
         )
     }
-
 }
