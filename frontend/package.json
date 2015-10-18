@@ -42,6 +42,7 @@
     "history": "^1.9.1",
     "jwt-decode": "^1.1.0",
     "lodash": "^3.10.1",
+    "material-ui": "^0.12.3",
     "object-assign": "^3.0.0",
     "react": "^0.13.3",
     "react-bootstrap": "^0.24.5",
