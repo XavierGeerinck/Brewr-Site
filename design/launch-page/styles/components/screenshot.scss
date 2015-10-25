@@ -1,0 +1,32 @@
+#screenshot {
+	background-color: $colorPrimary;
+	background-image: url(../images/screenshot-background.jpg);
+	background-size: cover;
+	background-position: center bottom;
+	padding-top: $spacing * 2;
+	color: #fff;
+	overflow: hidden;
+
+	p.subtitle {
+		max-width: 520px;
+		font-size: 18px;
+		margin-right: auto;
+		margin-left: auto;
+		line-height: 1.5;
+		opacity: 0.6;
+	}
+}
+
+#screenshot-image {
+	background-image: url(../images/screenshot.png);
+	background-size: 770px 474px;
+	width: 770px;
+	height: 474px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: $spacing;
+
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+		background-image: url(../images/screenshot@2x.png);
+	}
+}

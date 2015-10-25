@@ -28,7 +28,7 @@
     "vision": "^3.0.0"
   },
   "scripts": {
-    "test": "lab -a code -v -t 90 -m 4000"
+    "test": "lab -a code -v -t 90 -m 6000"
   },
   "devDependencies": {
     "code": "^1.5.0",

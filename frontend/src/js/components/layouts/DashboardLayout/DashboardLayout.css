@@ -6,7 +6,7 @@
 }
 
 .DashboardLayout-Content {
-    width: 100%;
+    width: calc(100% - 200px);
     height: 100%;
 }
 

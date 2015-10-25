@@ -1,0 +1,25 @@
+section {
+	background-color: $colorBackground;
+
+	&.padding {
+		padding: $spacing;
+	}
+
+	&.padding-double {
+		padding: $spacing * 2;
+	}
+
+	&.centered {
+		text-align: center;
+	}
+
+	&.accent {
+		background-color: $colorAccent;
+		color: #fff;
+	}
+
+	&.dark {
+		background-color: $colorSecondary;
+		color: #fff;
+	}
+}

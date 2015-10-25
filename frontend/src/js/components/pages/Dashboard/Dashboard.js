@@ -4,7 +4,7 @@ import DashboardLayout from '../../layouts/DashboardLayout';
 import AuthStore from '../../../stores/AuthStore';
 
 import { List, ListItem } from 'material-ui';
-
+import { Link } from 'react-router';
 /**
  * The dashboard gives a quick overview of the projects that belong to a organisation
  * The detailed information about projects can be found under the projects tab.
@@ -42,13 +42,14 @@ class Dashboard extends React.Component {
     render() {
         const { user, organisations, selected_organisation } = this.state;
         const projects = selected_organisation ? selected_organisation.projects : [];
+        const { history } = this.props;
 
         return (
             <DashboardLayout>
                 <List subheader="Projects">
                     {
                         projects.map(p => {
-                            return <ListItem primaryText={p.name} secondaryText={p.description} />;
+                            return <Link to="/"><ListItem primaryText={p.name} secondaryText={p.description} /></Link>;
                         })
                     }
                 </List>

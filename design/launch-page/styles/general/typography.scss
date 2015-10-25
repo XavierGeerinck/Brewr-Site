@@ -1,0 +1,66 @@
+h2 {
+	font-size: 36px;
+	font-weight: normal;
+	letter-spacing: 1px;
+	margin-bottom: $spacing/2;
+
+	&.smaller {
+		font-size: 28px;
+	}
+}
+
+body {
+	font-family: "Open Sans", sans-serif;
+}
+
+h1 {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.subtitle {
+	font-size: 18px;
+	opacity: 0.6;
+	line-height: 1.5;
+}
+
+section .subtitle {
+	max-width: 600px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.small {
+	font-size: 14px;
+}
+
+.align-left {
+	text-align: left;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.align-right {
+	text-align: right;
+}
+
+.text-accent {
+	color: $colorAccent;
+}
+
+.text-info {
+	color: $colorInfo;
+}
+
+.text-success {
+	color: $colorSuccess;
+}
+
+.text-disabled {
+	color: #777;
+}
