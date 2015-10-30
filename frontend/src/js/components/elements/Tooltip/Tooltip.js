@@ -1,5 +1,6 @@
 import "./Tooltip.css";
 import React, { PropTypes } from 'react';
+import cx from 'classnames';
 
 class Tooltip extends React.Component {
     constructor(props) {
@@ -7,7 +8,6 @@ class Tooltip extends React.Component {
     }
 
     render() {
-        var cx = React.addons.classSet;
 
         var className = cx({
             'Tooltip': true,

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import "./Panel.css";
 import Tooltip from "../Tooltip";
+import cx from 'classnames';
 
 class Panel extends React.Component {
     constructor(props) {
@@ -8,8 +9,6 @@ class Panel extends React.Component {
     }
 
     render() {
-        var cx = React.addons.classSet;
-
         var className = cx({
             'Panel': true,
             'Panel-Full': this.props.size === 'full' ? true : false,

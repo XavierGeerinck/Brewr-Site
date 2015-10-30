@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import cx from 'classnames';
 
 class SideMenuContainer extends React.Component {
     constructor(props) {
@@ -21,8 +22,6 @@ class SideMenuContainer extends React.Component {
     render() {
         const { title } = this.props;
         const { showItems } = this.state;
-
-        const cx = React.addons.classSet;
 
         var className = cx({
             'SideMenuContainer-Second-Level-Visible': showItems,

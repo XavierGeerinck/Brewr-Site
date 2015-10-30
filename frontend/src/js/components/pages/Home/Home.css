@@ -1165,6 +1165,7 @@ header form {
 header form input[type="text"],
 header form input[type="email"],
 header form input[type="password"] {
+    color:black;
     border: none;
     background-color: #fff;
     border-radius: 4px;

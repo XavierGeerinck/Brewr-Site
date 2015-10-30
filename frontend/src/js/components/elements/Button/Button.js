@@ -1,10 +1,9 @@
 import React, { PropTypes } from 'react';
+import cx from 'classnames';
 import './Button.css';
 
 class Button extends React.Component {
     render() {
-        var cx = React.addons.classSet;
-
         var className = cx({
             'Button': true,
             'Button-Color-Orange': this.props.color.toLowerCase() === 'orange' ? true : false,

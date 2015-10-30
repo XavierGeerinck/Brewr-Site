@@ -5,7 +5,7 @@ import ProjectActions from '../../../actions/ProjectActions';
 import AuthStore from '../../../stores/AuthStore';
 import ProjectStore from '../../../stores/ProjectStore';
 
-import { Card, CardHeader, CardTitle, CardText, CardActions, FlatButton, Avatar } from 'material-ui';
+//import { Card, CardHeader, CardTitle, CardText, CardActions, FlatButton, Avatar } from 'material-ui';
 
 export default class Project extends BaseComponent {
     constructor(props) {

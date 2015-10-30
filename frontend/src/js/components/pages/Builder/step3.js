@@ -7,7 +7,7 @@ import FlexContainer from '../../elements/FlexContainer';
 import Button from '../../elements/Button';
 import Input from '../../elements/Input';
 import Panel from '../../elements/Panel';
-import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
+//import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
 import CRUDList from '../../elements/CRUDList';
 
 /**
@@ -18,9 +18,9 @@ import CRUDList from '../../elements/CRUDList';
  *      - Specify the commands to download the repository (example: git clone http://.... <destinationfolder>)
  *      - Specify the directories local to sync to the fileserver (<local_dir>:<remote_dir>)
  */
-const tooltipRunItems = "Specify the commands to run and get the source code of your project, example: `git clone http://<giturl> <target_dir>`";
-const tooltipVolumeItems = "Specify the paths to synchronize in the format: `<local_dir>:<remote_dir>`, example: `/c/my_nginx.conf:/etc/nginx/nginx.conf`";
-const tooltipAddItems = "Upload files or specify existing files and choose where to copy them too (replace existing by default)";
+//const tooltipRunItems = "Specify the commands to run and get the source code of your project, example: `git clone http://<giturl> <target_dir>`";
+//const tooltipVolumeItems = "Specify the paths to synchronize in the format: `<local_dir>:<remote_dir>`, example: `/c/my_nginx.conf:/etc/nginx/nginx.conf`";
+//const tooltipAddItems = "Upload files or specify existing files and choose where to copy them too (replace existing by default)";
 
 class Step3 extends React.Component {
     handleNextPage () {
@@ -55,17 +55,17 @@ class Step3 extends React.Component {
         return (
             <FlexContainer>
                 {/* Specify the files to add to it's environment + where to copy them: (pick file and type in a destination directory) */}
-                <Panel heading="Add Files" tooltip={tooltipAddItems}>
+                <Panel heading="Add Files">
                     <CRUDList items={dockerfile.add} canUploadFile={true} withFileUploadDestination={true} textAddValue="Source Path" addItemText="Copy local file" ref="input_add_items"/>
                 </Panel>
 
                 {/* Specify the commands to download the repository (example: git clone http://.... <destinationfolder>) */}
-                <Panel heading="Download Source Code" tooltip={tooltipRunItems}>
+                <Panel heading="Download Source Code">
                     <CRUDList items={dockerfile.source_code} textAddValue="Command" ref="input_run_items"/>
                 </Panel>
 
                 {/* Specify the directories local to sync to the fileserver (<local_dir>:<remote_dir>) */}
-                <Panel heading="Synchronise Directories" tooltip={tooltipVolumeItems}>
+                <Panel heading="Synchronise Directories">
                     <CRUDList items={dockerfile.volume} textAddValue="Directory" ref="input_volume_items"/>
                 </Panel>
 

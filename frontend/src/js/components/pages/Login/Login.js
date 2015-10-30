@@ -1,5 +1,5 @@
 import MainLayout from '../../layouts/MainLayout';
-import React from 'react/addons';
+import React from 'react';
 import ReactMixin from 'react-mixin';
 import History from 'history';
 import SideMenu from '../../elements/SideMenu';
@@ -69,6 +69,3 @@ class LoginPage extends React.Component {
 }
 
 export default LoginPage;
-
-//LinkStateMixin -> provides 2-way databinding
-ReactMixin(LoginPage.prototype, React.addons.LinkedStateMixin);

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import './Input.css';
+import cx from 'classnames';
 
 class Input extends React.Component {
     constructor (props) {
@@ -32,8 +33,6 @@ class Input extends React.Component {
     }
 
     renderFormGroup (children) {
-        var cx = React.addons.classSet;
-
         var classes = cx({
             'Input': true,
             'Input-Inline': this.props.isInline

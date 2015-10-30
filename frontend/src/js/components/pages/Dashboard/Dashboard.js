@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import AuthStore from '../../../stores/AuthStore';
 
-import { List, ListItem } from 'material-ui';
+//import { List, ListItem } from 'material-ui';
 import { Link } from 'react-router';
 /**
  * The dashboard gives a quick overview of the projects that belong to a organisation
@@ -46,13 +46,11 @@ class Dashboard extends React.Component {
 
         return (
             <DashboardLayout>
-                <List subheader="Projects">
-                    {
-                        projects.map(p => {
-                            return <Link to="/"><ListItem primaryText={p.name} secondaryText={p.description} /></Link>;
-                        })
-                    }
-                </List>
+              {
+                  projects.map(p => {
+                      return <Link to="/" key={p.id}>{p.name}</Link>;
+                  })
+              }
             </DashboardLayout>
         );
     }

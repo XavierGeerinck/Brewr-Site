@@ -5,7 +5,7 @@ import FlexContainer from '../../elements/FlexContainer';
 import Button from '../../elements/Button';
 import Input from '../../elements/Input';
 import Panel from '../../elements/Panel';
-import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
+//import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
 import CRUDList from '../../elements/CRUDList';
 
 /**
@@ -15,7 +15,7 @@ import CRUDList from '../../elements/CRUDList';
  * We will automatically migrate these to supervisord! so they should be by path and not by service.
  * Example: nginx -t and node /var/www/test/node.js (We will automatically pick the logging dirs, probably /var/log)
  */
-const tooltipStartupCommandItems = "Add the commands to be executed on the startup of the environment, example: first build the files, then run nginx as long running command";
+//const tooltipStartupCommandItems = "Add the commands to be executed on the startup of the environment, example: first build the files, then run nginx as long running command";
 
 class Step4 extends React.Component {
     handleNextPage () {
@@ -41,7 +41,7 @@ class Step4 extends React.Component {
         return (
             <FlexContainer>
                 {/* Startup Command Items */}
-                <Panel heading="Environment Startup Commands" tooltip={tooltipStartupCommandItems}>
+                <Panel heading="Environment Startup Commands">
                     <CRUDList items={dockerfile.cmd} textAddValue="Startup Command" ref="input_startup_command_items"/>
                 </Panel>
 

@@ -1,6 +1,7 @@
 import './DropdownMenu.css';
 import React, { PropTypes } from 'react';
 import DropdownMenuItem from './DropdownMenuItem';
+import cx from 'classnames';
 
 class DropdownMenu extends React.Component {
     constructor(props) {
@@ -49,8 +50,6 @@ class DropdownMenu extends React.Component {
     render() {
         const { isOpen } = this.state;
         const { title, children } = this.props;
-
-        var cx = React.addons.classSet;
 
         var classNameItems = cx({
             'DropdownMenu-Items': true,

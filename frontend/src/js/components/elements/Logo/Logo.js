@@ -1,10 +1,9 @@
 import React, { PropTypes } from 'react';
+import cx from 'classnames';
 import './Logo.css';
 
 class Logo extends React.Component {
     render() {
-        var cx = React.addons.classSet;
-
         var classes = cx({
             'Logo': true,
             'Logo-Align-Right': this.props.align === 'right',

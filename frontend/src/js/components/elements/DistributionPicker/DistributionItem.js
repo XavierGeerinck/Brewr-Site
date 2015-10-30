@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Dropdown from '../Dropdown';
+import cx from 'classnames';
 
 class DistributionItem extends React.Component {
     handleClick () {
@@ -11,8 +12,6 @@ class DistributionItem extends React.Component {
     }
 
     render () {
-        var cx = React.addons.classSet;
-
         var classes = cx({
             'DistributionPicker-PickDistribution': true,
             'DistributionPicker-PickDistribution-Selected': this.props.distribution.is_selected

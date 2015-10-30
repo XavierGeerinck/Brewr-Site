@@ -1,5 +1,6 @@
 import React from 'react';
 import routes from './routes';
 
+import { render } from 'react-dom';
 // Install the routes
-React.render(routes, document.body);
+render(routes, document.body);

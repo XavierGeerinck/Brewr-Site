@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import cx from 'classnames';
 
 class WizardItem extends React.Component {
     constructor(props) {
@@ -6,8 +7,6 @@ class WizardItem extends React.Component {
     }
 
     render() {
-        var cx = React.addons.classSet;
-
         var className = cx({
             'WizardItem': true,
             'WizardItem-Selected': this.props.isSelected

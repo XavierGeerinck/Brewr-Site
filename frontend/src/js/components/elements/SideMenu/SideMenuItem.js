@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import cx from 'classnames';
 
 class SideMenuItem extends React.Component {
     constructor(props) {
@@ -8,9 +9,6 @@ class SideMenuItem extends React.Component {
 
     render() {
         const { link, isStickBottom } = this.props;
-
-        var cx = React.addons.classSet;
-
         var className = cx({
             'SideMenuItem': true,
             'SideMenuItem-Active':  window.location && window.location.hash.indexOf(link) !== -1,

@@ -3,7 +3,7 @@
  */
 import React, { PropTypes } from 'react';
 import Input from '../Input/Input.js';
-
+import cx from 'classnames';
 
 export default class ValidateInput extends Input {
 
@@ -14,8 +14,6 @@ export default class ValidateInput extends Input {
     }
 
     renderFormGroup (children) {
-        var cx = React.addons.classSet;
-
 
         var classes = cx({
             'Input': true,

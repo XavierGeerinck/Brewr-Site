@@ -1,5 +1,6 @@
 import "./TabContainer.css";
 import React, { PropTypes } from 'react';
+import cx from 'classnames';
 
 class TabContainer extends React.Component {
     constructor(props) {
@@ -18,8 +19,6 @@ class TabContainer extends React.Component {
 
     render() {
         var self = this;
-        let cx = React.addons.classSet;
-
         let children = this.props.children;
         const { selectedItemIdx } = this.state;
 

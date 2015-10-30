@@ -1,6 +1,6 @@
-import Constants from '../Constants';
 import {EventEmitter} from 'events';
 import AppDispatcher from '../dispatchers/AppDispatcher';
+var CHANGE_EVENT = "CHANGE_EVENT";
 
 export default class BaseStore extends EventEmitter {
     constructor() {
@@ -8,16 +8,16 @@ export default class BaseStore extends EventEmitter {
     }
 
     addChangeListener(callback) {
-        this.on(Constants.CHANGE_EVENT, callback);
+        this.on(CHANGE_EVENT, callback);
     }
 
     removeChangeListener(callback) {
-        this.removeListener(Constants.CHANGE_EVENT, callback);
+        this.removeListener(CHANGE_EVENT, callback);
     }
 
     // triggers change listener above, firing controller-view callback
     emitChange() {
-        this.emit(Constants.CHANGE_EVENT);
+        this.emit(CHANGE_EVENT);
     }
 
     subscribe(actionSubscribe) {

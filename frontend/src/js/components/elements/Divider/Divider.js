@@ -1,10 +1,9 @@
 import React, { PropTypes } from 'react';
 import './Divider.css';
+import cx from 'classnames';
 
 class Divider extends React.Component {
     render() {
-        var cx = React.addons.classSet;
-
         var className = cx({
             'Divider': true,
             'Divider-Horizontal': this.props.align === 'horizontal',

@@ -5,7 +5,7 @@ import FlexContainer from '../../elements/FlexContainer';
 import Button from '../../elements/Button';
 import Input from '../../elements/Input';
 import Panel from '../../elements/Panel';
-import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
+//import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
 import CRUDList from '../../elements/CRUDList';
 
 /**
@@ -15,9 +15,9 @@ import CRUDList from '../../elements/CRUDList';
  * - Allow for environment variables <envvariable>=value
  * - Allow for metadata (see docker label, user, workdir, ...)
  */
-const tooltipLabels = "Set labels to identify your container <labelname>=<value>, example: com.brewr.io=somevalue";
-const tooltipEnvItems = "Specify environment variables that will be installed in the environment, format: key:value, example: ENVIRONMENT:production";
-const tooltipPorts = "Pick the ports to be forwarded to the local environment: <local_port>:<remote_port>, example: 80:80";
+//const tooltipLabels = "Set labels to identify your container <labelname>=<value>, example: com.brewr.io=somevalue";
+//const tooltipEnvItems = "Specify environment variables that will be installed in the environment, format: key:value, example: ENVIRONMENT:production";
+//const tooltipPorts = "Pick the ports to be forwarded to the local environment: <local_port>:<remote_port>, example: 80:80";
 
 class Step5 extends React.Component {
     handleNextPage () {
@@ -53,7 +53,7 @@ class Step5 extends React.Component {
         return (
             <FlexContainer>
                 {/* Labels */}
-                <Panel heading="Labels" tooltip={tooltipLabels}>
+                <Panel heading="Labels">
                     <CRUDList items={dockerfile.label} ref="input_labels"/>
                 </Panel>
 
@@ -63,7 +63,7 @@ class Step5 extends React.Component {
                 </Panel>
 
                 {/* Environment Variables Items */}
-                <Panel heading="Environment Variables" tooltip={tooltipEnvItems}>
+                <Panel heading="Environment Variables">
                     <CRUDList items={dockerfile.env} ref="input_env_items"/>
                 </Panel>
 

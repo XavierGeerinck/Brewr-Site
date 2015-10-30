@@ -9,7 +9,7 @@ import TabItem from '../TabContainer/TabItem';
 import './CRUDList.css';
 
 // Drag and drop functionallity of the listitems
-import HTML5Backend from 'react-dnd/modules/backends/HTML5';
+import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 
 /**

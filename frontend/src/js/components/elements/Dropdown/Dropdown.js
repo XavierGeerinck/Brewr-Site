@@ -1,5 +1,6 @@
 import React, {PropTypes } from 'react';
 import './Dropdown.css';
+import cx from 'classnames';
 
 class Dropdown extends React.Component {
     handleChange (el) {
@@ -8,8 +9,6 @@ class Dropdown extends React.Component {
 
     render() {
         var self = this;
-        var cx = React.addons.classSet;
-
         var options = [];
 
         this.props.items.forEach(function (item) {
