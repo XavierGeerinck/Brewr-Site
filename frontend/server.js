@@ -15,7 +15,7 @@ app.use(express.static(__dirname + '/dist'));
 if (isDeveloping) {
     const compiler = webpack(config);
 
-``//webpack-dev-server --devtool eval --progress --colors --content-base build --hot --inline
+    //webpack-dev-server --devtool eval --progress --colors --content-base build --hot --inline
     app.use(webpackMiddleware(compiler, {
         publicPath: config.output.publicPath,
         contentBase: 'src',

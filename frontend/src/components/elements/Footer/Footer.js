@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import './Footer.css';
+import styles from './Footer.css';
 
 export default React.createClass({
   propTypes: {
@@ -12,13 +12,13 @@ export default React.createClass({
 
   render() {
     return (
-      <div className="Footer">
-        <div className="Footer-container">
+      <div className={styles.Footer}>
+        <div className={styles.container}>
           <div className="row">
             {/* Logo + Social */}
             <div className="col-md-4 Footer-Company">
-              <a href="http://brewr.io" className="Footer-Logo">Brewr.io</a>
-              <div className="Footer-SocialLinks">
+              <a href="http://brewr.io" className={styles.Logo}>Brewr.io</a>
+              <div className={styles.SocialLinks}>
                 <a href="#">
                   <i className="fa fa-facebook"></i>
                 </a>
@@ -65,7 +65,7 @@ export default React.createClass({
             </div>
           </div>
         </div>
-        <div className="Footer-copyright">
+        <div className={styles.copyright}>
           Copyright © 2015 Brewr
         </div>
       </div>

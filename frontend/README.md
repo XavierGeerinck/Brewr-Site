@@ -1,3 +1,7 @@
+# Help in porting
+## Regex for css
+Find:    `"Footer-(.*)"`
+Replace: `{styles.$1}`
 
 # frontend (frontend)
 ## Best practices
