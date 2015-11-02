@@ -1,3 +1,4 @@
+import fa from 'font-awesome/css/font-awesome.css';
 import React, { PropTypes } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import DockerfileViewer from '../../elements/DockerfileViewer';
@@ -9,6 +10,7 @@ import Input from '../../elements/Input';
 import Panel from '../../elements/Panel';
 //import {  Tooltip,  OverlayTrigger } from 'react-bootstrap';
 import CRUDList from '../../elements/CRUDList';
+import cx from 'classnames';
 
 /**
  * Step 3: Upload files & Run commands for repository download & Directory syncing
@@ -72,10 +74,10 @@ class Step3 extends React.Component {
                 {/* Buttons */}
                 <Panel size="full">
                     {/* Previous Button */}
-                    <Button align="left" text=<span><i  className="fa fa-angle-left"/> Previous</span> color="Orange" isInline={true} onClick={this.handlePreviousPage.bind(this)}/>
+                    <Button align="left" text=<span><i  className={cx(fa.fa, fa['fa-angle-left'])}/> Previous</span> color="Orange" isInline={true} onClick={this.handlePreviousPage.bind(this)}/>
 
                     {/* Next Button */}
-                    <Button align="right" text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" isInline={true} onClick={this.handleNextPage.bind(this)}/>
+                    <Button align="right" text=<span>Next <i  className={cx(fa.fa, fa['fa-angle-right'])}/></span> color="Orange" isInline={true} onClick={this.handleNextPage.bind(this)}/>
                 </Panel>
             </FlexContainer>
         );
