@@ -1,3 +1,5 @@
+import fa from 'font-awesome/css/font-awesome.css';
+import purecss from 'purecss/build/pure.css';
 import React, { PropTypes } from 'react';
 import SideMenu from '../../elements/SideMenu';
 import Button from '../../elements/Button';
@@ -8,6 +10,7 @@ import DashboardLayout from '../../layouts/DashboardLayout';
 import BuilderActions from '../../../actions/BuilderActions';
 import CRUDList from '../../elements/CRUDList';
 import BuilderStore from '../../../stores/BuilderStore';
+import cx from 'classnames';
 
 /**
  * Step 2: Install programs (example: git, gulp, nginx, MySQL, ...)
@@ -54,9 +57,11 @@ class Step2 extends React.Component {
             <FlexContainer>
                 {/* Maintainer, workdir and user */}
                 <Panel heading="General" tooltip={tooltipGeneral}>
-                    <Input id="input_maintainer" text={dockerfile.maintainer} label="Maintainer" placeholder="Enter the maintainer for the project.." type="text" ref="input_maintainer" />
-                    <Input id="input_workdir" text={dockerfile.workdir} label="Workdir" placeholder="Enter the directory where you will work from..." type="text" ref="input_workdir" />
-                    <Input id="input_user" text={dockerfile.user} label="User" placeholder="Type a keyword..." type="text" ref="input_user" />
+                    <form className={cx(purecss['pure-form'], purecss['pure-form-stacked'])}>
+                        <Input id="input_maintainer" text={dockerfile.maintainer} label="Maintainer" placeholder="Enter the maintainer for the project.." type="text" ref="input_maintainer" />
+                        <Input id="input_workdir" text={dockerfile.workdir} label="Workdir" placeholder="Enter the directory where you will work from..." type="text" ref="input_workdir" />
+                        <Input id="input_user" text={dockerfile.user} label="User" placeholder="Type a keyword..." type="text" ref="input_user" />
+                    </form>
                 </Panel>
 
                 {/* Run Items */}
@@ -67,10 +72,10 @@ class Step2 extends React.Component {
                 {/* Buttons */}
                 <Panel size="full">
                     {/* Previous Button */}
-                    <Button align="left" text=<span><i  className="fa fa-angle-left"/> Previous</span> color="Orange" isInline={true} onClick={this.handlePreviousPage.bind(this)}/>
+                    <Button align="left" text=<span><i  className={cx(fa.fa, fa['fa-angle-left'])}/> Previous</span> color="Orange" isInline={true} onClick={this.handlePreviousPage.bind(this)}/>
 
                     {/* Next Button */}
-                    <Button align="right" text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" isInline={true} onClick={this.handleNextPage.bind(this)}/>
+                    <Button align="right" text=<span>Next <i  className={cx(fa.fa, fa['fa-angle-right'])}/></span> color="Orange" isInline={true} onClick={this.handleNextPage.bind(this)}/>
                 </Panel>
             </FlexContainer>
         );

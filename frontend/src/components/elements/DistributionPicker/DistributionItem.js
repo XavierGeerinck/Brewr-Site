@@ -1,3 +1,5 @@
+import styles from './DistributionPicker.scss';
+
 import React, { PropTypes } from 'react';
 import Dropdown from '../Dropdown';
 import cx from 'classnames';
@@ -12,10 +14,10 @@ class DistributionItem extends React.Component {
     }
 
     render () {
-        var classes = cx({
-            'DistributionPicker-PickDistribution': true,
-            'DistributionPicker-PickDistribution-Selected': this.props.distribution.is_selected
-        });
+        var classes = cx(
+            styles['DistributionPicker-PickDistribution'],
+            this.props.distribution.is_selected ? styles['DistributionPicker-PickDistribution-Selected'] : null
+        );
 
         return (
             <div className={classes} onClick={this.handleClick.bind(this)}>

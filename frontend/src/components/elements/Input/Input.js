@@ -1,5 +1,6 @@
+import styles from './Input.scss';
+import purecss from 'purecss/build/pure.css';
 import React, { PropTypes } from 'react';
-import './Input.scss';
 import cx from 'classnames';
 
 class Input extends React.Component {
@@ -33,10 +34,10 @@ class Input extends React.Component {
     }
 
     renderFormGroup (children) {
-        var classes = cx({
-            'Input': true,
-            'Input-Inline': this.props.isInline
-        });
+        var classes = cx(
+            'Input',
+            this.props.isInline ? styles['Input-Inline'] : null
+        );
 
         return (
             <div className={classes}>{children}</div>
@@ -67,7 +68,8 @@ class Input extends React.Component {
             value={this.state.value}
             placeholder={this.props.placeholder}
             onChange={this.handleChange.bind(this)}
-            key="input"/>
+            key="input"
+            className={purecss['pure-input-1']}/>
         }
     }
 

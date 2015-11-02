@@ -1,14 +1,15 @@
+import styles from './Divider.scss';
+
 import React, { PropTypes } from 'react';
-import './Divider.scss';
 import cx from 'classnames';
 
 class Divider extends React.Component {
     render() {
-        var className = cx({
-            'Divider': true,
-            'Divider-Horizontal': this.props.align === 'horizontal',
-            'Divider-Vertical': this.props.align === 'vertical',
-        });
+        var className = cx(
+            styles['Divider'],
+            this.props.align === 'horizontal' ? styles['Divider-Horizontal'] : null,
+            this.props.align === 'vertical' ? styles['Divider-Vertical'] : null,
+        );
 
         return (
             <div className={className}>

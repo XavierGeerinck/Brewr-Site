@@ -1,3 +1,6 @@
+import fa from 'font-awesome/css/font-awesome.css';
+import styles from './SideMenu.scss';
+
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import cx from 'classnames';
@@ -23,19 +26,18 @@ class SideMenuContainer extends React.Component {
         const { title } = this.props;
         const { showItems } = this.state;
 
-        var className = cx({
-            'SideMenuContainer-Second-Level-Visible': showItems,
-            'SideMenuContainer-Second-Level-NotVisible': !showItems,
-        });
+        var className = cx(
+            showItems ? styles['SideMenuContainer-Second-Level-Visible'] : styles['SideMenuContainer-Second-Level-NotVisible']
+        );
 
         return (
-            <li className="SideMenuContainer SideMenuContainer-Second-Level">
+            <li className={cx(styles.SideMenuContainer, styles['SideMenuContainer-Second-Level'])}>
                 <a href="#" onClick={this.showItems.bind(this)}>
                     {title}
-                    <i className="fa fa-caret-down item-dropdown"></i>
+                    <i className={cx(fa.fa, fa['fa-caret-down'], styles['item-dropdown'])}></i>
                 </a>
 
-                <div className="clear"></div>
+                <div className={styles.clear}></div>
 
                 <ul className={className}>
                     {this.props.children}

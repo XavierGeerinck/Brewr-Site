@@ -1,10 +1,11 @@
+import styles from './List.scss';
+
 import React, { PropTypes } from 'react';
-import './List.scss';
 
 class List extends React.Component {
     render() {
         return (
-            <ul className="List">
+            <ul className={styles.List}>
                 {this.props.children}
             </ul>
         );

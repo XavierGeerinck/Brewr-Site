@@ -8,7 +8,9 @@ import Input from '../../elements/Input';
 import AuthActions from '../../../actions/AuthActions';
 import AuthStore from '../../../stores/AuthStore';
 import BaseComponent from '../../BaseComponent';
-import './Login.scss';
+import styles from './Login.scss';
+import cx from 'classnames';
+import purecss from 'purecss/build/pure.css';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -56,7 +58,7 @@ class LoginPage extends React.Component {
         return (
             <MainLayout>
                 <div className="LoginPage">
-                    <form role="form">
+                    <form className={cx(purecss['pure-form'], purecss['pure-form-stacked'])} role="form">
                         <Input type="email" ref="email" placeholder="Email" label="Email" id="user_email" />
                         <Input type="password"  ref="password" label="Password" id="user_password" />
 

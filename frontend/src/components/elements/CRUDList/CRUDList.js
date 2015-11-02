@@ -1,3 +1,5 @@
+import styles from './CRUDList.scss';
+import purecss from 'purecss/build/pure.css';
 import React, { PropTypes } from 'react';
 import update from 'react/lib/update';
 import List from '../List';
@@ -6,7 +8,7 @@ import Input from '../Input';
 import Button from '../Button';
 import TabContainer from '../TabContainer';
 import TabItem from '../TabContainer/TabItem';
-import './CRUDList.scss';
+import cx from 'classnames';
 
 // Drag and drop functionallity of the listitems
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -119,12 +121,12 @@ class CRUDList extends React.Component {
         let self = this;
 
         return (
-            <div className="CRUDList">
+            <div className={styles.CRUDList}>
                 <TabContainer>
                     {
                         canUploadFile ?
                         <TabItem text="Upload File">
-                            <form action="#" ref="upload_form" onSubmit={this.handleUpload.bind(self)} encType="multipart/form-data">
+                            <form action="#" className={cx(purecss['pure-form'], purecss['pure-form-stacked'])} ref="upload_form" onSubmit={this.handleUpload.bind(self)} encType="multipart/form-data">
                                 <Input type="file" label="Upload File" ref="value_1" />
                                 <Input type="text" label="Destination Path" ref="value_2"/>
                                 <Button text="Upload" type="submit" isForm="true" />
@@ -134,7 +136,7 @@ class CRUDList extends React.Component {
                     }
 
                     <TabItem text={addItemText}>
-                        <form action="#" onsubmit="this.reset(); return false;">
+                        <form action="#" className={cx(purecss['pure-form'], purecss['pure-form-stacked'])} onsubmit="this.reset(); return false;">
                             <Input type="text" label={textAddValue} ref="value_1" />
                             { withFileUploadDestination ? <Input type="text" label="Destination Path" ref="value_2"/> : null }
                             <Button text="Add" type="submit" isInline="true" isForm="true" onClick={this.handleAdd.bind(this)} />

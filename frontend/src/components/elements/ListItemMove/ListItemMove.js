@@ -1,9 +1,11 @@
+import styles from './ListItemMove.scss';
+import fa from 'font-awesome/css/font-awesome.css';
 import React, { PropTypes } from 'react';
 import Button from '../Button';
 import { DragSource, DropTarget } from 'react-dnd';
 import { ItemTypes } from './Constants';
 import flow from 'lodash/function/flow';
-import './ListItemMove.scss';
+import cx from 'classnames';
 
 const style = {
 
@@ -57,9 +59,9 @@ class ListItemMove extends React.Component {
 
         return connectDragSource(connectDropTarget(
             <li style={{ ...style, opacity }}>
-                {canMove ? <Button text=<i className="fa fa-align-justify"></i> isDragIcon="true" isForm="true" onClick={onClickMove.bind(this)} />  : '' }
+                {canMove ? <Button text=<i className={cx(fa.fa, fa['fa-align-justify'])}></i> isDragIcon="true" isForm="true" onClick={onClickMove.bind(this)} />  : '' }
                 {value}
-                {canRemove ? <Button text=<i className="fa fa-remove"></i> isForm="true" onClick={this.handleRemove.bind(this)} />  : '' }
+                {canRemove ? <Button text=<i className={cx(fa.fa, fa['fa-remove'])}></i> isForm="true" onClick={this.handleRemove.bind(this)} />  : '' }
             </li>
         ));
     }

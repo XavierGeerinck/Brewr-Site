@@ -1,3 +1,5 @@
+import styles from './Wizard.scss';
+
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
 
@@ -7,10 +9,10 @@ class WizardItem extends React.Component {
     }
 
     render() {
-        var className = cx({
-            'WizardItem': true,
-            'WizardItem-Selected': this.props.isSelected
-        });
+        var className = cx(
+            styles['WizardItem'],
+            this.props.isSelected ? styles['WizardItem-Selected'] : null
+        );
 
         return (
             <li className={className}>

@@ -1,4 +1,4 @@
-import "./TabContainer.scss";
+import styles from './TabContainer.scss';
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
 
@@ -28,15 +28,15 @@ class TabContainer extends React.Component {
         });
 
         return (
-            <div className="TabContainer">
+            <div className={styles.TabContainer}>
                 {
                     children.length > 1 ?
-                    <ul className="TabContainer-Tabs">
+                    <ul className={styles['TabContainer-Tabs']}>
                         {
                             children.map((i, index) => {
-                                let className = cx({
-                                    'TabContainer-Tab-Selected': selectedItemIdx === index
-                                });
+                                let className = cx(
+                                    selectedItemIdx === index ? styles['TabContainer-Tab-Selected'] : null 
+                                );
 
                                 return i && i.props ? <li className={className} onClick={self.handleTabChange.bind(self, index)}><a href="#">{i.props.text}</a></li> : null
                             })

@@ -1,5 +1,5 @@
 import React from 'react';
-import "./FlexContainer.scss";
+import styles from "./FlexContainer.scss";
 
 export default class FlexContainer  extends React.Component {
     constructor(props) {
@@ -8,7 +8,7 @@ export default class FlexContainer  extends React.Component {
 
     render() {
         return (
-            <div className="FlexContainer">
+            <div className={styles.FlexContainer}>
                 {this.props.children}
             </div>
         )

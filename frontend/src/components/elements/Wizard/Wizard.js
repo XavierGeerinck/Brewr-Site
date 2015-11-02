@@ -1,4 +1,4 @@
-import "./Wizard.scss";
+import styles from './Wizard.scss';
 import React, { PropTypes } from 'react';
 import WizardItem from './WizardItem';
 
@@ -20,9 +20,9 @@ class Wizard extends React.Component {
         });
 
         return (
-            <div className="Wizard">
+            <div className={styles.Wizard}>
                 <hr />
-                <ul className="Wizard-Items">
+                <ul className={styles['Wizard-Items']}>
                     {wizardItems}
                 </ul>
             </div>

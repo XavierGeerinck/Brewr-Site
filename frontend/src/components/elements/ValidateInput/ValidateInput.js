@@ -1,6 +1,4 @@
-/**
- * Created by Maxim on 27/08/2015.
- */
+import styles from '../Input/Input.scss';
 import React, { PropTypes } from 'react';
 import Input from '../Input/Input.js';
 import cx from 'classnames';
@@ -15,10 +13,10 @@ export default class ValidateInput extends Input {
 
     renderFormGroup (children) {
 
-        var classes = cx({
-            'Input': true,
-            'Input-Inline': this.props.isInline
-        });
+        var classes = cx(
+            styles['Input'],
+            this.props.isInline ? styles['Input-Inline'] : null
+        );
 
         return (
             <div className={classes}>

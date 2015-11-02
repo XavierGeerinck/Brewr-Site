@@ -1,5 +1,6 @@
+import styles from './Panel.scss';
+import fa from 'font-awesome/css/font-awesome.css';
 import React, { PropTypes } from 'react';
-import "./Panel.scss";
 import Tooltip from "../Tooltip";
 import cx from 'classnames';
 
@@ -9,12 +10,12 @@ class Panel extends React.Component {
     }
 
     render() {
-        var className = cx({
-            'Panel': true,
-            'Panel-Full': this.props.size === 'full' ? true : false,
-            'Panel-A-Third': this.props.size === 'a-third' ? true : false,
-            'Panel-Half': this.props.size === 'half' ? true : false,
-        });
+        var className = cx(
+            styles['Panel'],
+            this.props.size === 'full' ? styles['Panel-Full'] : null,
+            this.props.size === 'a-third' ? styles['Panel-A-Third'] : null,
+            this.props.size === 'half' ? styles['Panel-Half'] : null
+        );
 
         return (
             <div className={className}>
@@ -35,8 +36,8 @@ class Panel extends React.Component {
 
     renderTooltip() {
         return (
-            <span className="Panel-HelpIcon">
-                <Tooltip text={this.props.tooltip} placement='top'><i  className="fa fa-question-circle"/></Tooltip>
+            <span className={styles['Panel-HelpIcon']}>
+                <Tooltip text={this.props.tooltip} placement='top'><i className={cx(fa.fa, fa['fa-question-circle'])}/></Tooltip>
             </span>
         )
     }

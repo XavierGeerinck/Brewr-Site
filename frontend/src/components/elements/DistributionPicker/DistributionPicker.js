@@ -1,6 +1,7 @@
+import styles from './DistributionPicker.scss';
+
 import React, { PropTypes } from 'react';
 import DistributionItem from './DistributionItem';
-import './DistributionPicker.scss';
 
 class DistributionPicker extends React.Component {
     constructor(props) {
@@ -63,7 +64,7 @@ class DistributionPicker extends React.Component {
         }.bind(this));
 
         return (
-            <div className="DistributionPicker-FlexContainer">
+            <div className={styles['DistributionPicker-FlexContainer']}>
                 {distributionComponents}
             </div>
         );

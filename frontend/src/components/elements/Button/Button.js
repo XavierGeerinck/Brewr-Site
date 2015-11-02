@@ -1,19 +1,22 @@
 import React, { PropTypes } from 'react';
+import styles from './Button.scss';
 import cx from 'classnames';
-import './Button.scss';
+import purecss from 'purecss/build/pure.css';
 
 class Button extends React.Component {
     render() {
-        var className = cx({
-            'Button': true,
-            'Button-Color-Orange': this.props.color.toLowerCase() === 'orange' ? true : false,
-            'Button-Color-White': this.props.color.toLowerCase() === 'white' ? true : false,
-            'Button-Inline': this.props.isInline ? true : false,
-            'Button-Form': this.props.isForm ? true : false,
-            'Button-DragIcon': this.props.isDragIcon ? true : false,
-            'Button-Align-Right': this.props.align.toLowerCase() === 'right',
-            'Button-Align-Left': this.props.align.toLowerCase() === 'left'
-        });
+        var className = cx(
+            this.props.color.toLowerCase() === 'orange' ? styles['Button-Color-Orange'] : null,
+            this.props.color.toLowerCase() === 'white' ? styles['Button-Color-White'] : false,
+            this.props.isInline ? styles['Button-Inline'] : null,
+            this.props.isForm ? styles['Button-Form'] : null,
+            this.props.isDragIcon ? styles['Button-DragIcon'] : null,
+            this.props.align.toLowerCase() === 'right' ? styles['Button-Align-Right'] : null,
+            this.props.align.toLowerCase() === 'left' ? styles['Button-Align-Left'] : null,
+            styles.Button,
+            styles['pure-button'],
+            styles['pure-button-primary']
+        );
 
         // <div className="clear"></div>
         return (

@@ -1,6 +1,7 @@
+import styles from './DockerHubSearch.scss';
+
 import React, { PropTypes } from 'react';
 import DockerHubService from '../../../services/DockerHubService';
-import './DockerHubSearch.scss';
 
 export default class DockerHubSearch extends React.Component {
     constructor(props) {
@@ -21,7 +22,7 @@ export default class DockerHubSearch extends React.Component {
 
     render() {
         return (
-            <div className="DockerHubSearch">
+            <div className={styles.DockerHubSearch}>
                 <input type="text" placeholder="Type a keyword..." onChange={this.handleChange.bind(this)}/>
             </div>
         );

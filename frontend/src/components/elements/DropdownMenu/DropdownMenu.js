@@ -1,4 +1,6 @@
-import './DropdownMenu.scss';
+import fa from 'font-awesome/css/font-awesome.css';
+import styles from './DropdownMenu.scss';
+
 import React, { PropTypes } from 'react';
 import DropdownMenuItem from './DropdownMenuItem';
 import cx from 'classnames';
@@ -51,16 +53,16 @@ class DropdownMenu extends React.Component {
         const { isOpen } = this.state;
         const { title, children } = this.props;
 
-        var classNameItems = cx({
-            'DropdownMenu-Items': true,
-            'DropdownMenu-Items-Visible': isOpen
-        });
+        var classNameItems = cx(
+            styles['DropdownMenu-Items'],
+            isOpen ? styles['DropdownMenu-Items-Visible'] : null
+        );
 
         var self = this;
 
         return (
-            <div className="DropdownMenu">
-                <div className="DropdownMenu-Activator" onClick={this.handleClickActivator.bind(this)}>
+            <div className={styles.DropdownMenu}>
+                <div className={styles['DropdownMenu-Activator']} onClick={this.handleClickActivator.bind(this)}>
                     {title}
                 </div>
 

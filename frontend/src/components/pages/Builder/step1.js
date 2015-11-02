@@ -1,3 +1,5 @@
+import fa from 'font-awesome/css/font-awesome.css';
+import styles from './Builder.scss';
 import React, { PropTypes } from 'react';
 import SideMenu from '../../elements/SideMenu';
 import Button from '../../elements/Button';
@@ -8,6 +10,7 @@ import DockerHubSearch from '../../elements/DockerHubSearch';
 import Divider from '../../elements/Divider';
 import BuilderActions from '../../../actions/BuilderActions';
 import BuilderStore from '../../../stores/BuilderStore';
+import cx from 'classnames';
 
 /**
  * Step 1: Distribution picker
@@ -27,7 +30,7 @@ class Step1 extends React.Component {
 
     render() {
         return (
-            <div className="BuilderStep1Page">
+            <div className={styles.BuilderStep1Page}>
                 {/* Pick Predefined Docker Image */}
                 <h1>Pick your base image</h1>
                 <DistributionPicker distributions={BuilderStore.featuredDistributions} selectedDistribution={BuilderStore.dockerfile.distribution} selectedVersion={BuilderStore.dockerfile.distribution_version} ref="distribution_picker"/>
@@ -39,7 +42,7 @@ class Step1 extends React.Component {
                 <DockerHubSearch/>
 
                 {/* Next Button */}
-                <Button text=<span>Next <i  className="fa fa-angle-right"/></span> color="Orange" onClick={this.handleNextPage.bind(this)}/>
+                <Button text=<span>Next <i  className={cx(fa.fa, fa['fa-angle-right'])}/></span> color="Orange" onClick={this.handleNextPage.bind(this)}/>
                 <div className="clear"></div>
             </div>
         );

@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import Logo from '../Logo';
-import './HeaderSmall.scss';
+import styles from './HeaderSmall.scss';
+import cx from 'classnames';
 
 class HeaderSmall extends React.Component {
     constructor(props) {
@@ -14,18 +15,18 @@ class HeaderSmall extends React.Component {
 
     renderLoggedIn() {
         return (
-            <div className="HeaderSmall">
-                <div className="HeaderSmall-container">
+            <div className={styles.HeaderSmall}>
+                <div className={styles.container}>
                     <Logo />
 
-                    <div className="HeaderSmall-Navigation">
+                    <div className={styles.Navigation}>
                         <Link to="/">Home</Link>
                         <Link to="/dashboard">Dashboard</Link>
                         <Link to="/projects">Projects</Link>
-                        <Link to="/logout" className="button white">Logout</Link>
+                        <Link to="/logout" className={cx(styles.button, styles.white)}>Logout</Link>
                     </div>
 
-                    <div className="clear"></div>
+                    <div className={styles.clear}></div>
                 </div>
             </div>
         );
@@ -33,19 +34,19 @@ class HeaderSmall extends React.Component {
 
     renderNotLoggedIn() {
         return (
-            <div className="HeaderSmall">
-                <div className="HeaderSmall-container">
+            <div className={styles.HeaderSmall}>
+                <div className={styles.container}>
                     <Logo align="left" />
 
-                    <div className="HeaderSmall-Navigation">
+                    <div className={styles.Navigation}>
                         <Link to="/">Home</Link>
                         <Link to="/tour">Tour</Link>
                         <Link to="/pricing">Pricing</Link>
                         <Link to="/login">Sign in</Link>
-                        <Link to="/register" className="button white">Sign up</Link>
+                        <Link to="/register" className={cx(styles.button, styles.white)}>Sign up</Link>
                     </div>
 
-                    <div className="clear"></div>
+                    <div className={styles.clear}></div>
                 </div>
             </div>
         );

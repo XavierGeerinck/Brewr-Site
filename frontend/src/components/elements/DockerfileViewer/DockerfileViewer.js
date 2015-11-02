@@ -1,5 +1,5 @@
+import styles from './DockerfileViewer.scss';
 import React, { PropTypes } from 'react';
-import './DockerfileViewer.scss';
 
 export default class DockerfileViewer extends React.Component {
     constructor (props) {
@@ -12,21 +12,21 @@ export default class DockerfileViewer extends React.Component {
         // TODO: Add CMD to start the install script
         console.log(this.props.dockerFileObject);
         return (
-            <div className="DockerfileViewer">
+            <div className={styles['DockerfileViewer']}>
                 <h1>JSON</h1>
-                <div className="DockerfileViewer-StartupScript">
+                <div className={styles['DockerfileViewer-StartupScript']}>
                     { JSON.stringify(this.props.dockerFileObject) }
                 </div>
 
                 <h1>Docker Startup Command</h1>
-                <div className="DockerfileViewer-StartupParams">
+                <div className={styles['DockerfileViewer-StartupParams']}>
                     docker run
                     <div dangerouslySetInnerHTML={{ __html: this.renderStartupPorts() }} />
                     <div dangerouslySetInnerHTML={{ __html: this.renderStartupVolumes() }} />
                 </div>
 
                 <h1>Dockerfile</h1>
-                <div className="DockerfileViewer-Dockerfile">
+                <div className={styles['DockerfileViewer-Dockerfile']}>
                     <div dangerouslySetInnerHTML={{ __html: this.renderDistribution() }} />
                     <div dangerouslySetInnerHTML={{ __html: this.renderMaintainer() }} />
                     <div dangerouslySetInnerHTML={{ __html: this.renderDockerLabels() }} />
@@ -41,7 +41,7 @@ export default class DockerfileViewer extends React.Component {
                 </div>
 
                 <h1>Files to create</h1>
-                <div className="DockerfileViewer-StartupScript">
+                <div className={styles['DockerfileViewer-StartupScript']}>
                     <div dangerouslySetInnerHTML={{ __html: this.renderCreateFiles() }} />
                 </div>
             </div>

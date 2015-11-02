@@ -1,20 +1,20 @@
 @import '../../../css/colors';
 
-.DashboardLayout-Container {
+.Container {
     height: 100%;
     display: flex;
 }
 
-.DashboardLayout-Content {
+.Content {
     width: calc(100% - 200px);
     height: 100%;
 }
 
-.DashboardLayout-Page {
+.Page {
     width: 100%;
 }
 
-.DashboardLayout-Page-Container {
+.Page-Container {
     padding: 20px 30px;
     background-color: $color-white-shade-darker-1;
     margin-top: 70px;
@@ -23,21 +23,21 @@
     height: calc(100% - 70px);
 }
 
-.DashboardLayout-Page-Content {
+.Page-Content {
     background-color: $color-white;
     padding: 15px 20px;
     border-radius: 0;
     border: 1px solid rgba(0, 0, 0, 0.07);
 }
 
-.DashboardLayout-Page-Content > div > h1 {
+.Page-Content > div > h1 {
     font-size: 24px;
     padding: 20px 0 15px 0;
     margin: 0 0 10px 0;
     text-align: center;
 }
 
-.DashboardLayout-Page-Header {
+.Page-Header {
     background-color: $color-white;
     color: $color-black;
     height: 69px;
@@ -47,21 +47,21 @@
     z-index: 2;
 }
 
-.DashboardLayout-Page-Header ul {
+.Page-Header ul {
     height: 100%;
     padding: 0 0 0 20px;
     margin: 0;
     float: left;
 }
 
-.DashboardLayout-Page-Header ul li {
+.Page-Header ul li {
     height: 100%;
     list-style: none;
     display: inline-block;
     margin-right: 40px;
 }
 
-.DashboardLayout-Page-Header ul li a {
+.Page-Header ul li a {
     height: 100%;
     display: block;
     line-height: 68px;
@@ -69,7 +69,7 @@
     font-size: 14px;
 }
 
-.DashboardLayout-Page-Title {
+.Page-Title {
     font-size: 30px;
     font-weight: 700;
     padding: 20px 0;
@@ -77,14 +77,14 @@
     color: $color-text;
 }
 
-.DashboardLayout-UserPreview {
+.UserPreview {
     height: 100%;
     float: right;
     line-height: 70px;
     padding-right: 20px;
 }
 
-.DashboardLayout-CompanyPicker {
+.CompanyPicker {
     display: block;
     float: left;
     line-height: 70px;

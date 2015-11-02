@@ -1,5 +1,7 @@
+import fa from 'font-awesome/css/font-awesome.css';
+import styles from './Dropdown.scss';
+
 import React, {PropTypes } from 'react';
-import './Dropdown.scss';
 import cx from 'classnames';
 
 class Dropdown extends React.Component {
@@ -15,10 +17,10 @@ class Dropdown extends React.Component {
             options.push(<option value={item.value} selected={item.isSelected}>{item.name}</option>);
         });
 
-        var className = cx({
-            'Dropdown': true,
-            'Dropdown-Selected': this.props.isSelected
-        });
+        var className = cx(
+            styles['Dropdown'],
+            this.props.isSelected ? 'Dropdown-Selected' : null
+        );
 
         return (
             <div className={className}>

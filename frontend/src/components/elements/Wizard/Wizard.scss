@@ -2,6 +2,7 @@
 
 .Wizard {
     width: 100%;
+    margin-top: 10px;
 }
 
 .Wizard-Items {
@@ -14,11 +15,13 @@
     color: gray;
     text-transform: uppercase;
     text-align: center;
+    margin-top: 10px;
 }
 
 .WizardItem {
     position: relative;
     padding: 0 10px;
+    font-size: 10px;
 }
 
 .WizardItem-Selected {
@@ -32,7 +35,7 @@
 
 .WizardItem:before {
     position: absolute;
-    top: -22px;
+    top: -18px;
     width: 14px;
     height: 14px;
     left: calc(50% - 7px);

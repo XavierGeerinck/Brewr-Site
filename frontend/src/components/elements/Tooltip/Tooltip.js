@@ -1,4 +1,4 @@
-import "./Tooltip.scss";
+import styles from './Tooltip.scss';
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
 
@@ -9,13 +9,13 @@ class Tooltip extends React.Component {
 
     render() {
 
-        var className = cx({
-            'Tooltip': true,
-            'Tooltip-Right': this.props.placement === 'right' ? true : false,
-            'Tooltip-Bottom': this.props.placement === 'bottom' ? true : false,
-            'Tooltip-Left': this.props.placement === 'left' ? true : false,
-            'Tooltip-Top': this.props.placement === 'top' ? true : false
-        });
+        var className = cx(
+            styles['Tooltip'],
+            this.props.placement === 'right' ? styles['Tooltip-Right'] : null,
+            this.props.placement === 'bottom' ? styles['Tooltip-Bottom'] : null,
+            this.props.placement === 'left' ? styles['Tooltip-Left'] : null,
+            this.props.placement === 'top' ? styles['Tooltip-Top'] : null
+        );
 
         return (
             <span className={className} data-tooltip={this.props.text}>

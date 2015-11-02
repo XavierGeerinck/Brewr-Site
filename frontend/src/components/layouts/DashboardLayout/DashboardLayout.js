@@ -1,4 +1,8 @@
-import './DashboardLayout.scss';
+import styles from './DashboardLayout.scss';
+import purecss from 'purecss/build/grids-responsive.css';
+import fa from 'font-awesome/css/font-awesome.css';
+import cx from 'classnames';
+
 import React, { PropTypes } from 'react';
 import SideMenu, { SideMenuItem, SideMenuContainer } from '../../elements/SideMenu';
 import Divider from '../../elements/Divider';
@@ -52,12 +56,12 @@ class DashboardLayout extends React.Component {
         const projects = selected_organisation ? selected_organisation.projects : [];
 
         return (
-            <div className="DashboardLayout-Container">
+            <div className={styles.Container}>
                 {/* SIDEMENU */}
                 <SideMenu title="brewr">
-                    <SideMenuItem link="/dashboard"><i className="fa fa-home"></i>Dashboard</SideMenuItem>
-                    <SideMenuItem link={teamLink}><i className="fa fa-group"></i>Teams</SideMenuItem>
-                    <SideMenuContainer title={<span><i className="fa fa-folder"></i><span>Projects</span></span>}>
+                    <SideMenuItem link="/dashboard"><i className={cx(fa.fa, fa['fa-home'])}></i>Dashboard</SideMenuItem>
+                    <SideMenuItem link={teamLink}><i className={cx(fa.fa, fa['fa-group'])}></i>Teams</SideMenuItem>
+                    <SideMenuContainer title={<span><i className={cx(fa.fa, fa['fa-folder'])}></i><span>Projects</span></span>}>
                         {
                             projects ?
                             projects.map(p => {
@@ -67,17 +71,17 @@ class DashboardLayout extends React.Component {
                             : null
                         }
                     </SideMenuContainer>
-                    <SideMenuItem link="/builder"><i className="fa fa-gears"></i>Image Creator</SideMenuItem>
-                    <SideMenuItem link="/organisation/1/admin"><i className="fa fa-lock"></i>Admin</SideMenuItem>
-                    <SideMenuItem link="/logout" isStickBottom={true}><i className="fa fa-sign-out"></i>Logout</SideMenuItem>
+                    <SideMenuItem link="/builder"><i className={cx(fa.fa, fa['fa-gears'])}></i>Image Creator</SideMenuItem>
+                    <SideMenuItem link="/organisation/1/admin"><i className={cx(fa.fa, fa['fa-lock'])}></i>Admin</SideMenuItem>
+                    <SideMenuItem link="/logout" isStickBottom={true}><i className={cx(fa.fa, fa['fa-sign-out'])}></i>Logout</SideMenuItem>
                 </SideMenu>
 
                 {/* CONTENT */}
-                <div className="DashboardLayout-Content">
-                    <div className="DashboardLayout-Page-Header">
+                <div className={styles.Content}>
+                    <div className={styles['Page-Header']}>
                         {
                             selected_organisation ?
-                            <div className="DashboardLayout-CompanyPicker">
+                            <div className={styles.CompanyPicker}>
                                 <DropdownMenu title={ selected_organisation.name }>
                                 {
                                     organisations.map(i => {
@@ -91,29 +95,29 @@ class DashboardLayout extends React.Component {
                         <Divider align="vertical" />
 
                         <ul>
-                            <li><a href=""><i className="fa fa-bell"></i></a></li>
-                            <li><a href=""><i className="fa fa-bell"></i></a></li>
-                            <li><a href=""><i className="fa fa-bell"></i></a></li>
+                            <li><a href=""><i className={cx(fa.fa, fa['fa-bell'])}></i></a></li>
+                            <li><a href=""><i className={cx(fa.fa, fa['fa-bell'])}></i></a></li>
+                            <li><a href=""><i className={cx(fa.fa, fa['fa-bell'])}></i></a></li>
                         </ul>
 
-                        <div className="DashboardLayout-UserPreview">
+                        <div className={styles.UserPreview}>
                             <DropdownMenu title={user.name}>
                                 <DropdownMenuItem>
-                                    <Link to="/user/settings"><i className="fa fa-cog"></i>Settings</Link>
+                                    <Link to="/user/settings"><i className={cx(fa.fa, fa['fa-cog'])}></i>Settings</Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
-                                    <Link to="/logout"><i className="fa fa-sign-out"></i>Logout</Link>
+                                    <Link to="/logout"><i className={cx(fa.fa, fa['fa-sign-out'])}></i>Logout</Link>
                                 </DropdownMenuItem>
                             </DropdownMenu>
                         </div>
 
-                        <div className="clear"></div>
+                        <div className={styles.clear}></div>
                     </div>
 
-                    <div className="DashboardLayout-Page-Container">
+                    <div className={styles['Page-Container']}>
                         {
                             title ?
-                            <div className="DashboardLayout-Page-Title">
+                            <div className={styles['Page-Title']}>
                                 {title}
                             </div>
                             : undefined
@@ -121,7 +125,7 @@ class DashboardLayout extends React.Component {
 
                         {
                             isBoxed ?
-                            <div className="DashboardLayout-Page-Content">
+                            <div className={styles['Page-Content']}>
                                 {this.props.children}
                             </div>
                             :
