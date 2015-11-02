@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import './SideMenu.css';
+import './SideMenu.scss';
 import SideMenuContainer from './SideMenuContainer';
 import SideMenuItem from './SideMenuItem';
 

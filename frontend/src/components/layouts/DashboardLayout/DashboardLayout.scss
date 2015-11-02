@@ -1,4 +1,4 @@
-@import '../../variables.css';
+@import '../../../css/colors';
 
 .DashboardLayout-Container {
     height: 100%;
@@ -16,7 +16,7 @@
 
 .DashboardLayout-Page-Container {
     padding: 20px 30px;
-    background-color: var(--color-white-shade-darker-1);
+    background-color: $color-white-shade-darker-1;
     margin-top: 70px;
     overflow-y: scroll;
     position: relative;
@@ -24,7 +24,7 @@
 }
 
 .DashboardLayout-Page-Content {
-    background-color: var(--color-white);
+    background-color: $color-white;
     padding: 15px 20px;
     border-radius: 0;
     border: 1px solid rgba(0, 0, 0, 0.07);
@@ -38,10 +38,10 @@
 }
 
 .DashboardLayout-Page-Header {
-    background-color: var(--color-white);
-    color: var(--color-black);
+    background-color: $color-white;
+    color: $color-black;
     height: 69px;
-    border-bottom: 1px solid var(--color-white-shade-darker-2);
+    border-bottom: 1px solid $color-white-shade-darker-2;
     position: fixed;
     width: calc(100% - 200px);
     z-index: 2;
@@ -65,7 +65,7 @@
     height: 100%;
     display: block;
     line-height: 68px;
-    color: var(--color-text);
+    color: $color-text;
     font-size: 14px;
 }
 
@@ -74,7 +74,7 @@
     font-weight: 700;
     padding: 20px 0;
     letter-spacing: 2px;
-    color: var(--color-text);
+    color: $color-text;
 }
 
 .DashboardLayout-UserPreview {

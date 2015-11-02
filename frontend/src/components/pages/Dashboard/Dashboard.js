@@ -1,4 +1,4 @@
-import './Dashboard.css';
+import './Dashboard.scss';
 import React, { PropTypes } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import AuthStore from '../../../stores/AuthStore';

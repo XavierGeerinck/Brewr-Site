@@ -1,5 +1,5 @@
 import React, {PropTypes } from 'react';
-import './Dropdown.css';
+import './Dropdown.scss';
 import cx from 'classnames';
 
 class Dropdown extends React.Component {

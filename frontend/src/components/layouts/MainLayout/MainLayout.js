@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import HeaderSmall from '../../elements/HeaderSmall';
 import Footer from '../../elements/Footer';
 import AuthStore from '../../../stores/AuthStore';
-import './MainLayout.css';
+import './MainLayout.scss';
 
 /**
  * The main layout has the header, content and a footer.

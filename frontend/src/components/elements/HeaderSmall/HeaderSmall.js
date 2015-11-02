@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import Logo from '../Logo';
-import './HeaderSmall.css';
+import './HeaderSmall.scss';
 
 class HeaderSmall extends React.Component {
     constructor(props) {

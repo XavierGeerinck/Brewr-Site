@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import "./Panel.css";
+import "./Panel.scss";
 import Tooltip from "../Tooltip";
 import cx from 'classnames';
 

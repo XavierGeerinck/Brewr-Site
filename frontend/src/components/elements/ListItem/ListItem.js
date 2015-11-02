@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Button from '../Button';
 import { ItemTypes } from './Constants';
-import './ListItem.css';
+import './ListItem.scss';
 
 const style = {
 

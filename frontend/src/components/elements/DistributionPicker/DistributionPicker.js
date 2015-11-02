@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import DistributionItem from './DistributionItem';
-import './DistributionPicker.css';
+import './DistributionPicker.scss';
 
 class DistributionPicker extends React.Component {
     constructor(props) {

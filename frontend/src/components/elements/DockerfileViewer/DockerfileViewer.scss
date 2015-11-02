@@ -1,30 +1,30 @@
-@import '../../variables.css';
+@import '../../../css/colors';
 
 .DockerfileViewer-Dockerfile {
-    background-color: var(--color-terminal);
+    background-color: $color-terminal;
     min-height: 100px;
     border-radius: 3px;
     padding: 10px 15px;
-    color: var(--color-terminal-text);
-    text-shadow: 0 0 1px var(--color-terminal-text-shadow);
+    color: $color-terminal-text;
+    text-shadow: 0 0 1px $color-terminal-text-shadow;
     overflow-x: scroll;
 }
 
 .DockerfileViewer-Dockerfile > div {
     margin-bottom: 10px;
 }
-  
+
 .DockerfileViewer-Dockerfile > div:last-child {
     margin-bottom: 0px;
 }
 
 .DockerfileViewer-StartupParams {
-    background-color: var(--color-terminal);
+    background-color: $color-terminal;
     min-height: 100px;
     border-radius: 3px;
     padding: 10px 15px;
-    color: var(--color-terminal-text);
-    text-shadow: 0 0 1px var(--color-terminal-text-shadow);
+    color: $color-terminal-text;
+    text-shadow: 0 0 1px $color-terminal-text-shadow;
 }
 
 .DockerfileViewer-StartupParams > div {
@@ -36,12 +36,12 @@
 }
 
 .DockerfileViewer-StartupScript {
-    background-color: var(--color-terminal);
+    background-color: $color-terminal;
     min-height: 100px;
     border-radius: 3px;
     padding: 10px 15px;
-    color: var(--color-terminal-text);
-    text-shadow: 0 0 1px var(--color-terminal-text-shadow);
+    color: $color-terminal-text;
+    text-shadow: 0 0 1px $color-terminal-text-shadow;
 }
 
 .DockerfileViewer-StartupScript > div {

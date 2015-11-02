@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import './TextBox.css';
+import './TextBox.scss';
 
 export default React.createClass({
   propTypes: {

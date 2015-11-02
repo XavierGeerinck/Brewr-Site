@@ -1,15 +1,11 @@
-@import '../../variables.css';
-
-:root {
-    --brand-color: #61dafb;
-}
+@import '../../../css/colors';
 
 .SideMenu {
     color: #fff;
 
     min-width: 200px;
     max-width: 200px;
-    background-color: var(--color-primary-shade-lighter-1);
+    background-color: $color-primary-shade-lighter-1;
     font-weight: normal;
 }
 
@@ -17,13 +13,13 @@
     text-transform: uppercase;
     margin: 0;
     text-align: center;
-    color: var(--color-white);
+    color: $color-white;
     font-size: 18px;
 }
 
 .SideMenu h1 a {
     text-decoration: none;
-    color: var(--color-white);
+    color: $color-white;
     padding: 15px 0;
     display: block;
 }
@@ -40,7 +36,7 @@
 
 .SideMenu ul li {
     font-size: 12px;
-    color: var(--color-sidemenu);
+    color: $color-sidemenu;
 }
 
 .SideMenu ul li i {
@@ -53,18 +49,18 @@
 }
 
 .SideMenu ul li a {
-    color: var(--color-sidemenu);
+    color: $color-sidemenu;
     padding: 13px 0 13px 20px;
     display: block;
     text-decoration: none;
 }
 
 .SideMenu ul li:nth-child(odd) {
-    background-color: var(--color-primary-shade-lighter-2);
+    background-color: $color-primary-shade-lighter-2;
 }
 
 .SideMenuItem-Active {
-    border-left: 5px solid var(--color-primary-shade-lighter-4);
+    border-left: 5px solid $color-primary-shade-lighter-4;
 }
 
 .SideMenuItem-StickBottom {
@@ -85,19 +81,19 @@
 }
 
 .SideMenuContainer-Second-Level ul {
-    background-color: var(--color-primary-shade-darker-2);
+    background-color: $color-primary-shade-darker-2;
     padding: 0;
 }
 
 .SideMenuContainer-Second-Level ul li {
-    background-color: var(--color-primary-shade-darker-2) !important;
-    border-bottom: 1px solid var(--color-primary-shade-darker-1);
+    background-color: $color-primary-shade-darker-2 !important;
+    border-bottom: 1px solid $color-primary-shade-darker-1;
     padding: 0;
     display: block;
 }
 
 .SideMenuContainer-Second-Level a {
-    color: var(--color-sidemenu);
+    color: $color-sidemenu;
     display: block;
     padding: 13px 0 13px 20px;
 }

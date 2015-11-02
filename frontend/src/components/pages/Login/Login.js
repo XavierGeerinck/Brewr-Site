@@ -8,7 +8,7 @@ import Input from '../../elements/Input';
 import AuthActions from '../../../actions/AuthActions';
 import AuthStore from '../../../stores/AuthStore';
 import BaseComponent from '../../BaseComponent';
-import './Login.css';
+import './Login.scss';
 
 class LoginPage extends React.Component {
     constructor(props) {

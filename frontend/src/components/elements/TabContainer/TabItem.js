@@ -1,4 +1,4 @@
-import "./TabContainer.css";
+import "./TabContainer.scss";
 import React, { PropTypes } from 'react';
 
 class TabItem extends React.Component {

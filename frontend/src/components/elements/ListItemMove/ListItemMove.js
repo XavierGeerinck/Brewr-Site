@@ -3,7 +3,7 @@ import Button from '../Button';
 import { DragSource, DropTarget } from 'react-dnd';
 import { ItemTypes } from './Constants';
 import flow from 'lodash/function/flow';
-import './ListItemMove.css';
+import './ListItemMove.scss';
 
 const style = {
 

@@ -1,4 +1,4 @@
-import './DropdownMenu.css';
+import './DropdownMenu.scss';
 import React, { PropTypes } from 'react';
 import DropdownMenuItem from './DropdownMenuItem';
 import cx from 'classnames';

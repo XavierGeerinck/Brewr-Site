@@ -10,7 +10,7 @@ import Validator from '../../../validators/Validator.js';
 import LengthConstraint from '../../../validators/constraints/LengthConstraint.js';
 import EmailConstraint from '../../../validators/constraints/EmailConstraint.js';
 import ConfirmConstraint from '../../../validators/constraints/ConfirmConstraint.js';
-import './Register.css';
+import './Register.scss';
 
 export default class RegisterPage extends BaseComponent {
 

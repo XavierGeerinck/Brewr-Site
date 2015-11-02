@@ -1,7 +1,7 @@
-@import '../../variables.css';
+@import '../../../css/colors';
 
 .HeaderSmall {
-  background: var(--color-primary);
+  background: $color-primary;
   color: #fff;
 }
 

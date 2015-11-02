@@ -29,6 +29,11 @@ module.exports = {
                 loader: 'file?name=[name].[ext]'
             },
             {
+                test: /\.scss$/,
+                exclude: [],
+                loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]!sass'
+            },
+            {
                 test: /\.css$/,
                 exclude: [],
                 loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]'

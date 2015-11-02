@@ -1,0 +1,94 @@
+@import '../../../css/colors';
+
+.Footer {
+    background: $color-footer;
+    color: $color-white;
+}
+
+.copyright {
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: $color-primary-shade-darker-1;
+    background-color: $color-primary-shade-darker-1;
+}
+
+.container {
+    padding: 3em 4em;
+    color: $color-white;
+    background-color: $color-primary;
+}
+
+.container a {
+    color: $color-white-shade-darker-1;
+    text-decoration: none;
+}
+
+.container ul {
+    padding: 0;
+}
+
+.container li {
+    list-style: none;
+    text-align: left;
+}
+
+.container li a {
+    color: $color-white-shade-darker-1;
+    font-size: 16px;
+    padding: 2px 0;
+    display: block;
+}
+
+.container h2 {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.Company {
+    padding-left: 60px;
+    padding-top: 15px;
+}
+
+.Logo {
+    font-size: 24px;
+    margin: 0 ;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $color-white;
+}
+
+.SocialLinks {
+    margin-top: 15px;
+}
+
+.SocialLinks a {
+    margin-right: 20px;
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+}
+
+.SocialLinks i:hover {
+    background-color: $color-white;
+    color: $color-black;
+}
+
+.SocialLinks i {
+    text-align: center;
+    width: 38px; height: 38px;
+    color: $color-white;
+    border: 1px solid $color-white;
+    border-radius: 50%;
+    line-height: 38px;
+}
+
+.SocialLinks a:last {
+    margin-right: 0;
+}

@@ -6,7 +6,7 @@ import Input from '../Input';
 import Button from '../Button';
 import TabContainer from '../TabContainer';
 import TabItem from '../TabContainer/TabItem';
-import './CRUDList.css';
+import './CRUDList.scss';
 
 // Drag and drop functionallity of the listitems
 import HTML5Backend from 'react-dnd-html5-backend';

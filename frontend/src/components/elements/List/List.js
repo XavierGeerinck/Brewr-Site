@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import './List.css';
+import './List.scss';
 
 class List extends React.Component {
     render() {

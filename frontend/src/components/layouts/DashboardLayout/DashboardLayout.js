@@ -1,4 +1,4 @@
-import './DashboardLayout.css';
+import './DashboardLayout.scss';
 import React, { PropTypes } from 'react';
 import SideMenu, { SideMenuItem, SideMenuContainer } from '../../elements/SideMenu';
 import Divider from '../../elements/Divider';

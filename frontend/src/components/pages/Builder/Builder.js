@@ -10,7 +10,7 @@ import BuilderStep4 from './step4';
 import BuilderStep5 from './step5';
 import BuilderStep6 from './step6';
 import BuilderStore from '../../../stores/BuilderStore';
-import './Builder.css';
+import './Builder.scss';
 import BuilderActions from '../../../actions/BuilderActions';
 
 class Builder extends React.Component {

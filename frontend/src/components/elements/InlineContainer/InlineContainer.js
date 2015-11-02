@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import './InlineContainer.css';
+import './InlineContainer.scss';
 
 export default React.createClass({
   propTypes: {

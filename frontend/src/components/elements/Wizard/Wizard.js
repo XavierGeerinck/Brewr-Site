@@ -1,4 +1,4 @@
-import "./Wizard.css";
+import "./Wizard.scss";
 import React, { PropTypes } from 'react';
 import WizardItem from './WizardItem';
 

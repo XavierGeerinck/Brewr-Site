@@ -1,4 +1,4 @@
-@import '../../variables.css';
+@import '../../../css/colors';
 
 .Divider {
     text-align: center;
@@ -16,14 +16,14 @@
 }
 
 .Divider-Horizontal {
-    border-bottom: 1px solid var(--color-white-shade-darker-2);
+    border-bottom: 1px solid $color-white-shade-darker-2;
     width: 100%;
     line-height: 0.1em;
     margin: 20px 0;
 }
 
 .Divider-Vertical {
-    border-right: 1px solid var(--color-white-shade-darker-2);
+    border-right: 1px solid $color-white-shade-darker-2;
     width: 1px;
     height: 100%;
     display: inline-block;

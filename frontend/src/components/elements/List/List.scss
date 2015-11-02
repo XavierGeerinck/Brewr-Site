@@ -1,4 +1,4 @@
-@import '../../variables.css';
+@import '../../../css/colors';
 
 .List {
   list-style: none;
@@ -6,7 +6,7 @@
 }
 
 .List li {
-  border: 1px solid var(--color-white-shade-darker-2);
+  border: 1px solid $color-white-shade-darker-2;
   border-bottom: none;
   position: relative;
   display: flex;
@@ -23,12 +23,12 @@
 }
 
 .List li:last-child {
-  border-bottom: 1px solid var(--color-white-shade-darker-2);
+  border-bottom: 1px solid $color-white-shade-darker-2;
 }
 
 .List Button:first-child {
-  color: var(--color-white-shade-darker-5);
-  background-color: var(--color-white-shade-darker-1);
+  color: $color-white-shade-darker-5;
+  background-color: $color-white-shade-darker-1;
   border: 1px solid rgba(0, 0, 0, 0.07);
 }
 

@@ -4,7 +4,7 @@ import Footer from '../elements/Footer';
 import SideMenu from '../elements/SideMenu';
 import AuthStore from '../../stores/AuthStore';
 import AuthActions from '../../actions/AuthActions';
-import './App.css';
+import styles from './App.scss';
 var RouteHandler = Router.RouteHandler;
 
 class App extends React.Component {
@@ -21,7 +21,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <div id="app" className="App-Container">
+            <div id="app" className={styles.App}>
                 {this.props.children}
             </div>
         );

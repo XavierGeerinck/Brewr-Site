@@ -3,7 +3,21 @@
 Find:    `"Footer-(.*)"`
 Replace: `{styles.$1}`
 
+`var\(\-\-(.*)\)`
+`$$$1`
+
+## Css --> JS
+1. `\.(.*)\ \{` --> `$1: {`
+2. `px` -> ``
+3. `(.*): (.*);` -> `$1: '$2'`
+
 # frontend (frontend)
+## FAQ
+Run npm install as administrator!
+
+## Grid system
+We use https://www.npmjs.com/package/purecss for the grid system, you can import it and apply it as style components
+
 ## Best practices
 1. DO NOT let a component use a store or an action, try to do this through the pages or layouts, this way we allow maximum reusability.
 2. When performing requests, always implement the RESPONSE and RESPONSE_ERROR types. This allows for detailed error handling.
