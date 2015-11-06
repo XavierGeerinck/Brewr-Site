@@ -275,7 +275,7 @@
             "organisation_id": 1,
             "is_manager": false
         }
-    ]
+    ],
     "team": [
         {
             "id": 1,
@@ -283,7 +283,7 @@
             "description": "Team responsible for mobile development",
             "organisation_id": 1,
             "created_by": 1,
-            "team_leader": 1,
+            "team_leader": 1
         }
     ],
     "team_user": [
