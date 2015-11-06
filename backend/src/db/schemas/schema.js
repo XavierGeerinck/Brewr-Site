@@ -58,6 +58,48 @@ var Schema = {
         updated_at: { type: 'string', nullable: true }
     },
 
+    team: {
+        id: { type: 'increments', nullable: false, primary: true},
+        name: {type: 'string', nullable: false},
+        description: {type: 'text', nullable: true},
+        image_url: { type: 'string', 'nullable': false},
+        team_leader: {references: 'id', inTable: 'user', type: 'integer', nullable: true},
+        created_at: { type: 'dateTime', nullable: false},
+        organisation: {references: 'id', inTable: 'organisation', type: 'integer', nullable: true},
+        created_by: {references: 'id', inTable: 'user', type: 'integer', nullable: true},
+        updated_at: { type: 'dateTime', nullable: true},
+        active: { type: 'boolean', defaultTo: true}
+    },
+
+    team_role: {
+        id: { type: 'increments', nullable: false, primary: true },
+        team_id: { references: 'id', inTable: 'team', type: 'integer', nullable: false, unsigned: true, comment: 'What team does the specified role belong to'},
+        user_id: { references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true, comment: 'Which user has this role'},
+        role: {type: 'string', nullable: false},
+        created_at: { type: 'dateTime', nullable: false, comment: 'When was the role added'}
+    },
+
+    team_user: {
+        id: { type: 'increments', nullable: false, primary: true },
+        team_id: { compoundPrimaryKey: true, references: 'id', inTable: 'team', type: 'integer', nullable: false, unsigned: true },
+        user_id: { compoundPrimaryKey: true, references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true },
+        created_at: { type: 'dateTime', nullable: false, comment: 'When was the user added to the team?'}
+    },
+
+    project_team: {
+        project_id: { compoundPrimaryKey: true, references: 'id', inTable: 'project', type: 'integer', nullable: false, unsigned: true },
+        team_id: { compoundPrimaryKey: true, references: 'id', inTable: 'team', type: 'integer', nullable: false, unsigned: true },
+        created_at: { type: 'dateTime', nullable: false }
+    },
+
+    project_role: {
+        id: { type: 'increments', nullable: false, primary: true },
+        project_id: { references: 'id', inTable: 'project', type: 'integer', nullable: false, unsigned: true, comment: 'What project does the specified role belong to'},
+        user_id: { references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true, comment: 'Which user has this role'},
+        role: {type: 'string', nullable: false},
+        created_at: { type: 'dateTime', nullable: false, comment: 'When was the role added'}
+    },
+
     project_revision: {
         id: { type: 'increments', nullable: false, primary: true },
         project: { references: 'id', inTable: 'project',  type: 'integer', unsigned: true, nullable: false },
