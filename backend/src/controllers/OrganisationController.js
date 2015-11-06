@@ -62,3 +62,18 @@ exports.getMembers = function (request, reply) {
         return reply(err);
     });
 };
+
+exports.makeManager = function (request, reply) {
+    var memberId = request.params.memberId;
+    var organisationUUID = request.params.organisation;
+
+    organisationService
+    .makeMemberManagerByOrganisationUUID(organisationUUID, memberId)
+    .then(function (success) {
+        return reply({ success: true });
+    })
+    .catch(function (err) {
+        console.log(err);
+        return reply(err);
+    });
+};

@@ -13,3 +13,16 @@ export function getOrganisationMembers(token, organisationUUID) {
         return OrganisationServerActions.receiveGetOrganisationMembersResponse(res.body);
     });
 }
+
+export function makeManager(token, organisationUUID, memberId) {
+    request
+    .post('http://localhost:8000/organisation/' + organisationUUID + '/member/' + memberId + '/manager')
+    .set('Authorization', 'Bearer ' + token)
+    .end(function (err, res) {
+        if (err) {
+            return OrganisationServerActions.receiveOrganisationMakeManagerErrorResponse(err);
+        }
+
+        return OrganisationServerActions.receiveOrganisationMakeManagerResponse(res.body);
+    });
+}

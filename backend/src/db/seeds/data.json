@@ -272,7 +272,8 @@
         },
         {
             "user_id": 6,
-            "organisation_id": 1
+            "organisation_id": 1,
+            "is_manager": false
         }
     ]
 }

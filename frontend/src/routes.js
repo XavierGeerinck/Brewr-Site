@@ -4,7 +4,7 @@ import App from './components/App';
 import BuilderPage from './components/pages/Builder';
 import LoginPage from './components/pages/Login';
 import RegisterPage from './components/pages/Register';
-import TeamPage from './components/pages/Team';
+import MembersPage from './components/pages/Members';
 import ProjectPage from './components/pages/Project';
 import HomePage from './components/pages/Home';
 import NotFoundPage from './components/pages/NotFound';
@@ -33,7 +33,7 @@ var routes = (
             <Route path="register"  component={RegisterPage} />
             <Route path="logout"    component={LogoutPage} onEnter={requireAuth} />
             <Route path="dashboard" component={DashboardPage} onEnter={requireAuth} />
-            <Route path="organisation/:organisationUUID/teams"     component={TeamPage} onEnter={requireAuth} />
+            <Route path="organisation/:organisationUUID/members"     component={MembersPage} onEnter={requireAuth} />
             <Route path="organisation/:organisationId/project/:projectId"  component={ProjectPage} onEnter={requireAuth} />
             <Route path="*"         component={NotFoundPage} />
         </Route>

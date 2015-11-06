@@ -22,11 +22,9 @@ class DropdownMenuItem extends React.Component {
 };
 
 DropdownMenuItem.propTypes = {
-    onClick: PropTypes.function
 };
 
 DropdownMenuItem.defaultProps = {
-    onClick: function (childs) {}
 };
 
 export default DropdownMenuItem;

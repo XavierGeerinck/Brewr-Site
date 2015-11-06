@@ -5,9 +5,7 @@ import ProjectActions from '../../../actions/ProjectActions';
 import AuthStore from '../../../stores/AuthStore';
 import ProjectStore from '../../../stores/ProjectStore';
 
-//import { Card, CardHeader, CardTitle, CardText, CardActions, FlatButton, Avatar } from 'material-ui';
-
-export default class Project extends BaseComponent {
+export class Project extends BaseComponent {
     constructor(props) {
         super(props);
         this._getState();
@@ -43,18 +41,26 @@ export default class Project extends BaseComponent {
 
         const { selectedProject } = this.state;
 
+        console.log(selectedProject);
+
         return (
             <DashboardLayout>
-                <Card>
-                    <CardTitle title={selectedProject.name} />
-                    <CardText>{selectedProject.description}</CardText>
-                    <CardActions>
-                        <FlatButton label="Edit"/>
-                        <FlatButton label="Delete"/>
-                    </CardActions>
-                </Card>
+                <div>
+                    <h1>{selectedProject.name}</h1>
+                    <p>{selectedProject.description}</p>
+                </div>
+
+                <h1>Members</h1>
+                {
+                    selectedProject.members.map(m => {
+                        <li><img src={m.avatar_url} />{m.name} - {m.scope}</li>
+                    })
+                }
+
             </DashboardLayout>
         )
     }
 
 }
+
+export default Project;

@@ -13,6 +13,10 @@ var ProjectActions = {
 
         OrganisationAPIUtils.getOrganisationMembers(token, organisationUUID);
     },
+
+    makeManager: function (token, organisationUUID, memberId) {
+        OrganisationAPIUtils.makeManager(token, organisationUUID, memberId);
+    }
     //
     // create: function(project) {
     //     AppDispatcher.dispatch({

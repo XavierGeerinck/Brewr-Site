@@ -60,6 +60,23 @@ module.exports = [
         }
     },
     {
+        method: 'POST',
+        path: '/organisation/{organisation}/members/{memberId}/manager',
+        config: {
+            handler: OrganisationController.makeManager,
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'belongs-to-organisation-{params.organisation}-creator', 'belongs-to-organisation-{params.organisation}-manager' ]
+            },
+            validate: {
+                params: {
+                    organisation: Joi.string().guid().required(),
+                    memberId: Joi.number().required()
+                }
+            }
+        }
+    },
+    {
         method: 'DELETE',
         path: '/organisation/{organisation}/members/{memberId}',
         config: {
