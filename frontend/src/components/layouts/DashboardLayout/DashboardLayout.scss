@@ -14,6 +14,15 @@
     width: 100%;
 }
 
+.Page-Container {
+    position: relative;
+    height: calc(100% - 70px);
+    margin-top: 69px;
+}
+
+.Page-Content {
+    height: 100%;
+}
 // .Page-Container {
 //     background-color: $colorBackground;
 //     margin-top: 68px;

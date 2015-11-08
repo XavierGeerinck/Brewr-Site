@@ -1,6 +1,7 @@
 @import 'normalize.css/normalize.css';
 @import 'font-awesome/css/font-awesome.min.css';
 @import '../../css/colors';
+@import '../../css/dimensions';
 
 /*
 * Base styles
@@ -11,6 +12,11 @@
     width: 100%;
 }
 
+h1 {
+    color: $colorTextLight;
+    font-weight: normal;
+    font-size: $dimensionTextTitle;
+}
 
 /*
 * Global styles

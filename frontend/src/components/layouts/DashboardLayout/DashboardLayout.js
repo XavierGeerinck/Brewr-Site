@@ -125,8 +125,6 @@ console.log(this.props);
 
                     {/* BODY */}
                     <div className={styles['Page-Container']}>
-
-
                         {
                             isBoxed ?
                             <div className={styles['Page-Content']}>

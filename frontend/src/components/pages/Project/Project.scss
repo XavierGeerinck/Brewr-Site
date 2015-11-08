@@ -1,0 +1,81 @@
+@import '../../../css/colors';
+@import '../../../css/dimensions';
+
+.ContainerRight {
+    //background-color: $colorContainer;
+    height: 100%;
+    padding: 10px 20px;
+    border-left: 1px solid $colorBorder;
+}
+
+.ContainerRight > ul {
+    list-style: none;
+}
+
+.ContainerRight > ul > li {
+    background-color: $colorContainer;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid lighten($colorBorder, 5%);
+    position: relative;
+}
+
+.ContainerRight > ul > li > * {
+    float: left;
+}
+
+.ContainerRight > ul > li > span {
+    margin-left: 20px;
+    line-height: 40px;
+}
+
+.ContainerRight > ul > li > button {
+    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 40px;
+    background: none;
+    border: none;
+    border-left: 1px solid $colorBorder;
+}
+
+.ContainerRightListItem {
+    margin-top: 2px;
+    margin-left: 10px;
+}
+.ContainerRightListItemName {
+    font-size: $dimensionTextNormal;
+}
+
+.ContainerRightListItemSubtitle {
+    color: $colorTextLight;
+    font-size: $dimensionTextSmaller;
+}
+
+.ContainerBottom {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.ContainerBottom h1 {
+    padding: 0 10px;
+}
+
+.ContainerLeft {
+    position: relative;
+    height: 100%;
+}
+
+.ContainerTop {
+    padding: 20px;
+}
+
+.Clear {
+    float: none !important;
+    clear: both;
+}

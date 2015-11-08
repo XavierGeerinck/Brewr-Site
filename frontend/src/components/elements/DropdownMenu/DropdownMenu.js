@@ -37,7 +37,6 @@ class DropdownMenu extends React.Component {
     }
 
     componentWillUnmount() {
-        console.log(this);
         document.removeEventListener('click', this.state.hideMethod, false);
     }
 
