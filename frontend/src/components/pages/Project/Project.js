@@ -44,7 +44,7 @@ export class Project extends BaseComponent {
         console.log(selectedProject);
 
         return (
-            <DashboardLayout>
+            <DashboardLayout title={selectedProject.name}>
                 <div>
                     <h1>{selectedProject.name}</h1>
                     <p>{selectedProject.description}</p>

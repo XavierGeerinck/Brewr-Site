@@ -1,5 +1,9 @@
 @import '../../../css/colors';
 
+.DropdownMenu {
+    position: relative;
+}
+
 .DropdownMenu:hover {
     cursor: pointer;
 }
@@ -24,14 +28,17 @@
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-top: 5px solid rgba(0, 0, 0, 0.4);
-    vertical-align: -15%;
+    vertical-align: -20%;
 
     content: "";
 }
 
 .DropdownMenu-Items {
+    position: absolute;
+    left: 0;
     display: none;
     min-width: calc(100% - 20px);
+    white-space: nowrap; /* This prevents the menu items from wrapping! */
     margin: -5px 0 0;
     font-size: 14px;
     text-align: center;
@@ -54,7 +61,7 @@
     font-weight: 400;
     line-height: 1.42857143;
     color: #333;
-    padding: 10px 0;
+    padding: 10px 15px;
 }
 
 .DropdownMenuItem a {

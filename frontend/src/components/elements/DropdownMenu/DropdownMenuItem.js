@@ -1,3 +1,4 @@
+import styles from './DropdownMenu.scss';
 import React, { PropTypes } from 'react';
 
 class DropdownMenuItem extends React.Component {
@@ -14,7 +15,7 @@ class DropdownMenuItem extends React.Component {
 
     render() {
         return (
-            <div className="DropdownMenuItem" onClick={this._handleOnClick.bind(this)}>
+            <div className={styles.DropdownMenuItem} onClick={this._handleOnClick.bind(this)}>
                 {this.props.children}
             </div>
         );

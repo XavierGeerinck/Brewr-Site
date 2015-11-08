@@ -54,7 +54,7 @@ class DashboardLayout extends React.Component {
         const { user, organisations, selected_organisation } = this.state;
         const teamLink = "/organisation/" + selected_organisation.uuid + "/members";
         const projects = selected_organisation ? selected_organisation.projects : [];
-
+console.log(this.props);
         return (
             <div className={styles.Container}>
                 {/* SIDEMENU */}
@@ -78,19 +78,28 @@ class DashboardLayout extends React.Component {
 
                 {/* CONTENT */}
                 <div className={styles.Content}>
+                    {/* HEADER */}
                     <div className={styles['Page-Header']}>
-                        {
-                            selected_organisation ?
-                            <div className={styles.CompanyPicker}>
-                                <DropdownMenu title={ selected_organisation.name }>
-                                {
-                                    organisations.map(i => {
-                                        return <DropdownMenuItem onClick={this._handleChangeCompany.bind(this)} key={i.name}>{i.name}</DropdownMenuItem>
-                                    })
-                                }
-                                </DropdownMenu>
-                            </div> : null
-                        }
+                        <div className={styles.Title}>
+
+
+                            {
+                                selected_organisation ?
+                                <span>
+                                    <DropdownMenu title={ selected_organisation.name }>
+                                    {
+                                        organisations.map(i => {
+                                            return <DropdownMenuItem onClick={this._handleChangeCompany.bind(this)} key={i.name}>{i.name}</DropdownMenuItem>
+                                        })
+                                    }
+                                    </DropdownMenu>
+                                </span> : null
+                            }
+
+                            <Divider align="vertical" />
+
+                            { title ? <span> {title}</span> : undefined }
+                        </div>
 
                         <Divider align="vertical" />
 
@@ -114,14 +123,9 @@ class DashboardLayout extends React.Component {
                         <div className={styles.clear}></div>
                     </div>
 
+                    {/* BODY */}
                     <div className={styles['Page-Container']}>
-                        {
-                            title ?
-                            <div className={styles['Page-Title']}>
-                                {title}
-                            </div>
-                            : undefined
-                        }
+
 
                         {
                             isBoxed ?

@@ -14,34 +14,36 @@
     width: 100%;
 }
 
-.Page-Container {
-    padding: 20px 30px;
-    background-color: $color-white-shade-darker-1;
-    margin-top: 70px;
-    overflow-y: scroll;
-    position: relative;
-    height: calc(100% - 70px);
-}
-
-.Page-Content {
-    background-color: $color-white;
-    padding: 15px 20px;
-    border-radius: 0;
-    border: 1px solid rgba(0, 0, 0, 0.07);
-}
-
-.Page-Content > div > h1 {
-    font-size: 24px;
-    padding: 20px 0 15px 0;
-    margin: 0 0 10px 0;
-    text-align: center;
+// .Page-Container {
+//     background-color: $colorBackground;
+//     margin-top: 68px;
+//     position: relative;
+//     height: calc(100% - 70px);
+// }
+//
+// .Page-Content {
+//     background-color: $color-white;
+//     padding: 15px 20px;
+//     border-radius: 0;
+//     border: 1px solid rgba(0, 0, 0, 0.07);
+// }
+//
+// .Page-Content > div > h1 {
+//     font-size: 24px;
+//     padding: 20px 0 15px 0;
+//     margin: 0 0 10px 0;
+//     text-align: center;
+// }
+//
+.Page-Header > * {
+    float: left;
 }
 
 .Page-Header {
     background-color: $color-white;
     color: $color-black;
     height: 69px;
-    border-bottom: 1px solid $color-white-shade-darker-2;
+    border-bottom: 1px solid $colorBorder;
     position: fixed;
     width: calc(100% - 200px);
     z-index: 2;
@@ -72,9 +74,19 @@
 .Page-Title {
     font-size: 30px;
     font-weight: 700;
-    padding: 20px 0;
     letter-spacing: 2px;
     color: $color-text;
+}
+
+.Title > span {
+    float: left;
+    padding: 0 20px;
+    line-height: 68px;
+}
+
+.Title > span:last-child {
+    color: $colorTextPrimary;
+    font-weight: bold;
 }
 
 .UserPreview {

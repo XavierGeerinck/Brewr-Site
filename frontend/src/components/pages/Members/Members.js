@@ -57,7 +57,7 @@ export default class Members extends BaseComponent {
         const { members, managers, creator, allMembers } = this.state;
 
         return (
-            <DashboardLayout>
+            <DashboardLayout title="Members">
                 <form>
                     {/*}<TableButtons>
                         <button className={cx(purecss['pure-button'], purecss['pure-button-primary'])} onClick={this.saveMemberChanges.bind(this)}>Save</button>
