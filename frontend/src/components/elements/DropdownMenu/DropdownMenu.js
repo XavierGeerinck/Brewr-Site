@@ -14,43 +14,31 @@ class DropdownMenu extends React.Component {
         };
     }
 
-    componentDidMount() {
-        console.log('mounting');
-        document.addEventListener("click", this.documentClickHandler.bind(this));
-    }
+    toggle(e) {
+        if (this.state.isOpen) {
+            this.setState({ isOpen: false });
+            return;
+        }
 
-    componentWillUnmount() {
-        console.log('unmounting');
-        document.removeEventListener("click", this.documentClickHandler);
-    }
+        const hideMethod = this.hide.bind(this);
+        const isOpen = this.state.isOpen;
+        this.setState({ isOpen: !isOpen, hideMethod: hideMethod });
 
-    dropdownClickHandler(e) {
-        e.nativeEvent.stopImmediatePropagation();
-    }
-
-    documentClickHandler(scope) {
-        console.log('doc handle');
-
-        this.setState({
-            isOpen: false
-        });
-    }
-
-    handleClickActivator(e) {
-        let isOpen = this.state.isOpen;
-
-        this.setState({
-            isOpen: !isOpen
-        });
+        document.addEventListener('click', hideMethod, false);
 
         // Don't propogate further, else we will close it instantly
         e.nativeEvent.stopImmediatePropagation();
     }
 
-    closeContainer() {
-        this.setState({
-            isOpen: false
-        });
+    hide() {
+        const hideMethod = this.state.hideMethod;
+        this.setState({ isOpen: false, hideMethod: hideMethod });
+        document.removeEventListener('click', hideMethod, false);
+    }
+
+    componentWillUnmount() {
+        console.log(this);
+        document.removeEventListener('click', this.state.hideMethod, false);
     }
 
     render() {
@@ -66,11 +54,11 @@ class DropdownMenu extends React.Component {
 
         return (
             <div className={styles.DropdownMenu}>
-                <div className={styles['DropdownMenu-Activator']} onClick={this.handleClickActivator.bind(this)}>
+                <div className={styles['DropdownMenu-Activator']} onClick={this.toggle.bind(this)}>
                     {title}
                 </div>
 
-                <div className={classNameItems} onClick={this.dropdownClickHandler.bind(this)}>
+                <div className={classNameItems} onClick={this.hide.bind(this)}>
                     {children}
                 </div>
             </div>
