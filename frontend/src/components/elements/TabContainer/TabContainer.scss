@@ -18,7 +18,7 @@
 }
 
 .TabContainer-Tab-Selected a {
-    color: var(--color-text-selected) !important;
+    color: $color-text-selected !important;
 }
 
 .TabContainer-Tabs li {
@@ -26,15 +26,15 @@
     padding: 5px 10px;
 
     margin-bottom: -1px; /* Hack to remove the border */
-    background-color: var(--color-white);
 }
 
 .TabContainer-Tabs li a {
     letter-spacing: 1px;
-    color: var(--color-text);
+    color: $color-text;
     text-decoration: none;
 }
 
-.TabContainer-Tabs li a:hover {
-    color: var(--color-text-hover);
+.TabContainer-Tabs li:hover {
+    color: $color-text-hover;
+    cursor: pointer;
 }

@@ -11,6 +11,12 @@ import BaseComponent from '../../BaseComponent';
 import styles from './Login.scss';
 import cx from 'classnames';
 import purecss from 'purecss/build/pure.css';
+import forms from 'newforms';
+
+var SigninForm = forms.Form.extend({
+    email: forms.EmailField(),
+    password: forms.CharField({ widget: forms.PasswordInput })
+});
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -50,7 +56,14 @@ class LoginPage extends React.Component {
 
     login(e) {
         e.preventDefault();
-        AuthActions.login(this.refs.email.state.value, this.refs.password.state.value);
+
+    }
+
+    _onSubmit(e) {
+        e.preventDefault();
+
+        var form = this.refs.signinForm.getForm();
+        AuthActions.login(form.data.email, form.data.password);
     }
 
     render() {
@@ -58,11 +71,9 @@ class LoginPage extends React.Component {
         return (
             <MainLayout>
                 <div className="LoginPage">
-                    <form className={cx(purecss['pure-form'], purecss['pure-form-stacked'])} role="form">
-                        <Input type="email" ref="email" placeholder="Email" label="Email" id="user_email" />
-                        <Input type="password"  ref="password" label="Password" id="user_password" />
-
-                        <Button type="submit" text="Login" isInline={isInline} onClick={this.login.bind(this)} />
+                    <form role="form" onSubmit={this._onSubmit.bind(this)}>
+                        <forms.RenderForm form={SigninForm} ref="signinForm" />
+                        <Button type="submit" text="Login" isInline={isInline} />
                     </form>
                 </div>
             </MainLayout>

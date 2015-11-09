@@ -2,7 +2,7 @@
 
 .Wizard {
     width: 100%;
-    margin-top: 10px;
+    padding-top: 30px;
 }
 
 .Wizard-Items {
@@ -12,16 +12,17 @@
     justify-content: space-around;
     margin: 0;
     padding: 0;
-    color: gray;
+    color: lighten($colorTextLight, 10%);
     text-transform: uppercase;
     text-align: center;
     margin-top: 10px;
+    font-weight: normal;
 }
 
 .WizardItem {
     position: relative;
     padding: 0 10px;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .WizardItem-Selected {
@@ -30,7 +31,7 @@
 }
 
 .WizardItem-Selected:before {
-    background-color: gray !important;
+    background-color: lighten($colorTextDark, 10%) !important;
 }
 
 .WizardItem:before {
@@ -40,7 +41,7 @@
     height: 14px;
     left: calc(50% - 7px);
     border-radius: 100%;
-    background-color: #e6e6e6;
+    background-color: lighten($colorTextLight, 10%);
     content: '';
     transition: .25s;
 }

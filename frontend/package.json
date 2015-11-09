@@ -60,6 +60,7 @@
     "history": "^1.9.1",
     "jwt-decode": "^1.1.0",
     "lodash": "^3.10.1",
+    "newforms": "^0.13.2",
     "normalize.css": "^3.0.3",
     "object-assign": "^3.0.0",
     "purecss": "^0.6.0",

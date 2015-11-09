@@ -6,6 +6,7 @@ import List from '../List';
 import ListItem from '../ListItemMove';
 import Input from '../Input';
 import Button from '../Button';
+import Form from '../Form';
 import TabContainer from '../TabContainer';
 import TabItem from '../TabContainer/TabItem';
 import cx from 'classnames';
@@ -126,21 +127,21 @@ class CRUDList extends React.Component {
                     {
                         canUploadFile ?
                         <TabItem text="Upload File">
-                            <form action="#" className={cx(purecss['pure-form'], purecss['pure-form-stacked'])} ref="upload_form" onSubmit={this.handleUpload.bind(self)} encType="multipart/form-data">
+                            <Form action="#" ref="upload_form" onSubmit={this.handleUpload.bind(self)} encType="multipart/form-data">
                                 <Input type="file" label="Upload File" ref="value_1" />
                                 <Input type="text" label="Destination Path" ref="value_2"/>
                                 <Button text="Upload" type="submit" isForm="true" />
-                            </form>
+                            </Form>
                         </TabItem>
                         : null
                     }
 
                     <TabItem text={addItemText}>
-                        <form action="#" className={cx(purecss['pure-form'], purecss['pure-form-stacked'])} onsubmit="this.reset(); return false;">
+                        <Form action="#" onsubmit="this.reset(); return false;">
                             <Input type="text" label={textAddValue} ref="value_1" />
                             { withFileUploadDestination ? <Input type="text" label="Destination Path" ref="value_2"/> : null }
                             <Button text="Add" type="submit" isInline="true" isForm="true" onClick={this.handleAdd.bind(this)} />
-                        </form>
+                        </Form>
                     </TabItem>
                 </TabContainer>
 

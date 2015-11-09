@@ -35,10 +35,10 @@ class TabContainer extends React.Component {
                         {
                             children.map((i, index) => {
                                 let className = cx(
-                                    selectedItemIdx === index ? styles['TabContainer-Tab-Selected'] : null 
+                                    selectedItemIdx === index ? styles['TabContainer-Tab-Selected'] : null
                                 );
 
-                                return i && i.props ? <li className={className} onClick={self.handleTabChange.bind(self, index)}><a href="#">{i.props.text}</a></li> : null
+                                return i && i.props ? <li className={className} onClick={self.handleTabChange.bind(self, index)}>{i.props.text}</li> : null
                             })
                         }
                     </ul>

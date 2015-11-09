@@ -9,6 +9,7 @@ import FlexContainer from '../../elements/FlexContainer';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import BuilderActions from '../../../actions/BuilderActions';
 import CRUDList from '../../elements/CRUDList';
+import Form from '../../elements/Form';
 import BuilderStore from '../../../stores/BuilderStore';
 import cx from 'classnames';
 
@@ -57,11 +58,11 @@ class Step2 extends React.Component {
             <FlexContainer>
                 {/* Maintainer, workdir and user */}
                 <Panel heading="General" tooltip={tooltipGeneral}>
-                    <form className={cx(purecss['pure-form'], purecss['pure-form-stacked'])}>
+                    <Form className={cx(purecss['pure-form'], purecss['pure-form-stacked'])}>
                         <Input id="input_maintainer" text={dockerfile.maintainer} label="Maintainer" placeholder="Enter the maintainer for the project.." type="text" ref="input_maintainer" />
                         <Input id="input_workdir" text={dockerfile.workdir} label="Workdir" placeholder="Enter the directory where you will work from..." type="text" ref="input_workdir" />
                         <Input id="input_user" text={dockerfile.user} label="User" placeholder="Type a keyword..." type="text" ref="input_user" />
-                    </form>
+                    </Form>
                 </Panel>
 
                 {/* Run Items */}
