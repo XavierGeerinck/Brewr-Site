@@ -13,6 +13,11 @@ import purecss from 'purecss/build/pure.css';
 import SigninForm from '../../../utils/forms/SigninForm';
 import forms from 'newforms';
 
+var SigninForm = forms.Form.extend({
+    email: forms.EmailField(),
+    password: forms.CharField({ widget: forms.PasswordInput })
+});
+
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
