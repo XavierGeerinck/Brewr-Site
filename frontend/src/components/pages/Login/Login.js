@@ -7,16 +7,11 @@ import Button from '../../elements/Button';
 import Input from '../../elements/Input';
 import AuthActions from '../../../actions/AuthActions';
 import AuthStore from '../../../stores/AuthStore';
-import BaseComponent from '../../BaseComponent';
 import styles from './Login.scss';
 import cx from 'classnames';
 import purecss from 'purecss/build/pure.css';
+import SigninForm from '../../../utils/forms/SigninForm';
 import forms from 'newforms';
-
-var SigninForm = forms.Form.extend({
-    email: forms.EmailField(),
-    password: forms.CharField({ widget: forms.PasswordInput })
-});
 
 class LoginPage extends React.Component {
     constructor(props) {

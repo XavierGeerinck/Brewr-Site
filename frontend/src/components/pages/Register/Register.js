@@ -7,17 +7,8 @@ import ValidateInput from '../../elements/ValidateInput/ValidateInput.js';
 import BaseComponent from '../../BaseComponent';
 import AuthActions from '../../../actions/AuthActions';
 import AuthStore from '../../../stores/AuthStore';
+import SignupForm from '../../../utils/forms/SignupForm';
 import forms from 'newforms';
-
-var RegisterForm = forms.Form.extend({
-    username: forms.CharField(),
-    email: forms.EmailField(),
-    password: forms.CharField({widget: forms.PasswordInput}),
-    firstName: forms.CharField(),
-    lastName: forms.CharField(),
-    confirmPassword: forms.CharField({widget: forms.PasswordInput}),
-    acceptTerms: forms.BooleanField({required: true})
-});
 
 class RegisterPage extends React.Component {
 
@@ -62,7 +53,7 @@ class RegisterPage extends React.Component {
             <MainLayout>
                 <div className="RegisterPage">
                     <form role="form" onSubmit={this._register.bind(this)}>
-                        <forms.RenderForm form={RegisterForm} ref="registerForm" />
+                        <forms.RenderForm form={SignupForm} ref="registerForm" />
                         <Button type="submit" text="Register" isInline={isInline} />
                     </form>
                 </div>
