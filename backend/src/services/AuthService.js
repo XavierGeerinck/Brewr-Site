@@ -55,8 +55,6 @@ exports.authorize = function (email, password, ip, userAgent) {
                 return reject(Boom.unauthorized(null, 'E_WRONG_PASSWORD'));
             }
 
-            // TODO: Dynamic scopes??
-
             // Create session
             return self.createSession(userObject, ip, userAgent);
         })

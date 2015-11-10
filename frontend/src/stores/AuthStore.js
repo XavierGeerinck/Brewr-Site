@@ -32,6 +32,7 @@ class AuthStore extends BaseStore {
             case actionTypes.RESPONSE_REGISTER:
                 // The response returns the token and user:
                 // { token: "", user: {} } set our store to this
+                localStorage.setItem('bearer', source.action.response.token);
                 this._token = source.action.response.token;
                 this.emitChange();
                 break;

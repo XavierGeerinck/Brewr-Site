@@ -275,46 +275,5 @@
             "organisation_id": 1,
             "is_manager": false
         }
-    ],
-    "team": [
-        {
-            "id": 1,
-            "name": "Mobile development",
-            "description": "Team responsible for mobile development",
-            "organisation_id": 1,
-            "created_by": 1,
-            "team_leader": 1
-        }
-    ],
-    "team_user": [
-        {
-            "id": 1,
-            "team_id": 1,
-            "user_id": 1,
-            "created_at": "NOW()"
-        }
-    ],
-    "team_role": [
-        {
-            "id": 1,
-            "team_id": 1,
-            "user_id": 1,
-            "role": "ROLE_LEADER"
-        }
-    ],
-    "project_team": [
-        {
-            "project_id": 1,
-            "team_id": 1,
-            "created_at": "NOW()"
-        }
-    ],
-    "project_role": [
-        {
-            "id": 1,
-            "project_id": 1,
-            "user_id": 1,
-            "role": "ROLE_MANAGER"
-        }
     ]
 }

@@ -24,32 +24,6 @@ lab.experiment('[Controller] User', function() {
         return dbUtil.truncate().then(function() { done(); });
     });
 
-    it('[POST] /user should return succes on creation', function (done) {
-        var request = {
-            method: 'POST',
-            url: '/auth/signup',
-            payload: {
-                email: '1@1.be',
-                password: 'somepassword',
-                firstName: 'John',
-                lastName: 'Doe'
-            }
-        };
-
-        server.inject(request, function (res) {
-            expect(res.payload).to.exist();
-            expect(JSON.parse(res.payload).email).to.equal(request.payload.email);
-
-            // Make sure the pass gets hashed!
-            expect(JSON.parse(res.payload).password).to.not.equal(request.payload.password);
-
-            expect(JSON.parse(res.payload).first_name).to.equal(request.payload.firstName);
-            expect(JSON.parse(res.payload).last_name).to.equal(request.payload.lastName);
-
-            done();
-        });
-    });
-
     it('[GET] /user should return the correct user if authenticated', function (done) {
         var request = {
             method: 'GET',

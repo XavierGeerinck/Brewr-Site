@@ -36,6 +36,53 @@ lab.experiment('[Controller] Auth', function() {
         });
     });
 
+    it('[POST] /user should return { token: "", user: {} } on successful creation', function (done) {
+        var request = {
+            method: 'POST',
+            url: '/auth/signup',
+            payload: {
+                email: '1@1.be',
+                password: 'somepassword',
+                firstName: 'John',
+                lastName: 'Doe'
+            }
+        };
+
+        server.inject(request, function (res) {
+            expect(res.payload).to.exist();
+            expect(JSON.parse(res.payload).token).to.exist();
+            expect(JSON.parse(res.payload).user).to.exist();
+
+            done();
+        });
+    });
+
+    it('[POST] /user should return succes on creation', function (done) {
+        var request = {
+            method: 'POST',
+            url: '/auth/signup',
+            payload: {
+                email: '1@1.be',
+                password: 'somepassword',
+                firstName: 'John',
+                lastName: 'Doe'
+            }
+        };
+
+        server.inject(request, function (res) {
+            expect(res.payload).to.exist();
+            expect(JSON.parse(res.payload).user.email).to.equal(request.payload.email);
+
+            // Make sure the pass gets hashed!
+            expect(JSON.parse(res.payload).user.password).to.not.equal(request.payload.password);
+
+            expect(JSON.parse(res.payload).user.first_name).to.equal(request.payload.firstName);
+            expect(JSON.parse(res.payload).user.last_name).to.equal(request.payload.lastName);
+
+            done();
+        });
+    });
+
     it('[POST] /auth/signin should return a token upon succesfull login', function (done) {
         var request = {
             method: 'POST',

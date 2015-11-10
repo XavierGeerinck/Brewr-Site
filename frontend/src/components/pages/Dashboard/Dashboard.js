@@ -41,7 +41,7 @@ class Dashboard extends React.Component {
     // Render
     render() {
         const { user, organisations, selected_organisation } = this.state;
-        const projects = selected_organisation ? selected_organisation.projects : [];
+        const projects = selected_organisation.projects ? selected_organisation.projects : [];
         const { history } = this.props;
 
         return (

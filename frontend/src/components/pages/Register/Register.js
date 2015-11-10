@@ -1,3 +1,4 @@
+import styles from './Register.scss';
 import React, { PropTypes } from 'react';
 import MainLayout from '../../layouts/MainLayout';
 import SideMenu from '../../elements/SideMenu';
@@ -6,42 +7,22 @@ import ValidateInput from '../../elements/ValidateInput/ValidateInput.js';
 import BaseComponent from '../../BaseComponent';
 import AuthActions from '../../../actions/AuthActions';
 import AuthStore from '../../../stores/AuthStore';
-import Validator from '../../../validators/Validator.js';
-import LengthConstraint from '../../../validators/constraints/LengthConstraint.js';
-import EmailConstraint from '../../../validators/constraints/EmailConstraint.js';
-import ConfirmConstraint from '../../../validators/constraints/ConfirmConstraint.js';
-import './Register.scss';
+import forms from 'newforms';
 
-export default class RegisterPage extends BaseComponent {
+var RegisterForm = forms.Form.extend({
+    username: forms.CharField(),
+    email: forms.EmailField(),
+    password: forms.CharField({widget: forms.PasswordInput}),
+    firstName: forms.CharField(),
+    lastName: forms.CharField(),
+    confirmPassword: forms.CharField({widget: forms.PasswordInput}),
+    acceptTerms: forms.BooleanField({required: true})
+});
 
-    constructor() {
-        super();
+class RegisterPage extends React.Component {
 
-        this.validate = {
-            form: "register_form",
-            validations: {
-                email: {
-                    constraints: [
-                        {test: new LengthConstraint(6), message: "Must be longer than 6 characters"},
-                        {test: new EmailConstraint, message: "E-mail must be a valid email adress"}
-                    ]
-                },
-                password: {
-                    constraints: [
-                        {test: new LengthConstraint(6), message: "Password should be at least 6 characters long"}
-                    ]
-                },
-                password_confirm: {
-                    constraints: [
-                        {test: new LengthConstraint(6), message: "Confirm Password should be at least 6 characters long"},
-                        // {test: new ConfirmConstraint(this.state.password), message: "Passwords must match"}
-                    ]
-                }
-            }
-        };
-
-        // bind the method to a component instance
-        this._bind('register');
+    constructor(props) {
+        super(props);
     };
 
     componentDidMount() {
@@ -53,30 +34,26 @@ export default class RegisterPage extends BaseComponent {
         AuthStore.removeChangeListener(this.changeListener);
     }
 
-    _onChange() {
-        this.setState(this._getAuthState());
+    _getState() {
+        return {
+            token: AuthStore.token
+        }
     }
 
-    register(e) {
+    _onChange() {
+        var state = this._getState();
+        this.setState(state);
+
+        if (state.token) {
+            this.props.history.pushState(null, '/');
+        }
+    }
+
+    _register(e) {
         e.preventDefault();
 
-        var self = this;
-
-        //TODO:  Find a way that registerUser is not executed until after validation!
-        // var valid = Validator.validate(
-        //     self,
-        //      RegisterService.registerUser(
-        //       self.refs["email"].state.value,
-        //       self.refs["password"].state.value
-        //     )
-        // );
-
-        let email = this.refs.email.state.value;
-        let password = this.refs.password.state.value;
-        let firstName = this.refs.first_name.state.value;
-        let lastName = this.refs.last_name.state.value;
-
-        AuthActions.register(email, password, firstName, lastName);
+        var form = this.refs.registerForm.getForm();
+        AuthActions.register(form.data.email, form.data.password, form.data.firstName, form.data.lastName);
     }
 
     render() {
@@ -84,18 +61,14 @@ export default class RegisterPage extends BaseComponent {
         return (
             <MainLayout>
                 <div className="RegisterPage">
-                    <form ref="register_form">
-                        <ValidateInput type="email" ref="email" name="email" placeholder="youremail@example.com" label="Email*" id="user_email" />
-                        <ValidateInput type="password" ref="password" name="password" placeholder="password" label="Password*" id="user_password" />
-                        <ValidateInput type="password" ref="password_confirm" name="password_confirm" placeholder="Confirm password" label="Confirm Password*" id="user_password_confirm" />
-
-                        <ValidateInput type="text" ref="first_name" name="first_name" placeholder="First Name" label="First Name*" id="user_first_name" />
-                        <ValidateInput type="text" ref="last_name" name="last_name" placeholder="Last Name" label="Last Name*" id="user_last_name" />
-
-                        <Button text="Register" isInline={isInline} onClick={this.register} />
+                    <form role="form" onSubmit={this._register.bind(this)}>
+                        <forms.RenderForm form={RegisterForm} ref="registerForm" />
+                        <Button type="submit" text="Register" isInline={isInline} />
                     </form>
                 </div>
             </MainLayout>
         );
     }
 }
+
+export default RegisterPage;
