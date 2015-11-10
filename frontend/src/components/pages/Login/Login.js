@@ -10,7 +10,6 @@ import AuthStore from '../../../stores/AuthStore';
 import styles from './Login.scss';
 import cx from 'classnames';
 import purecss from 'purecss/build/pure.css';
-import SigninForm from '../../../utils/forms/SigninForm';
 import forms from 'newforms';
 
 var SigninForm = forms.Form.extend({

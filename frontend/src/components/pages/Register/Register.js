@@ -7,7 +7,6 @@ import ValidateInput from '../../elements/ValidateInput/ValidateInput.js';
 import BaseComponent from '../../BaseComponent';
 import AuthActions from '../../../actions/AuthActions';
 import AuthStore from '../../../stores/AuthStore';
-import SignupForm from '../../../utils/forms/SignupForm';
 import forms from 'newforms';
 
 var SignupForm = forms.Form.extend({
@@ -16,8 +15,7 @@ var SignupForm = forms.Form.extend({
     password: forms.CharField({widget: forms.PasswordInput}),
     firstName: forms.CharField(),
     lastName: forms.CharField(),
-    confirmPassword: forms.CharField({widget: forms.PasswordInput}),
-    acceptTerms: forms.BooleanField({required: true})
+    confirmPassword: forms.CharField({widget: forms.PasswordInput})
 });
 
 class RegisterPage extends React.Component {

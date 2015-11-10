@@ -10,10 +10,25 @@ import Form from '../Form';
 import TabContainer from '../TabContainer';
 import TabItem from '../TabContainer/TabItem';
 import cx from 'classnames';
+import forms from 'newforms';
 
 // Drag and drop functionallity of the listitems
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
+
+var UploadForm = forms.Form.extend({
+    value_1: forms.FileField({ label: "Upload File" }),
+    value_2: forms.CharField({ label: "Destination Path" })
+});
+
+var LocalFileForm = forms.Form.extend({
+    value_1: forms.CharField({ label: "Source Path" }),
+    value_2: forms.CharField({ label: "Destination Path" })
+});
+
+var NormalTextForm = forms.Form.extend({
+    value_1: forms.CharField({ label: "Item" })
+});
 
 /**
 * A Crud list is able to add items, remove items, move items and edit items of a list.
@@ -39,27 +54,74 @@ class CRUDList extends React.Component {
         }
     }
 
-    handleAdd (e) {
-        // Do not submit the form
+    _handleNormalText(e) {
         e.preventDefault();
 
         var self = this;
-        var value = this.refs.value_1.state.value;
-        this.refs.value_1.state.value = "";
+        var form = this.refs.normalTextForm.getForm();
 
-        if (value === undefined || value === '') {
+        if (!form.data.value_1) {
             return;
         }
 
         this.setState({
-            items: update(this.state.items, { $push: [
+            items: update(self.state.items, { $push: [
                 {
-                    value: value,
+                    value: form.data.value_1,
                     id: self.state.items.length + 1
                 }
             ]})
         });
     }
+
+    _handleLocalFile(e) {
+        e.preventDefault();
+
+        var self = this;
+        var form = this.refs.localFileForm.getForm();
+
+        if (!form.data.value_1 || !form.data.value_2) {
+            return;
+        }
+
+        this.setState({
+            items: update(self.state.items, { $push: [
+                {
+                    value: form.data.value_1 + ':' + form.data.value_2,
+                    id: self.state.items.length + 1
+                }
+            ]})
+        });
+    }
+
+    _handleUpload (e) {
+        e.preventDefault();
+
+        var self = this;
+        var form = this.refs.uploadForm.getForm();
+
+        var inputBox = React.findDOMNode(form.data.value_1).querySelector('input');
+        var reader = new FileReader();
+        var file = inputBox.files[0];
+
+        // Callback of the readAsDataURL
+        reader.onload = function (upload) {
+            self.setState({
+                items: update(self.state.items, { $push: [
+                    {
+                        value: file.name + ':' + form.data.value_2.state.value,
+                        content: upload.target.result,
+                        id: self.state.items.length + 1
+                    }
+                ]})
+            });
+
+            self.refs.upload_form.getDOMNode().reset();
+        }
+
+        reader.readAsDataURL(file);
+    }
+
 
     handleRemove (itemId) {
         const { items } = this.state;
@@ -89,60 +151,37 @@ class CRUDList extends React.Component {
         }));
     }
 
-    handleUpload (e) {
-        // Do not submit the form
-        e.preventDefault();
-
-        var self = this;
-        var inputBox = React.findDOMNode(this.refs.value_1).querySelector('input');
-        var reader = new FileReader();
-        var file = inputBox.files[0];
-
-        // Callback of the readAsDataURL
-        reader.onload = function (upload) {
-            self.setState({
-                items: update(self.state.items, { $push: [
-                    {
-                        value: file.name + ':' + self.refs.value_2.state.value,
-                        content: upload.target.result,
-                        id: self.state.items.length + 1
-                    }
-                ]})
-            });
-
-            self.refs.upload_form.getDOMNode().reset();
-        }
-
-        reader.readAsDataURL(file);
-    }
-
     render () {
         const { items } = this.state;
         const { canMove, canRemove, canUploadFile, addItemText, withFileUploadDestination, textAddValue } = this.props;
         let self = this;
 
+        let tabItems = [];
+
+        if (this.props.canUploadFile) {
+            tabItems.push({ label: "Upload File", form: self._renderUploadFile.bind(self) });
+        }
+
+        if (this.props.canPickLocalFile) {
+            tabItems.push({ label: "Pick Local File", form: self._renderLocalFile .bind(self)});
+        }
+
+        if (this.props.canEnterNormalText) {
+            tabItems.push({ label: "Item", form: self._renderNormalText.bind(self) });
+        }
+
+        console.log(tabItems);
+
         return (
             <div className={styles.CRUDList}>
                 <TabContainer>
                     {
-                        canUploadFile ?
-                        <TabItem text="Upload File">
-                            <Form action="#" ref="upload_form" onSubmit={this.handleUpload.bind(self)} encType="multipart/form-data">
-                                <Input type="file" label="Upload File" ref="value_1" />
-                                <Input type="text" label="Destination Path" ref="value_2"/>
-                                <Button text="Upload" type="submit" isForm="true" />
-                            </Form>
-                        </TabItem>
-                        : null
+                        tabItems.map((item, index) => {
+                            return (
+                                <TabItem key={index} text={item.label}>{item.form()}</TabItem>
+                            )
+                        })
                     }
-
-                    <TabItem text={addItemText}>
-                        <Form action="#" onsubmit="this.reset(); return false;">
-                            <Input type="text" label={textAddValue} ref="value_1" />
-                            { withFileUploadDestination ? <Input type="text" label="Destination Path" ref="value_2"/> : null }
-                            <Button text="Add" type="submit" isInline="true" isForm="true" onClick={this.handleAdd.bind(this)} />
-                        </Form>
-                    </TabItem>
                 </TabContainer>
 
                 { items.length > 0 ?
@@ -166,16 +205,54 @@ class CRUDList extends React.Component {
             </div>
         );
     }
+
+    // Renders a upload file form
+    _renderUploadFile() {
+        return (
+            <form role="form" onSubmit={this._handleUpload.bind(this)}>
+                <forms.RenderForm form={UploadForm} ref="uploadForm" />
+                <Button type="submit" text="Upload" isInline={true} />
+            </form>
+        );
+    }
+
+    // Renders a local file form, this accepts source path and destination path
+    _renderLocalFile() {
+        return (
+            <form role="form" onSubmit={this._handleLocalFile.bind(this)}>
+                <forms.RenderForm form={LocalFileForm} ref="localFileForm" />
+                <Button type="submit" text="Add" isInline={true} isForm={true} />
+            </form>
+        );
+    }
+
+    // Renders a normal text form, just a single field
+    _renderNormalText() {
+        return (
+            <form role="form" onSubmit={this._handleNormalText.bind(this)}>
+                <forms.RenderForm form={NormalTextForm} ref="normalTextForm" />
+                <Button type="submit" text="Add" isInline={true} isForm={true} />
+            </form>
+        )
+    }
 };
 
 CRUDList.propTypes = {
+    // Items
     items: PropTypes.array,
+
+    // Operations on the items
     canMove: PropTypes.bool,
     canRemove: PropTypes.bool,
     canEdit: PropTypes.bool,
     canAdd: PropTypes.bool,
+
+    // Type of tabs (uploadFile, localFile, plainText)
     canUploadFile: PropTypes.bool, // Allows for file uploading
-    withFileUploadDestination: PropTypes.bool, // Allows us to set a destination for the uploaded file
+    canPickLocalFile: PropTypes.bool,
+    canEnterNormalText: PropTypes.bool,
+
+    // Misc
     addItemText: PropTypes.string, // Allow for changing the add item header
     textAddValue: PropTypes.string, // Change the first textbox
 };
@@ -187,6 +264,8 @@ CRUDList.defaultProps = {
     canAdd: true,
     canEdit: false,
     canUploadFile: false,
+    canPickLocalFile: false,
+    canEnterNormalText: true,
     withFileUploadDestination: false,
     addItemText: "",
     textAddValue: "Enter Value"

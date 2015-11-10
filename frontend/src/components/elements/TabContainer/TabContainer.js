@@ -29,6 +29,7 @@ class TabContainer extends React.Component {
 
         return (
             <div className={styles.TabContainer}>
+                {/* Show tabs if more than 1 item! */}
                 {
                     children.length > 1 ?
                     <ul className={styles['TabContainer-Tabs']}>
@@ -42,9 +43,10 @@ class TabContainer extends React.Component {
                             })
                         }
                     </ul>
-                    : <h1>{children[0].props.text}</h1>
+                    : null
                 }
 
+                {/* Render the children for the tab */}
                 {
                     children.filter((i, index) => {
                         return selectedItemIdx === index
