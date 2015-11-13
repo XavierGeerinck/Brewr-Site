@@ -72,7 +72,7 @@ class CRUDList extends React.Component {
                 }
             ]})
         });
-        
+
         form.reset();
     }
 
@@ -215,7 +215,7 @@ class CRUDList extends React.Component {
         return (
             <form role="form" onSubmit={this._handleUpload.bind(this)}>
                 <forms.RenderForm form={UploadForm} ref="uploadForm" />
-                <Button type="submit" text="Upload" isInline={true} />
+                <Button type="submit" text="Upload" />
             </form>
         );
     }
@@ -225,7 +225,7 @@ class CRUDList extends React.Component {
         return (
             <form role="form" onSubmit={this._handleLocalFile.bind(this)}>
                 <forms.RenderForm form={LocalFileForm} ref="localFileForm" />
-                <Button type="submit" text="Add" isInline={true} isForm={true} />
+                <Button type="submit" text="Add" />
             </form>
         );
     }
@@ -235,7 +235,7 @@ class CRUDList extends React.Component {
         return (
             <form role="form" onSubmit={this._handleNormalText.bind(this)}>
                 <forms.RenderForm form={NormalTextForm} ref="normalTextForm" />
-                <Button type="submit" text="Add" isInline={true} isForm={true} />
+                <Button type="submit" text="Add" />
             </form>
         )
     }
