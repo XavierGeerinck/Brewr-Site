@@ -72,6 +72,8 @@ class CRUDList extends React.Component {
                 }
             ]})
         });
+        
+        form.reset();
     }
 
     _handleLocalFile(e) {
@@ -92,6 +94,8 @@ class CRUDList extends React.Component {
                 }
             ]})
         });
+
+        form.reset();
     }
 
     _handleUpload (e) {
@@ -100,23 +104,23 @@ class CRUDList extends React.Component {
         var self = this;
         var form = this.refs.uploadForm.getForm();
 
-        var inputBox = React.findDOMNode(form.data.value_1).querySelector('input');
         var reader = new FileReader();
-        var file = inputBox.files[0];
+        var file = form.data.value_1;
 
         // Callback of the readAsDataURL
         reader.onload = function (upload) {
             self.setState({
                 items: update(self.state.items, { $push: [
                     {
-                        value: file.name + ':' + form.data.value_2.state.value,
+                        value: file.name + ':' + form.data.value_2,
                         content: upload.target.result,
                         id: self.state.items.length + 1
                     }
                 ]})
             });
 
-            self.refs.upload_form.getDOMNode().reset();
+            // TODO: Figure out how we can show this to the html
+            form.reset();
         }
 
         reader.readAsDataURL(file);
@@ -163,7 +167,7 @@ class CRUDList extends React.Component {
         }
 
         if (this.props.canPickLocalFile) {
-            tabItems.push({ label: "Pick Local File", form: self._renderLocalFile .bind(self)});
+            tabItems.push({ label: "Pick Local File", form: self._renderLocalFile.bind(self)});
         }
 
         if (this.props.canEnterNormalText) {
