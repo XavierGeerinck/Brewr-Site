@@ -59,9 +59,9 @@ class ListItemMove extends React.Component {
 
         return connectDragSource(connectDropTarget(
             <li style={{ ...style, opacity }}>
-                {canMove ? <Button text=<i className={cx(fa.fa, fa['fa-align-justify'])}></i> isDragIcon="true" isForm="true" onClick={onClickMove.bind(this)} />  : '' }
+                {canMove ? <Button text=<i className={cx(fa.fa, fa['fa-align-justify'])}></i> isDragIcon={true} isForm={true} onClick={onClickMove.bind(this)} />  : '' }
                 {value}
-                {canRemove ? <Button text=<i className={cx(fa.fa, fa['fa-remove'])}></i> isForm="true" onClick={this.handleRemove.bind(this)} />  : '' }
+                {canRemove ? <Button text=<i className={cx(fa.fa, fa['fa-remove'])}></i> isForm={true} onClick={this.handleRemove.bind(this)} />  : '' }
             </li>
         ));
     }

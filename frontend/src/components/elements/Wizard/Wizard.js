@@ -12,10 +12,12 @@ class Wizard extends React.Component {
 
         var wizardItems = [];
         steps.forEach((i, idx) => {
+            let key = "wizard_item_" + idx;
+
             if ((idx + 1) == currentStepIdx) {
-                wizardItems.push(<WizardItem value={i} isSelected={true} />);
+                wizardItems.push(<WizardItem key={key} value={i} isSelected={true} />);
             } else {
-                wizardItems.push(<WizardItem value={i} isSelected={false} />);
+                wizardItems.push(<WizardItem key={key} value={i} />);
             }
         });
 

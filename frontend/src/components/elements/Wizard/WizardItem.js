@@ -24,7 +24,7 @@ class WizardItem extends React.Component {
 
 WizardItem.propTypes = {
     value: PropTypes.string,
-    isSelected: PropTypes.boolean
+    isSelected: PropTypes.bool
 };
 
 WizardItem.defaultProps = {
