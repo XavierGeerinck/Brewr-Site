@@ -2,6 +2,7 @@ import AppDispatcher from '../dispatchers/AppDispatcher';
 import ProjectConstants from '../constants/ProjectConstants';
 import * as ProjectAPIUtils from '../utils/ProjectAPIUtils';
 import * as actionTypes from '../constants/ActionTypes';
+import AuthStore from '../stores/AuthStore';
 
 var ProjectActions = {
     getProject: function(token, organisationId, projectId) {
@@ -13,6 +14,15 @@ var ProjectActions = {
 
         ProjectAPIUtils.getProject(token, organisationId, projectId);
     },
+    assignMember: function(organisationId, projectId, memberId) {
+      AppDispatcher.handleViewAction({
+        type: actionTypes.REQUEST_PROJECT,
+        projectId: projectId,
+        memberId: memberId
+      });
+
+      ProjectAPIUtils.assignMember(AuthStore.token, organisationId, projectId, memberId);
+    }
     //
     // create: function(project) {
     //     AppDispatcher.dispatch({

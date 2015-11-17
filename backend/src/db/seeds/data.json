@@ -109,7 +109,7 @@
         {
             "id": 1,
             "uuid": "61a7f15a-5f6e-4429-a213-bd077551a20c",
-            "name": "Brewr",
+            "name": "Brewr1",
             "description": "Brewr is an app where organisations can create development environments for their projects.",
             "subdomain": "brewr.brewr.io",
             "owner": 1,

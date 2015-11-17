@@ -44,9 +44,10 @@ exports.deleteProjectByUUIDAndOrganisation = function (request, reply) {
 };
 
 exports.addMember = function (request, reply) {
-    var memberId = request.params.memberId;
     var organisationUUID = request.params.organisation;
     var projectId = request.params.project;
+
+    var memberId = request.query.memberId;
     var isManager = request.query.is_manager;
 
     ProjectService

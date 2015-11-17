@@ -54,7 +54,6 @@ class DashboardLayout extends React.Component {
         const { user, organisations, selected_organisation } = this.state;
         const teamLink = selected_organisation ? "/organisation/" + selected_organisation.uuid + "/members" : "";
         const projects = selected_organisation ? selected_organisation.projects : [];
-console.log(this.props);
         return (
             <div className={styles.Container}>
                 {/* SIDEMENU */}

@@ -22,7 +22,8 @@ module.exports = [
             }
         }
     },
-    {
+    //TODO: Deprecated
+    /*{
         method: 'POST',
         path: '/organisation/{organisation}/project/{project}/members/{memberId}',
         config: {
@@ -38,6 +39,27 @@ module.exports = [
                     project: Joi.number().required()
                 },
                 query: {
+                    is_manager: Joi.boolean().default(false, 'Specifies if the user is a organisation manager or not').optional()
+                }
+            }
+        }
+    },*/
+    {
+        method: 'POST',
+        path: '/organisation/{organisation}/project/{project}/assign',
+        config: {
+            handler: ProjectController.addMember,
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-manager' ]
+            },
+            validate: {
+                params: {
+                    organisation: Joi.string().guid().required(),
+                    project: Joi.number().required()
+                },
+                query: {
+                    memberId: Joi.number().required(),
                     is_manager: Joi.boolean().default(false, 'Specifies if the user is a organisation manager or not').optional()
                 }
             }

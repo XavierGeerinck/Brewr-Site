@@ -23,30 +23,28 @@ export class Project extends BaseComponent {
   constructor(props) {
     super(props);
     this._getState();
-
+    this._bind('_onChange');
   }
 
   componentDidMount() {
-    this.changeListener = this._onChange.bind(this);
-    ProjectStore.addChangeListener(this.changeListener);
-    ProjectActions.getProject(AuthStore.token, this.props.params.organisationId, this.props.params.projectId);
+    ProjectStore.addChangeListener(this._onChange);
+    OrganisationStore.addChangeListener(this._onChange);
 
-    OrganisationStore.addChangeListener(this.changeListener);
+    ProjectActions.getProject(AuthStore.token, this.props.params.organisationId, this.props.params.projectId);
     OrganisationActions.getMembers(AuthStore.token, this.props.params.organisationId);
   }
 
   componentWillUnmount() {
-    ProjectStore.removeChangeListener(this.changeListener);
-  }
-
-  componentWillMount() {
+    ProjectStore.removeChangeListener(this._onChange);
+    OrganisationStore.removeChangeListener(this._onChange);
   }
 
   _getState() {
     return {
       selectedProject: ProjectStore.selectedProject,
       allMembers: OrganisationStore.allMembers,
-      filteredMembers: OrganisationStore.allMembers
+      filteredMembers: OrganisationStore.allMembers,
+      currentOrganisation: this.props.params.organisationId
     }
   }
 
@@ -60,7 +58,7 @@ export class Project extends BaseComponent {
       return (<div></div>);
     }
 
-    const { selectedProject, filteredMembers } = this.state;
+    const { selectedProject, currentOrganisation } = this.state;
 
     return (
       <DashboardLayout title={selectedProject.name} className={grid['pure-g']}>
@@ -77,23 +75,25 @@ export class Project extends BaseComponent {
               <h1>Files</h1>
 
               <Table className={styles.Table}>
-                <tr>
-                  <td>test1.txt</td>
-                  <td>Text File</td>
-                  <td>Xavier</td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td>test1.txt</td>
+                    <td>Text File</td>
+                    <td>Xavier</td>
+                  </tr>
 
-                <tr>
-                  <td>test1.txt</td>
-                  <td>Text File</td>
-                  <td>Xavier</td>
-                </tr>
+                  <tr>
+                    <td>test1.txt</td>
+                    <td>Text File</td>
+                    <td>Xavier</td>
+                  </tr>
 
-                <tr>
-                  <td>test1.txt</td>
-                  <td>Text File</td>
-                  <td>Xavier</td>
-                </tr>
+                  <tr>
+                    <td>test1.txt</td>
+                    <td>Text File</td>
+                    <td>Xavier</td>
+                  </tr>
+                </tbody>
               </Table>
             </div>
 
@@ -101,29 +101,31 @@ export class Project extends BaseComponent {
               <h1>Revisions</h1>
 
               <Table className={styles.Table}>
-                <tr>
-                  <td>d5804063</td>
-                  <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
-                  <td>Oct 14, 2015</td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td>d5804063</td>
+                    <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
+                    <td>Oct 14, 2015</td>
+                  </tr>
 
-                <tr>
-                  <td>d5804063</td>
-                  <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
-                  <td>Oct 14, 2015</td>
-                </tr>
+                  <tr>
+                    <td>d5804063</td>
+                    <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
+                    <td>Oct 14, 2015</td>
+                  </tr>
 
-                <tr>
-                  <td>d5804063</td>
-                  <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
-                  <td>Oct 14, 2015</td>
-                </tr>
+                  <tr>
+                    <td>d5804063</td>
+                    <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
+                    <td>Oct 14, 2015</td>
+                  </tr>
 
-                <tr>
-                  <td>d5804063</td>
-                  <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
-                  <td>Oct 14, 2015</td>
-                </tr>
+                  <tr>
+                    <td>d5804063</td>
+                    <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
+                    <td>Oct 14, 2015</td>
+                  </tr>
+                </tbody>
               </Table>
             </div>
           </div>
@@ -154,7 +156,7 @@ export class Project extends BaseComponent {
 
           { /* TODO: Only when project manager or owner of organisation */ }
           <h2>Assign Member</h2>
-          <AssignableMemberList members={this.state.allMembers} />
+          <AssignableMemberList members={this.state.allMembers} project={selectedProject} organisation={currentOrganisation}/>
         </div>
       </DashboardLayout>
     )
