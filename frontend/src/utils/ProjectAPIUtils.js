@@ -26,3 +26,15 @@ export function assignMember(token, organisationId, projectId, memberId) {
       return ProjectServerActions.receiveProjectResponse(res.body);
     });
 }
+
+export function removeMember(token, organisationId, projectId, memberId) {
+  request
+    .del('http://localhost:8000/organisation/' + organisationId + '/project/' + projectId + '/member/' + memberId)
+    .set('Authorization', 'Bearer' + token)
+    .end(function(err, res){
+      if(err) {
+        return ProjectServerActions.receiveProjectErrorResponse(err);
+      }
+      return ProjectServerActions.receiveProjectResponse(res.body);
+    });
+}
