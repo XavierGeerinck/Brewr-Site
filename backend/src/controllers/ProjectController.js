@@ -47,8 +47,8 @@ exports.addMember = function (request, reply) {
     var organisationUUID = request.params.organisation;
     var projectId = request.params.project;
 
-    var memberId = request.query.memberId;
-    var isManager = request.query.is_manager;
+    var memberId = request.payload.member;
+    var isManager = request.payload.is_manager;
 
     ProjectService
     .addMemberByOrganisationUUIDAndProjectId(organisationUUID, projectId, memberId, isManager)
@@ -61,7 +61,7 @@ exports.addMember = function (request, reply) {
 }
 
 exports.removeMember = function (request, reply) {
-    var memberId = request.params.memberId;
+    var memberId = request.payload.member;
     var organisationUUID = request.params.organisation;
     var projectId = request.params.project;
 

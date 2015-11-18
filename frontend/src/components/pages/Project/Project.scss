@@ -79,3 +79,14 @@
     float: none !important;
     clear: both;
 }
+
+.assignable_list {
+  padding: 10px;
+  list-style:none;
+  background: white;
+
+  li {
+    padding:10px 0;
+
+  }
+}

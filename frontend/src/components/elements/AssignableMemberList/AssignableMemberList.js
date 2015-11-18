@@ -51,7 +51,7 @@ export default class AssignableMemberList extends BaseComponent {
     return (
       <form>
         <input ref="assignUserName" onChange={this.assignChange.bind(this)}/>
-        <ul ref="assignUsers" ref="assignMember">
+        <ul ref="assignUsers" ref="assignMember" className="assignable_list">
           {
             members.map(m => {
                 return (

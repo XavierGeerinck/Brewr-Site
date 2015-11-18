@@ -51,34 +51,37 @@ module.exports = [
             handler: ProjectController.addMember,
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-manager' ]
+                scope: [ 'project-{params.project}-manager', 'project-{params.project}-creator', 'organisation-{params.organisation}-creator' ]
             },
             validate: {
                 params: {
                     organisation: Joi.string().guid().required(),
                     project: Joi.number().required()
                 },
-                query: {
-                    memberId: Joi.number().required(),
+                payload: {
+                    member: Joi.number().required(),
                     is_manager: Joi.boolean().default(false, 'Specifies if the user is a organisation manager or not').optional()
                 }
             }
         }
     },
     {
-        method: 'DELETE',
+        method: 'POST',
         path: '/organisation/{organisation}/project/{project}/members/{memberId}',
         config: {
             handler: ProjectController.removeMember,
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-manager' ]
+                scope: [ 'project-{params.project}-manager', 'project-{params.project}-creator', 'organisation-{params.organisation}-creator' ]
             },
             validate: {
                 params: {
                     organisation: Joi.string().guid().required(),
                     memberId: Joi.number().required(),
                     project: Joi.number().required()
+                },
+                payload: {
+                    member: Joi.number().required()
                 }
             }
         }
