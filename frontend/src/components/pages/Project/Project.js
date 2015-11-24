@@ -48,6 +48,10 @@ export class Project extends BaseComponent {
     }
   }
 
+  _removeMember(id) {
+    ProjectActions.removeMember(this.props.params.organisationId, this.state.selectedProject.id, id);
+  }
+
   _onChange() {
     this.setState(this._getState());
   }
@@ -58,7 +62,7 @@ export class Project extends BaseComponent {
       return (<div></div>);
     }
 
-    const { selectedProject, currentOrganisation } = this.state;
+    const { selectedProject, currentOrganisation, allMembers } = this.state;
 
     return (
       <DashboardLayout title={selectedProject.name} className={grid['pure-g']}>
@@ -145,7 +149,7 @@ export class Project extends BaseComponent {
                       <div className={styles.ContainerRightListItemName}>{m.name}</div>
                       <div className={styles.ContainerRightListItemSubtitle}>{m.scope}</div>
                     </div>
-                    <button><i className={cx(fa.fa, fa['fa-remove'])}></i></button>
+                    <button onClick={this._removeMember.bind(this, m.id)}><i className={cx(fa.fa, fa['fa-remove'])}></i></button>
                     <div className={styles.Clear}></div>
                   </li>
                 )
@@ -156,7 +160,7 @@ export class Project extends BaseComponent {
 
           { /* TODO: Only when project manager or owner of organisation */ }
           <h2>Assign Member</h2>
-          <AssignableMemberList members={this.state.allMembers} project={selectedProject} organisation={currentOrganisation}/>
+          <AssignableMemberList members={allMembers} project={selectedProject} organisation={currentOrganisation}/>
         </div>
       </DashboardLayout>
     )

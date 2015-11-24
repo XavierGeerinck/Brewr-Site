@@ -52,23 +52,23 @@ exports.addMember = function (request, reply) {
 
     ProjectService
     .addMemberByOrganisationUUIDAndProjectId(organisationUUID, projectId, memberId, isManager)
-    .then(function (success) {
-        return reply({ success: true });
+    .then(function (project) {
+        return reply({project: project});
     })
     .catch(function (err) {
-        return reply(err);
+        return reply({success: false, err: err});
     });
 }
 
 exports.removeMember = function (request, reply) {
-    var memberId = request.payload.member;
+    var memberId = request.params.member;
     var organisationUUID = request.params.organisation;
     var projectId = request.params.project;
 
     ProjectService
     .removeMemberByOrganisationUUIDAndProjectId(organisationUUID, projectId, memberId)
-    .then(function (success) {
-        return reply({ success: true });
+    .then(function (project) {
+        return reply({ project: project});
     })
     .catch(function (err) {
         return reply(err);

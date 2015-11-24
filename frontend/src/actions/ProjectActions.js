@@ -15,21 +15,9 @@ var ProjectActions = {
         ProjectAPIUtils.getProject(token, organisationId, projectId);
     },
     assignMember: function(organisationId, projectId, memberId) {
-      AppDispatcher.handleViewAction({
-        type: actionTypes.REQUEST_PROJECT,
-        projectId: projectId,
-        memberId: memberId
-      });
-
       ProjectAPIUtils.assignMember(AuthStore.token, organisationId, projectId, memberId);
     },
     removeMember: function(organisationId, projectId, memberId) {
-      AppDispatcher.handleViewAction({
-        type: actionTypes.REQUEST_PROJECT,
-        projectId: projectId,
-        memberId: memberId
-      });
-
       ProjectAPIUtils.removeMember(AuthStore.token, organisationId, projectId, memberId);
     }
     //

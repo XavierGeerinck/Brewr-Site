@@ -86,8 +86,6 @@ function validateFunction (token, callback) {
                 user.scope.push('project-' + proj.get('id') + '-manager');
             }
 
-            console.log("no manager found")
-
             if(proj.get('created_by') === user.get('id')) {
                 user.scope.push('project-' + proj.get('id') + '-creator');
             }

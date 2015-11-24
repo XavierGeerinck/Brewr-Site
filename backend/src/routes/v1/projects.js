@@ -66,8 +66,8 @@ module.exports = [
         }
     },
     {
-        method: 'POST',
-        path: '/organisation/{organisation}/project/{project}/members/{memberId}',
+        method: 'DELETE',
+        path: '/organisation/{organisation}/project/{project}/members/{member}',
         config: {
             handler: ProjectController.removeMember,
             auth: {
@@ -77,10 +77,7 @@ module.exports = [
             validate: {
                 params: {
                     organisation: Joi.string().guid().required(),
-                    memberId: Joi.number().required(),
-                    project: Joi.number().required()
-                },
-                payload: {
+                    project: Joi.number().required(),
                     member: Joi.number().required()
                 }
             }
