@@ -119,65 +119,22 @@ exports.getMembers = function (request, reply) {
  * The table is project_env_info for this dockerfile info and project_file for the files to be created
  */
 exports.create = function (request, reply) {
-    var Project = request.collections.user;
-    var ProjectRevision = request.collections.user;
-    var ProjectFile = request.collections.user;
-
-    var organisation = request.param('organisation');
+    var organisationUUID = request.params.organisation;
     var user = request.auth.credentials;
+    var metaData = request.payload.meta;
+    var envInfo = request.payload.envInfo;
+    var files = request.payload.files;
 
     // Project name is required
-    if (!params.meta.name) {
+    if (!metaData.name) {
         return reply(Boom.badRequest("EMPTY_PROJECT_NAME", {"path": "POST /project"}));
     }
 
-    // We first start by creating a new project
-    Project.create({
-        organisation: organisation,
-        createdBy: user,
-        name: request.meta.name,
-        description: request.meta.description || ''
+    ProjectService.create(organisationUUID, user, metaData, envInfo, files)
+    .then(function (project) {
+        return reply(project);
     })
-        .then(function (project) {
-            // Create the revision
-            return ProjectRevision.create({
-                project: project,
-                revisionNumber: uuid.v4()
-            });
-        })
-        .then(function (projectRevision) {
-            // Create the project files
-            async.each(request.payload.files, function (file, cb) {
-                ProjectFile.create({
-                    projectRevision: projectRevision,
-                    fileName: file.name,
-                    fileDataUri: file.content
-                })
-                    .exec(function (err, file) {
-                        if (err) {
-                            return cb(err);
-                        }
-
-                        return cb();
-                    });
-            }, function (err) {
-                if (err) {
-                    return Promise.reject(err);
-                }
-
-                return Promise.resolve(projectRevision);
-            });
-        })
-        .then(function (projectRevision) {
-            var info = request.payload.envInfo;
-            info.projectRevision = projectRevision;
-
-            return ProjectEnvInfo.create(info);
-        })
-        .then(function (projectEnvInfo) {
-            return reply({succes: true});
-        })
-        .catch(function (err) {
-            return reply(Boom.badRequest(err));
-        });
+    .catch(function (err) {
+        return reply(err);
+    });
 }

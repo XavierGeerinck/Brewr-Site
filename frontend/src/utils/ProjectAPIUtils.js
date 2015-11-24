@@ -38,3 +38,14 @@ export function removeMember(token, organisationId, projectId, memberId) {
       return ProjectServerActions.receiveProjectResponse(res.body);
     });
 }
+
+export function create(token, organisationId, meta, files, projectInfo) {
+    request
+    .post('http://localhost:8000/organisation/' + organisationId + '/project')
+    .send({ meta: meta, files: files, envInfo: projectInfo })
+    .set('Authorization', 'Bearer ' + token)
+    .end(function (err, res) {
+        console.log(err);
+        console.log(res.body);
+    })
+}

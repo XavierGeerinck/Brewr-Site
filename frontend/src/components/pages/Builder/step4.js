@@ -32,7 +32,7 @@ class Step4 extends React.Component {
 
     _save() {
         if (this.refs.input_start_command_items) {
-            var items = JSON.parse(JSON.stringify(this.refs.input_start_command_items.refs.child.state.items));
+            var items = JSON.parse(JSON.stringify(this.refs.input_start_command_items.refs.child.getItems()));
             BuilderActions.changeCmdItems(items);
         }
     }

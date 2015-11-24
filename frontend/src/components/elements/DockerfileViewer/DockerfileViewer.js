@@ -113,12 +113,12 @@ export default class DockerfileViewer extends React.Component {
 
         lines += "<br /># Running the install program commands<br />";
         obj.envInfo.run.forEach(r => {
-            lines += "RUN " + r.value + "\n<br />";
+            lines += "RUN " + r + "\n<br />";
         });
 
         lines += "<br /># Downloading the source code<br />";
         obj.envInfo.sourceCode.forEach(r => {
-            lines += "RUN " + r.value + "\n<br />";
+            lines += "RUN " + r + "\n<br />";
         });
 
         return lines;
@@ -138,7 +138,7 @@ export default class DockerfileViewer extends React.Component {
 
         lines += "<br /># Metadata settings<br />";
         obj.envInfo.label.forEach(l => {
-            lines += "LABEL " + "\"" + l.value.split("=")[0] + "\"" + "=" + "\"" + l.value.split("=")[1] + "\"" + "<br />"
+            lines += "LABEL " + "\"" + l.split("=")[0] + "\"" + "=" + "\"" + l.split("=")[1] + "\"" + "<br />"
         });
 
         return lines;
@@ -187,7 +187,7 @@ export default class DockerfileViewer extends React.Component {
         var lines = "";
 
         obj.envInfo.expose.forEach(e => {
-            lines += "-p " + e.value +" ";
+            lines += "-p " + e +" ";
         });
 
         return lines;
@@ -206,7 +206,7 @@ export default class DockerfileViewer extends React.Component {
         var lines = "";
 
         obj.envInfo.volume.forEach(v => {
-            lines += "-v " + v.value +" ";
+            lines += "-v " + v +" ";
         });
 
         return lines;
@@ -228,8 +228,8 @@ export default class DockerfileViewer extends React.Component {
         // First map the ports correctly (so only the left port)
         lines += "<br /># Exposing the ports<br />";
         obj.envInfo.expose.map(e => {
-            if (e.value.indexOf(":") > -1) return e.value.split(":")[e.value.split(":").length - 1];
-            return e.value;
+            if (e.indexOf(":") > -1) return e.split(":")[e.split(":").length - 1];
+            return e;
         }).forEach(r => {
             lines += "EXPOSE " + r + "\n<br />";
         });
@@ -254,8 +254,8 @@ export default class DockerfileViewer extends React.Component {
         lines += "<br /># Synching directories<br />";
         lines += "VOLUME [ ";
         lines += obj.envInfo.volume.map(v => {
-            if (v.value.indexOf(":") > -1) return "\"" + v.value.split(":")[v.value.split(":").length - 1] + "\"";
-            return "\"" + v.value + "\"";
+            if (v.indexOf(":") > -1) return "\"" + v.split(":")[v.split(":").length - 1] + "\"";
+            return "\"" + v + "\"";
         }).join(", ");
 
         lines += " ]";
@@ -278,7 +278,7 @@ export default class DockerfileViewer extends React.Component {
 
         lines += "<br /># Adding files<br />";
         obj.envInfo.add.forEach(v => {
-            lines += "ADD " + v.value + "<br />";
+            lines += "ADD " + v + "<br />";
         });
 
         return lines;
@@ -299,7 +299,7 @@ export default class DockerfileViewer extends React.Component {
 
         lines += "<br />#Environment variables<br />";
         obj.envInfo.env.forEach(e => {
-            lines += "ENV " + e.value.split("=")[0] + " " + e.value.split("=")[1] + "<br />";
+            lines += "ENV " + e.split("=")[0] + " " + e.split("=")[1] + "<br />";
         });
 
         return lines;

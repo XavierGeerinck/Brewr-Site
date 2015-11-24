@@ -46,19 +46,25 @@ class Step2 extends React.Component {
         }
 
         if (this.refs.input_run_items) {
-            var items = JSON.parse(JSON.stringify(this.refs.input_run_items.refs.child.state.items));
+            var items = JSON.parse(JSON.stringify(this.refs.input_run_items.refs.child.getItems()));
             BuilderActions.changeRunItems(items);
+        }
+
+        if (this.refs.input_project_name) {
+            BuilderActions.setProjectName(this.refs.input_project_name.state.value);
         }
     }
 
     render() {
         let dockerfile = BuilderStore.dockerfile.envInfo;
+        let params = BuilderStore.params;
 
         return (
             <FlexContainer>
                 {/* Maintainer, workdir and user */}
                 <Panel heading="General" tooltip={tooltipGeneral}>
                     <Form className={cx(purecss['pure-form'], purecss['pure-form-stacked'])}>
+                        <Input id="input_project_name" text={params.meta.name} label="Project Name" placeholder="Enter the name for the project" type="text" ref="input_project_name" />
                         <Input id="input_maintainer" text={dockerfile.maintainer} label="Maintainer" placeholder="Enter the maintainer for the project.." type="text" ref="input_maintainer" />
                         <Input id="input_workdir" text={dockerfile.workdir} label="Workdir" placeholder="Enter the directory where you will work from..." type="text" ref="input_workdir" />
                         <Input id="input_user" text={dockerfile.user} label="User" placeholder="Type a keyword..." type="text" ref="input_user" />

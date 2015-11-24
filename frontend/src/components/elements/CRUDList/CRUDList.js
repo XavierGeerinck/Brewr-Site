@@ -174,8 +174,6 @@ class CRUDList extends React.Component {
             tabItems.push({ label: "Item", form: self._renderNormalText.bind(self) });
         }
 
-        console.log(tabItems);
-
         return (
             <div className={styles.CRUDList}>
                 <TabContainer>
@@ -238,6 +236,20 @@ class CRUDList extends React.Component {
                 <Button type="submit" text="Add" />
             </form>
         )
+    }
+
+    getItems() {
+        console.log(this.state);
+        return this.state.items.map(i => {
+            if (i.content && i.content != '') {
+                return {
+                    name: i.value,
+                    content: i.content
+                }
+            }
+
+            return i.value;
+        });
     }
 };
 

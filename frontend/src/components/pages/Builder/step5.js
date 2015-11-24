@@ -34,17 +34,17 @@ class Step5 extends React.Component {
 
     _save() {
         if (this.refs.input_labels) {
-            var items = JSON.parse(JSON.stringify(this.refs.input_labels.refs.child.state.items));
+            var items = JSON.parse(JSON.stringify(this.refs.input_labels.refs.child.getItems()));
             BuilderActions.changeLabelItems(items);
         }
 
         if (this.refs.input_expose_items) {
-            var items = JSON.parse(JSON.stringify(this.refs.input_expose_items.refs.child.state.items));
+            var items = JSON.parse(JSON.stringify(this.refs.input_expose_items.refs.child.getItems()));
             BuilderActions.changeExposeItems(items);
         }
 
         if (this.refs.input_env_items) {
-            var items = JSON.parse(JSON.stringify(this.refs.input_env_items.refs.child.state.items));
+            var items = JSON.parse(JSON.stringify(this.refs.input_env_items.refs.child.getItems()));
             BuilderActions.changeEnvItems(items);
         }
     }

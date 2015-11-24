@@ -80,7 +80,7 @@ class BuilderStore extends BaseStore {
 
         this._params = {
             meta: {
-                name: "",                   // Project Name
+                name: "Test Project",       // Project Name
                 description: ""             // Project Description
             },
             files: [],                      // Files to add, format: { name: "", content: "" }
@@ -89,82 +89,38 @@ class BuilderStore extends BaseStore {
                 "distributionVersion": "14.04",
                 "maintainer": "Xavier",
                 "label": [
-                    {
-                        "value": "com.brewr.io=somevalue",
-                        "id": 0
-                    }
+                    "com.brewr.io=somevalue",
                 ],
                 "workdir": "/home/xavier",
                 "user": "root",
                 "run": [
-                    {
-                        "value": "sudo apt-get install nodejs",
-                        "id": 0
-                    },
-                    {
-                        "value": "sudo apt-get install nginx",
-                        "id": 1
-                    },
-                    {
-                        "value": "sudo apt-get install mariadb",
-                        "id": 2
-                    },
-                    {
-                        "value": "sudo apt-get install mongodb",
-                        "id": 3
-                    }
+                    "sudo apt-get install nodejs",
+                    "sudo apt-get install nginx",
+                    "sudo apt-get install mariadb",
+                    "sudo apt-get install mongodb"
                 ],
                 "sourceCode": null,
                 "cmd": [
-                    {
-                        "value": "nginx -g daemon off;"
-                    }
+                    "nginx -g daemon off;"
                 ],
                 "expose": [
-                    {
-                        "value": "80:80",
-                        "id": 0
-                    },
-                    {
-                        "value": "3306:3306",
-                        "id": 1
-                    },
-                    {
-                        "value": "8000:8000",
-                        "id": 2
-                    }
+                    "80:80",
+                    "3306:3306",
+                    "8000:8000",
                 ],
                 "env": [
-                    {
-                        "value": "ENVIRONMENT=staging",
-                        "id": 0
-                    },
-                    {
-                        "value": "TEST=test123",
-                        "id": 1
-                    }
+                    "ENVIRONMENT=staging",
+                    "TEST=test123",
                 ],
                 "add": [
-                    {
-                        "value": "config/nginx.conf /etc/nginx/nginx.conf",
-                        "id": 0
-                    },
-                    {
-                        "value": "log /var/log",
-                        "id": 1
-                    }
+                    "config/nginx.conf /etc/nginx/nginx.conf",
+                    "log /var/log"
                 ],
                 "copy": null,
                 "entrypoint": null,
                 "volume": [
-                    {
-                        "value": "/data",
-                        "id": 0
-                    },
-                    {
-                        "value": "/c/Users/thebi/logs:/var/logs",
-                        "id": 1
-                    }
+                    "/data",
+                    "/c/Users/thebi/logs:/var/logs",
                 ],
                 "onbuild": null
             }
@@ -253,6 +209,10 @@ class BuilderStore extends BaseStore {
             this._params.envInfo.cmd = action.items;
             this.emitChange();
             break;
+            case types.BUILDER_PROJECT_NAME_CHANGE:
+            this._params.meta.name = action.projectName;
+            this.emitChange();
+            break;
             case types.BUILDER_FINISH_params:
             default:
             console.log(action);
@@ -274,6 +234,10 @@ class BuilderStore extends BaseStore {
 
     get featuredDistributions() {
         return this._featuredDistributions;
+    }
+
+    get params() {
+        return this._params;
     }
 }
 

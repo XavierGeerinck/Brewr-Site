@@ -36,17 +36,17 @@ class Step3 extends React.Component {
 
     _save() {
         if (this.refs.input_run_items) {
-            var items = JSON.parse(JSON.stringify(this.refs.input_run_items.refs.child.state.items));
+            var items = JSON.parse(JSON.stringify(this.refs.input_run_items.refs.child.getItems()));
             BuilderActions.changeDownloadSourceCode(items);
         }
 
         if (this.refs.input_volume_items) {
-            var items = JSON.parse(JSON.stringify(this.refs.input_volume_items.refs.child.state.items));
+            var items = JSON.parse(JSON.stringify(this.refs.input_volume_items.refs.child.getItems()));
             BuilderActions.changeVolumeItems(items);
         }
 
         if (this.refs.input_add_items) {
-            var items = JSON.parse(JSON.stringify(this.refs.input_add_items.refs.child.state.items));
+            var items = JSON.parse(JSON.stringify(this.refs.input_add_items.refs.child.getItems()));
             BuilderActions.changeAddItems(items);
         }
     }

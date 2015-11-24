@@ -122,11 +122,11 @@ module.exports = [
     },
     {
         method: 'POST',
-        path: '/projects/{organisation}',
+        path: '/organisation/{organisation}/project',
         config: {
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-user' ]
+                scope: [ 'belongs-to-organisation-{params.organisation}-manager', 'belongs-to-organisation-{params.organisation}-creator' ]
             },
             handler: ProjectController.create,
             validate: {
@@ -137,7 +137,7 @@ module.exports = [
                     // Meta information about the project
                     meta: Joi.object({
                         name: Joi.string().required(),
-                        description: Joi.string()
+                        description: Joi.string().allow('')
                     }).required(),
 
                     // The files for the project
@@ -148,20 +148,20 @@ module.exports = [
 
                     // The environment information
                     envInfo: Joi.object({
-                        distribution: Joi.string(),
-                        distributionVersion: Joi.string(),
-                        maintainer: Joi.string(),
+                        distribution: Joi.string().allow([ '', null ]),
+                        distributionVersion: Joi.string().allow([ '', null ]),
+                        maintainer: Joi.string().allow([ '', null ]),
                         label: Joi.array().items(Joi.string()),
-                        workdir: Joi.string(),
-                        user: Joi.string(),
-                        cmd: Joi.array().items(Joi.string()),
-                        sourceCode: Joi.array().items(Joi.string()),
-                        run: Joi.array().items(Joi.string()),
-                        expose: Joi.array().items(Joi.string()),
-                        env: Joi.array().items(Joi.string()),
-                        add: Joi.array().items(Joi.string()),
-                        copy: Joi.array().items(Joi.string()),
-                        entrypoint: Joi.string(),
+                        workdir: Joi.string().allow([ '', null ]),
+                        user: Joi.string().allow([ '', null ]),
+                        cmd: Joi.array().items(Joi.string()).allow(null),
+                        sourceCode: Joi.array().items(Joi.string()).allow(null),
+                        run: Joi.array().items(Joi.string()).allow(null),
+                        expose: Joi.array().items(Joi.string()).allow(null),
+                        env: Joi.array().items(Joi.string()).allow(null),
+                        add: Joi.array().items(Joi.string()).allow(null),
+                        copy: Joi.array().items(Joi.string()).allow(null),
+                        entrypoint: Joi.string().allow([ '', null ]),
                         volume: Joi.array().items(Joi.string()),
                         onbuild: Joi.string().allow(null)
                     }).required()
