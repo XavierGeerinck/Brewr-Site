@@ -20,147 +20,147 @@ import OrganisationStore from '../../../stores/OrganisationStore';
 import OrganisationActions from '../../../actions/OrganisationActions';
 
 export class Project extends BaseComponent {
-  constructor(props) {
-    super(props);
-    this._getState();
-    this._bind('_onChange');
-  }
-
-  componentDidMount() {
-    ProjectStore.addChangeListener(this._onChange);
-    OrganisationStore.addChangeListener(this._onChange);
-
-    ProjectActions.getProject(AuthStore.token, this.props.params.organisationId, this.props.params.projectId);
-    OrganisationActions.getMembers(AuthStore.token, this.props.params.organisationId);
-  }
-
-  componentWillUnmount() {
-    ProjectStore.removeChangeListener(this._onChange);
-    OrganisationStore.removeChangeListener(this._onChange);
-  }
-
-  _getState() {
-    return {
-      selectedProject: ProjectStore.selectedProject,
-      allMembers: OrganisationStore.allMembers,
-      filteredMembers: OrganisationStore.allMembers,
-      currentOrganisation: this.props.params.organisationId
-    }
-  }
-
-  _onChange() {
-    this.setState(this._getState());
-  }
-
-  render() {
-
-    if (!this.state || !this.state.selectedProject) {
-      return (<div></div>);
+    constructor(props) {
+        super(props);
+        this._getState();
+        this._bind('_onChange');
     }
 
-    const { selectedProject, currentOrganisation } = this.state;
+    componentDidMount() {
+        ProjectStore.addChangeListener(this._onChange);
+        OrganisationStore.addChangeListener(this._onChange);
 
-    return (
-      <DashboardLayout title={selectedProject.name} className={grid['pure-g']}>
-        {/* LEFT */}
-        <div className={cx(grid['pure-u-md-4-5'], styles.ContainerLeft)}>
-          <div className={styles.ContainerTop}>
-            <h1>{selectedProject.name} <Button text="Edit" isForm={true}/></h1>
+        ProjectActions.getProject(AuthStore.token, this.props.params.organisationId, this.props.params.projectId);
+        OrganisationActions.getMembers(AuthStore.token, this.props.params.organisationId);
+    }
+
+    componentWillUnmount() {
+        ProjectStore.removeChangeListener(this._onChange);
+        OrganisationStore.removeChangeListener(this._onChange);
+    }
+
+    _getState() {
+        return {
+            selectedProject: ProjectStore.selectedProject,
+            allMembers: OrganisationStore.allMembers,
+            filteredMembers: OrganisationStore.allMembers,
+            currentOrganisation: this.props.params.organisationId
+        }
+    }
+
+    _onChange() {
+        this.setState(this._getState());
+    }
+
+    render() {
+
+        if (!this.state || !this.state.selectedProject) {
+            return (<div></div>);
+        }
+
+        const { selectedProject, currentOrganisation } = this.state;
+
+        return (
+            <DashboardLayout title={selectedProject.name} className={grid['pure-g']}>
+            {/* LEFT */}
+            <div className={cx(grid['pure-u-md-4-5'], styles.ContainerLeft)}>
+            <div className={styles.ContainerTop}>
+            <h1>{selectedProject.name} <Button text="Edit" isForm={true} onClick=/></h1>
             <p>{selectedProject.description}</p>
-          </div>
+            </div>
 
-          {/* BOTTOM */}
-          <div className={cx(styles.ContainerBottom, grid['pure-g'])}>
+            {/* BOTTOM */}
+            <div className={cx(styles.ContainerBottom, grid['pure-g'])}>
             <div className={grid['pure-u-md-1-2']}>
-              <h1>Files</h1>
+            <h1>Files</h1>
 
-              <Table className={styles.Table}>
-                <tbody>
-                  <tr>
-                    <td>test1.txt</td>
-                    <td>Text File</td>
-                    <td>Xavier</td>
-                  </tr>
+            <Table className={styles.Table}>
+            <tbody>
+            <tr>
+            <td>test1.txt</td>
+            <td>Text File</td>
+            <td>Xavier</td>
+            </tr>
 
-                  <tr>
-                    <td>test1.txt</td>
-                    <td>Text File</td>
-                    <td>Xavier</td>
-                  </tr>
+            <tr>
+            <td>test1.txt</td>
+            <td>Text File</td>
+            <td>Xavier</td>
+            </tr>
 
-                  <tr>
-                    <td>test1.txt</td>
-                    <td>Text File</td>
-                    <td>Xavier</td>
-                  </tr>
-                </tbody>
-              </Table>
+            <tr>
+            <td>test1.txt</td>
+            <td>Text File</td>
+            <td>Xavier</td>
+            </tr>
+            </tbody>
+            </Table>
             </div>
 
             <div className={grid['pure-u-md-1-2']}>
-              <h1>Revisions</h1>
+            <h1>Revisions</h1>
 
-              <Table className={styles.Table}>
-                <tbody>
-                  <tr>
-                    <td>d5804063</td>
-                    <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
-                    <td>Oct 14, 2015</td>
-                  </tr>
+            <Table className={styles.Table}>
+            <tbody>
+            <tr>
+            <td>d5804063</td>
+            <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
+            <td>Oct 14, 2015</td>
+            </tr>
 
-                  <tr>
-                    <td>d5804063</td>
-                    <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
-                    <td>Oct 14, 2015</td>
-                  </tr>
+            <tr>
+            <td>d5804063</td>
+            <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
+            <td>Oct 14, 2015</td>
+            </tr>
 
-                  <tr>
-                    <td>d5804063</td>
-                    <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
-                    <td>Oct 14, 2015</td>
-                  </tr>
+            <tr>
+            <td>d5804063</td>
+            <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
+            <td>Oct 14, 2015</td>
+            </tr>
 
-                  <tr>
-                    <td>d5804063</td>
-                    <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
-                    <td>Oct 14, 2015</td>
-                  </tr>
-                </tbody>
-              </Table>
+            <tr>
+            <td>d5804063</td>
+            <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
+            <td>Oct 14, 2015</td>
+            </tr>
+            </tbody>
+            </Table>
             </div>
-          </div>
-        </div>
+            </div>
+            </div>
 
-        {/* RIGHT */}
-        <div className={cx(styles.ContainerRight, grid['pure-u-md-1-5'])}>
-          <h1>Members</h1>
+            {/* RIGHT */}
+            <div className={cx(styles.ContainerRight, grid['pure-u-md-1-5'])}>
+            <h1>Members</h1>
 
-          <ul>
+            <ul>
             {
-              selectedProject.members.map(m => {
-                return (
-                  <li key={"img_" + m.id}>
-                    <Image src={m.avatar_url} defaultSrc={require('./avatar.png')}/>
-                    <div className={styles.ContainerRightListItem}>
-                      <div className={styles.ContainerRightListItemName}>{m.name}</div>
-                      <div className={styles.ContainerRightListItemSubtitle}>{m.scope}</div>
-                    </div>
-                    <button><i className={cx(fa.fa, fa['fa-remove'])}></i></button>
-                    <div className={styles.Clear}></div>
-                  </li>
-                )
-              })
+                selectedProject.members.map(m => {
+                    return (
+                        <li key={"img_" + m.id}>
+                        <Image src={m.avatar_url} defaultSrc={require('./avatar.png')}/>
+                        <div className={styles.ContainerRightListItem}>
+                        <div className={styles.ContainerRightListItemName}>{m.name}</div>
+                        <div className={styles.ContainerRightListItemSubtitle}>{m.scope}</div>
+                        </div>
+                        <button><i className={cx(fa.fa, fa['fa-remove'])}></i></button>
+                        <div className={styles.Clear}></div>
+                        </li>
+                    )
+                })
             }
-          </ul>
+            </ul>
 
 
-          { /* TODO: Only when project manager or owner of organisation */ }
-          <h2>Assign Member</h2>
-          <AssignableMemberList members={this.state.allMembers} project={selectedProject} organisation={currentOrganisation}/>
-        </div>
-      </DashboardLayout>
-    )
-  }
+            { /* TODO: Only when project manager or owner of organisation */ }
+            <h2>Assign Member</h2>
+            <AssignableMemberList members={this.state.allMembers} project={selectedProject} organisation={currentOrganisation}/>
+            </div>
+            </DashboardLayout>
+        )
+    }
 
 }
 
