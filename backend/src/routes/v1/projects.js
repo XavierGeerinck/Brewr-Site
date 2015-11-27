@@ -22,6 +22,27 @@ module.exports = [
             }
         }
     },
+    {
+        method: 'GET',
+        path: '/organisation/{organisation}/project/{project}/revision/{revision}/image',
+        config: {
+            handler: ProjectController.getImage,
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-user' ]
+            },
+            validate: {
+                params: {
+                    organisation: Joi.string().guid().required(),
+                    project: Joi.number().required(),
+                    revision: Joi.string().guid().required()
+                },
+                query: {
+                    type: Joi.string().allow([ 'json' ])
+                }
+            }
+        }
+    },
     //TODO: Deprecated
     /*{
         method: 'POST',

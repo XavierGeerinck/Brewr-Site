@@ -4,8 +4,12 @@ import * as ProjectAPIUtils from '../utils/ProjectAPIUtils';
 import * as actionTypes from '../constants/ActionTypes';
 import AuthStore from '../stores/AuthStore';
 
-var ProjectActions = {
-    getProject: function(token, organisationId, projectId) {
+// import AppDispatcher from '../dispatchers/AppDispatcher.js';
+// import * as actionTypes from '../constants/ActionTypes';
+// import * as ProjectAPIUtils from '../utils/ProjectAPIUtils';
+
+class ProjectActions {
+    static getProject(token, organisationId, projectId) {
         AppDispatcher.handleViewAction({
             type: actionTypes.REQUEST_PROJECT,
             name: organisationId,
@@ -13,25 +17,40 @@ var ProjectActions = {
         });
 
         ProjectAPIUtils.getProject(token, organisationId, projectId);
-    },
-    assignMember: function(organisationId, projectId, memberId) {
-      AppDispatcher.handleViewAction({
-        type: actionTypes.REQUEST_PROJECT,
-        projectId: projectId,
-        memberId: memberId
-      });
-
-      ProjectAPIUtils.assignMember(AuthStore.token, organisationId, projectId, memberId);
-    },
-    removeMember: function(organisationId, projectId, memberId) {
-      AppDispatcher.handleViewAction({
-        type: actionTypes.REQUEST_PROJECT,
-        projectId: projectId,
-        memberId: memberId
-      });
-
-      ProjectAPIUtils.removeMember(AuthStore.token, organisationId, projectId, memberId);
     }
+
+    static assignMember(organisationId, projectId, memberId) {
+        AppDispatcher.handleViewAction({
+            type: actionTypes.REQUEST_PROJECT,
+            projectId: projectId,
+            memberId: memberId
+        });
+
+        ProjectAPIUtils.assignMember(AuthStore.token, organisationId, projectId, memberId);
+    }
+
+    static removeMember(organisationId, projectId, memberId) {
+        AppDispatcher.handleViewAction({
+            type: actionTypes.REQUEST_PROJECT,
+            projectId: projectId,
+            memberId: memberId
+        });
+
+        ProjectAPIUtils.removeMember(AuthStore.token, organisationId, projectId, memberId);
+    }
+
+    static editProjectImage(token, organisationUUID, projectId, revisionUUID) {
+        AppDispatcher.handleViewAction({
+            type: actionTypes.REQUEST_PROJECT_IMAGE,
+            name: organisationUUID,
+            projectId: projectId,
+            revisionUUID: revisionUUID
+        });
+
+        ProjectAPIUtils.getProjectImage(token, organisationUUID, projectId, revisionUUID);
+    }
+
+
     //
     // create: function(project) {
     //     AppDispatcher.dispatch({
@@ -54,6 +73,6 @@ var ProjectActions = {
     //         id: id
     //     })
     // }
-};
+}
 
 export default ProjectActions;

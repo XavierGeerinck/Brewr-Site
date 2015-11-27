@@ -24,8 +24,8 @@ var Project = Bookshelf.model('Project', {
         return this.belongsToMany('User', 'project_user', 'project_id', 'user_id').withPivot('is_manager');
     },
 
-    revision: function () {
-        return this.belongsToMany('ProjectRevision');
+    revisions: function () {
+        return this.hasMany('ProjectRevision');
     },
     organisation: function () {
         return this.belongsTo('Organisation');

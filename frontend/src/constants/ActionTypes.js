@@ -1,4 +1,10 @@
 /**************************
+ * ProjectStore Events
+ **************************/
+export const RESPONSE_PROJECT_IMAGE = 'RESPONSE_PROJECT_IMAGE';
+export const REQUEST_PROJECT_IMAGE = 'REQUEST_PROJECT_IMAGE';
+
+/**************************
  * DockerHubStore Events
  **************************/
 export const DOCKER_HUB_SEARCH_INPUT_CHANGED = 'DOCKER_HUB_SEARCH_INPUT_CHANGED';

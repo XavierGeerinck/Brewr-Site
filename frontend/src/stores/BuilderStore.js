@@ -147,6 +147,10 @@ class BuilderStore extends BaseStore {
 
             this.emitChange();
             break;
+            case types.RESPONSE_PROJECT_IMAGE:
+            console.log(action);
+            this.emitChange();
+            break;
             case types.BUILDER_CHANGE_MAINTAINER:
             this._params.envInfo.maintainer = action.maintainer;
             this.emitChange();

@@ -15,7 +15,7 @@ exports.getProjectByUUIDAndOrganisation = function (projectUUID) {
 };
 
 exports.getProjectByIdAndOrganisation = function (projectId) {
-	return Project.where({ id: projectId }).fetch({ withRelated: [ 'created_by', 'users' ] });
+	return Project.where({ id: projectId }).fetch({ withRelated: [ 'created_by', 'users', 'revisions' ] });
 };
 
 exports.getMembersByOrganisationUUIDAndProjectId = function (organisationUUID, projectId) {
@@ -164,7 +164,7 @@ exports.create = function (organisationUUID, user, metaData, envInfo, files) {
 			projectObj = project;
 
 			return ProjectRevision.forge({
-				project: project.get('id'),
+				project_id: project.get('id'),
 				revision_number: uuid.v4()
 			})
 			.save();
@@ -220,6 +220,19 @@ exports.create = function (organisationUUID, user, metaData, envInfo, files) {
 		})
 		.then(function () {
 			return resolve(projectObj);
+		})
+		.catch(function (err) {
+			return reject(err);
+		});
+	});
+}
+
+exports.getProjectImage = function (revisionUUID) {
+	return new Promise(function (resolve, reject) {
+		ProjectEnvInfo.where({ project_revision: revisionUUID })
+		.fetch()
+		.then(function (projectEnvInfo) {
+			return resolve(projectEnvInfo);
 		})
 		.catch(function (err) {
 			return reject(err);

@@ -10,6 +10,13 @@ export function receiveProjectResponse(response) {
     });
 }
 
+export function receiveProjectImageResponse(response) {
+    AppDispatcher.handleServerAction({
+        type: actionTypes.RESPONSE_PROJECT_IMAGE,
+        response: response
+    });
+}
+
 // Errors
 export function receiveProjectErrorResponse(err) {
     AppDispatcher.handleServerAction({

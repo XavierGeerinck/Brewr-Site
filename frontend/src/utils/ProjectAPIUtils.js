@@ -1,6 +1,19 @@
 import * as ProjectServerActions from '../actions/ProjectServerActions';
 import request from 'superagent';
 
+export function getProjectImage(token, organisationUUID, projectId, revisionUUID) {
+    request
+    .get('http://localhost:8000/organisation/' + organisationUUID + '/project/' + projectId + '/revision/' + revisionUUID + '/image?type=json')
+    .set('Authorization', 'Bearer ' + token)
+    .end(function (err, res) {
+        if (err) {
+            return ProjectServerActions.receiveProjectErrorResponse(err);
+        }
+
+        return ProjectServerActions.receiveProjectImageResponse(res.body);
+    });
+}
+
 export function getProject(token, organisationId, projectId) {
     request
     .get('http://localhost:8000/organisation/' + organisationId + '/project/' + projectId)

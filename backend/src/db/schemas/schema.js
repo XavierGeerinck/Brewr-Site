@@ -102,7 +102,7 @@ var Schema = {
 
     project_revision: {
         id: { type: 'increments', nullable: false, primary: true },
-        project: { references: 'id', inTable: 'project',  type: 'integer', unsigned: true, nullable: false },
+        project_id: { references: 'id', inTable: 'project',  type: 'integer', unsigned: true, nullable: false },
         revision_number: { type: 'uuid', nullable: false },
         created_at: { type: 'dateTime', nullable: false },
         updated_at: { type: 'dateTime', nullable: true }

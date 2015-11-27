@@ -12,6 +12,27 @@ var Project = require('../db/models/Project');
 var ProjectService = require('../services/ProjectService');
 var AuthService = require('../services/AuthService');
 
+exports.getImage = function (request, reply) {
+    var type = request.query.type;
+    var projectId = request.params.project;
+    var organisationUUID = request.params.organisation;
+    var revisionUUID = request.params.revision;
+
+    // Todo: Get the revisionId first by the UUID, then call the getProjectImage
+    // Todo: Check if the project and organisation exists? <-- No, we got the dynamic scope?
+    ProjectService.getProjectImage(revisionUUID)
+    .then(function (projectImage) {
+        switch (type) {
+            case 'json':
+            default:
+                return reply(projectImage);
+        }
+    })
+    .catch(function (err) {
+        return reply(err);
+    });
+};
+
 exports.getProjectByUUIDAndOrganisation = function (request, reply) {
     ProjectService
     .getProjectByIdAndOrganisation(request.params.project)

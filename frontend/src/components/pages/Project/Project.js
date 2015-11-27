@@ -52,6 +52,13 @@ export class Project extends BaseComponent {
         this.setState(this._getState());
     }
 
+    _onClickEditProject() {
+        console.log(this.props);
+        console.log(this.state);
+        ProjectActions.editProjectImage(AuthStore.token, this.state.currentOrganisation, this.state.selectedProject.id, this.state.selectedProject.revisions[0].revision_number);
+        this.props.history.pushState(null, '/');
+    }
+
     render() {
 
         if (!this.state || !this.state.selectedProject) {
@@ -65,7 +72,7 @@ export class Project extends BaseComponent {
             {/* LEFT */}
             <div className={cx(grid['pure-u-md-4-5'], styles.ContainerLeft)}>
             <div className={styles.ContainerTop}>
-            <h1>{selectedProject.name} <Button text="Edit" isForm={true} onClick=/></h1>
+            <h1>{selectedProject.name} <Button text="Edit" isForm={true} onClick={this._onClickEditProject.bind(this)}/></h1>
             <p>{selectedProject.description}</p>
             </div>
 
