@@ -10,14 +10,36 @@ var RouteHandler = Router.RouteHandler;
 class App extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = this._getAuthState();
+    }
+
+    _getAuthState() {
+        return {
+            user: AuthStore.user,
+            isLoggedIn: AuthStore.isLoggedIn
+        }
     }
 
     componentDidMount() {
-        // Automatically login if possible
+        this.changeListener = this._onChange.bind(this);
+        AuthStore.addChangeListener(this.changeListener);
+    }
+
+    componentWillUnmount() {
+        AuthStore.removeChangeListener(this.changeListener);
+    }
+
+    componentWillMount() {
         if (!AuthStore.user && AuthStore.token) {
             AuthActions.getUser(AuthStore.token);
         }
     }
+
+    _onChange() {
+        this.setState(this._getAuthState());
+    }
+
 
     render() {
         return (

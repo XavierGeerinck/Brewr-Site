@@ -80,7 +80,7 @@ class BuilderStore extends BaseStore {
 
         this._params = {
             meta: {
-                name: "Test Project",       // Project Name
+                name: "Nginx",       // Project Name
                 description: ""             // Project Description
             },
             files: [],                      // Files to add, format: { name: "", content: "" }
@@ -91,13 +91,10 @@ class BuilderStore extends BaseStore {
                 "label": [
                     "com.brewr.io=somevalue",
                 ],
-                "workdir": "/home/xavier",
-                "user": "root",
+                "workdir": "/var/www",
+                "user": "www-data",
                 "run": [
-                    "sudo apt-get install nodejs",
-                    "sudo apt-get install nginx",
-                    "sudo apt-get install mariadb",
-                    "sudo apt-get install mongodb"
+                    "sudo apt-get install nginx"
                 ],
                 "sourceCode": null,
                 "cmd": [
@@ -105,22 +102,18 @@ class BuilderStore extends BaseStore {
                 ],
                 "expose": [
                     "80:80",
-                    "3306:3306",
-                    "8000:8000",
+                    "443:443"
                 ],
                 "env": [
-                    "ENVIRONMENT=staging",
-                    "TEST=test123",
+                    "ENVIRONMENT=staging"
                 ],
                 "add": [
-                    "config/nginx.conf /etc/nginx/nginx.conf",
-                    "log /var/log"
+                    "/etc/nginx/sites-available/default.conf:/nginx_default.conf.bak",
                 ],
                 "copy": null,
                 "entrypoint": null,
                 "volume": [
-                    "/data",
-                    "/c/Users/thebi/logs:/var/logs",
+                    "/var/www"
                 ],
                 "onbuild": null
             }
@@ -188,17 +181,20 @@ class BuilderStore extends BaseStore {
             break;
             case types.BUILDER_CHANGE_ADD_ITEMS:
             action.items.forEach(i => {
+                // If file content, parse file
                 if (i.content) {
                     this._params.files.push({
-                        name: i.value.split(':')[0],
+                        name: i.name.split(':')[0],
                         content: i.content
                     });
 
-                    delete i.content;
+                    // Change the root to the name child
+                    i = i.name;
                 }
+
+                this._params.envInfo.add.push(i);
             });
 
-            this._params.envInfo.add = action.items;
             this.emitChange();
             break;
             case types.BUILDER_CHANGE_ENV_ITEMS:

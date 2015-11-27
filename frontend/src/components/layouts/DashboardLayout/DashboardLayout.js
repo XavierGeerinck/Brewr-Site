@@ -49,6 +49,11 @@ class DashboardLayout extends React.Component {
     }
 
     render() {
+        // If we are not logged in, do not render anything.
+        if (!AuthStore.isLoggedIn) {
+            return (<div></div>);
+        }
+
         var self = this;
         const { title, isBoxed, history } = this.props;
         const { user, organisations, selected_organisation } = this.state;
