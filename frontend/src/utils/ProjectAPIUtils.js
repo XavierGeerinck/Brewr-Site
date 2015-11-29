@@ -9,7 +9,7 @@ export function getProjectImage(token, organisationUUID, projectId, revisionUUID
         if (err) {
             return ProjectServerActions.receiveProjectErrorResponse(err);
         }
-
+        
         return ProjectServerActions.receiveProjectImageResponse(res.body);
     });
 }

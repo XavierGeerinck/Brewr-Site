@@ -3,7 +3,6 @@ import React, { PropTypes } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import DockerfileViewer from '../../elements/DockerfileViewer';
 import BuilderActions from '../../../actions/BuilderActions';
-import BuilderStore from '../../../stores/BuilderStore';
 import FlexContainer from '../../elements/FlexContainer';
 import Button from '../../elements/Button';
 import Input from '../../elements/Input';
@@ -52,7 +51,7 @@ class Step3 extends React.Component {
     }
 
     render() {
-        let dockerfile = BuilderStore.dockerfile.envInfo;
+        let dockerfile = this.props.imageParams.envInfo;
 
         return (
             <FlexContainer>

@@ -110,7 +110,7 @@ var Schema = {
 
     project_env_info: {
         id: { type: 'increments', nullable: false, primary: true },
-        project_revision: { references: 'id', inTable: 'project_revision', type: 'integer', unsigned: true, nullable: false },
+        project_revision_id: { references: 'id', inTable: 'project_revision', type: 'integer', unsigned: true, nullable: false },
         distribution: { type: 'text', nullable: true },
         maintainer: { type: 'string', nullable: true },
         label: { type: 'text', nullable: true },
@@ -133,7 +133,7 @@ var Schema = {
 
     project_file: {
         id: { type: 'increments', nullable: false, primary: true },
-        project_revision: { references: 'id', inTable: 'project_revision', type: 'integer', unsigned: true, nullable: false },
+        project_revision_id: { references: 'id', inTable: 'project_revision', type: 'integer', unsigned: true, nullable: false },
         added_by: { references: 'id', inTable: 'user', type: 'integer', unsigned: true, nullable: false, comment: 'Who added the file to this project?' },
         file_name: { type: 'string', nullable: false },
         file_date_uri: { type: 'text', nullable: false }

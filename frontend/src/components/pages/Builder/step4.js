@@ -1,6 +1,5 @@
 import fa from 'font-awesome/css/font-awesome.css';
 import React, { PropTypes } from 'react';
-import BuilderStore from '../../../stores/BuilderStore';
 import BuilderActions from '../../../actions/BuilderActions';
 import FlexContainer from '../../elements/FlexContainer';
 import Button from '../../elements/Button';
@@ -38,7 +37,7 @@ class Step4 extends React.Component {
     }
 
     render() {
-        let dockerfile = BuilderStore.dockerfile.envInfo;
+        let dockerfile = this.props.imageParams.envInfo;
 
         return (
             <FlexContainer>

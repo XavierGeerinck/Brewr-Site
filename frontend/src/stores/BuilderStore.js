@@ -125,7 +125,7 @@ class BuilderStore extends BaseStore {
     }
 
     _registerToActions(action) {
-        switch (action.actionType) {
+        switch (action.action.type) {
             case types.BUILDER_DISTRIBUTION_CHANGE:
             this._params.distribution = action.distribution;
             this._params.distributionVersion = action.distribution_version;
@@ -148,7 +148,9 @@ class BuilderStore extends BaseStore {
             this.emitChange();
             break;
             case types.RESPONSE_PROJECT_IMAGE:
-            console.log(action);
+            this._params.meta = {};
+            this._params.envInfo = action.action.response || {};
+            this._params.files = [];
             this.emitChange();
             break;
             case types.BUILDER_CHANGE_MAINTAINER:

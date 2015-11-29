@@ -17,12 +17,6 @@ class ProjectActions {
         });
 
         ProjectAPIUtils.getProject(token, organisationId, projectId);
-    },
-    assignMember: function(organisationId, projectId, memberId) {
-      ProjectAPIUtils.assignMember(AuthStore.token, organisationId, projectId, memberId);
-    },
-    removeMember: function(organisationId, projectId, memberId) {
-      ProjectAPIUtils.removeMember(AuthStore.token, organisationId, projectId, memberId);
     }
 
     static assignMember(organisationId, projectId, memberId) {

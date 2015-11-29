@@ -10,7 +10,6 @@ import DashboardLayout from '../../layouts/DashboardLayout';
 import BuilderActions from '../../../actions/BuilderActions';
 import CRUDList from '../../elements/CRUDList';
 import Form from '../../elements/Form';
-import BuilderStore from '../../../stores/BuilderStore';
 import cx from 'classnames';
 
 /**
@@ -22,6 +21,10 @@ const tooltipRunItems = "Specify the commands to install programs here, example:
 const tooltipGeneral = "Here you can choose the general variables such as the maintainer, the working directory and the user to execute the environment.";
 
 class Step2 extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     handleNextPage () {
         this._save();
         BuilderActions.nextPage();
@@ -56,8 +59,12 @@ class Step2 extends React.Component {
     }
 
     render() {
-        let dockerfile = BuilderStore.dockerfile.envInfo;
-        let params = BuilderStore.params;
+        console.log('rerender');
+        console.log(this.props.imageParams);
+        let dockerfile = this.props.imageParams.envInfo;
+        let params = this.props.imageParams;
+
+        console.log(dockerfile);
 
         return (
             <FlexContainer>

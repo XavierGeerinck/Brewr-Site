@@ -18,6 +18,14 @@ exports.getProjectByIdAndOrganisation = function (projectId) {
 	return Project.where({ id: projectId }).fetch({ withRelated: [ 'created_by', 'users', 'revisions' ] });
 };
 
+exports.getProjectRevisionByUUID = function (projectRevisionUUID) {
+	return ProjectRevision.where({ revision_number: projectRevisionUUID }).fetch();
+};
+
+exports.getProjectImage = function (projectRevisionId) {
+	return ProjectEnvInfo.where({ project_revision_id: projectRevisionId }).fetch();
+};
+
 exports.getMembersByOrganisationUUIDAndProjectId = function (organisationUUID, projectId) {
 	return new Promise(function (resolve, reject) {
 		Organisation.where({ uuid: organisationUUID }).fetch()
@@ -185,7 +193,7 @@ exports.create = function (organisationUUID, user, metaData, envInfo, files) {
 			// Create the project files
 	        async.each(files, function (file, cb) {
 	            ProjectFile.forge({
-	                project_revision: projectRevision.get('id'),
+	                project_revision_id: projectRevision.get('id'),
 	                file_name: file.name,
 	                file_data_uri: file.content
 	            })
@@ -206,7 +214,7 @@ exports.create = function (organisationUUID, user, metaData, envInfo, files) {
 		})
 		.then(function (projectRevision) {
 			return ProjectEnvInfo.forge({
-				project_revision: projectRevisionObj.get('id'),
+				project_revision_id: projectRevisionObj.get('id'),
 				distribution: envInfo.distribution,
 				distribution_version: envInfo.distributionVersion,
 				maintainer: envInfo.maintainer,
@@ -230,19 +238,6 @@ exports.create = function (organisationUUID, user, metaData, envInfo, files) {
 		})
 		.then(function () {
 			return resolve(projectObj);
-		})
-		.catch(function (err) {
-			return reject(err);
-		});
-	});
-}
-
-exports.getProjectImage = function (revisionUUID) {
-	return new Promise(function (resolve, reject) {
-		ProjectEnvInfo.where({ project_revision: revisionUUID })
-		.fetch()
-		.then(function (projectEnvInfo) {
-			return resolve(projectEnvInfo);
 		})
 		.catch(function (err) {
 			return reject(err);

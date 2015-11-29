@@ -7,13 +7,12 @@ import Panel from '../../elements/Panel';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import DockerfileViewer from '../../elements/DockerfileViewer';
 import BuilderActions from '../../../actions/BuilderActions';
-import BuilderStore from '../../../stores/BuilderStore';
 import AuthStore from '../../../stores/AuthStore';
 import cx from 'classnames';
 
 class Step6 extends React.Component {
     handleNextPage () {
-        BuilderActions.saveProject(AuthStore.token, AuthStore.selected_organisation.uuid, BuilderStore.dockerfile);
+        BuilderActions.saveProject(AuthStore.token, AuthStore.selected_organisation.uuid, this.props.imageParams);
     }
 
     handlePreviousPage() {
@@ -25,7 +24,7 @@ class Step6 extends React.Component {
             <FlexContainer>
                 {/* Current Volumes */}
                 <Panel heading="Finalize">
-                    <DockerfileViewer dockerFileObject={this.props.dockerFileObject} />
+                    <DockerfileViewer dockerFileObject={this.props.imageParams} />
                 </Panel>
 
                 {/* Buttons */}

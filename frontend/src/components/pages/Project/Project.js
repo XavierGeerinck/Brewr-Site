@@ -17,6 +17,7 @@ import Button from '../../elements/Button';
 
 import AssignableMemberList from '../../elements/AssignableMemberList/AssignableMemberList';
 import OrganisationStore from '../../../stores/OrganisationStore';
+import BuilderStore from '../../../stores/BuilderStore';
 import OrganisationActions from '../../../actions/OrganisationActions';
 
 export class Project extends BaseComponent {
@@ -61,17 +62,15 @@ export class Project extends BaseComponent {
         console.log(this.props);
         console.log(this.state);
         ProjectActions.editProjectImage(AuthStore.token, this.state.currentOrganisation, this.state.selectedProject.id, this.state.selectedProject.revisions[0].revision_number);
-        this.props.history.pushState(null, '/');
+        this.props.history.pushState(null, '/builder');
     }
 
     render() {
-        const { selectedProject, currentOrganisation, allMembers } = this.state;
-
         if (!this.state || !this.state.selectedProject) {
             return (<div></div>);
         }
 
-        const { selectedProject, currentOrganisation } = this.state;
+        const { selectedProject, currentOrganisation, allMembers } = this.state;
 
         return (
             <DashboardLayout title={selectedProject.name} className={grid['pure-g']}>

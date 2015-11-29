@@ -37,6 +37,8 @@ class Builder extends React.Component {
     }
 
     _onChange() {
+        console.log('CHANGED');
+        console.log(this._getBuilderState());
         this.setState(this._getBuilderState());
     }
 
@@ -45,23 +47,23 @@ class Builder extends React.Component {
 
         switch (BuilderStore.currentStep) {
             case 2:
-                content = <BuilderStep2 />;
+                content = <BuilderStep2 imageParams={this.state.dockerfile} />;
                 break;
             case 3:
-                content = <BuilderStep3 />;
+                content = <BuilderStep3 imageParams={this.state.dockerfile} />;
                 break;
             case 4:
-                content = <BuilderStep4 />;
+                content = <BuilderStep4 imageParams={this.state.dockerfile} />;
                 break;
             case 5:
-                content = <BuilderStep5 />;
+                content = <BuilderStep5 imageParams={this.state.dockerfile} />;
                 break;
             case 6:
                 content = <BuilderStep6 dockerFileObject={this.state.dockerfile}/>;
                 break;
             case 1:
             default:
-                content = <BuilderStep1 />;
+                content = <BuilderStep1 imageParams={this.state.dockerfile} />;
         };
 
         return (
