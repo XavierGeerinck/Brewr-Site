@@ -69,7 +69,13 @@ exports.addMemberByOrganisationUUIDAndProjectId = function (organisationUUID, pr
 			.save();
 		})
 		.then(function (projectUser) {
-			return resolve();
+			//TODO: Get the project from the saved user...
+			return Project
+				.where({id: projectId})
+				.fetch({ withRelated: [ 'created_by', 'users' ] });
+		})
+		.then(function(project){
+			return resolve(project);
 		})
 		.catch(function (err) {
 			return reject(err);
@@ -91,8 +97,12 @@ exports.removeMemberByOrganisationUUIDAndProjectId = function (organisationUUID,
 			.where({ project_id: projectId, user_id: memberId })
 			.destroy();
 		})
-		.then(function () {
-			return resolve();
+		.then(function() {
+			//TODO: Try to optimize this step
+			return Project.where({id: projectId}).fetch({ withRelated: [ 'created_by', 'users' ] });
+		})
+		.then(function(project) {
+			return resolve(project);
 		})
 		.catch(function (err) {
 			return reject(err);

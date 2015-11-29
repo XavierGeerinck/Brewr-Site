@@ -30,6 +30,7 @@ export class Project extends BaseComponent {
         ProjectStore.addChangeListener(this._onChange);
         OrganisationStore.addChangeListener(this._onChange);
 
+
         ProjectActions.getProject(AuthStore.token, this.props.params.organisationId, this.props.params.projectId);
         OrganisationActions.getMembers(AuthStore.token, this.props.params.organisationId);
     }
@@ -52,6 +53,10 @@ export class Project extends BaseComponent {
         this.setState(this._getState());
     }
 
+    _removeMember(id) {
+      ProjectActions.removeMember(this.props.params.organisationId, this.state.selectedProject.id, id);
+    }
+
     _onClickEditProject() {
         console.log(this.props);
         console.log(this.state);
@@ -60,6 +65,7 @@ export class Project extends BaseComponent {
     }
 
     render() {
+        const { selectedProject, currentOrganisation, allMembers } = this.state;
 
         if (!this.state || !this.state.selectedProject) {
             return (<div></div>);
@@ -144,30 +150,30 @@ export class Project extends BaseComponent {
 
             <ul>
             {
-                selectedProject.members.map(m => {
-                    return (
-                        <li key={"img_" + m.id}>
-                        <Image src={m.avatar_url} defaultSrc={require('./avatar.png')}/>
-                        <div className={styles.ContainerRightListItem}>
-                        <div className={styles.ContainerRightListItemName}>{m.name}</div>
-                        <div className={styles.ContainerRightListItemSubtitle}>{m.scope}</div>
-                        </div>
-                        <button><i className={cx(fa.fa, fa['fa-remove'])}></i></button>
-                        <div className={styles.Clear}></div>
-                        </li>
-                    )
-                })
+              selectedProject.members.map(m => {
+                return (
+                  <li key={"img_" + m.id}>
+                    <Image src={m.avatar_url} defaultSrc={require('./avatar.png')}/>
+                    <div className={styles.ContainerRightListItem}>
+                      <div className={styles.ContainerRightListItemName}>{m.name}</div>
+                      <div className={styles.ContainerRightListItemSubtitle}>{m.scope}</div>
+                    </div>
+                    <button onClick={this._removeMember.bind(this, m.id)}><i className={cx(fa.fa, fa['fa-remove'])}></i></button>
+                    <div className={styles.Clear}></div>
+                  </li>
+                )
+              })
             }
             </ul>
 
 
-            { /* TODO: Only when project manager or owner of organisation */ }
-            <h2>Assign Member</h2>
-            <AssignableMemberList members={this.state.allMembers} project={selectedProject} organisation={currentOrganisation}/>
-            </div>
-            </DashboardLayout>
-        )
-    }
+          { /* TODO: Only when project manager or owner of organisation */ }
+          <h2>Assign Member</h2>
+          <AssignableMemberList members={allMembers} project={selectedProject} organisation={currentOrganisation}/>
+        </div>
+      </DashboardLayout>
+    )
+  }
 
 }
 

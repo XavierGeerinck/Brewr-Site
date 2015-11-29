@@ -1,6 +1,7 @@
 import AppDispatcher from '../dispatchers/AppDispatcher';
 import * as actionTypes from '../constants/ActionTypes';
 import * as ProjectAPIUtils from '../utils/ProjectAPIUtils';
+import * as ProjectConstants from '../constants/ProjectConstants';
 
 // Normal Responses
 export function receiveProjectResponse(response) {
@@ -23,4 +24,11 @@ export function receiveProjectErrorResponse(err) {
         type: actionTypes.RESPONSE_PROJECT_ERROR,
         error: err
     });
+}
+
+export function assignMemberResponse(response) {
+  AppDispatcher.handleServerAction({
+    type: ProjectConstants.PROJECT_ASSIGN_MEMBER,
+    response: response
+  });
 }

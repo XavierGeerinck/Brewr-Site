@@ -30,25 +30,25 @@ export function getProject(token, organisationId, projectId) {
 export function assignMember(token, organisationId, projectId, memberId) {
   request
     .post('http://localhost:8000/organisation/' + organisationId + '/project/' + projectId + '/assign')
-    .send({memberId: memberId})
-    .set('Authorization', 'Bearer' + token)
+    .send({member: memberId})
+    .set('Authorization', 'Bearer ' + token)
     .end(function(err, res){
       if(err) {
         return ProjectServerActions.receiveProjectErrorResponse(err);
       }
-      return ProjectServerActions.receiveProjectResponse(res.body);
+      return ProjectServerActions.assignMemberResponse(res.body);
     });
 }
 
 export function removeMember(token, organisationId, projectId, memberId) {
   request
-    .del('http://localhost:8000/organisation/' + organisationId + '/project/' + projectId + '/member/' + memberId)
-    .set('Authorization', 'Bearer' + token)
+    .del('http://localhost:8000/organisation/' + organisationId + '/project/' + projectId + '/members/' + memberId)
+    .set('Authorization', 'Bearer ' + token)
     .end(function(err, res){
       if(err) {
         return ProjectServerActions.receiveProjectErrorResponse(err);
       }
-      return ProjectServerActions.receiveProjectResponse(res.body);
+      return ProjectServerActions.assignMemberResponse(res.body);
     });
 }
 
