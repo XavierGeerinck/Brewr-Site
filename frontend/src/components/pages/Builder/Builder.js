@@ -37,8 +37,6 @@ class Builder extends React.Component {
     }
 
     _onChange() {
-        console.log('CHANGED');
-        console.log(this._getBuilderState());
         this.setState(this._getBuilderState());
     }
 

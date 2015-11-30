@@ -6,9 +6,10 @@ class Input extends React.Component {
     constructor (props) {
         super(props);
 
-        this.state = {
+        // Use setState, this way it will rerender the component
+        this.setState({
             value: props.text
-        };
+        });
     }
 
     handleChange (event) {
@@ -64,7 +65,7 @@ class Input extends React.Component {
             type={this.props.type}
             name={this.props.name}
             valueLink={this.props.valueLink}
-            value={this.state.value}
+            value={this.props.value}
             placeholder={this.props.placeholder}
             onChange={this.handleChange.bind(this)}
             key="input"/>

@@ -59,12 +59,8 @@ class Step2 extends React.Component {
     }
 
     render() {
-        console.log('rerender');
-        console.log(this.props.imageParams);
         let dockerfile = this.props.imageParams.envInfo;
         let params = this.props.imageParams;
-
-        console.log(dockerfile);
 
         return (
             <FlexContainer>

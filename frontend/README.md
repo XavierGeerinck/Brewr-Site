@@ -23,6 +23,7 @@ We use https://www.npmjs.com/package/purecss for the grid system, you can import
 2. When performing requests, always implement the RESPONSE and RESPONSE_ERROR types. This allows for detailed error handling.
 3. We bind the changeListeners on the componentDidMount and componentWillUnmount
 4. We will not execute view actions in a store! so no Navigation.transitionTo things, the view will do this (see login page for an example)
+5. Do not use this.state = {} but use this.setState({}) else you will not get an updated view
 
 ## Directory Structure
 ```

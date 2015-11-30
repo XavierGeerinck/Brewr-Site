@@ -59,8 +59,6 @@ export class Project extends BaseComponent {
     }
 
     _onClickEditProject() {
-        console.log(this.props);
-        console.log(this.state);
         ProjectActions.editProjectImage(AuthStore.token, this.state.currentOrganisation, this.state.selectedProject.id, this.state.selectedProject.revisions[0].revision_number);
         this.props.history.pushState(null, '/builder');
     }
