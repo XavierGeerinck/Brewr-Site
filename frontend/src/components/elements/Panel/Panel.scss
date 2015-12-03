@@ -1,0 +1,31 @@
+@import '../../../css/colors';
+
+.Panel {
+    width: auto;
+    display: block;
+    padding: 20px 50px;
+    flex-grow: 3;
+}
+
+.Panel h1 {
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.Panel-Half {
+    min-width: 50%;
+}
+
+.Panel-A-Third {
+    min-width: 33.3%;
+}
+
+.Panel-Full {
+    min-width: 100%;
+}
+
+.Panel-HelpIcon {
+    font-size: 14px;
+    margin: 0 0 0 5px;
+    position: absolute;
+}

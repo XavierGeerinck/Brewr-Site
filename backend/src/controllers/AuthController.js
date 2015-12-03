@@ -37,10 +37,22 @@ exports.getSessionsByUserId = function (request, reply) {
 }
 
 exports.register = function (request, reply) {
+    var email = request.payload.email;
+    var password = request.payload.password;
+    var user;
+
     AuthService
-    .createAccount(request.payload.email, request.payload.password, request.payload.firstName, request.payload.lastName)
+    .createAccount(email, password, request.payload.firstName, request.payload.lastName)
     .then(function (account) {
-        return reply(account);
+        user = account;
+
+        return AuthService.authorize(email, password, null, null);
+    })
+    .then(function (session) {
+        return reply({
+            token: session.get('token'),
+            user: user
+        });
     })
     .catch(function (err) {
         return reply(err);

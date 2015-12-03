@@ -1,0 +1,6 @@
+{
+    "name": "Image",
+    "version": "0.0.0",
+    "main": "./Image.js",
+    "private": true
+}

@@ -149,3 +149,33 @@ exports.createOrganisation = function (creatorId, name, description, logo) {
     })
     .save();
 }
+
+exports.makeMemberManagerByOrganisationUUID = function (organisationUUID, memberId) {
+    var organisation = null;
+
+    return new Promise(function (resolve, reject) {
+        OrganisationModel
+        .where({ uuid: organisationUUID })
+        .fetch()
+        .then(function (org) {
+            organisation = org;
+
+            return OrganisationUserModel
+            .where({
+                user_id: memberId,
+                organisation_id: org.get('id')
+            })
+            .save({ is_manager: true }, { method: 'update' });
+        })
+        .then(function (organisationUser) {
+            // if (!organisationUser) {
+            //     return Promise.reject('USER_IS_NOT_A_MEMBER_OF_ORGANISATION');
+            // }
+
+            return resolve();
+        })
+        .catch(function (err) {
+            return reject(err);
+        });
+    });
+}

@@ -1,0 +1,102 @@
+@import '../../../css/colors';
+
+.SideMenu {
+    color: #fff;
+
+    min-width: 200px;
+    max-width: 200px;
+    background-color: $color-primary-shade-lighter-1;
+    font-weight: normal;
+
+    position: fixed;
+    height: 100%;
+}
+
+.SideMenu h1 {
+    text-transform: uppercase;
+    margin: 0;
+    text-align: center;
+    color: $color-white;
+    font-size: 18px;
+}
+
+.SideMenu h1 a {
+    text-decoration: none;
+    color: $color-white;
+    padding: 15px 0;
+    display: block;
+}
+
+.SideMenu h1 i {
+    margin-right: 5px;
+}
+
+.SideMenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.SideMenu ul li {
+    font-size: 12px;
+    color: $color-sidemenu;
+}
+
+.SideMenu ul li i {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.SideMenu ul li .item-dropdown {
+    float: right;
+}
+
+.SideMenu ul li a {
+    color: $color-sidemenu;
+    padding: 13px 0 13px 20px;
+    display: block;
+    text-decoration: none;
+}
+
+.SideMenu ul li:nth-child(odd) {
+    background-color: $color-primary-shade-lighter-2;
+}
+
+.SideMenuItem-Active {
+    border-left: 5px solid $color-primary-shade-lighter-4;
+}
+
+.SideMenuItem-StickBottom {
+    position: absolute;
+    bottom: 0;
+}
+
+.SideMenuContainer-Second-Level {
+    padding: 0;
+}
+
+.SideMenuContainer-Second-Level-Visible {
+    display: block;
+}
+
+.SideMenuContainer-Second-Level-NotVisible {
+    display: none;
+}
+
+.SideMenuContainer-Second-Level ul {
+    background-color: $color-primary-shade-darker-2;
+    padding: 0;
+}
+
+.SideMenuContainer-Second-Level ul li {
+    background-color: $color-primary-shade-darker-2 !important;
+    border-bottom: 1px solid $color-primary-shade-darker-1;
+    padding: 0;
+    display: block;
+}
+
+.SideMenuContainer-Second-Level a {
+    color: $color-sidemenu;
+    display: block;
+    padding: 13px 0 13px 20px;
+}

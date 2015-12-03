@@ -1,0 +1,320 @@
+{
+    "user": [
+        {
+            "id": 1,
+            "email": "thebillkidy@gmail.com",
+            "first_name": "Xavier",
+            "last_name": "Geerinck",
+            "name": "Xavier Geerinck",
+            "password_raw": "test",
+            "enabled": true,
+            "scope": "user",
+            "first_name": "Xavier",
+            "last_name": "Geerinck",
+            "name": "Xavier Geerinck",
+            "created_at": "2015-08-08T08:58:43.000Z",
+            "updated_at": "2015-08-08T08:58:47.000Z"
+        },
+        {
+            "id": 2,
+            "email": "contact@facebook.com",
+            "first_name": "Mark",
+            "last_name": "Zuckerberg",
+            "name": "Mark Zuckerberg",
+            "password_raw": "test",
+            "enabled": true,
+            "scope": "user",
+            "created_at": "2015-08-08T08:58:43.000Z",
+            "updated_at": "2015-08-08T08:58:47.000Z"
+        },
+        {
+            "id": 3,
+            "email": "contact@google.com",
+            "first_name": "Larry",
+            "last_name": "Page",
+            "name": "Larry Page",
+            "password_raw": "test",
+            "enabled": true,
+            "scope": "user",
+            "created_at": "2015-08-08T08:58:43.000Z",
+            "updated_at": "2015-08-08T08:58:47.000Z"
+        },
+        {
+            "id": 4,
+            "email": "contact@microsoft.com",
+            "first_name": "Bill",
+            "last_name": "Gates",
+            "name": "Bill Gates",
+            "password_raw": "test",
+            "enabled": true,
+            "scope": "user",
+            "created_at": "2015-08-08T08:58:43.000Z",
+            "updated_at": "2015-08-08T08:58:47.000Z"
+        },
+        {
+            "id": 5,
+            "email": "contact@apple.com",
+            "first_name": "Steve",
+            "last_name": "Jobs",
+            "name": "Steve Jobs",
+            "password_raw": "test",
+            "enabled": true,
+            "scope": "user",
+            "created_at": "2015-08-08T08:58:43.000Z",
+            "updated_at": "2015-08-08T08:58:47.000Z"
+        },
+        {
+            "id": 6,
+            "email": "maximgeerinck@hotmail.com",
+            "first_name": "Maxim",
+            "last_name": "Geerinck",
+            "name": "Maxim Geerinck",
+            "password_raw": "test",
+            "enabled": true,
+            "scope": "user",
+            "created_at": "2015-08-08T08:58:43.000Z",
+            "updated_at": "2015-08-08T08:58:47.000Z"
+        }
+    ],
+    "user_session": [
+        {
+            "id": 1,
+            "token": "b83c8f2cac5698b4e92b876d9a2798a57ab97a247f426f84bdca2f9b807d140e",
+            "ip": "127.0.0.1",
+            "user_id": 1,
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36",
+            "created_at": "NOW()",
+            "updated_at": "NOW()"
+        },
+        {
+            "id": 2,
+            "token": "47e72cc852a24e279d59a70f5dbff361",
+            "ip": "127.0.0.1",
+            "user_id": 1,
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36",
+            "created_at": "NOW()",
+            "updated_at": "NOW()"
+        },
+        {
+            "id": 3,
+            "token": "57e72cc802a24e279d59a70f5dbff361",
+            "ip": "127.0.0.1",
+            "user_id": 2,
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36",
+            "created_at": "NOW()",
+            "updated_at": "NOW()"
+        }
+    ],
+    "organisation": [
+        {
+            "id": 1,
+            "uuid": "61a7f15a-5f6e-4429-a213-bd077551a20c",
+            "name": "Brewr",
+            "description": "Brewr is an app where organisations can create development environments for their projects.",
+            "subdomain": "brewr.brewr.io",
+            "owner": 1,
+            "user_limit": 25,
+            "project_limit": 5,
+            "created_by": 1,
+            "created_at": "NOW()"
+        },
+        {
+            "id": 2,
+            "uuid": "ec43bdbb-bfc9-4f5c-a755-d8e04d834fc6",
+            "name": "Facebook",
+            "description": "Facebook is an online social networking service headquartered in Menlo Park, California.",
+            "subdomain": "facebook.brewr.io",
+            "owner": 2,
+            "user_limit": 25,
+            "project_limit": 5,
+            "created_by": 2,
+            "created_at": "NOW()"
+        },
+        {
+            "id": 3,
+            "uuid": "e65acd0d-67f2-4532-858f-b2e44a366afe",
+            "name": "Google",
+            "description": "Google Inc. is an American multinational technology company specializing in Internet-related services and products.",
+            "subdomain": "google.brewr.io",
+            "owner": 3,
+            "user_limit": 25,
+            "project_limit": 5,
+            "created_by": 3,
+            "created_at": "NOW()"
+        },
+        {
+            "id": 4,
+            "uuid": "5035768c-70fc-42e4-82a8-20173897abee",
+            "name": "Microsoft",
+            "description": "Microsoft Corporation /ˈmaɪkrɵsɒːft/ is an American multinational technology company headquartered in Redmond, Washington, that develops, manufactures, licenses, supports and sells computer software",
+            "subdomain": "microsoft.brewr.io",
+            "owner": 4,
+            "user_limit": 25,
+            "project_limit": 5,
+            "created_by": 4,
+            "created_at": "NOW()"
+        },
+        {
+            "id": 5,
+            "uuid": "bee4d655-3b07-4da7-bca8-130bb0c44722",
+            "name": "Apple",
+            "description": "Apple Inc. is an American multinational technology company headquartered in Cupertino, California, that designs, develops, and sells consumer electronics, computer software, and online services. ",
+            "subdomain": "apple.brewr.io",
+            "owner": 5,
+            "user_limit": 25,
+            "project_limit": 5,
+            "created_by": 5,
+            "created_at": "NOW()"
+        },
+        {
+            "id": 6,
+            "uuid": "160b8e27-fa5a-42dc-8bf6-ddef949c9bbb",
+            "name": "Brewr Test Multiple Orgs",
+            "description": "We have no access to any of the projects in this organisation. This tests if we are able to assign projects to a user",
+            "subdomain": "apple.brewr.io",
+            "owner": 1,
+            "user_limit": 25,
+            "project_limit": 5,
+            "created_by": 1,
+            "created_at": "NOW()"
+        }
+    ],
+    "project": [
+        {
+            "id": 1,
+            "name": "Brewr-Site",
+            "description": "The Brewr.IO website",
+            "organisation_id": 1,
+            "created_by": 1,
+            "owner": 1,
+            "created_at": "NOW()"
+        },
+        {
+            "id": 2,
+            "name": "Brewr-App",
+            "description": "The Brewr.IO electron App",
+            "organisation_id": 1,
+            "created_by": 6,
+            "owner": 6,
+            "created_at": "NOW()"
+        },
+        {
+            "id": 3,
+            "name": "Facebook.com",
+            "description": "The Facebook.com website",
+            "organisation_id": 2,
+            "created_by": 2,
+            "owner": 2,
+            "created_at": "NOW()"
+        },
+        {
+            "id": 4,
+            "name": "Google Drive",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "organisation_id": 3,
+            "created_by": 3,
+            "owner": 3,
+            "created_at": "NOW()"
+        },
+        {
+            "id": 5,
+            "name": "Google Inbox",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "organisation_id": 3,
+            "created_by": 3,
+            "owner": 3,
+            "created_at": "NOW()"
+        },
+        {
+            "id": 6,
+            "name": "Google Website",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "organisation_id": 3,
+            "created_by": 3,
+            "owner": 3,
+            "created_at": "NOW()"
+        },
+        {
+            "id": 7,
+            "name": "Test project",
+            "description": "This is a project assigned to nobody!",
+            "organisation_id": 6,
+            "created_by": 3,
+            "owner": 3,
+            "created_at": "NOW()"
+        }
+    ],
+    "project_user": [
+        {
+            "is_manager": true,
+            "user_id": 1,
+            "project_id": 3
+        },
+        {
+            "is_manager": false,
+            "user_id": 1,
+            "project_id": 5
+        },
+        {
+            "is_manager": true,
+            "user_id": 1,
+            "project_id": 6
+        }
+    ],
+    "organisation_user": [
+        {
+            "user_id": 1,
+            "organisation_id": 2
+        },
+        {
+            "user_id": 1,
+            "organisation_id": 3
+        },
+        {
+            "user_id": 6,
+            "organisation_id": 1,
+            "is_manager": false
+        }
+    ],
+    "team": [
+        {
+            "id": 1,
+            "name": "Mobile development",
+            "description": "Team responsible for mobile development",
+            "organisation_id": 1,
+            "created_by": 1,
+            "team_leader": 1
+        }
+    ],
+    "team_user": [
+        {
+            "id": 1,
+            "team_id": 1,
+            "user_id": 1,
+            "created_at": "NOW()"
+        }
+    ],
+    "team_role": [
+        {
+            "id": 1,
+            "team_id": 1,
+            "user_id": 1,
+            "role": "ROLE_LEADER"
+        }
+    ],
+    "project_team": [
+        {
+            "project_id": 1,
+            "team_id": 1,
+            "created_at": "NOW()"
+        }
+    ],
+    "project_role": [
+        {
+            "id": 1,
+            "project_id": 1,
+            "user_id": 1,
+            "role": "ROLE_MANAGER"
+        }
+    ]
+}

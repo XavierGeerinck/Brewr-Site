@@ -1,0 +1,27 @@
+@import '../../../css/dimensions';
+@import '../../../css/colors';
+
+.Table {
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	font-size: $dimensionTextSmaller;
+}
+
+.Table > thead {
+	background-color: rgba(0, 0, 0, 0.05);
+	text-weight: bold;
+}
+
+.Table tr {
+	border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.Table > thead td {
+	padding: 10px 8px;
+}
+
+.Table > tbody td {
+	padding: 10px 8px;
+}

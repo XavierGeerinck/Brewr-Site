@@ -1,0 +1,27 @@
+@import '../../../css/colors';
+
+.Logo {
+    text-decoration: none;
+}
+
+.img {
+}
+
+.txt {
+    text-align: center;
+    vertical-align: middle;
+    margin-left: 10px;
+    color: $color-white;
+    font-size: 32px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    float: right;
+}
+
+.Align-Left {
+    float: left;
+}
+
+.Align-Right {
+    float: right;
+}

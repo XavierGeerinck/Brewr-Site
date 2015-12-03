@@ -1,0 +1,131 @@
+.white-base {
+    color: hsl(255, 255, 255);
+}
+
+.color-primary-shade-darker-4 {
+    color: #070a0d;
+}
+
+.color-primary-shade-darker-3 {
+    color: #0e141b;
+}
+
+.color-primary-shade-darker-2 {
+    color: #151E28;
+}
+
+.color-primary-shade-darker-1 {
+    color: #1D2835;
+}
+
+.color-primary {
+    color: #233141;
+}
+
+.color-primary-shade-lighter-1 {
+    color: #2A3C50;
+}
+
+.color-primary-shade-lighter-2 {
+    color: #32465D;
+}
+
+.color-primary-shade-lighter-3 {
+    color: #39506A;
+}
+
+.color-primary-shade-lighter-4 {
+    color: #56789f;
+}
+
+.color-sidemenu {
+    color: #d3d6d9;
+}
+
+.color-text-selected {
+    color: #464749;
+}
+
+.color-text {
+    color: #6a6c6f;
+}
+
+.color-text-hover {
+    color: #8D8E91;
+}
+
+.color-footer {
+    color: #101010;
+}
+
+.color-success {
+    color: #41b222;
+}
+
+.color-white-shade-darker-5 {
+    color: #999999;
+}
+
+.color-white-shade-darker-4 {
+    color: #ADADAD;
+}
+
+.color-white-shade-darker-3 {
+    color: #C2C2C2;
+}
+
+.color-white-shade-darker-2 {
+    color: #dddddd;
+}
+
+.color-white-shade-darker-1 {
+    color: #fafafa;
+}
+
+.color-white {
+    color: #FFFFFF;
+}
+
+.color-black {
+    color: #000000;
+}
+
+.color-black-shade-lighter-1 {
+    color: #0A0A0A;
+}
+
+.color-black-shade-lighter-2 {
+    color: #141414;
+}
+
+.color-accent {
+    color: #f15843;
+}
+
+.color-accent-shade-darker-1 {
+    color: #EB5A47;
+}
+
+.color-accent-shade-lighter-1 {
+    color: #FF4B33;
+}
+
+.color-terminal {
+    color: #555;
+}
+
+.color-terminal-text-shadow {
+    color: #1f1f1f;
+}
+
+.color-terminal-text {
+    color: #D6D6D6;
+}
+
+.font-family-base {
+    font-family: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;
+}
+
+.max-content-width {
+    color: 1000px;
+}

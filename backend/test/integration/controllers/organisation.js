@@ -299,4 +299,42 @@ lab.experiment('[Controller] Organisation', function() {
             });
         });
     });
+
+    it('[POST] /organisation/:org_uuid/members/:member_id/manager should set the member as a manager', function (done) {
+        var orgUUID = fixtures['organisation'][0].uuid;
+
+        var request = {
+            method: 'POST',
+            url: '/organisation/' + orgUUID + '/members/6/manager',
+            headers: {
+                Authorization: 'Bearer ' + fixtures['user_session'][0].token
+            }
+        };
+
+        server.inject(request, function (res) {
+            expect(res.payload).to.exist();
+            expect(JSON.parse(res.payload).success).to.equal(true);
+
+            // Now check if included
+            var request = {
+                method: 'GET',
+                url: '/organisation/' + orgUUID + '/members',
+                headers: {
+                    Authorization: 'Bearer ' + fixtures['user_session'][0].token
+                }
+            };
+
+            server.inject(request, function (res) {
+                expect(res.payload).to.exist();
+
+                var user = JSON.parse(res.payload).filter(function(item) {
+                    return item.id === fixtures['user'][5].id;
+                })[0];
+
+                expect(user.is_manager).to.equal(true);
+
+                done();
+            });
+        });
+	});
 });

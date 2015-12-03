@@ -1,0 +1,37 @@
+@import '../../../css/colors';
+
+.List {
+  list-style: none;
+  padding: 0;
+}
+
+.List li {
+  border-bottom: none;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  background-color: $colorContainer;
+  margin: 5px 0;
+  border: 1px solid $colorBorder;
+  border-radius: 5px;
+}
+
+.List li > span {
+  padding: 7px 10px;
+  align-self: center;
+}
+
+.List Button:first-child {
+  color: $color-white-shade-darker-5;
+  background-color: $colorContainer;
+  border: none;
+}
+
+.List Button:last-child {
+  margin-left: auto;
+}
+
+.List Button {
+  text-align: center;
+  width: 38px;
+}

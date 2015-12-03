@@ -1,0 +1,30 @@
+@import '../../../css/colors';
+
+.Input label {
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+.Input input {
+    margin: 0 auto;
+    padding: 7px 10px;
+    width: 100%;
+    margin: 2px 0 15px 0;
+    border: 1px solid $colorBorder;
+}
+
+.validation-error {
+    border: 1px solid red;
+    color: red;
+}
+
+.validation-errors > li{
+    font-style: italic;
+    color: red;
+}
+
+.Input-Inline {
+    display: inline-block;
+}

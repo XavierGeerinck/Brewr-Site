@@ -1,0 +1,31 @@
+@import '../../../css/colors';
+
+.Divider {
+    text-align: center;
+}
+
+.Divider span {
+    background: #FFF;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.Divider {
+    text-align: center;
+}
+
+.Divider-Horizontal {
+    border-bottom: 1px solid $colorBorder;
+    width: 100%;
+    line-height: 0.1em;
+    margin: 20px 0;
+}
+
+.Divider-Vertical {
+    border-right: 1px solid $colorBorder;
+    width: 1px;
+    height: 20px;
+    display: inline-block;
+    float: left;
+    margin-top: 25px;
+}

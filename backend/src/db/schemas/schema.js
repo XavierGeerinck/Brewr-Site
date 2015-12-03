@@ -21,7 +21,7 @@ var Schema = {
         id: { type: 'increments', nullable: false, primary: true },
         token: { type: 'string', unique: true, nullable: false },
         ip: { type: 'string', nullable: true },
-        user_id: { references: 'id', inTable: 'user', type: 'integer', unsigend: true, nullable: false },
+        user_id: { references: 'id', inTable: 'user', type: 'integer', unsigned: true, nullable: false },
         user_agent: { type: 'text', nullable: true },
         created_at: { type: 'dateTime', nullable: false },
         updated_at: { type: 'dateTime', nullable: true }
@@ -42,7 +42,7 @@ var Schema = {
         expiry_time: { type: 'dateTime', nullable: false, defaultTo: 'NOW()', comment: 'When do does the plan expire?' },
         created_at: { type: 'dateTime', nullable: false },
         updated_at: { type: 'dateTime', nullable: true },
-        deleted_at: { type: 'dateTime', nullable: true },
+        deleted_at: { type: 'dateTime', nullable: true }
     },
 
     project: {
@@ -58,9 +58,51 @@ var Schema = {
         updated_at: { type: 'string', nullable: true }
     },
 
+    // team: {
+    //     id: { type: 'increments', nullable: false, primary: true},
+    //     name: {type: 'string', nullable: false},
+    //     description: {type: 'text', nullable: true},
+    //     image_url: { type: 'string', 'nullable': false},
+    //     team_leader: {references: 'id', inTable: 'user', type: 'integer', nullable: true},
+    //     created_at: { type: 'dateTime', nullable: false},
+    //     organisation: {references: 'id', inTable: 'organisation', type: 'integer', nullable: true},
+    //     created_by: {references: 'id', inTable: 'user', type: 'integer', nullable: true},
+    //     updated_at: { type: 'dateTime', nullable: true},
+    //     active: { type: 'boolean', defaultTo: true}
+    // },
+    //
+    // team_role: {
+    //     id: { type: 'increments', nullable: false, primary: true },
+    //     team_id: { references: 'id', inTable: 'team', type: 'integer', nullable: false, unsigned: true, comment: 'What team does the specified role belong to'},
+    //     user_id: { references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true, comment: 'Which user has this role'},
+    //     role: {type: 'string', nullable: false},
+    //     created_at: { type: 'dateTime', nullable: false, comment: 'When was the role added'}
+    // },
+    //
+    // team_user: {
+    //     id: { type: 'increments', nullable: false, primary: true },
+    //     team_id: { compoundPrimaryKey: true, references: 'id', inTable: 'team', type: 'integer', nullable: false, unsigned: true },
+    //     user_id: { compoundPrimaryKey: true, references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true },
+    //     created_at: { type: 'dateTime', nullable: false, comment: 'When was the user added to the team?'}
+    // },
+    //
+    // project_team: {
+    //     project_id: { compoundPrimaryKey: true, references: 'id', inTable: 'project', type: 'integer', nullable: false, unsigned: true },
+    //     team_id: { compoundPrimaryKey: true, references: 'id', inTable: 'team', type: 'integer', nullable: false, unsigned: true },
+    //     created_at: { type: 'dateTime', nullable: false }
+    // },
+
+    project_role: {
+        id: { type: 'increments', nullable: false, primary: true },
+        project_id: { references: 'id', inTable: 'project', type: 'integer', nullable: false, unsigned: true, comment: 'What project does the specified role belong to'},
+        user_id: { references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true, comment: 'Which user has this role'},
+        role: {type: 'string', nullable: false},
+        created_at: { type: 'dateTime', nullable: false, comment: 'When was the role added'}
+    },
+
     project_revision: {
         id: { type: 'increments', nullable: false, primary: true },
-        project: { references: 'id', inTable: 'project',  type: 'integer', unsigned: true, nullable: false },
+        project_id: { references: 'id', inTable: 'project',  type: 'integer', unsigned: true, nullable: false },
         revision_number: { type: 'uuid', nullable: false },
         created_at: { type: 'dateTime', nullable: false },
         updated_at: { type: 'dateTime', nullable: true }
@@ -68,7 +110,7 @@ var Schema = {
 
     project_env_info: {
         id: { type: 'increments', nullable: false, primary: true },
-        project_revision: { references: 'id', inTable: 'project_revision', type: 'integer', unsigned: true, nullable: false },
+        project_revision_id: { references: 'id', inTable: 'project_revision', type: 'integer', unsigned: true, nullable: false },
         distribution: { type: 'text', nullable: true },
         maintainer: { type: 'string', nullable: true },
         label: { type: 'text', nullable: true },
@@ -91,7 +133,7 @@ var Schema = {
 
     project_file: {
         id: { type: 'increments', nullable: false, primary: true },
-        project_revision: { references: 'id', inTable: 'project_revision', type: 'integer', unsigned: true, nullable: false },
+        project_revision_id: { references: 'id', inTable: 'project_revision', type: 'integer', unsigned: true, nullable: false },
         added_by: { references: 'id', inTable: 'user', type: 'integer', unsigned: true, nullable: false, comment: 'Who added the file to this project?' },
         file_name: { type: 'string', nullable: false },
         file_date_uri: { type: 'text', nullable: false }

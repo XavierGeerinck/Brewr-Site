@@ -12,7 +12,7 @@ module.exports = [
             handler: ProjectController.getMembers,
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-user' ]
+                scope: [ 'organisation-{params.organisation}-project-{params.project}-member' ]
             },
             validate: {
                 params: {
@@ -23,21 +23,42 @@ module.exports = [
         }
     },
     {
-        method: 'POST',
-        path: '/organisation/{organisation}/project/{project}/members/{memberId}',
+        method: 'GET',
+        path: '/organisation/{organisation}/project/{project}/revision/{revision}/image',
         config: {
-            handler: ProjectController.addMember,
+            handler: ProjectController.getImage,
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-manager' ]
+                scope: [ 'organisation-{params.organisation}-project-{params.project}-member' ]
             },
             validate: {
                 params: {
                     organisation: Joi.string().guid().required(),
-                    memberId: Joi.number().required(),
-                    project: Joi.number().required()
+                    project: Joi.number().required(),
+                    revision: Joi.string().guid().required()
                 },
                 query: {
+                    type: Joi.string().allow([ 'json' ])
+                }
+            }
+        }
+    },
+    {
+        method: 'POST',
+        path: '/organisation/{organisation}/project/{project}/assign',
+        config: {
+            handler: ProjectController.addMember,
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'organisation-{params.organisation}-project-{params.project}-manager', 'organisation-{params.organisation}-project-{params.project}-creator', 'organisation-{params.organisation}-creator' ]
+            },
+            validate: {
+                params: {
+                    organisation: Joi.string().guid().required(),
+                    project: Joi.number().required()
+                },
+                payload: {
+                    member: Joi.number().required(),
                     is_manager: Joi.boolean().default(false, 'Specifies if the user is a organisation manager or not').optional()
                 }
             }
@@ -45,18 +66,18 @@ module.exports = [
     },
     {
         method: 'DELETE',
-        path: '/organisation/{organisation}/project/{project}/members/{memberId}',
+        path: '/organisation/{organisation}/project/{project}/members/{member}',
         config: {
             handler: ProjectController.removeMember,
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-manager' ]
+                scope: [ 'organisation-{params.organisation}-project-{params.project}-manager', 'organisation-{params.organisation}-project-{params.project}-creator', 'organisation-{params.organisation}-creator' ]
             },
             validate: {
                 params: {
                     organisation: Joi.string().guid().required(),
-                    memberId: Joi.number().required(),
-                    project: Joi.number().required()
+                    project: Joi.number().required(),
+                    member: Joi.number().required()
                 }
             }
         }
@@ -68,7 +89,7 @@ module.exports = [
             handler: ProjectController.getProjectByUUIDAndOrganisation ,
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-user' ]
+                scope: [ 'organisation-{params.organisation}-project-{params.project}-member' ]
             },
             validate: {
                 params: {
@@ -85,7 +106,7 @@ module.exports = [
             handler: ProjectController.deleteProjectByUUIDAndOrganisation ,
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-manager' ]
+                scope: [ 'organisation-{params.organisation}-project-{params.project}-manager' ]
             },
             validate: {
                 params: {
@@ -100,11 +121,11 @@ module.exports = [
     },
     {
         method: 'POST',
-        path: '/projects/{organisation}',
+        path: '/organisation/{organisation}/project',
         config: {
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-user' ]
+                scope: [ 'organisation-{params.organisation}-manager', 'organisation-{params.organisation}-creator' ]
             },
             handler: ProjectController.create,
             validate: {
@@ -115,7 +136,7 @@ module.exports = [
                     // Meta information about the project
                     meta: Joi.object({
                         name: Joi.string().required(),
-                        description: Joi.string()
+                        description: Joi.string().allow('')
                     }).required(),
 
                     // The files for the project
@@ -126,20 +147,20 @@ module.exports = [
 
                     // The environment information
                     envInfo: Joi.object({
-                        distribution: Joi.string(),
-                        distributionVersion: Joi.string(),
-                        maintainer: Joi.string(),
+                        distribution: Joi.string().allow([ '', null ]),
+                        distributionVersion: Joi.string().allow([ '', null ]),
+                        maintainer: Joi.string().allow([ '', null ]),
                         label: Joi.array().items(Joi.string()),
-                        workdir: Joi.string(),
-                        user: Joi.string(),
-                        cmd: Joi.array().items(Joi.string()),
-                        sourceCode: Joi.array().items(Joi.string()),
-                        run: Joi.array().items(Joi.string()),
-                        expose: Joi.array().items(Joi.string()),
-                        env: Joi.array().items(Joi.string()),
-                        add: Joi.array().items(Joi.string()),
-                        copy: Joi.array().items(Joi.string()),
-                        entrypoint: Joi.string(),
+                        workdir: Joi.string().allow([ '', null ]),
+                        user: Joi.string().allow([ '', null ]),
+                        cmd: Joi.array().items(Joi.string()).allow(null),
+                        sourceCode: Joi.array().items(Joi.string()).allow(null),
+                        run: Joi.array().items(Joi.string()).allow(null),
+                        expose: Joi.array().items(Joi.string()).allow(null),
+                        env: Joi.array().items(Joi.string()).allow(null),
+                        add: Joi.array().items(Joi.string()).allow(null),
+                        copy: Joi.array().items(Joi.string()).allow(null),
+                        entrypoint: Joi.string().allow([ '', null ]),
                         volume: Joi.array().items(Joi.string()),
                         onbuild: Joi.string().allow(null)
                     }).required()

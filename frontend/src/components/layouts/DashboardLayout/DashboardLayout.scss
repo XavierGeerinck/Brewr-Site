@@ -1,0 +1,116 @@
+@import '../../../css/colors';
+
+.Container {
+    height: 100%;
+    display: flex;
+}
+
+.Content {
+    width: calc(100% - 200px);
+    height: 100%;
+
+    margin-left: 200px;
+}
+
+.Page {
+    width: 100%;
+}
+
+.Page-Container {
+    position: relative;
+    height: calc(100% - 70px);
+    margin-top: 69px;
+}
+
+.Page-Content {
+    height: 100%;
+}
+// .Page-Container {
+//     background-color: $colorBackground;
+//     margin-top: 68px;
+//     position: relative;
+//     height: calc(100% - 70px);
+// }
+//
+// .Page-Content {
+//     background-color: $color-white;
+//     padding: 15px 20px;
+//     border-radius: 0;
+//     border: 1px solid rgba(0, 0, 0, 0.07);
+// }
+//
+// .Page-Content > div > h1 {
+//     font-size: 24px;
+//     padding: 20px 0 15px 0;
+//     margin: 0 0 10px 0;
+//     text-align: center;
+// }
+//
+.Page-Header > * {
+    float: left;
+}
+
+.Page-Header {
+    background-color: $color-white;
+    color: $color-black;
+    height: 69px;
+    border-bottom: 1px solid $colorBorder;
+    position: fixed;
+    width: calc(100% - 200px);
+    z-index: 2;
+}
+
+.Page-Header ul {
+    height: 100%;
+    padding: 0 0 0 20px;
+    margin: 0;
+    float: left;
+}
+
+.Page-Header ul li {
+    height: 100%;
+    list-style: none;
+    display: inline-block;
+    margin-right: 40px;
+}
+
+.Page-Header ul li a {
+    height: 100%;
+    display: block;
+    line-height: 68px;
+    color: $color-text;
+    font-size: 14px;
+}
+
+.Page-Title {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: $color-text;
+}
+
+.Title > span {
+    float: left;
+    padding: 0 20px;
+    line-height: 68px;
+}
+
+.Title > span:last-child {
+    color: $colorTextPrimary;
+    font-weight: bold;
+}
+
+.UserPreview {
+    height: 100%;
+    float: right;
+    line-height: 70px;
+    padding-right: 20px;
+}
+
+.CompanyPicker {
+    display: block;
+    float: left;
+    line-height: 70px;
+    margin-left: 20px;
+    padding-right: 20px;
+}

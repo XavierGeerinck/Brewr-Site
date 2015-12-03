@@ -23,16 +23,21 @@ var Project = Bookshelf.model('Project', {
     users: function () {
         return this.belongsToMany('User', 'project_user', 'project_id', 'user_id').withPivot('is_manager');
     },
-    // Reference to the many to many table, used to remove projects
-    projectUsers: function () {
-        return this.hasMany('ProjectUser');
-    },
-    revision: function () {
-        return this.belongsToMany('ProjectRevision');
+
+    revisions: function () {
+        return this.hasMany('ProjectRevision');
     },
     organisation: function () {
         return this.belongsTo('Organisation');
-    }
+    },
+
+    // many-to-many
+    projectTeams: function() {
+        return this.hasMany('ProjectTeam');
+    },
+    projectUsers: function () {
+        return this.hasMany('ProjectUser');
+    },
 });
 
 module.exports = Project;

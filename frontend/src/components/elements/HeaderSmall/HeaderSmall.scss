@@ -1,0 +1,34 @@
+@import '../../../css/colors';
+
+.HeaderSmall {
+    background: $color-primary;
+    color: #fff;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 20px 40px;
+}
+
+.Navigation {
+    float: right;
+    margin-top: 10px;
+}
+
+.Navigation a {
+    color: #fff;
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.Logo {
+    float: left;
+    height: auto;
+}
+
+.clear {
+    clear: both;
+}

@@ -1,0 +1,47 @@
+@import '../../../css/colors';
+
+.Wizard {
+    width: 100%;
+    padding-top: 30px;
+}
+
+.Wizard-Items {
+    height: 50px;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    color: lighten($colorTextLight, 10%);
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: normal;
+}
+
+.WizardItem {
+    position: relative;
+    padding: 0 10px;
+    font-size: 12px;
+}
+
+.WizardItem-Selected {
+    position: relative;
+    font-weight: 700;
+}
+
+.WizardItem-Selected:before {
+    background-color: lighten($colorTextDark, 10%) !important;
+}
+
+.WizardItem:before {
+    position: absolute;
+    top: -18px;
+    width: 14px;
+    height: 14px;
+    left: calc(50% - 7px);
+    border-radius: 100%;
+    background-color: lighten($colorTextLight, 10%);
+    content: '';
+    transition: .25s;
+}

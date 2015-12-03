@@ -30,7 +30,7 @@ module.exports = [
             handler: OrganisationController.getMembers,
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-user' ]
+                scope: [ 'organisation-{params.organisation}-member' ]
             },
             validate: {
                 params: {
@@ -46,7 +46,7 @@ module.exports = [
             handler: OrganisationController.addMember,
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-creator', 'belongs-to-organisation-{params.organisation}-manager' ]
+                scope: [ 'organisation-{params.organisation}-creator', 'organisation-{params.organisation}-manager' ]
             },
             validate: {
                 params: {
@@ -60,13 +60,30 @@ module.exports = [
         }
     },
     {
+        method: 'POST',
+        path: '/organisation/{organisation}/members/{memberId}/manager',
+        config: {
+            handler: OrganisationController.makeManager,
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'organisation-{params.organisation}-creator', 'organisation-{params.organisation}-manager' ]
+            },
+            validate: {
+                params: {
+                    organisation: Joi.string().guid().required(),
+                    memberId: Joi.number().required()
+                }
+            }
+        }
+    },
+    {
         method: 'DELETE',
         path: '/organisation/{organisation}/members/{memberId}',
         config: {
             handler: OrganisationController.removeMember,
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-creator', 'belongs-to-organisation-{params.organisation}-manager' ]
+                scope: [ 'organisation-{params.organisation}-creator', 'organisation-{params.organisation}-manager' ]
             },
             validate: {
                 params: {
