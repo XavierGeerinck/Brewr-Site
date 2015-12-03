@@ -81,4 +81,12 @@ class Step5 extends React.Component {
     }
 }
 
+Step5.defaultProps = {
+    imageParams: {}
+};
+
+Step5.propTypes = {
+    imageParams: PropTypes.object
+};
+
 export default Step5;

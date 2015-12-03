@@ -41,11 +41,11 @@ class Step6 extends React.Component {
 }
 
 Step6.defaultProps = {
-    dockerFileObject: {}
+    imageParams: {}
 };
 
 Step6.propTypes = {
-    dockerFileObject: PropTypes.object
+    imageParams: PropTypes.object
 };
 
 export default Step6;

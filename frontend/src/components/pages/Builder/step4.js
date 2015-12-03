@@ -60,4 +60,12 @@ class Step4 extends React.Component {
     }
 }
 
+Step4.defaultProps = {
+    imageParams: {}
+};
+
+Step4.propTypes = {
+    imageParams: PropTypes.object
+};
+
 export default Step4;

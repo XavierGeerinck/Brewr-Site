@@ -88,4 +88,12 @@ class Step3 extends React.Component {
     }
 }
 
+Step3.defaultProps = {
+    imageParams: {}
+};
+
+Step3.propTypes = {
+    imageParams: PropTypes.object
+};
+
 export default Step3;

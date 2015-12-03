@@ -108,12 +108,13 @@ class BuilderStore extends BaseStore {
                     "ENVIRONMENT=staging"
                 ],
                 "add": [
-                    "/etc/nginx/sites-available/default.conf:/nginx_default.conf.bak",
+                    "/etc/nginx/sites-available/default.conf:/etc/nginx/sites-available/brewr.io.conf",
                 ],
                 "copy": null,
                 "entrypoint": null,
                 "volume": [
-                    "/var/www"
+                    "/var/www",
+                    "/var/log"
                 ],
                 "onbuild": null
             }
@@ -125,7 +126,9 @@ class BuilderStore extends BaseStore {
     }
 
     _registerToActions(action) {
-        switch (action.action.type) {
+        action = action.action;
+
+        switch (action.type) {
             case types.BUILDER_DISTRIBUTION_CHANGE:
             this._params.distribution = action.distribution;
             this._params.distributionVersion = action.distribution_version;
@@ -149,7 +152,7 @@ class BuilderStore extends BaseStore {
             break;
             case types.RESPONSE_PROJECT_IMAGE:
             this._params.meta = {};
-            this._params.envInfo = action.action.response || {};
+            this._params.envInfo = action.response || {};
             this._params.files = [];
             this.emitChange();
             break;
@@ -186,6 +189,7 @@ class BuilderStore extends BaseStore {
             this.emitChange();
             break;
             case types.BUILDER_CHANGE_ADD_ITEMS:
+            console.log(action);
             action.items.forEach(i => {
                 // If file content, parse file
                 if (i.content) {
@@ -218,7 +222,6 @@ class BuilderStore extends BaseStore {
             case types.BUILDER_FINISH_params:
             default:
             console.log(action);
-                console.log(action.actionType + ' Not Implemented');
         }
     }
 

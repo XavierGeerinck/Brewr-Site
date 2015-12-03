@@ -269,6 +269,30 @@
             "created_at": "NOW()"
         }
     ],
+    "project_env_info": [
+        {
+            "id": 1,
+            "project_revision_id": 2,
+            "distribution": "ubuntu",
+            "maintainer": "Xavier",
+            "label": "E'{\"com.brewr.io=somevalue\"}'",
+            "workdir": "E'/var/www'",
+            "user": "E'www-data'",
+            "cmd": "E'{\"nginx -g daemon off;\"}'",
+            "run": "E'{\"sudo apt-get install nginx\"}",
+            "expose": "E'{\"80:80\",\"443:443\"}",
+            "env": "E'{\"ENVIRONMENT=staging\"}",
+            "add": "E'{\"/etc/nginx/sites-available/default.conf:/etc/nginx/sites-available/brewr.io.conf\",\"/etc/nginx/sites-available/default.conf:/etc/nginx/sites-available/brewr.io.conf\"}'",
+            "copy": "",
+            "entrypoint": "",
+            "volume": "E'{\"/var/www\",\"/var/log\"}'",
+            "onbuild": "",
+            "distribution_version": "E'14.04'",
+            "source_code": "",
+            "startup_file_content": "",
+            "startup_command: """
+        }
+    ],
     "organisation_user": [
         {
             "user_id": 1,

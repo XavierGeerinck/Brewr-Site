@@ -50,9 +50,11 @@ class Step1 extends React.Component {
 }
 
 Step1.defaultProps = {
+    imageParams: {}
 };
 
 Step1.propTypes = {
+    imageParams: PropTypes.object
 };
 
 export default Step1;

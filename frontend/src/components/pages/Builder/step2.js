@@ -36,24 +36,24 @@ class Step2 extends React.Component {
     }
 
     _save() {
-        if (this.refs.input_maintainer) {
+        if (this.refs.input_maintainer && this.refs.input_maintainer.state) {
             BuilderActions.changeMaintainer(this.refs.input_maintainer.state.value);
         }
 
-        if (this.refs.input_workdir) {
+        if (this.refs.input_workdir && this.refs.input_workdir.state) {
             BuilderActions.changeWorkdir(this.refs.input_workdir.state.value);
         }
 
-        if (this.refs.input_user) {
+        if (this.refs.input_user && this.refs.input_user.state) {
             BuilderActions.changeUser(this.refs.input_user.state.value);
         }
 
-        if (this.refs.input_run_items) {
+        if (this.refs.input_run_items && this.refs.input_run_items.state) {
             var items = JSON.parse(JSON.stringify(this.refs.input_run_items.refs.child.getItems()));
             BuilderActions.changeRunItems(items);
         }
 
-        if (this.refs.input_project_name) {
+        if (this.refs.input_project_name && this.refs.input_project_name.state) {
             BuilderActions.setProjectName(this.refs.input_project_name.state.value);
         }
     }
@@ -93,9 +93,11 @@ class Step2 extends React.Component {
 }
 
 Step2.defaultProps = {
+    imageParams: {}
 };
 
 Step2.propTypes = {
+    imageParams: PropTypes.object
 };
 
 export default Step2;

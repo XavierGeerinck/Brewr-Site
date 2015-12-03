@@ -16,105 +16,105 @@ class BuilderActions {
     }
 
     static changeDistribution(distribution, distribution_version) {
-        AppDispatcher.dispatch({
-            actionType: actionTypes.BUILDER_DISTRIBUTION_CHANGE,
+        AppDispatcher.handleViewAction({
+            type: actionTypes.BUILDER_DISTRIBUTION_CHANGE,
             distribution: distribution,
             distribution_version: distribution_version
         });
     }
 
     static setProjectName(projectName) {
-        AppDispatcher.dispatch({
-            actionType: actionTypes.BUILDER_PROJECT_NAME_CHANGE,
+        AppDispatcher.handleViewAction({
+            type: actionTypes.BUILDER_PROJECT_NAME_CHANGE,
             projectName: projectName
         });
     }
 
     static nextPage() {
-        AppDispatcher.dispatch({
-            actionType: actionTypes.BUILDER_NEXT_PAGE
+        AppDispatcher.handleViewAction({
+            type: actionTypes.BUILDER_NEXT_PAGE
         });
     }
 
     static previousPage() {
-        AppDispatcher.dispatch({
-            actionType: actionTypes.BUILDER_PREVIOUS_PAGE
+        AppDispatcher.handleViewAction({
+            type: actionTypes.BUILDER_PREVIOUS_PAGE
         });
     }
 
     static changeMaintainer(maintainer) {
-        AppDispatcher.dispatch({
-            actionType: actionTypes.BUILDER_CHANGE_MAINTAINER,
+        AppDispatcher.handleViewAction({
+            type: actionTypes.BUILDER_CHANGE_MAINTAINER,
             maintainer: maintainer
         });
     }
 
     static changeWorkdir(workdir) {
-        AppDispatcher.dispatch({
-            actionType: actionTypes.BUILDER_CHANGE_WORKDIR,
+        AppDispatcher.handleViewAction({
+            type: actionTypes.BUILDER_CHANGE_WORKDIR,
             workdir: workdir
         });
     }
 
     static changeUser(user) {
-        AppDispatcher.dispatch({
-            actionType: actionTypes.BUILDER_CHANGE_USER,
+        AppDispatcher.handleViewAction({
+            type: actionTypes.BUILDER_CHANGE_USER,
             user: user
         });
     }
 
     static changeLabelItems(items) {
-        AppDispatcher.dispatch({
-            actionType: actionTypes.BUILDER_CHANGE_LABEL_ITEMS,
+        AppDispatcher.handleViewAction({
+            type: actionTypes.BUILDER_CHANGE_LABEL_ITEMS,
             items: items
         });
     }
 
     static changeRunItems(items) {
-        AppDispatcher.dispatch({
-            actionType: actionTypes.BUILDER_CHANGE_RUN_ITEMS,
+        AppDispatcher.handleViewAction({
+            type: actionTypes.BUILDER_CHANGE_RUN_ITEMS,
             items: items
         });
     }
 
     static changeExposeItems(items) {
-        AppDispatcher.dispatch({
-            actionType: actionTypes.BUILDER_CHANGE_EXPOSE_ITEMS,
+        AppDispatcher.handleViewAction({
+            type: actionTypes.BUILDER_CHANGE_EXPOSE_ITEMS,
             items: items
         });
     }
 
     static changeVolumeItems(items) {
-        AppDispatcher.dispatch({
-            actionType: actionTypes.BUILDER_CHANGE_VOLUME_ITEMS,
+        AppDispatcher.handleViewAction({
+            type: actionTypes.BUILDER_CHANGE_VOLUME_ITEMS,
             items: items
         });
     }
 
     static changeAddItems(items) {
-        AppDispatcher.dispatch({
-            actionType: actionTypes.BUILDER_CHANGE_ADD_ITEMS,
+        AppDispatcher.handleViewAction({
+            type: actionTypes.BUILDER_CHANGE_ADD_ITEMS,
             items: items
         });
     }
 
     static changeEnvItems(items) {
-        AppDispatcher.dispatch({
-            actionType: actionTypes.BUILDER_CHANGE_ENV_ITEMS,
+        AppDispatcher.handleViewAction({
+            type: actionTypes.BUILDER_CHANGE_ENV_ITEMS,
             items: items
         });
     }
 
     static changeCmdItems(items) {
-        AppDispatcher.dispatch({
-            actionType: actionTypes.BUILDER_CHANGE_CMD_ITEMS,
+        AppDispatcher.handleViewAction({
+            type: actionTypes.BUILDER_CHANGE_CMD_ITEMS,
             items: items
         });
     }
 
     static changeDownloadSourceCode(items) {
-        AppDispatcher.dispatch({
-            actionType: actionTypes.BUILDER_CHANGE_SOURCE_CODE_ITEMS,
+        AppDispatcher.handleViewAction({
+            type: actionTypes.BUILDER_CHANGE_SOURCE_CODE_ITEMS,
             items: items
         });
     }
