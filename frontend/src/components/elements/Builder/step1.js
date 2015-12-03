@@ -8,8 +8,6 @@ import DashboardLayout from '../../layouts/DashboardLayout';
 import DistributionPicker from '../../elements/DistributionPicker';
 import DockerHubSearch from '../../elements/DockerHubSearch';
 import Divider from '../../elements/Divider';
-import BuilderActions from '../../../actions/BuilderActions';
-import BuilderStore from '../../../stores/BuilderStore';
 import cx from 'classnames';
 
 /**

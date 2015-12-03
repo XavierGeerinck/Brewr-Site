@@ -1,6 +1,5 @@
 import fa from 'font-awesome/css/font-awesome.css';
 import React, { PropTypes } from 'react';
-import BuilderActions from '../../../actions/BuilderActions';
 import FlexContainer from '../../elements/FlexContainer';
 import Button from '../../elements/Button';
 import Input from '../../elements/Input';
@@ -21,19 +20,22 @@ import cx from 'classnames';
 class Step4 extends React.Component {
     handleNextPage () {
         this._save();
-        BuilderActions.nextPage();
+        this.props.onClickNext();
     }
 
     handlePreviousPage() {
         this._save();
-        BuilderActions.previousPage();
+        this.props.onClickPrevious();
     }
 
     _save() {
-        if (this.refs.input_start_command_items) {
-            var items = JSON.parse(JSON.stringify(this.refs.input_start_command_items.refs.child.getItems()));
-            BuilderActions.changeCmdItems(items);
-        }
+        var stateChanges = {
+            envInfo: {
+                cmd: JSON.parse(JSON.stringify(this.refs.input_startup_command_items.refs.child.getItems()))
+            }
+        };
+
+        this.props.onSave(stateChanges);
     }
 
     render() {
@@ -61,11 +63,17 @@ class Step4 extends React.Component {
 }
 
 Step4.defaultProps = {
-    imageParams: {}
+    imageParams: {},
+    onClickNext: function () {},
+    onClickPrevious: function () {},
+    onSave: function () {}
 };
 
 Step4.propTypes = {
-    imageParams: PropTypes.object
+    imageParams: PropTypes.object,
+    onClickNext: PropTypes.function,
+    onClickPrevious: PropTypes.function,
+    onSave: PropTypes.function
 };
 
 export default Step4;

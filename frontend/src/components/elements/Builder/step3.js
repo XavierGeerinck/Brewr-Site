@@ -2,7 +2,6 @@ import fa from 'font-awesome/css/font-awesome.css';
 import React, { PropTypes } from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import DockerfileViewer from '../../elements/DockerfileViewer';
-import BuilderActions from '../../../actions/BuilderActions';
 import FlexContainer from '../../elements/FlexContainer';
 import Button from '../../elements/Button';
 import Input from '../../elements/Input';
@@ -26,28 +25,24 @@ import cx from 'classnames';
 class Step3 extends React.Component {
     handleNextPage () {
         this._save();
-        BuilderActions.nextPage();
+        this.props.onClickNext();
     }
 
     handlePreviousPage() {
-        BuilderActions.previousPage();
+        this._save();
+        this.props.onClickPrevious();
     }
 
     _save() {
-        if (this.refs.input_run_items) {
-            var items = JSON.parse(JSON.stringify(this.refs.input_run_items.refs.child.getItems()));
-            BuilderActions.changeDownloadSourceCode(items);
-        }
+        var stateChanges = {
+            envInfo: {
+                sourceCode: JSON.parse(JSON.stringify(this.refs.input_run_items.refs.child.getItems())),
+                volume: JSON.parse(JSON.stringify(this.refs.input_volume_items.refs.child.getItems())),
+                add:  JSON.parse(JSON.stringify(this.refs.input_add_items.refs.child.getItems()))
+            }
+        };
 
-        if (this.refs.input_volume_items) {
-            var items = JSON.parse(JSON.stringify(this.refs.input_volume_items.refs.child.getItems()));
-            BuilderActions.changeVolumeItems(items);
-        }
-
-        if (this.refs.input_add_items) {
-            var items = JSON.parse(JSON.stringify(this.refs.input_add_items.refs.child.getItems()));
-            BuilderActions.changeAddItems(items);
-        }
+        this.props.onSave(stateChanges);
     }
 
     render() {
@@ -89,11 +84,17 @@ class Step3 extends React.Component {
 }
 
 Step3.defaultProps = {
-    imageParams: {}
+    imageParams: {},
+    onClickNext: function () {},
+    onClickPrevious: function () {},
+    onSave: function () {}
 };
 
 Step3.propTypes = {
-    imageParams: PropTypes.object
+    imageParams: PropTypes.object,
+    onClickNext: PropTypes.function,
+    onClickPrevious: PropTypes.function,
+    onSave: PropTypes.function
 };
 
 export default Step3;

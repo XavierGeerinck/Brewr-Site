@@ -17,7 +17,6 @@ import Button from '../../elements/Button';
 
 import AssignableMemberList from '../../elements/AssignableMemberList/AssignableMemberList';
 import OrganisationStore from '../../../stores/OrganisationStore';
-import BuilderStore from '../../../stores/BuilderStore';
 import OrganisationActions from '../../../actions/OrganisationActions';
 
 export class Project extends BaseComponent {

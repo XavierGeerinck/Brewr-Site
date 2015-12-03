@@ -1,7 +1,9 @@
 import styles from './Builder.scss';
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
+import AuthStore from '../../../stores/AuthStore';
 import BuilderComponent from '../../elements/Builder';
+import BuilderActions from '../../../actions/BuilderActions';
 
 class Builder extends React.Component {
     constructor(props) {
@@ -10,7 +12,7 @@ class Builder extends React.Component {
 		// Environment info
 		this._params = {
 			meta: {
-				name: "Nginx",       // Project Name
+				name: "Nginx",              // Project Name
 				description: ""             // Project Description
 			},
 			files: [],                      // Files to add, format: { name: "", content: "" }
@@ -51,12 +53,20 @@ class Builder extends React.Component {
 		};
     }
 
+    _handleOnClickFinish(image) {
+        console.log(image);
+
+        BuilderActions.saveProject(AuthStore.token, AuthStore.selected_organisation.uuid, image);
+    }
+
     render() {
+        var self = this;
+
         return (
             <div className="Builder">
 				<BuilderComponent
 					baseInfo={this._params}
-					onFinish={this._handleOnFinish} />
+					onClickFinish={this._handleOnClickFinish.bind(self)} />
             </div>
         );
     }

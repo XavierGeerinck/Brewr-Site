@@ -7,10 +7,16 @@ import Input from '../../elements/Input';
 import Panel from '../../elements/Panel';
 import FlexContainer from '../../elements/FlexContainer';
 import DashboardLayout from '../../layouts/DashboardLayout';
-import BuilderActions from '../../../actions/BuilderActions';
 import CRUDList from '../../elements/CRUDList';
-import Form from '../../elements/Form';
 import cx from 'classnames';
+import forms from 'newforms';
+
+var FormObject = forms.Form.extend({
+    input_project_name: forms.CharField({ label: "Project Name" }),
+    input_maintainer: forms.CharField({ label: "Maintainer" }),
+    input_workdir: forms.CharField({ label: "Workdir" }),
+    input_user: forms.CharField({ label: "User" })
+});
 
 /**
  * Step 2: Install programs (example: git, gulp, nginx, MySQL, ...)
@@ -27,51 +33,50 @@ class Step2 extends React.Component {
 
     handleNextPage () {
         this._save();
-        BuilderActions.nextPage();
+        this.props.onClickNext();
     }
 
     handlePreviousPage() {
         this._save();
-        BuilderActions.previousPage();
+        this.props.onClickPrevious();
     }
 
     _save() {
-        if (this.refs.input_maintainer && this.refs.input_maintainer.state) {
-            BuilderActions.changeMaintainer(this.refs.input_maintainer.state.value);
-        }
+        var form = this.refs.formObject.getForm();
 
-        if (this.refs.input_workdir && this.refs.input_workdir.state) {
-            BuilderActions.changeWorkdir(this.refs.input_workdir.state.value);
-        }
+        var stateChanges = {
+            envInfo: {
+                maintainer: form.data.input_maintainer,
+                workdir: form.data.input_workdir,
+                user: form.data.input_user,
+                run: JSON.parse(JSON.stringify(this.refs.input_run_items.refs.child.getItems()))
+            },
+            meta: {
+                name: form.data.input_project_name
+            }
+        };
 
-        if (this.refs.input_user && this.refs.input_user.state) {
-            BuilderActions.changeUser(this.refs.input_user.state.value);
-        }
-
-        if (this.refs.input_run_items && this.refs.input_run_items.state) {
-            var items = JSON.parse(JSON.stringify(this.refs.input_run_items.refs.child.getItems()));
-            BuilderActions.changeRunItems(items);
-        }
-
-        if (this.refs.input_project_name && this.refs.input_project_name.state) {
-            BuilderActions.setProjectName(this.refs.input_project_name.state.value);
-        }
+        this.props.onSave(stateChanges);
     }
 
     render() {
         let dockerfile = this.props.imageParams.envInfo;
         let params = this.props.imageParams;
 
+        let f = new FormObject({ initial: {
+            input_project_name: this.props.imageParams.meta.name,
+            input_maintainer: this.props.imageParams.envInfo.maintainer || "",
+            input_workdir: this.props.imageParams.envInfo.workdir || "",
+            input_user: this.props.imageParams.envInfo.user || ""
+        }});
+
         return (
             <FlexContainer>
                 {/* Maintainer, workdir and user */}
                 <Panel heading="General" tooltip={tooltipGeneral}>
-                    <Form className={cx(purecss['pure-form'], purecss['pure-form-stacked'])}>
-                        <Input id="input_project_name" text={params.meta.name} label="Project Name" placeholder="Enter the name for the project" type="text" ref="input_project_name" />
-                        <Input id="input_maintainer" text={dockerfile.maintainer} label="Maintainer" placeholder="Enter the maintainer for the project.." type="text" ref="input_maintainer" />
-                        <Input id="input_workdir" text={dockerfile.workdir} label="Workdir" placeholder="Enter the directory where you will work from..." type="text" ref="input_workdir" />
-                        <Input id="input_user" text={dockerfile.user} label="User" placeholder="Type a keyword..." type="text" ref="input_user" />
-                    </Form>
+                    <form role="form">
+                        <forms.RenderForm form={f} ref="formObject" />
+                    </form>
                 </Panel>
 
                 {/* Run Items */}
@@ -93,11 +98,17 @@ class Step2 extends React.Component {
 }
 
 Step2.defaultProps = {
-    imageParams: {}
+    imageParams: {},
+    onClickNext: function () {},
+    onClickPrevious: function () {},
+    onSave: function () {}
 };
 
 Step2.propTypes = {
-    imageParams: PropTypes.object
+    imageParams: PropTypes.object,
+    onClickNext: PropTypes.function,
+    onClickPrevious: PropTypes.function,
+    onSave: PropTypes.function
 };
 
 export default Step2;

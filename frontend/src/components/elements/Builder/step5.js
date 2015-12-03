@@ -1,6 +1,5 @@
 import fa from 'font-awesome/css/font-awesome.css';
 import React, { PropTypes } from 'react';
-import BuilderActions from '../../../actions/BuilderActions';
 import FlexContainer from '../../elements/FlexContainer';
 import Button from '../../elements/Button';
 import Input from '../../elements/Input';
@@ -23,29 +22,24 @@ import cx from 'classnames';
 class Step5 extends React.Component {
     handleNextPage () {
         this._save();
-        BuilderActions.nextPage();
+        this.props.onClickNext();
     }
 
     handlePreviousPage() {
         this._save();
-        BuilderActions.previousPage();
+        this.props.onClickPrevious();
     }
 
     _save() {
-        if (this.refs.input_labels) {
-            var items = JSON.parse(JSON.stringify(this.refs.input_labels.refs.child.getItems()));
-            BuilderActions.changeLabelItems(items);
-        }
+        var stateChanges = {
+            envInfo: {
+                label: JSON.parse(JSON.stringify(this.refs.input_labels.refs.child.getItems())),
+                expose: JSON.parse(JSON.stringify(this.refs.input_expose_items.refs.child.getItems())),
+                env: JSON.parse(JSON.stringify(this.refs.input_env_items.refs.child.getItems()))
+            }
+        };
 
-        if (this.refs.input_expose_items) {
-            var items = JSON.parse(JSON.stringify(this.refs.input_expose_items.refs.child.getItems()));
-            BuilderActions.changeExposeItems(items);
-        }
-
-        if (this.refs.input_env_items) {
-            var items = JSON.parse(JSON.stringify(this.refs.input_env_items.refs.child.getItems()));
-            BuilderActions.changeEnvItems(items);
-        }
+        this.props.onSave(stateChanges);
     }
 
     render() {
@@ -82,11 +76,17 @@ class Step5 extends React.Component {
 }
 
 Step5.defaultProps = {
-    imageParams: {}
+    imageParams: {},
+    onClickNext: function () {},
+    onClickPrevious: function () {},
+    onSave: function () {}
 };
 
 Step5.propTypes = {
-    imageParams: PropTypes.object
+    imageParams: PropTypes.object,
+    onClickNext: PropTypes.function,
+    onClickPrevious: PropTypes.function,
+    onSave: PropTypes.function
 };
 
 export default Step5;

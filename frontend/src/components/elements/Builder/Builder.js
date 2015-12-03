@@ -1,4 +1,9 @@
+// External Dependencies
 import React, { PropTypes } from 'react';
+import update from 'react/lib/update';
+import deepmerge from 'deepmerge';
+
+// Internal dependencies
 import SideMenu from '../../elements/SideMenu';
 import Button from '../../elements/Button';
 import Wizard from '../../elements/Wizard';
@@ -12,7 +17,6 @@ import BuilderStep6 from './step6';
 import styles from './Builder.scss';
 
 const builderSteps = [ "Distribution Picker", "Install Programs", "Manage Files & Src", "Startup Commands", "Ports & Env", "Finalize" ];
-
 
 const featuredDistributions = [
     {
@@ -68,25 +72,40 @@ class Builder extends React.Component {
         this.state = {
             steps: builderSteps,
             currentStep: 1,
-            numberOfSteps: 6,
             image: props.baseInfo
         };
     }
 
-    _handleOnClickNext() {
+    _handleOnClickFinish() {
+        var self = this;
 
+        this.props.onClickFinish(self.state.image);
+    }
+
+    _handleOnClickNext() {
+        var self = this;
+
+        this.setState({
+            currentStep: (self.state.currentStep < self.state.steps.length) ? self.state.currentStep + 1 : 1
+        });
     }
 
     _handleOnClickPrevious() {
+        var self = this;
 
+        this.setState({
+            currentStep: (self.state.currentStep > 2) ? self.state.currentStep - 1 : 1
+        });
     }
 
     // Accepts the changed params, we can change this with setState
     // The different steps propagate their changes up towards this class
     // The reason is that we do not need to keep states for every step
     _handleOnSave(updates) {
+        var self = this;
+
         this.setState({
-            items: update(self.state.image, { $merge: updates })
+            image: deepmerge(self.state.image, updates)
         });
     }
 
@@ -96,7 +115,6 @@ class Builder extends React.Component {
 
         switch (self.state.currentStep) {
             case 2:
-                console.log(self.state.image);
                 content = <BuilderStep2
                     imageParams={self.state.image}
                     onClickNext={self._handleOnClickNext.bind(self)}
@@ -104,16 +122,32 @@ class Builder extends React.Component {
                     onSave={self._handleOnSave.bind(self)}/>;
                 break;
             case 3:
-                content = <BuilderStep3 imageParams={self.state.image} />;
+                content = <BuilderStep3
+                    imageParams={self.state.image}
+                    onClickNext={self._handleOnClickNext.bind(self)}
+                    onClickPrevious={self._handleOnClickPrevious.bind(self)}
+                    onSave={self._handleOnSave.bind(self)} />;
                 break;
             case 4:
-                content = <BuilderStep4 imageParams={self.state.image} />;
+                content = <BuilderStep4
+                    imageParams={self.state.image}
+                    onClickNext={self._handleOnClickNext.bind(self)}
+                    onClickPrevious={self._handleOnClickPrevious.bind(self)}
+                    onSave={self._handleOnSave.bind(self)} />;
                 break;
             case 5:
-                content = <BuilderStep5 imageParams={self.state.image} />;
+                content = <BuilderStep5
+                    imageParams={self.state.image}
+                    onClickNext={self._handleOnClickNext.bind(self)}
+                    onClickPrevious={self._handleOnClickPrevious.bind(self)}
+                    onSave={self._handleOnSave.bind(self)} />;
                 break;
             case 6:
-                content = <BuilderStep6 imageParams={self.state.image}/>;
+                content = <BuilderStep6
+                    imageParams={self.state.image}
+                    onClickFinish={self._handleOnClickFinish.bind(self)}
+                    onClickPrevious={self._handleOnClickPrevious.bind(self)}
+                    onSave={self._handleOnSave.bind(self)} />;
                 break;
             case 1:
             default:
@@ -124,7 +158,6 @@ class Builder extends React.Component {
                 onClickPrevious={self._handleOnClickPrevious.bind(self)}
                 onSave={self._handleOnSave.bind(self)}/>;
         };
-
         return (
             <DashboardLayout title="Environment Builder">
                 {/* Wizard */}
@@ -139,11 +172,13 @@ class Builder extends React.Component {
 }
 
 Builder.defaultProps = {
-    baseInfo: { meta: {}, envInfo: {}, files: [] }
+    baseInfo: { meta: {}, envInfo: {}, files: [] },
+    onClickFinish: function (image) {}
 };
 
 Builder.propTypes = {
-    baseInfo: PropTypes.object
+    baseInfo: PropTypes.object,
+    onClickFinish: PropTypes.function
 };
 
 export default Builder;
