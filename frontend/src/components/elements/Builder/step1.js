@@ -19,21 +19,31 @@ import cx from 'classnames';
  * but should also be able to search on the docker hub for already existing ones.
  */
 class Step1 extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     handleNextPage () {
         this._save();
-        BuilderActions.nextPage();
+        this.props.onClickNext();
     }
 
     _save() {
-        BuilderActions.changeDistribution(this.refs.distribution_picker.state.selected_distribution , this.refs.distribution_picker.state.selected_version);
+        let distribution = this.refs.selected_version ? this.refs.selected_distribution + ':' + this.refs.selected_version : this.refs.selected_distribution;
+
+        this.props.onSave({
+            distribution: distribution
+        });
     }
 
     render() {
+        var self = this;
+
         return (
             <div className={styles.BuilderStep1Page}>
                 {/* Pick Predefined Docker Image */}
                 <h1>Pick your base image</h1>
-                <DistributionPicker distributions={BuilderStore.featuredDistributions} selectedDistribution={BuilderStore.dockerfile.distribution} selectedVersion={BuilderStore.dockerfile.distribution_version} ref="distribution_picker"/>
+                <DistributionPicker                                                         distributions={self.props.featuredDistributions} selectedDistribution={self.props.imageParams.envInfo.distribution} selectedVersion={self.props.imageParams.envInfo.distribution_version} ref="distribution_picker"/>
 
                 <Divider text="Or"/>
 
@@ -50,11 +60,17 @@ class Step1 extends React.Component {
 }
 
 Step1.defaultProps = {
-    imageParams: {}
+    imageParams: {},
+    featuredDistributions: [],
+    onClickNext: function () {},
+    onSave: function () {}
 };
 
 Step1.propTypes = {
-    imageParams: PropTypes.object
+    imageParams: PropTypes.object,
+    featuredDistributions: PropTypes.array,
+    onClickNext: PropTypes.function,
+    onSave: PropTypes.function
 };
 
 export default Step1;

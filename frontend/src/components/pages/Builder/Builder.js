@@ -1,86 +1,72 @@
-import React, { PropTypes } from 'react';
-import SideMenu from '../../elements/SideMenu';
-import Button from '../../elements/Button';
-import Wizard from '../../elements/Wizard';
-import DashboardLayout from '../../layouts/DashboardLayout';
-import BuilderStep1 from './step1';
-import BuilderStep2 from './step2';
-import BuilderStep3 from './step3';
-import BuilderStep4 from './step4';
-import BuilderStep5 from './step5';
-import BuilderStep6 from './step6';
-import BuilderStore from '../../../stores/BuilderStore';
 import styles from './Builder.scss';
-import BuilderActions from '../../../actions/BuilderActions';
+import React, { PropTypes } from 'react';
+import cx from 'classnames';
+import BuilderComponent from '../../elements/Builder';
 
 class Builder extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = this._getBuilderState();
-    }
-
-    _getBuilderState() {
-        return {
-            currentStep: BuilderStore.currentStep,
-            imageParams: BuilderStore.dockerfile
-        }
-    }
-
-    componentDidMount() {
-        this.changeListener = this._onChange.bind(this);
-        BuilderStore.addChangeListener(this.changeListener);
-    }
-
-    componentWillUnmount() {
-        BuilderStore.removeChangeListener(this.changeListener);
-    }
-
-    _onChange() {
-        this.setState(this._getBuilderState());
+		// Environment info
+		this._params = {
+			meta: {
+				name: "Nginx",       // Project Name
+				description: ""             // Project Description
+			},
+			files: [],                      // Files to add, format: { name: "", content: "" }
+			envInfo: {
+				"distribution": "ubuntu",
+				"distributionVersion": "14.04",
+				"maintainer": "Xavier",
+				"label": [
+					"com.brewr.io=somevalue",
+				],
+				"workdir": "/var/www",
+				"user": "www-data",
+				"run": [
+					"sudo apt-get install nginx"
+				],
+				"sourceCode": null,
+				"cmd": [
+					"nginx -g daemon off;"
+				],
+				"expose": [
+					"80:80",
+					"443:443"
+				],
+				"env": [
+					"ENVIRONMENT=staging"
+				],
+				"add": [
+					"/etc/nginx/sites-available/default.conf:/etc/nginx/sites-available/brewr.io.conf",
+				],
+				"copy": null,
+				"entrypoint": null,
+				"volume": [
+					"/var/www",
+					"/var/log"
+				],
+				"onbuild": null
+			}
+		};
     }
 
     render() {
-        var content = null;
-
-        switch (BuilderStore.currentStep) {
-            case 2:
-                content = <BuilderStep2 imageParams={this.state.imageParams} />;
-                break;
-            case 3:
-                content = <BuilderStep3 imageParams={this.state.imageParams} />;
-                break;
-            case 4:
-                content = <BuilderStep4 imageParams={this.state.imageParams} />;
-                break;
-            case 5:
-                content = <BuilderStep5 imageParams={this.state.imageParams} />;
-                break;
-            case 6:
-                content = <BuilderStep6 imageParams={this.state.imageParams}/>;
-                break;
-            case 1:
-            default:
-                content = <BuilderStep1 imageParams={this.state.imageParams} />;
-        };
-
         return (
-            <DashboardLayout title="Environment Builder">
-                {/* Wizard */}
-                <Wizard steps={BuilderStore.steps} currentStepIdx={BuilderStore.currentStep} />
-
-                {/* Show content */}
-                {content}
-            </DashboardLayout>
+            <div className="Builder">
+				<BuilderComponent
+					baseInfo={this._params}
+					onFinish={this._handleOnFinish} />
+            </div>
         );
     }
-}
-
-Builder.defaultProps = {
-
 };
 
 Builder.propTypes = {
+
+};
+
+Builder.defaultProps = {
 
 };
 
