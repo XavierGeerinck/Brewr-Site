@@ -161,11 +161,13 @@ exports.makeMemberManagerByOrganisationUUID = function (organisationUUID, member
             organisation = org;
 
             return OrganisationUserModel
-            .where({ user_id: memberId, organisation_id: org.get('id') })
-            .save({ is_manager: true }, { patch: true });
+            .where({
+                user_id: memberId,
+                organisation_id: org.get('id')
+            })
+            .save({ is_manager: true }, { method: 'update' });
         })
         .then(function (organisationUser) {
-            console.log(organisationUser);
             // if (!organisationUser) {
             //     return Promise.reject('USER_IS_NOT_A_MEMBER_OF_ORGANISATION');
             // }

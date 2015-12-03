@@ -21,9 +21,17 @@ exports.getImage = function (request, reply) {
 
     ProjectService.getProjectRevisionByUUID(revisionUUID)
     .then(function (projectRevision) {
+        if (!projectRevision) {
+            return Promise.reject(Boom.badRequest('INVALID_REVISION'));
+        }
+
         return ProjectService.getProjectImage(projectRevision.get('id'));
     })
     .then(function (projectImage) {
+        if (!projectImage) {
+            return Promise.reject(Boom.badRequest('NO_PROJECT_IMAGE'));
+        }
+
         switch (type) {
             case 'json':
             default:
@@ -76,7 +84,7 @@ exports.addMember = function (request, reply) {
     ProjectService
     .addMemberByOrganisationUUIDAndProjectId(organisationUUID, projectId, memberId, isManager)
     .then(function (project) {
-        return reply({project: project});
+        return reply({ success: true });
     })
     .catch(function (err) {
         return reply({success: false, err: err});
@@ -90,8 +98,8 @@ exports.removeMember = function (request, reply) {
 
     ProjectService
     .removeMemberByOrganisationUUIDAndProjectId(organisationUUID, projectId, memberId)
-    .then(function (project) {
-        return reply({ project: project});
+    .then(function () {
+        return reply({ success: true });
     })
     .catch(function (err) {
         return reply(err);

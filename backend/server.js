@@ -62,56 +62,32 @@ function validateFunction (token, callback) {
         userObj.scope = [ user.get('scope') ];
 
         user.get('organisations').forEach(function (org) {
-
             if (org.get('created_by') === user.get('id')) {
                 user.scope.push('organisation-' + org.get('uuid') + '-creator');
             }
 
             user.scope.push('organisation-' + org.get('uuid') + '-member');
-
-            // DEPRECATED
-            // If we created it, add creator role
-            if (org.get('created_by') === user.get('id')) {
-                user.scope.push('belongs-to-organisation-' + org.get('uuid') + '-creator');
-            }
-
-            // Default role
-            user.scope.push('belongs-to-organisation-' + org.get('uuid') + '-user');
-
         });
 
         user.get('projects').forEach(function (proj) {
-
-            if (proj.pivot && proj.pivot.get('is_manager') && proj.get('created_by') !== user.get('id')) {
-                user.scope.push('project-' + proj.get('id') + '-manager');
-            }
-
-            if(proj.get('created_by') === user.get('id')) {
-                user.scope.push('project-' + proj.get('id') + '-creator');
-            }
-
-            user.scope.push('project-' + proj.get('id') + '-member');
-
-
-            //DEPRECATED!
             var org = user.get('organisations').filter(function (organisation) {
                 return organisation.get('id') == proj.get('organisation_id');
             })[0];
 
             // If we created the project, add creator role
             if (proj.get('created_by') === user.get('id')) {
-                user.scope.push('belongs-to-organisation-' + org.get('uuid') + '-project-' + proj.get('id') + '-creator');
-                user.scope.push('belongs-to-organisation-' + org.get('uuid') + '-project-' + proj.get('id') + '-manager');
+                user.scope.push('organisation-' + org.get('uuid') + '-project-' + proj.get('id') + '-creator');
+                user.scope.push('organisation-' + org.get('uuid') + '-project-' + proj.get('id') + '-manager');
             }
 
             if (proj.pivot && proj.pivot.get('is_manager') && proj.get('created_by') !== user.get('id')) {
-                user.scope.push('belongs-to-organisation-' + org.get('uuid') + '-project-' + proj.get('id') + '-manager');
+                user.scope.push('organisation-' + org.get('uuid') + '-project-' + proj.get('id') + '-manager');
             }
 
             // Default role
-            user.scope.push('belongs-to-organisation-' + org.get('uuid') + '-project-' + proj.get('id') + '-user');
+            user.scope.push('organisation-' + org.get('uuid') + '-project-' + proj.get('id') + '-member');
         });
-
+        
         return callback(null, true, userObj);
     })
     .catch(function (err) {

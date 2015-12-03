@@ -73,7 +73,7 @@ exports.makeManager = function (request, reply) {
         return reply({ success: true });
     })
     .catch(function (err) {
-        console.log(err);
+        console.error(err);
         return reply(err);
     });
 };

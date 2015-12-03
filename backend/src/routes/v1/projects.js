@@ -12,7 +12,7 @@ module.exports = [
             handler: ProjectController.getMembers,
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-user' ]
+                scope: [ 'organisation-{params.organisation}-project-{params.project}-member' ]
             },
             validate: {
                 params: {
@@ -29,7 +29,7 @@ module.exports = [
             handler: ProjectController.getImage,
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-user' ]
+                scope: [ 'organisation-{params.organisation}-project-{params.project}-member' ]
             },
             validate: {
                 params: {
@@ -43,28 +43,6 @@ module.exports = [
             }
         }
     },
-    //TODO: Deprecated
-    /*{
-        method: 'POST',
-        path: '/organisation/{organisation}/project/{project}/members/{memberId}',
-        config: {
-            handler: ProjectController.addMember,
-            auth: {
-                strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-manager' ]
-            },
-            validate: {
-                params: {
-                    organisation: Joi.string().guid().required(),
-                    memberId: Joi.number().required(),
-                    project: Joi.number().required()
-                },
-                query: {
-                    is_manager: Joi.boolean().default(false, 'Specifies if the user is a organisation manager or not').optional()
-                }
-            }
-        }
-    },*/
     {
         method: 'POST',
         path: '/organisation/{organisation}/project/{project}/assign',
@@ -72,7 +50,7 @@ module.exports = [
             handler: ProjectController.addMember,
             auth: {
                 strategy: 'bearer',
-                scope: [ 'project-{params.project}-manager', 'project-{params.project}-creator', 'organisation-{params.organisation}-creator' ]
+                scope: [ 'organisation-{params.organisation}-project-{params.project}-manager', 'organisation-{params.organisation}-project-{params.project}-creator', 'organisation-{params.organisation}-creator' ]
             },
             validate: {
                 params: {
@@ -93,7 +71,7 @@ module.exports = [
             handler: ProjectController.removeMember,
             auth: {
                 strategy: 'bearer',
-                scope: [ 'project-{params.project}-manager', 'project-{params.project}-creator', 'organisation-{params.organisation}-creator' ]
+                scope: [ 'organisation-{params.organisation}-project-{params.project}-manager', 'organisation-{params.organisation}-project-{params.project}-creator', 'organisation-{params.organisation}-creator' ]
             },
             validate: {
                 params: {
@@ -111,7 +89,7 @@ module.exports = [
             handler: ProjectController.getProjectByUUIDAndOrganisation ,
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-user' ]
+                scope: [ 'organisation-{params.organisation}-project-{params.project}-member' ]
             },
             validate: {
                 params: {
@@ -128,7 +106,7 @@ module.exports = [
             handler: ProjectController.deleteProjectByUUIDAndOrganisation ,
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-project-{params.project}-manager' ]
+                scope: [ 'organisation-{params.organisation}-project-{params.project}-manager' ]
             },
             validate: {
                 params: {
@@ -147,7 +125,7 @@ module.exports = [
         config: {
             auth: {
                 strategy: 'bearer',
-                scope: [ 'belongs-to-organisation-{params.organisation}-manager', 'belongs-to-organisation-{params.organisation}-creator' ]
+                scope: [ 'organisation-{params.organisation}-manager', 'organisation-{params.organisation}-creator' ]
             },
             handler: ProjectController.create,
             validate: {

@@ -69,6 +69,10 @@ exports.addMemberByOrganisationUUIDAndProjectId = function (organisationUUID, pr
 			.fetch();
 		})
 		.then(function (org) {
+			if (!org) {
+				return Promise.reject('ORGANISATION_DOES_NOT_EXIST');
+			}
+			
 			return ProjectUser.forge({
 				is_manager: isManager,
 				user_id: memberId,
