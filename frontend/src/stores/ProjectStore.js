@@ -24,9 +24,11 @@ class ProjectStore extends BaseStore {
                 break;
             case actionTypes.RESPONSE_PROJECT:
                 this._selectedProject = source.action.response;
+                this.emitChange();
                 break;
             case ProjectConstants.PROJECT_ASSIGN_MEMBER:
                 this._selectedProject = source.action.response.project;
+                this.emitChange();
                 break;
             case actionTypes.RESPONSE_PROJECT_ERROR:
                 console.log('Error! :(');

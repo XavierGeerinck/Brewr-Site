@@ -54,8 +54,6 @@ class Builder extends React.Component {
     }
 
     _handleOnClickFinish(image) {
-        console.log(image);
-
         BuilderActions.saveProject(AuthStore.token, AuthStore.selected_organisation.uuid, image);
     }
 

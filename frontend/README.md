@@ -24,6 +24,7 @@ We use https://www.npmjs.com/package/purecss for the grid system, you can import
 3. We bind the changeListeners on the componentDidMount and componentWillUnmount
 4. We will not execute view actions in a store! so no Navigation.transitionTo things, the view will do this (see login page for an example)
 5. Do not use this.state = {} but use this.setState({}) else you will not get an updated view
+6. Run setState in the componentWillMount
 
 ## Directory Structure
 ```

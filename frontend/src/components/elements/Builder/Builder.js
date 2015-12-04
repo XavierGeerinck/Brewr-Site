@@ -18,6 +18,15 @@ import styles from './Builder.scss';
 
 const builderSteps = [ "Distribution Picker", "Install Programs", "Manage Files & Src", "Startup Commands", "Ports & Env", "Finalize" ];
 
+const defaultImage = {
+    meta: {
+        name: ""
+    },
+    envInfo: {
+
+    }
+};
+
 const featuredDistributions = [
     {
         "distribution": "ubuntu",
@@ -72,7 +81,7 @@ class Builder extends React.Component {
         this.state = {
             steps: builderSteps,
             currentStep: 1,
-            image: props.baseInfo
+            image: props.baseInfo || defaultImage
         };
     }
 

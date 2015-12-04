@@ -10,6 +10,7 @@ import HomePage from './components/pages/Home';
 import NotFoundPage from './components/pages/NotFound';
 import DashboardPage from './components/pages/Dashboard';
 import LogoutPage from './components/pages/Logout';
+import ProjectEditImage from './components/pages/ProjectEditImage'
 import AuthStore from './stores/AuthStore';
 
 const createBrowserHistory = require('history/lib/createBrowserHistory');
@@ -34,7 +35,8 @@ var routes = (
             <Route path="logout"    component={LogoutPage} onEnter={requireAuth} />
             <Route path="dashboard" component={DashboardPage} onEnter={requireAuth} />
             <Route path="organisation/:organisationUUID/members"     component={MembersPage} onEnter={requireAuth} />
-            <Route path="organisation/:organisationId/project/:projectId"  component={ProjectPage} onEnter={requireAuth} />
+            <Route path="organisation/:organisationUUID/project/:projectId"  component={ProjectPage} onEnter={requireAuth} />
+            <Route path="organisation/:organisationUUID/project/:projectId/image/edit" component={ProjectEditImage} onEnter={requireAuth}/>
 
             // TODO: For this to work properly it has to be wrapped in a component
             <Route path="organisation/:organisationUUID/project/:projectId/image/edit" component={BuilderPage} onEnter={requireAuth} />

@@ -9,34 +9,34 @@ import AuthStore from '../stores/AuthStore';
 // import * as ProjectAPIUtils from '../utils/ProjectAPIUtils';
 
 class ProjectActions {
-    static getProject(token, organisationId, projectId) {
+    static getProject(token, organisationUUID, projectId) {
         AppDispatcher.handleViewAction({
             type: actionTypes.REQUEST_PROJECT,
-            name: organisationId,
+            name: organisationUUID,
             projectId: projectId
         });
 
-        ProjectAPIUtils.getProject(token, organisationId, projectId);
+        ProjectAPIUtils.getProject(token, organisationUUID, projectId);
     }
 
-    static assignMember(organisationId, projectId, memberId) {
+    static assignMember(organisationUUID, projectId, memberId) {
         AppDispatcher.handleViewAction({
             type: actionTypes.REQUEST_PROJECT,
             projectId: projectId,
             memberId: memberId
         });
 
-        ProjectAPIUtils.assignMember(AuthStore.token, organisationId, projectId, memberId);
+        ProjectAPIUtils.assignMember(AuthStore.token, organisationUUID, projectId, memberId);
     }
 
-    static removeMember(organisationId, projectId, memberId) {
+    static removeMember(organisationUUID, projectId, memberId) {
         AppDispatcher.handleViewAction({
             type: actionTypes.REQUEST_PROJECT,
             projectId: projectId,
             memberId: memberId
         });
 
-        ProjectAPIUtils.removeMember(AuthStore.token, organisationId, projectId, memberId);
+        ProjectAPIUtils.removeMember(AuthStore.token, organisationUUID, projectId, memberId);
     }
 
     static editProjectImage(token, organisationUUID, projectId, revisionUUID) {
