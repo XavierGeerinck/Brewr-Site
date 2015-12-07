@@ -4,10 +4,6 @@ import * as ProjectAPIUtils from '../utils/ProjectAPIUtils';
 import * as actionTypes from '../constants/ActionTypes';
 import AuthStore from '../stores/AuthStore';
 
-// import AppDispatcher from '../dispatchers/AppDispatcher.js';
-// import * as actionTypes from '../constants/ActionTypes';
-// import * as ProjectAPIUtils from '../utils/ProjectAPIUtils';
-
 class ProjectActions {
   static getProject(token, organisationId, projectId) {
     AppDispatcher.handleViewAction({
@@ -60,29 +56,6 @@ class ProjectActions {
     ProjectAPIUtils.getProjectImage(token, organisationUUID, projectId, revisionUUID);
   }
 
-
-  //
-  // create: function(project) {
-  //     AppDispatcher.dispatch({
-  //         actionType: ProjectConstants.PROJECT_CREATE,
-  //         project: project
-  //     });
-  // },
-  //
-  // update: function(id, project) {
-  //     AppDispatcher.dispatch({
-  //         actionType: ProjectConstants.PROJECT_UPDATE,
-  //         id: id,
-  //         project: project
-  //     })
-  // },
-  //
-  // destroy: function() {
-  //     AppDispatcher.dispatch({
-  //         actionType: ProjectConstants.PROJECT_DESTROY,
-  //         id: id
-  //     })
-  // }
 }
 
 export default ProjectActions;
