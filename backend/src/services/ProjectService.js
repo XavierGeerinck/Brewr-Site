@@ -26,6 +26,23 @@ exports.getProjectImage = function (projectRevisionId) {
 	return ProjectEnvInfo.where({ project_revision_id: projectRevisionId }).fetch();
 };
 
+//TODO: Write test
+exports.promoteToManager = function(projectId, userId) {
+	return new Promise(function(resolve, reject){
+
+		// get user
+		ProjectUser
+			.where({ project_id: projectId, user_id: userId})
+			.save({ is_manager: true }, { method: 'update' })
+			.then(function(projectUser){
+				return resolve(projectUser);
+			})
+			.catch(function(err){
+				return reject(err);
+			});
+	});
+};
+
 exports.getMembersByOrganisationUUIDAndProjectId = function (organisationUUID, projectId) {
 	return new Promise(function (resolve, reject) {
 		Organisation.where({ uuid: organisationUUID }).fetch()

@@ -43,6 +43,17 @@ exports.getImage = function (request, reply) {
     });
 };
 
+exports.promoteToManager = function(request, reply) {
+    ProjectService
+        .promoteToManager(request.params.project, request.payload.userId)
+        .then(function(project){
+            return reply(project);
+        })
+        .catch(function(err){
+            return reply(err);
+        });
+};
+
 exports.getProjectByUUIDAndOrganisation = function (request, reply) {
     ProjectService
     .getProjectByIdAndOrganisation(request.params.project)

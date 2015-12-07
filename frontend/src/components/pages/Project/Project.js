@@ -19,132 +19,93 @@ import AssignableMemberList from '../../elements/AssignableMemberList/Assignable
 import OrganisationStore from '../../../stores/OrganisationStore';
 import OrganisationActions from '../../../actions/OrganisationActions';
 
+import ProjectRevisionTable from '../../elements/ProjectRevisionTable/ProjectRevisionTable';
+import ProjectFileTable from '../../elements/ProjectFileTable/ProjectFileTable';
+
 export class Project extends BaseComponent {
-    constructor(props) {
-        super(props);
-        this._getState();
-        this._bind('_onChange');
+  constructor(props) {
+    super(props);
+    this._getState();
+    this._bind('_onChange');
+  }
+
+  componentDidMount() {
+    ProjectStore.addChangeListener(this._onChange);
+    OrganisationStore.addChangeListener(this._onChange);
+
+
+    ProjectActions.getProject(AuthStore.token, this.props.params.organisationId, this.props.params.projectId);
+    OrganisationActions.getMembers(AuthStore.token, this.props.params.organisationId);
+  }
+
+  componentWillUnmount() {
+    ProjectStore.removeChangeListener(this._onChange);
+    OrganisationStore.removeChangeListener(this._onChange);
+  }
+
+  _getState() {
+    return {
+      selectedProject: ProjectStore.selectedProject,
+      allMembers: OrganisationStore.allMembers,
+      filteredMembers: OrganisationStore.allMembers,
+      currentOrganisation: this.props.params.organisationId
+    }
+  }
+
+  _onChange() {
+    this.setState(this._getState());
+  }
+
+  _removeMember(id) {
+    ProjectActions.removeMember(this.props.params.organisationId, this.state.selectedProject.id, id);
+  }
+
+  _promoteToManager(id) {
+    ProjectActions.promoteToManager(this.props.params.organisationId, this.state.selectedProject.id, id);
+  }
+
+  _onClickEditProject() {
+    ProjectActions.editProjectImage(AuthStore.token, this.state.currentOrganisation, this.state.selectedProject.id, this.state.selectedProject.revisions[0].revision_number);
+    this.props.history.pushState(null, '/builder');
+  }
+
+  render() {
+    if (!this.state || !this.state.selectedProject) {
+      return (<div></div>);
     }
 
-    componentDidMount() {
-        ProjectStore.addChangeListener(this._onChange);
-        OrganisationStore.addChangeListener(this._onChange);
+    const { selectedProject, currentOrganisation, allMembers } = this.state;
 
-
-        ProjectActions.getProject(AuthStore.token, this.props.params.organisationId, this.props.params.projectId);
-        OrganisationActions.getMembers(AuthStore.token, this.props.params.organisationId);
-    }
-
-    componentWillUnmount() {
-        ProjectStore.removeChangeListener(this._onChange);
-        OrganisationStore.removeChangeListener(this._onChange);
-    }
-
-    _getState() {
-        return {
-            selectedProject: ProjectStore.selectedProject,
-            allMembers: OrganisationStore.allMembers,
-            filteredMembers: OrganisationStore.allMembers,
-            currentOrganisation: this.props.params.organisationId
-        }
-    }
-
-    _onChange() {
-        this.setState(this._getState());
-    }
-
-    _removeMember(id) {
-      ProjectActions.removeMember(this.props.params.organisationId, this.state.selectedProject.id, id);
-    }
-
-    _onClickEditProject() {
-        ProjectActions.editProjectImage(AuthStore.token, this.state.currentOrganisation, this.state.selectedProject.id, this.state.selectedProject.revisions[0].revision_number);
-        this.props.history.pushState(null, '/builder');
-    }
-
-    render() {
-        if (!this.state || !this.state.selectedProject) {
-            return (<div></div>);
-        }
-
-        const { selectedProject, currentOrganisation, allMembers } = this.state;
-
-        return (
-            <DashboardLayout title={selectedProject.name} className={grid['pure-g']}>
-            {/* LEFT */}
-            <div className={cx(grid['pure-u-md-4-5'], styles.ContainerLeft)}>
-            <div className={styles.ContainerTop}>
-            <h1>{selectedProject.name} <Button text="Edit" isForm={true} onClick={this._onClickEditProject.bind(this)}/></h1>
+    return (
+      <DashboardLayout title={selectedProject.name} className={grid['pure-g']}>
+        {/* LEFT */}
+        <div className={cx(grid['pure-u-md-4-5'], styles.ContainerLeft)}>
+          <div className={styles.ContainerTop}>
+            <h1>{selectedProject.name} <Button text="Edit" isForm={true} onClick={this._onClickEditProject.bind(this)}/>
+            </h1>
             <p>{selectedProject.description}</p>
-            </div>
+          </div>
 
-            {/* BOTTOM */}
-            <div className={cx(styles.ContainerBottom, grid['pure-g'])}>
+          {/* BOTTOM */}
+          <div className={cx(styles.ContainerBottom, grid['pure-g'])}>
             <div className={grid['pure-u-md-1-2']}>
-            <h1>Files</h1>
-
-            <Table className={styles.Table}>
-            <tbody>
-            <tr>
-            <td>test1.txt</td>
-            <td>Text File</td>
-            <td>Xavier</td>
-            </tr>
-
-            <tr>
-            <td>test1.txt</td>
-            <td>Text File</td>
-            <td>Xavier</td>
-            </tr>
-
-            <tr>
-            <td>test1.txt</td>
-            <td>Text File</td>
-            <td>Xavier</td>
-            </tr>
-            </tbody>
-            </Table>
+              <h1>Files</h1>
+              <ProjectFileTable files={[]}/>
             </div>
 
             <div className={grid['pure-u-md-1-2']}>
-            <h1>Revisions</h1>
+              <h1>Revisions</h1>
+              <ProjectRevisionTable revisions={selectedProject.revisions}/>
 
-            <Table className={styles.Table}>
-            <tbody>
-            <tr>
-            <td>d5804063</td>
-            <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
-            <td>Oct 14, 2015</td>
-            </tr>
-
-            <tr>
-            <td>d5804063</td>
-            <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
-            <td>Oct 14, 2015</td>
-            </tr>
-
-            <tr>
-            <td>d5804063</td>
-            <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
-            <td>Oct 14, 2015</td>
-            </tr>
-
-            <tr>
-            <td>d5804063</td>
-            <td>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetu...</td>
-            <td>Oct 14, 2015</td>
-            </tr>
-            </tbody>
-            </Table>
             </div>
-            </div>
-            </div>
+          </div>
+        </div>
 
-            {/* RIGHT */}
-            <div className={cx(styles.ContainerRight, grid['pure-u-md-1-5'])}>
-            <h1>Members</h1>
+        {/* RIGHT */}
+        <div className={cx(styles.ContainerRight, grid['pure-u-md-1-5'])}>
+          <h1>Members</h1>
 
-            <ul>
+          <ul>
             {
               selectedProject.members.map(m => {
                 return (
@@ -154,13 +115,17 @@ export class Project extends BaseComponent {
                       <div className={styles.ContainerRightListItemName}>{m.name}</div>
                       <div className={styles.ContainerRightListItemSubtitle}>{m.scope}</div>
                     </div>
-                    <button onClick={this._removeMember.bind(this, m.id)}><i className={cx(fa.fa, fa['fa-remove'])}></i></button>
+                    <button onClick={this._removeMember.bind(this, m.id)}><i className={cx(fa.fa, fa['fa-remove'])}></i>
+                    </button>
+                    <button onClick={this._promoteToManager.bind(this, m.id)}><i
+                      className={cx(fa.fa, fa['fa-promote'])}></i> Promote
+                    </button>
                     <div className={styles.Clear}></div>
                   </li>
                 )
               })
             }
-            </ul>
+          </ul>
 
 
           { /* TODO: Only when project manager or owner of organisation */ }
