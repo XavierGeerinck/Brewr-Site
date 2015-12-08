@@ -19,6 +19,7 @@ let history = createBrowserHistory();
 
 // Todo: add onEnter={requireAuth} to projects, teams, builder paths!!
 // <Router history={history}>
+// This will make sure we get logged in everywhere
 function requireAuth(nextState, replaceState) {
     if (!AuthStore.isLoggedIn) {
         replaceState({ nextPathname: nextState.location.pathname }, '/login');

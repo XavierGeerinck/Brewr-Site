@@ -13,6 +13,9 @@ var AppDispatcher = objectAssign(new Dispatcher(), {
             action: action
         };
 
+        console.log(this);
+        console.log("Is Dispatching? : " + this.isDispatching());
+        console.log(payload);
         this.dispatch(payload);
     },
 
@@ -25,6 +28,9 @@ var AppDispatcher = objectAssign(new Dispatcher(), {
             source: 'VIEW_ACTION',
             action: action
         };
+                console.log(this);
+                console.log("Is Dispatching? : " + this.isDispatching());
+console.log(payload);
 
         this.dispatch(payload);
     }

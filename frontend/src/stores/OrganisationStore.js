@@ -1,6 +1,5 @@
 import BaseStore from './BaseStore';
 import * as actionTypes from '../constants/ActionTypes';
-import * as OrganisationAPIUtils from '../utils/OrganisationAPIUtils';
 
 class OrganisationStore extends BaseStore {
     constructor() {

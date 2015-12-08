@@ -19,25 +19,28 @@ import AssignableMemberList from '../../elements/AssignableMemberList/Assignable
 import OrganisationStore from '../../../stores/OrganisationStore';
 import OrganisationActions from '../../../actions/OrganisationActions';
 
-export class Project extends BaseComponent {
+export class Project extends React.Component {
     constructor(props) {
         super(props);
-        this._getState();
-        this._bind('_onChange');
+
+        this.state = {};
+    }
+
+    componentWillMount() {
+        ProjectActions.getProject(AuthStore.token, this.props.params.organisationUUID, this.props.params.projectId);
     }
 
     componentDidMount() {
-        ProjectStore.addChangeListener(this._onChange);
-        OrganisationStore.addChangeListener(this._onChange);
+        this.changeListener = this._onChange.bind(this);
+        ProjectStore.addChangeListener(this.changeListener);
+        OrganisationStore.addChangeListener(this.changeListener);
 
-
-        ProjectActions.getProject(AuthStore.token, this.props.params.organisationUUID, this.props.params.projectId);
-        OrganisationActions.getMembers(AuthStore.token, this.props.params.organisationUUID);
+        //OrganisationActions.getMembers(AuthStore.token, this.props.params.organisationUUID);
     }
 
     componentWillUnmount() {
-        ProjectStore.removeChangeListener(this._onChange);
-        OrganisationStore.removeChangeListener(this._onChange);
+        ProjectStore.removeChangeListener(this.changeListener);
+        OrganisationStore.removeChangeListener(this.changeListener);
     }
 
     _getState() {
@@ -50,7 +53,8 @@ export class Project extends BaseComponent {
     }
 
     _onChange() {
-        this.setState(this._getState());
+        var state = this._getState();
+        this.setState(state);
     }
 
     _removeMember(id) {
@@ -62,6 +66,7 @@ export class Project extends BaseComponent {
     }
 
     render() {
+        console.log(this.state);
         if (!this.state || !this.state.selectedProject) {
             return (<div></div>);
         }

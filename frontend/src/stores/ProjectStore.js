@@ -1,6 +1,5 @@
 import BaseStore from './BaseStore';
 import * as actionTypes from '../constants/ActionTypes';
-import * as ProjectAPIUtils from '../utils/AuthAPIUtils';
 import ProjectConstants from '../constants/ProjectConstants';
 
 
@@ -39,8 +38,7 @@ class ProjectStore extends BaseStore {
                 break;
         }
 
-      this.emitChange();
-      return true;
+        return true;
     }
 
     get selectedProject() {

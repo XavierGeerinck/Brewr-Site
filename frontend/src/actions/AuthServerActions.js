@@ -1,6 +1,5 @@
 import AppDispatcher from '../dispatchers/AppDispatcher';
 import * as actionTypes from '../constants/ActionTypes';
-import * as AuthAPIUtils from '../utils/AuthAPIUtils';
 
 // Normal Responses
 export function receiveLoginResponse(response) {
@@ -8,9 +7,6 @@ export function receiveLoginResponse(response) {
         type: actionTypes.RESPONSE_LOGIN,
         response: response
     });
-
-    // Send the getUser to here (remember, this is an action creator!)
-    AuthAPIUtils.getUser(response.token);
 }
 
 export function receiveRegisterResponse(response) {

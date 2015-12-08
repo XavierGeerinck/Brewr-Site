@@ -1,6 +1,5 @@
 import BaseStore from './BaseStore';
 import * as actionTypes from '../constants/ActionTypes';
-import * as ProjectAPIUtils from '../utils/AuthAPIUtils';
 
 
 class ProjectEditImageStore extends BaseStore {

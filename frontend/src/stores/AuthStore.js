@@ -1,7 +1,6 @@
 import BaseStore from './BaseStore';
 import jwt_decode from 'jwt-decode';
 import * as actionTypes from '../constants/ActionTypes';
-import * as AuthAPIUtils from '../utils/AuthAPIUtils';
 
 class AuthStore extends BaseStore {
     constructor() {
@@ -67,6 +66,8 @@ class AuthStore extends BaseStore {
             default:
                 break;
         }
+
+        return true;
     }
 
     get user() {

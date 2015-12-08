@@ -24,8 +24,13 @@ class LoginPage extends React.Component {
 
     _getAuthState() {
         return {
-            isLoggedIn: AuthStore.token != ''
+            isLoggedIn: AuthStore.isLoggedIn,
+            token: AuthStore.token
         }
+    }
+
+    componentWillMount() {
+        this._autoLogin(AuthStore.token, AuthStore.isLoggedIn);
     }
 
     componentDidMount() {
@@ -42,6 +47,8 @@ class LoginPage extends React.Component {
         var newState = this._getAuthState();
         this.setState(newState);
 
+        console.log("redirecting " + this.props.location.state.nextPathname);
+
         // If logged in, redirect
         if (newState.isLoggedIn) {
             // If we got old state, go to that path
@@ -53,9 +60,10 @@ class LoginPage extends React.Component {
         }
     }
 
-    login(e) {
-        e.preventDefault();
-
+    _autoLogin(token, isLoggedIn) {
+        if (token && !isLoggedIn) {
+            AuthActions.getUser(token);
+        }
     }
 
     _onSubmit(e) {
