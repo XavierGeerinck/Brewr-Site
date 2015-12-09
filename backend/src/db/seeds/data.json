@@ -267,6 +267,12 @@
             "project_id": 1,
             "revision_number": "ca96d5b0-164b-492e-8175-69fb036f7ed5",
             "created_at": "NOW()"
+        },
+        {
+            "id": 2,
+            "project_id": 1,
+            "revision_number": "ca96d5b0-164b-492e-8175-69fb036f7ed6",
+            "created_at": "NOW()"
         }
     ],
     "project_env_info": [
