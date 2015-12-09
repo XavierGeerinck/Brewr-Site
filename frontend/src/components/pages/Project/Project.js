@@ -10,7 +10,6 @@ import BaseComponent from '../../BaseComponent';
 import ProjectActions from '../../../actions/ProjectActions';
 import AuthStore from '../../../stores/AuthStore';
 import ProjectStore from '../../../stores/ProjectStore';
-import Image from '../../elements/Image';
 import { Table } from '../../elements/Table';
 import Button from '../../elements/Button';
 
@@ -57,14 +56,6 @@ export class Project extends BaseComponent {
     this.setState(this._getState());
   }
 
-  _removeMember(id) {
-    ProjectActions.removeMember(this.props.params.organisationId, this.state.selectedProject.id, id);
-  }
-
-  _promoteToManager(id) {
-    ProjectActions.promoteToManager(this.props.params.organisationId, this.state.selectedProject.id, id);
-  }
-
   _onClickEditProject() {
     ProjectActions.editProjectImage(AuthStore.token, this.state.currentOrganisation, this.state.selectedProject.id, this.state.selectedProject.revisions[0].revision_number);
     this.props.history.pushState(null, '/builder');
@@ -97,17 +88,14 @@ export class Project extends BaseComponent {
             <div className={grid['pure-u-md-1-2']}>
               <h1>Revisions</h1>
               <ProjectRevisionTable revisions={selectedProject.revisions}/>
-
             </div>
           </div>
         </div>
 
         {/* RIGHT */}
-        <div className={cx(styles.ContainerRight, grid['pure-u-md-1-5'])}>
-          <h1>Members</h1>
-
-          <MemberList members={selectedProject.members}/>
-
+        <div className={cx(styles.project_sidebar, grid['pure-u-md-1-5'])}>
+          <h2>Members</h2>
+          <MemberList members={selectedProject.members} project={selectedProject} organisation={currentOrganisation}/>
 
           { /* TODO: Only when project manager or owner of organisation */ }
           <h2>Assign Member</h2>

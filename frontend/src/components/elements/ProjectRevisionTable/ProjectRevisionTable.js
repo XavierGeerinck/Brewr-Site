@@ -16,17 +16,15 @@ export default class ProjectRevisionTable extends BaseComponent {
     return (
       <table>
         <tbody>
-          <tr>
-            { revisions.map(r => {
-              return (
-                <tr>
-                  <td>{r.revision_number}</td>
-                  <td>{r.created_at}</td>
-                  <td></td>
-                </tr>
-              );
-            })}
-          </tr>
+          { revisions.map(r => {
+            return (
+              <tr key={r.id}>
+                <td>{r.revision_number}</td>
+                <td>{r.created_at}</td>
+                <td></td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     )
