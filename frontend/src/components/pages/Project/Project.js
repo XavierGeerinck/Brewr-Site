@@ -21,6 +21,7 @@ import OrganisationActions from '../../../actions/OrganisationActions';
 
 import ProjectRevisionTable from '../../elements/ProjectRevisionTable/ProjectRevisionTable';
 import ProjectFileTable from '../../elements/ProjectFileTable/ProjectFileTable';
+import MemberList from '../../elements/MemberList/MemberList';
 
 export class Project extends BaseComponent {
   constructor(props) {
@@ -105,27 +106,7 @@ export class Project extends BaseComponent {
         <div className={cx(styles.ContainerRight, grid['pure-u-md-1-5'])}>
           <h1>Members</h1>
 
-          <ul>
-            {
-              selectedProject.members.map(m => {
-                return (
-                  <li key={"img_" + m.id}>
-                    <Image src={m.avatar_url} defaultSrc={require('./avatar.png')}/>
-                    <div className={styles.ContainerRightListItem}>
-                      <div className={styles.ContainerRightListItemName}>{m.name}</div>
-                      <div className={styles.ContainerRightListItemSubtitle}>{m.scope}</div>
-                    </div>
-                    <button onClick={this._removeMember.bind(this, m.id)}><i className={cx(fa.fa, fa['fa-remove'])}></i>
-                    </button>
-                    <button onClick={this._promoteToManager.bind(this, m.id)}><i
-                      className={cx(fa.fa, fa['fa-promote'])}></i> Promote
-                    </button>
-                    <div className={styles.Clear}></div>
-                  </li>
-                )
-              })
-            }
-          </ul>
+          <MemberList members={selectedProject.members}/>
 
 
           { /* TODO: Only when project manager or owner of organisation */ }
