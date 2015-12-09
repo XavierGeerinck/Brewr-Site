@@ -290,7 +290,7 @@
             "distribution_version": "E'14.04'",
             "source_code": "",
             "startup_file_content": "",
-            "startup_command: """
+            "startup_command": ""
         }
     ],
     "organisation_user": [
