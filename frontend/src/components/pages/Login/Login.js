@@ -53,9 +53,14 @@ class LoginPage extends React.Component {
         if (newState.isLoggedIn) {
             // If we got old state, go to that path
             if (this.props.location.state) {
-                this.props.history.pushState(null, this.props.location.state.nextPathname);
+                var self = this;
+                setTimeout(function () {
+                    self.props.history.pushState(null, self.props.location.state.nextPathname);
+                }, 10);
             } else {
-                this.props.history.pushState(null, '/');
+                setTimeout(function () {
+                    this.props.history.pushState(null, '/');
+                }, 10);
             }
         }
     }

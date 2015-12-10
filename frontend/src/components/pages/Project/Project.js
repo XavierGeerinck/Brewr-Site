@@ -24,10 +24,7 @@ export class Project extends React.Component {
         super(props);
 
         this.state = {};
-    }
 
-    componentWillMount() {
-        ProjectActions.getProject(AuthStore.token, this.props.params.organisationUUID, this.props.params.projectId);
     }
 
     componentDidMount() {
@@ -35,9 +32,11 @@ export class Project extends React.Component {
         ProjectStore.addChangeListener(this.changeListener);
         OrganisationStore.addChangeListener(this.changeListener);
 
+        ProjectActions.getProject(AuthStore.token, this.props.params.organisationUUID, this.props.params.projectId);
+
         //OrganisationActions.getMembers(AuthStore.token, this.props.params.organisationUUID);
     }
-
+    
     componentWillUnmount() {
         ProjectStore.removeChangeListener(this.changeListener);
         OrganisationStore.removeChangeListener(this.changeListener);
