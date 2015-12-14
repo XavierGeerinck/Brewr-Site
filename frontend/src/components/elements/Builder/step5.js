@@ -84,9 +84,9 @@ Step5.defaultProps = {
 
 Step5.propTypes = {
     imageParams: PropTypes.object,
-    onClickNext: PropTypes.function,
-    onClickPrevious: PropTypes.function,
-    onSave: PropTypes.function
+    onClickNext: PropTypes.func,
+    onClickPrevious: PropTypes.func,
+    onSave: PropTypes.func
 };
 
 export default Step5;

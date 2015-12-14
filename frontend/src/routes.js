@@ -30,7 +30,7 @@ var routes = (
     <Router>
         <Route path="/" component={App}>
             <IndexRoute component={HomePage} />
-            <Route path="builder"   component={BuilderPage} />
+            <Route path="builder"   component={BuilderPage} onEnter={requireAuth}/>
             <Route path="login"     component={LoginPage} />
             <Route path="register"  component={RegisterPage} />
             <Route path="logout"    component={LogoutPage} onEnter={requireAuth} />

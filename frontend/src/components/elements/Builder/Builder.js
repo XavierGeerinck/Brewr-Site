@@ -88,6 +88,7 @@ class Builder extends React.Component {
     _handleOnClickFinish() {
         var self = this;
 
+console.log(this.props);
         this.props.onClickFinish(self.state.image);
     }
 
@@ -187,7 +188,7 @@ Builder.defaultProps = {
 
 Builder.propTypes = {
     baseInfo: PropTypes.object,
-    onClickFinish: PropTypes.function
+    onClickFinish: PropTypes.func
 };
 
 export default Builder;

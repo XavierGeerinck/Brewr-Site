@@ -14,8 +14,6 @@ import { Link } from 'react-router';
 class DashboardLayout extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = this._getAuthState();
     }
 
     _getAuthState() {
@@ -26,6 +24,10 @@ class DashboardLayout extends React.Component {
         }
     }
 
+    componentWillMount() {
+        console.log(AuthStore);
+        this.setState(this._getAuthState());
+    }
     componentDidMount() {
         this.changeListener = this._onChange.bind(this);
         AuthStore.addChangeListener(this.changeListener);
@@ -50,9 +52,9 @@ class DashboardLayout extends React.Component {
 
     render() {
         // If we are not logged in, do not render anything.
-        if (!AuthStore.isLoggedIn) {
-            return (<div></div>);
-        }
+        // if (!AuthStore.isLoggedIn) {
+        //     return (<div></div>);
+        // }
 
         var self = this;
         const { title, isBoxed, history } = this.props;
