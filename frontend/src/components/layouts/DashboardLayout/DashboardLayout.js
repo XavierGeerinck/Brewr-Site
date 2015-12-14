@@ -25,7 +25,6 @@ class DashboardLayout extends React.Component {
     }
 
     componentWillMount() {
-        console.log(AuthStore);
         this.setState(this._getAuthState());
     }
     componentDidMount() {

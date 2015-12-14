@@ -33,10 +33,9 @@ export class Project extends React.Component {
         OrganisationStore.addChangeListener(this.changeListener);
 
         ProjectActions.getProject(AuthStore.token, this.props.params.organisationUUID, this.props.params.projectId);
-
-        //OrganisationActions.getMembers(AuthStore.token, this.props.params.organisationUUID);
+        OrganisationActions.getMembers(AuthStore.token, this.props.params.organisationUUID);
     }
-    
+
     componentWillUnmount() {
         ProjectStore.removeChangeListener(this.changeListener);
         OrganisationStore.removeChangeListener(this.changeListener);
@@ -46,8 +45,7 @@ export class Project extends React.Component {
         return {
             selectedProject: ProjectStore.selectedProject,
             allMembers: OrganisationStore.allMembers,
-            filteredMembers: OrganisationStore.allMembers,
-            currentOrganisation: this.props.params.organisationUUID
+            filteredMembers: OrganisationStore.allMembers
         }
     }
 
@@ -61,11 +59,14 @@ export class Project extends React.Component {
     }
 
     _onClickEditProject() {
-        this.props.history.pushState(null, '/organisation/' + this.state.currentOrganisation.uuid + '/project/' + this.state.selectedProject.id + '/image/edit');
+        var organisationUUID = this.props.params.organisationUUID;
+        var revisionUUID = this.state.selectedProject.revisions[0].revision_number;
+        var projectId = this.state.selectedProject.id;
+
+        this.props.history.pushState(null, '/organisation/' + organisationUUID + '/project/' + projectId + '/image/' + revisionUUID + '/edit');
     }
 
     render() {
-        console.log(this.state);
         if (!this.state || !this.state.selectedProject) {
             return (<div></div>);
         }

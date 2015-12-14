@@ -24,7 +24,8 @@ const defaultImage = {
     },
     envInfo: {
 
-    }
+    },
+    files: []
 };
 
 const featuredDistributions = [
@@ -81,14 +82,16 @@ class Builder extends React.Component {
         this.state = {
             steps: builderSteps,
             currentStep: 1,
-            image: props.baseInfo || defaultImage
+            image: JSON.parse(JSON.stringify(props.baseInfo)) || defaultImage
         };
+
+        console.log('props');
+        console.log(props);
     }
 
     _handleOnClickFinish() {
         var self = this;
 
-console.log(this.props);
         this.props.onClickFinish(self.state.image);
     }
 
@@ -182,7 +185,7 @@ console.log(this.props);
 }
 
 Builder.defaultProps = {
-    baseInfo: { meta: {}, envInfo: {}, files: [] },
+    baseInfo: defaultImage,
     onClickFinish: function (image) {}
 };
 

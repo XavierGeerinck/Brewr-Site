@@ -15,17 +15,16 @@ class ProjectEditImage extends React.Component {
 
 	componentWillMount() {
 		this.setState(this._getState());
+        ProjectActions.editProjectImage(AuthStore.token, this.props.params.organisationUUID, this.props.params.projectId, this.props.params.revisionUUID);
 	}
-	componentDidMount() {
-		AuthStore.addChangeListener(this._onChange);
-		ProjectEditImageStore.addChangeListener(this._onChange);
 
-        ProjectActions.editProjectImage(AuthStore.token, this.state.currentOrganisation, this.state.selectedProject.id, this.state.selectedProject.revisions[0].revision_number);
+	componentDidMount() {
+        this.changeListener = this._onChange.bind(this);
+		ProjectEditImageStore.addChangeListener(this.changeListener);
 	}
 
 	componentWillUnmount() {
-		AuthStore.removeChangeListener(this._onChange);
-		ProjectEditImageStore.removeChangeListener(this._onChange);
+		ProjectEditImageStore.removeChangeListener(this.changeListener);
 	}
 
 	_getState() {
@@ -35,6 +34,7 @@ class ProjectEditImage extends React.Component {
 	}
 
 	_onChange() {
+        console.log('CHANGED');
 		this.setState(this._getState());
 	}
 
@@ -47,7 +47,7 @@ class ProjectEditImage extends React.Component {
 
 		const { image } = this.state;
 
-		console.log(image);
+        console.log('rerender!');
 
         return (
             <div className="ProjectEditImage">

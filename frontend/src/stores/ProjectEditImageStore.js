@@ -18,19 +18,15 @@ class ProjectEditImageStore extends BaseStore {
 
         switch(source.action.type) {
             case actionTypes.REQUEST_PROJECT:
-                console.log('doing request');
                 break;
             case actionTypes.RESPONSE_PROJECT_IMAGE:
 				this._image = source.action.response;
-				console.log(this._image);
+                console.log('received image');
 				this.emitChange();
                 break;
             default:
                 break;
         }
-
-      this.emitChange();
-      return true;
     }
 
     get image() {

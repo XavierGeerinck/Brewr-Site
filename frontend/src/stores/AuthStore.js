@@ -21,7 +21,6 @@ class AuthStore extends BaseStore {
 
         switch(source.action.type) {
             case actionTypes.REQUEST_LOGIN:
-                console.log('doing request');
                 break;
             case actionTypes.RESPONSE_LOGIN:
                 localStorage.setItem('bearer', source.action.response.token);
@@ -39,7 +38,6 @@ class AuthStore extends BaseStore {
                 this._user = source.action.response.user;
                 this._organisations = source.action.response.user.organisations;
                 this._selected_organisation = source.action.response.user.organisations[0] || [];
-                console.log(this._user);
                 this.emitChange();
                 break;
             case actionTypes.RESPONSE_LOGOUT:

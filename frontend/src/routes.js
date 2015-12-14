@@ -37,10 +37,7 @@ var routes = (
             <Route path="dashboard" component={DashboardPage} onEnter={requireAuth} />
             <Route path="organisation/:organisationUUID/members"     component={MembersPage} onEnter={requireAuth} />
             <Route path="organisation/:organisationUUID/project/:projectId"  component={ProjectPage} onEnter={requireAuth} />
-            <Route path="organisation/:organisationUUID/project/:projectId/image/edit" component={ProjectEditImage} onEnter={requireAuth}/>
-
-            // TODO: For this to work properly it has to be wrapped in a component
-            <Route path="organisation/:organisationUUID/project/:projectId/image/edit" component={BuilderPage} onEnter={requireAuth} />
+            <Route path="organisation/:organisationUUID/project/:projectId/image/:revisionUUID/edit" component={ProjectEditImage} onEnter={requireAuth}/>
             <Route path="*"         component={NotFoundPage} />
         </Route>
     </Router>
