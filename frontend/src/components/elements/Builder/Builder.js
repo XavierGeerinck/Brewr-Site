@@ -84,9 +84,12 @@ class Builder extends React.Component {
             currentStep: 1,
             image: JSON.parse(JSON.stringify(props.baseInfo)) || defaultImage
         };
+    }
 
-        console.log('props');
-        console.log(props);
+    componentWillReceiveProps(props) {
+        this.setState({
+            image: JSON.parse(JSON.stringify(props.baseInfo)) || defaultImage
+        });
     }
 
     _handleOnClickFinish() {

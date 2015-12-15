@@ -34,7 +34,6 @@ class ProjectEditImage extends React.Component {
 	}
 
 	_onChange() {
-        console.log('CHANGED');
 		this.setState(this._getState());
 	}
 
@@ -46,8 +45,6 @@ class ProjectEditImage extends React.Component {
 		var self = this;
 
 		const { image } = this.state;
-
-        console.log('rerender!');
 
         return (
             <div className="ProjectEditImage">

@@ -25,6 +25,7 @@ We use https://www.npmjs.com/package/purecss for the grid system, you can import
 4. We will not execute view actions in a store! so no Navigation.transitionTo things, the view will do this (see login page for an example)
 5. Do not use this.state = {} but use this.setState({}) else you will not get an updated view
 6. Run setState in the componentWillMount
+7. When assigning props to state (anti-pattern), make sure to implement componentWillReceiveProps, since every time we will rerender using new props this method will be called.
 
 ## Directory Structure
 ```
