@@ -183,7 +183,7 @@
         {
             "id": 1,
             "name": "Brewr-Site",
-            "description": "The Brewr.IO website",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
             "organisation_id": 1,
             "created_by": 1,
             "owner": 1,
@@ -241,6 +241,15 @@
             "organisation_id": 6,
             "created_by": 3,
             "owner": 3,
+            "created_at": "NOW()"
+        },
+        {
+            "id": 8,
+            "name": "Nginx",
+            "description": "This is a project assigned to nobody!",
+            "organisation_id": 1,
+            "created_by": 1,
+            "owner": 1,
             "created_at": "NOW()"
         }
     ],
