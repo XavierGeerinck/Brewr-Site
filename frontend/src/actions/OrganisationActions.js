@@ -5,11 +5,10 @@ import * as actionTypes from '../constants/ActionTypes';
 
 var ProjectActions = {
     getMembers: function(token, organisationUUID) {
-        // For some reason when dispatching here we get already dispatching in the middle of a dispatch
-        // AppDispatcher.handleViewAction({
-        //     type: actionTypes.REQUEST_ORGANISATION_MEMBERS,
-        //     uuid: organisationUUID
-        // });
+        AppDispatcher.handleViewAction({
+            type: actionTypes.REQUEST_ORGANISATION_MEMBERS,
+            uuid: organisationUUID
+        });
 
         OrganisationAPIUtils.getOrganisationMembers(token, organisationUUID);
     },

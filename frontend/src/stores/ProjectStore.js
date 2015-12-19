@@ -1,6 +1,5 @@
 import BaseStore from './BaseStore';
 import * as actionTypes from '../constants/ActionTypes';
-import * as ProjectAPIUtils from '../utils/AuthAPIUtils';
 import ProjectConstants from '../constants/ProjectConstants';
 
 
@@ -24,9 +23,11 @@ class ProjectStore extends BaseStore {
                 break;
             case actionTypes.RESPONSE_PROJECT:
                 this._selectedProject = source.action.response;
+                this.emitChange();
                 break;
             case ProjectConstants.PROJECT_ASSIGN_MEMBER:
                 this._selectedProject = source.action.response.project;
+                this.emitChange();
                 break;
             case actionTypes.RESPONSE_PROJECT_ERROR:
                 console.log('Error! :(');
@@ -37,8 +38,7 @@ class ProjectStore extends BaseStore {
                 break;
         }
 
-      this.emitChange();
-      return true;
+        return true;
     }
 
     get selectedProject() {

@@ -11,21 +11,28 @@ exports.up = function(knex, Promise) {
         // Get the different tables
         var tables = Object.keys(Schema);
 
-        // Loop through them
-        async.forEach(tables, function (tableName, callback) {
-            initDB.createTable(tableName, knex)
-            .then(function (result) {
-                callback(null, result);
-            })
-            .catch(function (err) {
-                callback(err);
+        var calls = [];
+        tables.forEach(function (tableName) {
+            calls.push(function (callback) {
+                //console.log('creating: ' + tableName);
+                initDB.createTable(tableName, knex)
+                .then(function (result) {
+                    //console.log('created: ' + tableName);
+                    callback(null, result);
+                })
+                .catch(function (err) {
+                    callback(err);
+                })
             });
-        }, function (err) {
+        });
+
+        // Run the calls one by one and wait on each one to finish
+        async.series(calls, function (err, results) {
             if (err) {
                 return reject(err);
             }
 
-            return resolve();
+            return resolve(results);
         });
     })
 };

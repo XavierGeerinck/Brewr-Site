@@ -23,87 +23,90 @@ import ProjectFileTable from '../../elements/ProjectFileTable/ProjectFileTable';
 import MemberList from '../../elements/MemberList/MemberList';
 
 export class Project extends BaseComponent {
-  constructor(props) {
-    super(props);
-    this._getState();
-    this._bind('_onChange');
-  }
-
-  componentDidMount() {
-    ProjectStore.addChangeListener(this._onChange);
-    OrganisationStore.addChangeListener(this._onChange);
-
-
-    ProjectActions.getProject(AuthStore.token, this.props.params.organisationId, this.props.params.projectId);
-    OrganisationActions.getMembers(AuthStore.token, this.props.params.organisationId);
-  }
-
-  componentWillUnmount() {
-    ProjectStore.removeChangeListener(this._onChange);
-    OrganisationStore.removeChangeListener(this._onChange);
-  }
-
-  _getState() {
-    return {
-      selectedProject: ProjectStore.selectedProject,
-      allMembers: OrganisationStore.allMembers,
-      filteredMembers: OrganisationStore.allMembers,
-      currentOrganisation: this.props.params.organisationId
-    }
-  }
-
-  _onChange() {
-    this.setState(this._getState());
-  }
-
-  _onClickEditProject() {
-    ProjectActions.editProjectImage(AuthStore.token, this.state.currentOrganisation, this.state.selectedProject.id, this.state.selectedProject.revisions[0].revision_number);
-    this.props.history.pushState(null, '/builder');
-  }
-
-  render() {
-    if (!this.state || !this.state.selectedProject) {
-      return (<div></div>);
+    constructor(props) {
+        super(props);
+        this._getState();
+        this._bind('_onChange');
     }
 
-    const { selectedProject, currentOrganisation, allMembers } = this.state;
+    componentDidMount() {
+        ProjectStore.addChangeListener(this._onChange);
+        OrganisationStore.addChangeListener(this._onChange);
 
-    return (
-      <DashboardLayout title={selectedProject.name} className={grid['pure-g']}>
-        {/* LEFT */}
-        <div className={cx(grid['pure-u-md-4-5'], styles.ContainerLeft)}>
-          <div className={styles.ContainerTop}>
-            <h1>{selectedProject.name} <Button text="Edit" isForm={true} onClick={this._onClickEditProject.bind(this)}/>
-            </h1>
-            <p>{selectedProject.description}</p>
-          </div>
 
-          {/* BOTTOM */}
-          <div className={cx(styles.ContainerBottom, grid['pure-g'])}>
-            <div className={grid['pure-u-md-1-2']}>
-              <h1>Files</h1>
-              <ProjectFileTable files={[]}/>
+        ProjectActions.getProject(AuthStore.token, this.props.params.organisationId, this.props.params.projectId);
+        OrganisationActions.getMembers(AuthStore.token, this.props.params.organisationId);
+    }
+
+    componentWillUnmount() {
+        ProjectStore.removeChangeListener(this._onChange);
+        OrganisationStore.removeChangeListener(this._onChange);
+    }
+
+    _getState() {
+        return {
+            selectedProject: ProjectStore.selectedProject,
+            allMembers: OrganisationStore.allMembers,
+            filteredMembers: OrganisationStore.allMembers,
+            currentOrganisation: this.props.params.organisationId
+        }
+    }
+    _onChange() {
+        var state = this._getState();
+        this.setState(state);
+    }
+
+    _removeMember(id) {
+        ProjectActions.removeMember(this.props.params.organisationUUID, this.state.selectedProject.id, id);
+    }
+
+    _onClickEditProject() {
+        var organisationUUID = this.props.params.organisationUUID;
+        var revisionUUID = this.state.selectedProject.revisions[0].revision_number;
+        var projectId = this.state.selectedProject.id;
+
+        this.props.history.pushState(null, '/organisation/' + organisationUUID + '/project/' + projectId + '/image/' + revisionUUID + '/edit');
+    }
+
+    render() {
+        const { selectedProject, currentOrganisation, allMembers } = this.state;
+
+        return (
+            <DashboardLayout title={selectedProject.name} className={grid['pure-g']}>
+                {/* LEFT */}
+                <div className={cx(grid['pure-u-md-4-5'], styles.ContainerLeft)}>
+                    <div className={styles.ContainerTop}>
+                        <h1>{selectedProject.name} <Button text="Edit" isForm={true} onClick={this._onClickEditProject.bind(this)}/>
+                    </h1>
+                    <p>{selectedProject.description}</p>
+                </div>
+
+                {/* BOTTOM */}
+                <div className={cx(styles.ContainerBottom, grid['pure-g'])}>
+                    <div className={grid['pure-u-md-1-2']}>
+                        <h1>Files</h1>
+                        <ProjectFileTable files={[]}/>
+                    </div>
+
+                    <div className={grid['pure-u-md-1-2']}>
+                        <h1>Revisions</h1>
+                        <ProjectRevisionTable revisions={selectedProject.revisions}/>
+                    </div>
+                </div>
             </div>
 
-            <div className={grid['pure-u-md-1-2']}>
-              <h1>Revisions</h1>
-              <ProjectRevisionTable revisions={selectedProject.revisions}/>
+            {/* RIGHT */}
+            <div className={cx(styles.project_sidebar, grid['pure-u-md-1-5'])}>
+                <h2>Members</h2>
+                <MemberList members={selectedProject.members} project={selectedProject} organisation={currentOrganisation}/>
+
+                { /* TODO: Only when project manager or owner of organisation */ }
+                <h2>Assign Member</h2>
+                <AssignableMemberList members={allMembers} project={selectedProject} organisation={currentOrganisation}/>
             </div>
-          </div>
-        </div>
-
-        {/* RIGHT */}
-        <div className={cx(styles.project_sidebar, grid['pure-u-md-1-5'])}>
-          <h2>Members</h2>
-          <MemberList members={selectedProject.members} project={selectedProject} organisation={currentOrganisation}/>
-
-          { /* TODO: Only when project manager or owner of organisation */ }
-          <h2>Assign Member</h2>
-          <AssignableMemberList members={allMembers} project={selectedProject} organisation={currentOrganisation}/>
-        </div>
-      </DashboardLayout>
+        </DashboardLayout>
     )
-  }
+}
 
 }
 

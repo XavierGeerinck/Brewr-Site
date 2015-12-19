@@ -1,6 +1,5 @@
 import AppDispatcher from '../dispatchers/AppDispatcher';
 import * as actionTypes from '../constants/ActionTypes';
-import * as AuthAPIUtils from '../utils/AuthAPIUtils';
 
 // Normal Responses
 export function receiveGetOrganisationMembersResponse(response) {

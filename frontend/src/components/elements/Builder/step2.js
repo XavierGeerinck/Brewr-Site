@@ -106,9 +106,9 @@ Step2.defaultProps = {
 
 Step2.propTypes = {
     imageParams: PropTypes.object,
-    onClickNext: PropTypes.function,
-    onClickPrevious: PropTypes.function,
-    onSave: PropTypes.function
+    onClickNext: PropTypes.func,
+    onClickPrevious: PropTypes.func,
+    onSave: PropTypes.func
 };
 
 export default Step2;

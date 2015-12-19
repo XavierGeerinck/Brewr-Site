@@ -14,9 +14,9 @@ export function getProjectImage(token, organisationUUID, projectId, revisionUUID
     });
 }
 
-export function getProject(token, organisationId, projectId) {
+export function getProject(token, organisationUUID, projectId) {
     request
-    .get('http://localhost:8000/organisation/' + organisationId + '/project/' + projectId)
+    .get('http://localhost:8000/organisation/' + organisationUUID + '/project/' + projectId)
     .set('Authorization', 'Bearer ' + token)
     .end(function (err, res) {
         if (err) {
@@ -27,9 +27,9 @@ export function getProject(token, organisationId, projectId) {
     });
 }
 
-export function assignMember(token, organisationId, projectId, memberId) {
+export function assignMember(token, organisationUUID, projectId, memberId) {
   request
-    .post('http://localhost:8000/organisation/' + organisationId + '/project/' + projectId + '/assign')
+    .post('http://localhost:8000/organisation/' + organisationUUID + '/project/' + projectId + '/assign')
     .send({member: memberId})
     .set('Authorization', 'Bearer ' + token)
     .end(function(err, res){
@@ -40,9 +40,9 @@ export function assignMember(token, organisationId, projectId, memberId) {
     });
 }
 
-export function removeMember(token, organisationId, projectId, memberId) {
+export function removeMember(token, organisationUUID, projectId, memberId) {
   request
-    .del('http://localhost:8000/organisation/' + organisationId + '/project/' + projectId + '/members/' + memberId)
+    .del('http://localhost:8000/organisation/' + organisationUUID + '/project/' + projectId + '/members/' + memberId)
     .set('Authorization', 'Bearer ' + token)
     .end(function(err, res){
       if(err) {
@@ -64,9 +64,9 @@ export function promoteToManager(token, organisationId, projectId, memberId) {
     })
 }
 
-export function create(token, organisationId, meta, files, projectInfo) {
+export function create(token, organisationUUID, meta, files, projectInfo) {
     request
-    .post('http://localhost:8000/organisation/' + organisationId + '/project')
+    .post('http://localhost:8000/organisation/' + organisationUUID + '/project')
     .send({ meta: meta, files: files, envInfo: projectInfo })
     .set('Authorization', 'Bearer ' + token)
     .end(function (err, res) {
