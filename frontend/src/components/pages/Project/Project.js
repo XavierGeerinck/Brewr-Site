@@ -25,32 +25,32 @@ import MemberList from '../../elements/MemberList/MemberList';
 export class Project extends BaseComponent {
     constructor(props) {
         super(props);
-        this._getState();
+        this.state = this._getState();
         this._bind('_onChange');
     }
 
     componentDidMount() {
-        ProjectStore.addChangeListener(this._onChange);
-        OrganisationStore.addChangeListener(this._onChange);
+        this.changeListener = this._onChange.bind(this);
+        ProjectStore.addChangeListener(this.changeListener);
+        OrganisationStore.addChangeListener(this.changeListener);
 
-
-        ProjectActions.getProject(AuthStore.token, this.props.params.organisationId, this.props.params.projectId);
-        OrganisationActions.getMembers(AuthStore.token, this.props.params.organisationId);
+        ProjectActions.getProject(AuthStore.token, this.props.params.organisationUUID, this.props.params.projectId);
+        OrganisationActions.getMembers(AuthStore.token, this.props.params.organisationUUID);
     }
 
     componentWillUnmount() {
-        ProjectStore.removeChangeListener(this._onChange);
-        OrganisationStore.removeChangeListener(this._onChange);
+        ProjectStore.removeChangeListener(this.changeListener);
+        OrganisationStore.removeChangeListener(this.changeListener);
     }
 
     _getState() {
         return {
             selectedProject: ProjectStore.selectedProject,
             allMembers: OrganisationStore.allMembers,
-            filteredMembers: OrganisationStore.allMembers,
-            currentOrganisation: this.props.params.organisationId
+            filteredMembers: OrganisationStore.allMembers
         }
     }
+
     _onChange() {
         var state = this._getState();
         this.setState(state);
@@ -70,6 +70,10 @@ export class Project extends BaseComponent {
 
     render() {
         const { selectedProject, currentOrganisation, allMembers } = this.state;
+
+        if (!selectedProject) {
+            return (<div></div>);
+        }
 
         return (
             <DashboardLayout title={selectedProject.name} className={grid['pure-g']}>
