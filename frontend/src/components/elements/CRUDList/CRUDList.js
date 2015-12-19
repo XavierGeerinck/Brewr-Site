@@ -37,7 +37,11 @@ class CRUDList extends React.Component {
     constructor (props) {
         super(props);
 
-        if (props.items) {
+        if (!props.items || props.items.constructor !== Array) {
+            this.state = {
+                items: []
+            }
+        } else {
             this.state = {
                 items: props.items.map((item, index) => {
                     return {
@@ -47,10 +51,6 @@ class CRUDList extends React.Component {
                     };
                 })
             }
-        } else {
-            this.state = {
-                items: []
-            };
         }
     }
 
