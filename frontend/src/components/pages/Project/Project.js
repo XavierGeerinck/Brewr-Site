@@ -62,7 +62,7 @@ export class Project extends BaseComponent {
 
     _onClickEditProject() {
         var organisationUUID = this.props.params.organisationUUID;
-        var revisionUUID = this.state.selectedProject.revisions[0].revision_number;
+        var revisionUUID = this.state.selectedProject.revisions[this.state.selectedProject.revisions.length - 1].revision_number;
         var projectId = this.state.selectedProject.id;
 
         this.props.history.pushState(null, '/organisation/' + organisationUUID + '/project/' + projectId + '/image/' + revisionUUID + '/edit');

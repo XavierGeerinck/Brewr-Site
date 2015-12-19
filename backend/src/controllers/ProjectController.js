@@ -25,20 +25,29 @@ exports.getImage = function (request, reply) {
             return Promise.reject(Boom.badRequest('INVALID_REVISION'));
         }
 
-        return ProjectService.getProjectImage(projectRevision.get('id'));
-    })
-    .then(function (projectImage) {
-        if (!projectImage) {
-            return Promise.reject(Boom.badRequest('NO_PROJECT_IMAGE'));
-        }
-
-        switch (type) {
-            case 'json':
-            default:
-                return reply(projectImage);
-        }
+        return reply(ProjectService.formatProjectRevision(projectRevision, 'json'));
     })
     .catch(function (err) {
+        console.log(err);
+        return reply(err);
+    });
+};
+
+exports.getLatestImage = function (request, reply) {
+    var type = request.query.type;
+    var projectId = request.params.project;
+    var organisationUUID = request.params.organisation;
+
+    ProjectService.getLastRevisionByProjectId(projectId)
+    .then(function (projectRevision) {
+        if (!projectRevision) {
+            return Promise.reject(Boom.badRequest('INVALID_REVISION'));
+        }
+
+        return reply(ProjectService.formatProjectRevision(projectRevision, 'json'));
+    })
+    .catch(function (err) {
+        console.log(err);
         return reply(err);
     });
 };

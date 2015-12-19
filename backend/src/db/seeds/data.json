@@ -270,24 +270,32 @@
             "project_id": 6
         }
     ],
-    "project_revision": [
-        {
-            "id": 1,
-            "project_id": 1,
-            "revision_number": "ca96d5b0-164b-492e-8175-69fb036f7ed5",
-            "created_at": "NOW()"
-        },
-        {
-            "id": 2,
-            "project_id": 1,
-            "revision_number": "a6fc57e9-2bad-4ad8-8d1d-96bc077cdaca",
-            "created_at": "NOW()"
-        }
-    ],
     "project_env_info": [
         {
             "id": 1,
-            "project_revision_id": 2,
+            "project_id": 1,
+            "distribution": "ubuntu",
+            "maintainer": "",
+            "label": "[\"com.brewr.io=somevalue\"]",
+            "workdir": "[\"/var/www\"]",
+            "user": "www-data",
+            "cmd": "nginx -g daemon off;",
+            "run": "[\"sudo apt-get install nginx\"]",
+            "expose": "[\"80:80\", \"443:443\"]",
+            "env": "[\"ENVIRONMENT=staging\"]",
+            "add": "",
+            "copy": "",
+            "entrypoint": "",
+            "volume": "[\"/var/www\", \"/var/log\"]",
+            "onbuild": "",
+            "distribution_version": "14.04",
+            "source_code": "",
+            "startup_file_content": "",
+            "startup_command": ""
+        },
+        {
+            "id": 2,
+            "project_id": 2,
             "distribution": "ubuntu",
             "maintainer": "[\"Xavier <xavier.geerinck@gmail.com>\"]",
             "label": "[\"com.brewr.io=somevalue\"]",
@@ -306,6 +314,22 @@
             "source_code": "",
             "startup_file_content": "",
             "startup_command": ""
+        }
+    ],
+    "project_revision": [
+        {
+            "id": 1,
+            "project_id": 1,
+            "project_env_info_id": 1,
+            "revision_number": "ca96d5b0-164b-492e-8175-69fb036f7ed5",
+            "created_at": "NOW()"
+        },
+        {
+            "id": 2,
+            "project_id": 1,
+            "project_env_info_id": 2,
+            "revision_number": "a6fc57e9-2bad-4ad8-8d1d-96bc077cdaca",
+            "created_at": "NOW()"
         }
     ],
     "organisation_user": [

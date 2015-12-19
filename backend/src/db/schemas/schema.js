@@ -100,17 +100,9 @@ var Schema = {
         created_at: { type: 'dateTime', nullable: false, comment: 'When was the role added'}
     },
 
-    project_revision: {
-        id: { type: 'increments', nullable: false, primary: true },
-        project_id: { references: 'id', inTable: 'project',  type: 'integer', unsigned: true, nullable: false },
-        revision_number: { type: 'uuid', nullable: false },
-        created_at: { type: 'dateTime', nullable: false },
-        updated_at: { type: 'dateTime', nullable: true }
-    },
-
     project_env_info: {
         id: { type: 'increments', nullable: false, primary: true },
-        project_revision_id: { references: 'id', inTable: 'project_revision', type: 'integer', unsigned: true, nullable: false },
+        project_id: { references: 'id', inTable: 'project', type: 'integer', unsigned: true, nullable: false },
         distribution: { type: 'text', nullable: true },
         maintainer: { type: 'string', nullable: true, comment: 'Multi valued, sets the maintainer' },
         label: { type: 'text', nullable: true, comment: 'Multi valued, adds metadata to an image' },
@@ -131,6 +123,15 @@ var Schema = {
         startup_command: { type: 'text', nullable: true, comment: 'Multi valued, Startup command' }
     },
 
+    project_revision: {
+        id: { type: 'increments', nullable: false, primary: true },
+        project_id: { references: 'id', inTable: 'project',  type: 'integer', unsigned: true, nullable: false },
+        project_env_info_id: { references: 'id', inTable: 'project_env_info',  type: 'integer', unsigned: true, nullable: false },
+        revision_number: { type: 'uuid', nullable: false },
+        created_at: { type: 'dateTime', nullable: false },
+        updated_at: { type: 'dateTime', nullable: true }
+    },
+
     project_file: {
         id: { type: 'increments', nullable: false, primary: true },
         project_revision_id: { references: 'id', inTable: 'project_revision', type: 'integer', unsigned: true, nullable: false },
@@ -140,6 +141,11 @@ var Schema = {
     },
 
     // Join tables
+    project_revision_file: {
+        project_revision_id: { compoundPrimaryKey: true, references: 'id', inTable: 'project_revision', type: 'integer', nullable: false, unsigned: true },
+        project_file_id: { compoundPrimaryKey: true, references: 'id', inTable: 'project_file', type: 'integer', nullable: false, unsigned: true }
+    },
+
     organisation_user: {
         organisation_id: { compoundPrimaryKey: true, references: 'id', inTable: 'organisation', type: 'integer', nullable: false, unsigned: true },
         user_id: { compoundPrimaryKey: true, references: 'id', inTable: 'user', type: 'integer', nullable: false, unsigned: true },

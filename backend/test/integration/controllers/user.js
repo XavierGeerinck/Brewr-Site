@@ -164,7 +164,6 @@ lab.experiment('[Controller] User', function() {
     //         done();
     //     });
     // });
-
     it('[GET] /user for a user that is the creator of an organisation has scope "organisation-{params.organisation}-creator, manager and user"', function (done) {
         // We expect: "organisation-1-creator and organisation-1-manager"
         var org = fixtures['organisation'][0];

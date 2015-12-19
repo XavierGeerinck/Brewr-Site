@@ -10,6 +10,47 @@ var ProjectRevision = require('../db/models/ProjectRevision');
 var Organisation = require('../db/models/Organisation');
 var Promise = require('bluebird');
 
+exports.formatProjectRevision = function (projectRevisionObject, type) {
+	if (!projectRevisionObject) {
+		return { project: {}, projectEnvInfo: {}, projectFiles: []};
+	}
+
+	switch (type) {
+		case 'json':
+		default:
+			var result = { project: {}, projectEnvInfo: {}, projectFiles: []};
+
+			result.project = projectRevisionObject.related('project').toJSON();
+			result.projectEnvInfo = projectRevisionObject.related('projectEnvInfo').toJSON();
+			result.projectFiles = projectRevisionObject.related('projectFiles').toJSON();
+
+			// Remove table things
+			delete result.projectEnvInfo.id;
+			delete result.projectEnvInfo.project_revision_id;
+
+			// JSON.parse the multivalued
+			result.projectEnvInfo.maintainer = result.projectEnvInfo.maintainer ? JSON.parse(result.projectEnvInfo.maintainer) : [];
+			result.projectEnvInfo.label = result.projectEnvInfo.label ? JSON.parse(result.projectEnvInfo.label) : [];
+			result.projectEnvInfo.workdir = result.projectEnvInfo.workdir ? JSON.parse(result.projectEnvInfo.workdir) : [];
+			result.projectEnvInfo.run = result.projectEnvInfo.run ? JSON.parse(result.projectEnvInfo.run) : [];
+			result.projectEnvInfo.expose = result.projectEnvInfo.expose ? JSON.parse(result.projectEnvInfo.expose) : [];
+			result.projectEnvInfo.env = result.projectEnvInfo.env ? JSON.parse(result.projectEnvInfo.env) : [];
+			result.projectEnvInfo.add = result.projectEnvInfo.add ? JSON.parse(result.projectEnvInfo.add) : [];
+			result.projectEnvInfo.copy = result.projectEnvInfo.copy ? JSON.parse(result.projectEnvInfo.copy) : [];
+			result.projectEnvInfo.volume = result.projectEnvInfo.volume ? JSON.parse(result.projectEnvInfo.volume) : [];
+			result.projectEnvInfo.onbuild = result.projectEnvInfo.onbuild ? JSON.parse(result.projectEnvInfo.onbuild) : [];
+			result.projectEnvInfo.source_code = result.projectEnvInfo.source_code ? JSON.parse(result.projectEnvInfo.source_code) : [];
+
+			return result;
+	}
+};
+
+exports.getLastRevisionByProjectId = function (projectId) {
+	return ProjectRevision.query(function (qb) {
+		qb.where({ project_id: projectId }).orderBy('created_at', 'desc');
+	}).fetch({ withRelated: [ 'project', 'projectEnvInfo', 'projectFiles' ] });
+};
+
 exports.getProjectByUUIDAndOrganisation = function (projectUUID) {
 	return Project.where({ uuid: projectUUID }).fetch({ withRelated: [ 'created_by', 'users' ] });
 };
@@ -19,7 +60,7 @@ exports.getProjectByIdAndOrganisation = function (projectId) {
 };
 
 exports.getProjectRevisionByUUID = function (projectRevisionUUID) {
-	return ProjectRevision.where({ revision_number: projectRevisionUUID }).fetch();
+	return ProjectRevision.where({ revision_number: projectRevisionUUID }).fetch({ withRelated: [ 'project', 'projectEnvInfo', 'projectFiles' ] });
 };
 
 exports.getProjectImage = function (projectRevisionId) {
@@ -89,7 +130,7 @@ exports.addMemberByOrganisationUUIDAndProjectId = function (organisationUUID, pr
 			if (!org) {
 				return Promise.reject('ORGANISATION_DOES_NOT_EXIST');
 			}
-			
+
 			return ProjectUser.forge({
 				is_manager: isManager,
 				user_id: memberId,

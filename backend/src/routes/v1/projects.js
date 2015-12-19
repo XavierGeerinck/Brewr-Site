@@ -24,6 +24,26 @@ module.exports = [
     },
     {
         method: 'GET',
+        path: '/organisation/{organisation}/project/{project}/image',
+        config: {
+            handler: ProjectController.getLatestImage,
+            auth: {
+                strategy: 'bearer',
+                scope: [ 'organisation-{params.organisation}-project-{params.project}-member' ]
+            },
+            validate: {
+                params: {
+                    organisation: Joi.string().guid().required(),
+                    project: Joi.number().required()
+                },
+                query: {
+                    type: Joi.string().allow([ 'json' ])
+                }
+            }
+        }
+    },
+    {
+        method: 'GET',
         path: '/organisation/{organisation}/project/{project}/revision/{revision}/image',
         config: {
             handler: ProjectController.getImage,
