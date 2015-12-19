@@ -1,0 +1,63 @@
+@import '../../../css/colors';
+@import '../../../css/dimensions';
+
+#assignable_member_list {
+  & > form {
+    & > input {
+      border: 1px solid $colorBorder;
+    }
+  }
+
+  & > ul {
+    padding:0;
+    & > li {
+      @include clearfix();
+
+      transition: all 500ms;
+      position:relative;
+      list-style: none;
+
+      & > div {
+        .user_assigned_overlay {
+          position:absolute;
+          height:40px;
+          width:40px;
+          border-radius:20px;
+          background:rgba(0,0,0,0.6);
+          color:white;
+          text-align:center;
+          line-height:40px;
+        }
+
+        img, object {
+          float:left;
+          border-radius:20px;
+        }
+      }
+
+      & > .user_name {
+        line-height:40px;
+        padding: 0 0 0 10px;
+      }
+
+      &:hover {
+        background: $colorBorder;
+        border-radius:20px;
+        cursor:pointer;
+        -webkit-transition: all 250ms;
+        -moz-transition: all 250ms;
+        -ms-transition: all 250ms;
+        -o-transition: all 250ms;
+        transition: all 250ms;
+
+        & > .user_name {
+          font-style:italic;
+        }
+      }
+
+      & + li {
+        margin-top:5px;
+      }
+    }
+  }
+}

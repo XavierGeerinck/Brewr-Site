@@ -2,3 +2,24 @@ $dimensionTextTitle: 22px;
 $dimensionTextSubtitle: 18px;
 $dimensionTextNormal: 14px;
 $dimensionTextSmaller: 12px;
+
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+  }
+
+  &:after {
+    clear: both;
+  }
+
+  /**
+   * For IE 6/7 only
+   * Include this rule to trigger hasLayout and contain floats.
+   */
+  & {
+    *zoom: 1;
+  }
+}

@@ -9,7 +9,7 @@ export function getProjectImage(token, organisationUUID, projectId, revisionUUID
         if (err) {
             return ProjectServerActions.receiveProjectErrorResponse(err);
         }
-        
+
         return ProjectServerActions.receiveProjectImageResponse(res.body);
     });
 }
@@ -50,6 +50,18 @@ export function removeMember(token, organisationUUID, projectId, memberId) {
       }
       return ProjectServerActions.assignMemberResponse(res.body);
     });
+}
+
+export function promoteToManager(token, organisationId, projectId, memberId) {
+  request
+    .post('http://localhost:8000/organisation/' + organisationId + '/project/' + projectId + '/members/' + memberId + '/promote')
+    .set('Authorization', 'Bearer ' + token)
+    .end(function(err, res){
+      if(err) {
+        return ProjectServerActions.receiveProjectErrorResponse(err);
+      }
+      return ProjectServerActions.receiveProjectResponse(res.body);
+    })
 }
 
 export function create(token, organisationUUID, meta, files, projectInfo) {
