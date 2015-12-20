@@ -13,8 +13,8 @@ class Dropdown extends React.Component {
         var self = this;
         var options = [];
 
-        this.props.items.forEach(function (item) {
-            options.push(<option value={item.value} selected={item.isSelected}>{item.name}</option>);
+        this.props.items.forEach((item, index) => {
+            options.push(<option key={"dropdown_option_" + index} value={item.value} selected={item.isSelected}>{item.name}</option>);
         });
 
         var className = cx(
