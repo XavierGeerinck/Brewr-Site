@@ -11,12 +11,12 @@ class Builder extends React.Component {
 
 		// Environment info
 		this._params = {
-			meta: {
+			project: {
 				name: "Nginx",              // Project Name
 				description: ""             // Project Description
 			},
-			files: [],                      // Files to add, format: { name: "", content: "" }
-			envInfo: {
+			projectFiles: [],                      // Files to add, format: { name: "", content: "" }
+			projectEnvInfo: {
 				"distribution": "ubuntu",
 				"distributionVersion": "14.04",
 				"maintainer": "Xavier",
