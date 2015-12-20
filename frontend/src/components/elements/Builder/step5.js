@@ -32,7 +32,7 @@ class Step5 extends React.Component {
 
     _save() {
         var stateChanges = {
-            envInfo: {
+            projectEnvInfo: {
                 label: JSON.parse(JSON.stringify(this.refs.input_labels.refs.child.getItems())),
                 expose: JSON.parse(JSON.stringify(this.refs.input_expose_items.refs.child.getItems())),
                 env: JSON.parse(JSON.stringify(this.refs.input_env_items.refs.child.getItems()))
@@ -43,7 +43,7 @@ class Step5 extends React.Component {
     }
 
     render() {
-        let dockerfile = this.props.imageParams.envInfo;
+        let dockerfile = this.props.imageParams.projectEnvInfo;
 
         return (
             <FlexContainer>

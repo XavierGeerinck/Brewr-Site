@@ -30,7 +30,7 @@ class Step4 extends React.Component {
 
     _save() {
         var stateChanges = {
-            envInfo: {
+            projectEnvInfo: {
                 cmd: JSON.parse(JSON.stringify(this.refs.input_startup_command_items.refs.child.getItems()))
             }
         };
@@ -39,7 +39,7 @@ class Step4 extends React.Component {
     }
 
     render() {
-        let dockerfile = this.props.imageParams.envInfo;
+        let dockerfile = this.props.imageParams.projectEnvInfo;
 
         return (
             <FlexContainer>

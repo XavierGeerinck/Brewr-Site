@@ -37,11 +37,17 @@ class Step1 extends React.Component {
     render() {
         var self = this;
 
+        console.log(self.props.imageParams);
+
         return (
             <div className={styles.BuilderStep1Page}>
                 {/* Pick Predefined Docker Image */}
                 <h1>Pick your base image</h1>
-                <DistributionPicker                                                         distributions={self.props.featuredDistributions} selectedDistribution={self.props.imageParams.envInfo.distribution} selectedVersion={self.props.imageParams.envInfo.distribution_version} ref="distribution_picker"/>
+                <DistributionPicker
+                    distributions={self.props.featuredDistributions}
+                    selectedDistribution={self.props.imageParams.projectEnvInfo.distribution}
+                    selectedVersion={self.props.imageParams.projectEnvInfo.distribution_version}
+                    ref="distribution_picker"/>
 
                 <Divider text="Or"/>
 

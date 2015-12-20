@@ -45,13 +45,13 @@ class Step2 extends React.Component {
         var form = this.refs.formObject.getForm();
 
         var stateChanges = {
-            envInfo: {
+            projectEnvInfo: {
                 maintainer: form.data.input_maintainer,
                 workdir: form.data.input_workdir,
                 user: form.data.input_user,
                 run: JSON.parse(JSON.stringify(this.refs.input_run_items.refs.child.getItems()))
             },
-            meta: {
+            project: {
                 name: form.data.input_project_name
             }
         };
@@ -60,14 +60,14 @@ class Step2 extends React.Component {
     }
 
     render() {
-        let dockerfile = this.props.imageParams.envInfo;
+        let dockerfile = this.props.imageParams.projectEnvInfo;
         let params = this.props.imageParams;
 
         let f = new FormObject({ initial: {
-            input_project_name: this.props.imageParams.meta.name,
-            input_maintainer: this.props.imageParams.envInfo.maintainer || "",
-            input_workdir: this.props.imageParams.envInfo.workdir || "",
-            input_user: this.props.imageParams.envInfo.user || ""
+            input_project_name: this.props.imageParams.project.name,
+            input_maintainer: this.props.imageParams.projectEnvInfo.maintainer || "",
+            input_workdir: this.props.imageParams.projectEnvInfo.workdir || "",
+            input_user: this.props.imageParams.projectEnvInfo.user || ""
         }});
 
         return (

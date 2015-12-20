@@ -19,13 +19,13 @@ import styles from './Builder.scss';
 const builderSteps = [ "Distribution Picker", "Install Programs", "Manage Files & Src", "Startup Commands", "Ports & Env", "Finalize" ];
 
 const defaultImage = {
-    meta: {
+    project: {
         name: ""
     },
-    envInfo: {
+    projectEnvInfo: {
 
     },
-    files: []
+    projectFiles: []
 };
 
 const featuredDistributions = [

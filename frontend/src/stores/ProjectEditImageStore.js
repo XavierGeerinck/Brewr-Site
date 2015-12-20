@@ -7,7 +7,7 @@ class ProjectEditImageStore extends BaseStore {
         super();
 
         this.subscribe(() => this._registerToActions.bind(this));
-        this._image = { meta: {}, envInfo: {}, files: [] };
+        this._image = { project: {}, projectEnvInfo: {}, projectFiles: [] };
     }
 
     // We get a source back (VIEW or SERVER) with there the action in
@@ -20,7 +20,9 @@ class ProjectEditImageStore extends BaseStore {
             case actionTypes.REQUEST_PROJECT:
                 break;
             case actionTypes.RESPONSE_PROJECT_IMAGE:
-				this._image.envInfo = source.action.response;
+                this._image.project = source.action.response.project;
+				this._image.projectEnvInfo = source.action.response.projectEnvInfo;
+                this._image.projectFiles = source.action.response.projectFiles;
 				this.emitChange();
                 break;
             default:

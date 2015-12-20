@@ -35,7 +35,7 @@ class Step3 extends React.Component {
 
     _save() {
         var stateChanges = {
-            envInfo: {
+            projectEnvInfo: {
                 sourceCode: JSON.parse(JSON.stringify(this.refs.input_run_items.refs.child.getItems())),
                 volume: JSON.parse(JSON.stringify(this.refs.input_volume_items.refs.child.getItems())),
                 add:  JSON.parse(JSON.stringify(this.refs.input_add_items.refs.child.getItems()))
@@ -46,7 +46,7 @@ class Step3 extends React.Component {
     }
 
     render() {
-        let dockerfile = this.props.imageParams.envInfo;
+        let dockerfile = this.props.imageParams.projectEnvInfo;
 
         return (
             <FlexContainer>
