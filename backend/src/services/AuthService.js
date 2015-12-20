@@ -40,7 +40,7 @@ exports.authorize = function (email, password, ip, userAgent) {
         .where({
             email: email
         })
-        .fetch()
+        .fetch({ withRelated: [ 'projects_access', 'organisations_access', 'projects_owned', 'organisations_owned' ] })
         .then(function (user) {
             if (!user) {
                 return reject(Boom.unauthorized(null, 'E_USER_NOT_FOUND'));
@@ -59,7 +59,7 @@ exports.authorize = function (email, password, ip, userAgent) {
             return self.createSession(userObject, ip, userAgent);
         })
         .then(function (userSession) {
-            return resolve(userSession);
+            return resolve({ session: userSession, user: userObject });
         })
         .catch(function (err) {
             return reject(Boom.badRequest(null, err));

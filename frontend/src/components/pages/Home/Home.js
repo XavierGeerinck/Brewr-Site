@@ -70,9 +70,7 @@ class Home extends React.Component {
             	<header>
             		<nav className={styles.nav}>
             			<div className={styles.container}>
-                            <Link to="/">
-                                <Logo align="left" />
-                            </Link>
+                            <Logo align="left" />
 
                             { isLoggedIn ? this.renderLoggedInMenu() : this.renderNogLoggedInMenu() }
             			</div>

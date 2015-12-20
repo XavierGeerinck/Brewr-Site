@@ -48,13 +48,14 @@ exports.register = function (request, reply) {
 
         return AuthService.authorize(email, password, null, null);
     })
-    .then(function (session) {
+    .then(function (authObject) {
         return reply({
-            token: session.get('token'),
-            user: user
+            token: authObject.session.get('token'),
+            user: authObject.user
         });
     })
     .catch(function (err) {
+        console.log(err);
         return reply(err);
     });
 };
@@ -65,9 +66,10 @@ exports.login = function (request, reply) {
 
     AuthService
     .authorize(request.payload.email, request.payload.password, ip, userAgent)
-    .then(function (session) {
+    .then(function (authObject) {
         return reply({
-            token: session.get('token')
+            token: authObject.session.get('token'),
+            user: authObject.user
         });
     })
     .catch(function (err) {

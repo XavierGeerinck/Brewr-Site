@@ -25,6 +25,9 @@ class AuthStore extends BaseStore {
             case actionTypes.RESPONSE_LOGIN:
                 localStorage.setItem('bearer', source.action.response.token);
                 this._token = source.action.response.token;
+                this._user = source.action.response.user;
+                this._organisations = source.action.response.user.organisations;
+                this._selected_organisation = source.action.response.user.organisations[0] || [];
                 this.emitChange();
                 break;
             case actionTypes.RESPONSE_REGISTER:

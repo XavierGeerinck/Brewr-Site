@@ -71,6 +71,7 @@ lab.experiment('[Controller] Auth', function() {
 
         server.inject(request, function (res) {
             expect(res.payload).to.exist();
+
             expect(JSON.parse(res.payload).user.email).to.equal(request.payload.email);
 
             // Make sure the pass gets hashed!
@@ -96,6 +97,26 @@ lab.experiment('[Controller] Auth', function() {
         server.inject(request, function (res) {
             expect(JSON.parse(res.payload).token).to.exist();
             expect(JSON.parse(res.payload).token).to.be.a.string();
+
+            done();
+        });
+    });
+
+    it('[POST] /auth/signin should return the user and it\'s companies upon succesfull login', function (done) {
+        var request = {
+            method: 'POST',
+            url: '/auth/signin',
+            payload: {
+                email: fixtures['user'][0].email,
+                password: fixtures['user'][0].password_raw
+            }
+        };
+
+        server.inject(request, function (res) {
+            expect(JSON.parse(res.payload).user).to.exist();
+            expect(JSON.parse(res.payload).user).to.be.a.object();
+            expect(JSON.parse(res.payload).user.organisations).to.exist();
+            expect(JSON.parse(res.payload).user.organisations).to.be.an.array();
 
             done();
         });

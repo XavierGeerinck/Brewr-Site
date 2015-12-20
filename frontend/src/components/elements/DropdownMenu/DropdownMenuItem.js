@@ -7,7 +7,9 @@ class DropdownMenuItem extends React.Component {
     }
 
     _handleOnClick() {
-        this.props.onClick(this.props.children);
+        if (this.props.onClick) {
+            this.props.onClick(this.props.children);
+        }
 
         // perform a fake click so it closes the menu
         document.body.click();
@@ -23,9 +25,11 @@ class DropdownMenuItem extends React.Component {
 };
 
 DropdownMenuItem.propTypes = {
+    onClick: PropTypes.func
 };
 
 DropdownMenuItem.defaultProps = {
+    onClick: function () {}
 };
 
 export default DropdownMenuItem;

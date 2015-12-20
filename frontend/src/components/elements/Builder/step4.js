@@ -40,7 +40,7 @@ class Step4 extends React.Component {
 
     render() {
         let dockerfile = this.props.imageParams.projectEnvInfo;
-
+console.log(dockerfile.cmd);
         return (
             <FlexContainer>
                 {/* Startup Command Items */}

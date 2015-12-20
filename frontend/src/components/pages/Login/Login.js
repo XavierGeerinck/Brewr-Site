@@ -20,6 +20,8 @@ var SigninForm = forms.Form.extend({
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = this._getAuthState();
     }
 
     _getAuthState() {
@@ -43,27 +45,21 @@ class LoginPage extends React.Component {
     }
 
     _onChange() {
-        // Change state
+        var self = this;
+
+        // Change state, on callback redirect
         var newState = this._getAuthState();
-        this.setState(newState);
-
-        console.log("redirecting " + this.props.location.state.nextPathname);
-
-        // If logged in, redirect
-        if (newState.isLoggedIn) {
-            // If we got old state, go to that path
-            if (this.props.location.state) {
-                var self = this;
-
-                setTimeout(function () {
+        this.setState(newState, function () {
+            // If logged in, redirect
+            if (newState.isLoggedIn) {
+                if (this.props.location.state) {
+                    // If we got old state, go to that path
                     self.props.history.replaceState(null, self.props.location.state.nextPathname);
-                }, 10);
-            } else {
-                setTimeout(function () {
-                    this.props.history.pushState(null, '/');
-                }, 10);
+                } else {
+                    this.props.history.replaceState(null, '/dashboard');
+                }
             }
-        }
+        });
     }
 
     _autoLogin(token, isLoggedIn) {
