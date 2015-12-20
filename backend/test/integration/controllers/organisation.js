@@ -389,6 +389,8 @@ lab.experiment('[Controller] Organisation', function() {
             expect(payload.projectEnvInfo.copy).to.be.an.array();
             expect(payload.projectEnvInfo.onbuild).to.exist();
             expect(payload.projectEnvInfo.onbuild).to.be.an.array();
+            expect(payload.projectEnvInfo.cmd).to.exist();
+            expect(payload.projectEnvInfo.cmd).to.be.an.array();
 
             expect(payload.revision_number).to.equal(lastProjectRevision.revision_number);
 
@@ -448,6 +450,8 @@ lab.experiment('[Controller] Organisation', function() {
             expect(payload.projectEnvInfo.copy).to.be.an.array();
             expect(payload.projectEnvInfo.onbuild).to.exist();
             expect(payload.projectEnvInfo.onbuild).to.be.an.array();
+            expect(payload.projectEnvInfo.cmd).to.exist();
+            expect(payload.projectEnvInfo.cmd).to.be.an.array();
 
             done();
         });

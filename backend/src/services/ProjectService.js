@@ -39,6 +39,7 @@ exports.formatProjectRevision = function (projectRevisionObject, type) {
 			result.projectEnvInfo.copy = result.projectEnvInfo.copy ? JSON.parse(result.projectEnvInfo.copy) : [];
 			result.projectEnvInfo.volume = result.projectEnvInfo.volume ? JSON.parse(result.projectEnvInfo.volume) : [];
 			result.projectEnvInfo.onbuild = result.projectEnvInfo.onbuild ? JSON.parse(result.projectEnvInfo.onbuild) : [];
+			result.projectEnvInfo.cmd = result.projectEnvInfo.cmd ? JSON.parse(result.projectEnvInfo.cmd) : [];
 			result.projectEnvInfo.source_code = result.projectEnvInfo.source_code ? JSON.parse(result.projectEnvInfo.source_code) : [];
 
 			return result;

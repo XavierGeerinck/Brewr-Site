@@ -108,7 +108,7 @@ var Schema = {
         label: { type: 'text', nullable: true, comment: 'Multi valued, adds metadata to an image' },
         workdir: { type: 'text', nullable: true, comment: 'Multi valued, sets working directory for RUN, CMD, ENTRYPOINT, COPY and ADD that follow it' },
         user: { type: 'string', nullable: true, comment: 'Single valued, sets the users executing it' },
-        cmd: { type: 'text', nullable: true, comment: 'Single valued, provides defaults for an executing container, can be executable' },
+        cmd: { type: 'text', nullable: true, comment: 'Multi valued (gets merged to single in compilation!), provides defaults for an executing container, can be executable' },
         run: { type: 'text', nullable: true, comment: 'Multi valued, commands to execute' },
         expose: { type: 'text', nullable: true, comment: 'Multi valued, forward ports to the host OS' },
         env: { type: 'text', nullable: true, comment: 'Multi valued, environment variables for the container' },
